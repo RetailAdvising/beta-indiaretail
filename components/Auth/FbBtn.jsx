@@ -19,14 +19,13 @@ const FbBtn = ({ socialLogin, setCredential, setShowMob }) => {
   }, [])
 
   const { linkedInLogin } = useLinkedIn({
-    clientId: process.env.LINKEDIN_CLIENT_ID,
+    clientId: "86b4qk3ibf9z8c",
     // clientId: "86b4qk3ibf9z8c",
     // redirectUri: `https://indiaretail.vercel.app/auth/signin`,
     // redirectUri: `http://localhost:3000/auth/signin`,
     redirectUri: `${doamin_url}/auth/signin`,
     scope: "email profile w_member_social openid",
-    state: process.env.LINKEDIN_CLIENT_ID,
-    // state: "86b4qk3ibf9z8c",
+    state: "86b4qk3ibf9z8c",
     // email profile
     onSuccess: async (code) => {
       // console.log(code);
