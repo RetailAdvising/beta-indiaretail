@@ -278,8 +278,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
           {/* { loading ? <p>loading...</p> calc(100vh_-_${tabHeight}px) */}
           <ChakraProvider>
 
-            <GoogleOAuthProvider clientId={"630423705748-pg41popq5up1nsvs08i7n0ia47fkpt01.apps.googleusercontent.com"}>
-            {/* <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}> */}
+            <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
               <SessionProvider session={session}>
                 <main className={` ${inter.className} md:max-h-[100vh] md:overflow-auto`} id='scroll_div' >
                   {router.pathname != "/p/[...route]" && <div className='lg:hidden'><MobileHead getActiveTab={getActiveTab} activeTab={activeTab} /></div>}
