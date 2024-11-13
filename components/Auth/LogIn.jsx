@@ -28,13 +28,6 @@ import { GoogleLogin } from '@react-oauth/google';
 
 
 export default function LogIn({ isModal, hide, auth }) {
-    // const config = {
-    // providers: [
-    //     Google({
-    //       clientId: "630423705748-pg41popq5up1nsvs08i7n0ia47fkpt01.apps.googleusercontent.com",
-    //       clientSecret: "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",
-    //     }),
-    // ]}
     const [show, setShow] = useState(false)
     const [wrong, setWrong] = useState(false)
     const [otp, setOtp] = useState(false)
@@ -69,26 +62,9 @@ export default function LogIn({ isModal, hide, auth }) {
 
         // const script = document.createElement('script');
         // script.src = 'https://accounts.google.com/gsi/client';
-        google.accounts.id.initialize({
-            client_id: "630423705748-pg41popq5up1nsvs08i7n0ia47fkpt01.apps.googleusercontent.com",
-            callback: handleCallbackResponse
-        })
-
-        google.accounts.id.renderButton(
-            document.getElementById('apple')
-            // {theme: "outline", size="large"}
-        )
+        
 
 
-
-        window.fbAsyncInit = function () {
-            window.FB.init({
-                appId: '341622788230249',
-                autoLogAppEvents: true,
-                xfbml: true,
-                version: 'v11.0',
-            });
-        };
 
         // Load the Facebook SDK asynchronously
         (function (d, s, id) {
@@ -112,13 +88,6 @@ export default function LogIn({ isModal, hide, auth }) {
         setIsMobile(isMobile);
     }
 
-    // useEffect(() => {
-    //   gapi.load('auth2', function () {
-    //     gapi.auth2.init({
-    //       client_id: '189689673866-irqdceaurkp36epq803g6gdbcsj0rum7.apps.googleusercontent.com',
-    //     });
-    //   });
-    // }, []);
 
     async function login(data) {
         // console.log(data)
@@ -625,25 +594,6 @@ export default function LogIn({ isModal, hide, auth }) {
                                 {/* <p>Continue with Apple</p> */}
                             </div>}
 
-                            {false && <div className='flex  items-center h-[50px] w-[75px] rounded-[10px] cursor-pointer justify-center border'>
-                                {/* <Image height={20} className='h-[25px] w-[25px] object-contain' width={20} alt='apple' src={'/login/fb-01.svg'} /> */}
-                                <FbBtn />
-                                {/* <p>Continue with Facebook</p> */}
-                                {
-                                    // <FacebookLogin
-                                    //     // Login with Facebook
-                                    //     textButton=""
-                                    //     // p-[8px_40px] flex items-center gap-[10px] text-[13px] border rounded-[3px]
-                                    //     cssClass="my-facebook-button-class  "
-                                    //     icon="fa-facebook"
-                                    //     appId="341622788230249"
-                                    //     autoLoad={false} // Set to true if you want auto-login on page load
-                                    //     fields="name,email,picture"
-                                    //     callback={responseFacebook}
-                                    // />
-                                }
-                            </div>}
-
                             <div className='flex  items-center h-[50px] w-[75px] rounded-[10px] cursor-pointer justify-center border'>
                                 <FbBtn socialLogin={socialLogin} setCredential={setCredential} setShowMob={setShowMob} />
                             </div>
@@ -664,71 +614,9 @@ export default function LogIn({ isModal, hide, auth }) {
     )
 }
 
-// import GoogleProvider from "next-auth/providers/google" 
-// import NextAuth from "next-auth"
-
-// const handler = NextAuth({
-//     providers: [
-//         GoogleProvider({
-//           clientId: process.env.GOOGLE_CLIENT_ID,
-//           clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-//         }),
-//         // ...add more providers here
-//       ],
-// })
-
-// export { handler as GET, handler as POST }
-
-
-// Login Social
-
-{/* <LoginSocialGoogle
-                        client_id={'630423705748-pg41popq5up1nsvs08i7n0ia47fkpt01.apps.googleusercontent.com'}
-                        onLoginStart={onLoginStart}
-                        redirect_uri={REDIRECT_URI}
-                        scope="openid profile email"
-                        discoveryDocs="claims_supported"
-                        access_type="offline"
-                        onResolve={({ provider, data }) => {
-                            // setProvider(provider);
-                            // setProfile(data);
-                            console.log(provider)
-                            console.log(data)
-                        }}
-                        onReject={err => {
-                            console.log(err);
-                        }}
-                    >
-                        <GoogleLoginButton />
-                    </LoginSocialGoogle> */}
 
 
 
 
-{/* <LoginSocialApple
-                        client_id={process.env.REACT_APP_APPLE_ID || ''}
-                        scope={'name email'}
-                        redirect_uri={REDIRECT_URI}
-                        onLoginStart={onLoginStart}
-                        onResolve={({ provider, data }) => {
-                            // setProvider(provider);
-                            // setProfile(data);
-                            console.log(provider)
-                            console.log(data)
-                        }}
-                        onReject={err => {
-                            console.log(err);
-                        }}
-                    >
-                        <AppleLoginButton />
-                    </LoginSocialApple> */}
-{/* <>{
-                        <GoogleLogin
-                            clientId="630423705748-pg41popq5up1nsvs08i7n0ia47fkpt01.apps.googleusercontent.com"
-                            buttonText="Login"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        />
-                        }
-                    </> */}
+
+
