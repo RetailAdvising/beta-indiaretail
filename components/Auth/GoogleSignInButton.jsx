@@ -45,14 +45,15 @@ const GoogleSignInButton = ({ onSuccess, onFailure }) => {
   // }, []);
 
   return (
-    <GoogleLogin
-      clientId= {"189689673866-irqdceaurkp36epq803g6gdbcsj0rum7.apps.googleusercontent.com"}
-      onSuccess={onSuccess}
-      onFailure={onFailure}
-      shape='square'
-      text='signin'
-      size='medium'
-    />
+    // <GoogleLogin
+    //   // clientId= {"189689673866-irqdceaurkp36epq803g6gdbcsj0rum7.apps.googleusercontent.com"}
+    //   onSuccess={onSuccess}
+    //   onFailure={onFailure}
+    //   shape='square'
+    //   text='signin'
+    //   size='medium'
+    // />
+    <></>
   );
 };
 
