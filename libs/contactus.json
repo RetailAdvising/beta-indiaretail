@@ -1,0 +1,154 @@
+
+{
+    "footer":{
+        "section_1":{
+            "image": "/indiaretail.png",
+            "addresstitle": "Delhi(Head Office)",
+            "address": "S-61A, Okhla Phase II, New Delhi, 110020 INDIA, Tel: +91-11-40525000, 40502500, Fax: +91-11-40525001 or 40502501, Email: contact@imagesgroup.in",
+            "addresstitle1": "Mumbai",
+            "address1": "3/116 Marol Co-Operative Industrial Estate, Marol, Andheri (East), Mumbai 400059, Tel: +91 – 22 – 28508070 / 71, Fax: +91 – 22 – 28508072",
+            "addresstitle2": "MIDDLE EAST",
+            "address2": "IMAGES MULTIMEDIA FZ-LLC, Office 304, Makateb 2, Dubai Production City, PO Box: 502316, Dubai, United Arab Emirates, Tel: +971-4-4467555, Fax: +971-4-4469707, Justina Eitzinger +971 50 841 9750, Email: justina@imagesretailme.com",
+            "phoneicon": "/call.svg",
+            "phonenumber": "+91-9867355551",
+            "mailicon": "/mail-01.svg",
+            "mail": "editor@indiaretailing.com",
+            "socials": [
+                {"icon": "/footer/fb.svg", "link": "https://www.facebook.com/indiaretailing"},
+                {"icon": "/footer/linkedin.svg", "link": "https://www.linkedin.com/company/indiaretailing"},
+                {"icon": "/footer/youtube.svg", "link": "https://www.youtube.com/user/Indiaretailing1"},
+                {"icon": "/footer/instagram.svg", "link": "https://www.instagram.com/indiaretailingdotcom/"},
+                {"icon": "/footer/google-news.svg", "link": "https://news.google.com/publications/CAAiEDXIOJ59NeImKwFWQAEAbQcqFAgKIhA1yDiefTXiJisBVkABAG0H?ceid=US:en&oc=3&hl=en-US&gl=US"}
+            ]
+        },
+        "section_2":{
+            "child_data":[
+                {
+                    "title": "About us",
+                        "footerlinks": [
+                            {"footerlink": "About IndiaRetailing.com", "link": "/aboutus"},
+                            {"footerlink": "Meet the team", "link": "/teams"},
+                            {"footerlink": "Advertise with us", "link": "/advertise-with-us"},
+                            {"footerlink": "Contact us", "link": "/contact-us"}
+                        ]
+                },
+                {
+                    "title": "Categories",
+                        "footerlinks": [
+                            {"footerlink": "Fashion & Lifestyle", "link": "/categories/fashion-lifestyle"},
+                            {"footerlink": "Beauty & Wellness", "link": "/categories/beauty-wellness"},
+                            {"footerlink": "Food & Beverage", "link": "/categories/food-beverage"},
+                            {"footerlink": "Consumer Durables & IT", "link": "/categories/consumer-durables-it"},
+                            {"footerlink": "Entertainment", "link": "/entertainment"},
+                            {"footerlink": "Home Decor & Furnishing", "link": "/home-decor-furnishing"},
+                            {"footerlink": "Specialty Retail", "link": "/specialty-retail"}
+                        ]
+                },
+                {
+                    "title": "Features",
+                        "footerlinks": [
+                            {"footerlink": "Leaders Ink", "link": "#"},
+                            {"footerlink": "People", "link": "#"},
+                            {"footerlink": "Finance & Funding", "link": "#"},
+                            {"footerlink": "D2C", "link": "#"},
+                            {"footerlink": "Shopping Centers", "link": "#"},
+                            {"footerlink": "Results", "link": "#"},
+                            {"footerlink": "Research", "link": "#"},
+                            {"footerlink": "Case Studies", "link": "#"}
+                        ]
+                },
+                {
+                    "title": "Events",
+                        "footerlinks": [
+                            {"footerlink": "India Fashion Forum", "link": "https://www.indiafashionforum.in/"},
+                            {"footerlink": "India Food Forum", "link": "https://www.indiafoodforum.com/"},
+                            {"footerlink": "Shopping Centre Next", "link": "https://www.shoppingcentresnext.com/"},
+                            {"footerlink": "Phygital Retail Convention", "link": "https://www.phygitalretailconvention.com/"},
+                            {"footerlink": "India D2C Summit & Awards", "link": "https://www.indiad2csummit.com/"},
+                            {"footerlink": "Internet Commerce Summit", "link": "http://www.internetcommercesummit.com/"}
+                        ]
+                },
+                {
+                    "title": "Bookstore",
+                        "footerlinks": [
+                            {"footerlink": "Magazines", "link": "#"},
+                            {"footerlink": "Yearbooks", "link": "#"},
+                            {"footerlink": "Other publications", "link": "#"}
+                        ]
+                },
+                {
+                    "title": "Videos",
+                        "footerlinks": [
+                            {"footerlink": "Retail with Rasul Bailay", "link": "#"},
+                            {"footerlink": "The Store", "link": "#"},
+                            {"footerlink": "IR Studio", "link": "#"}
+                        ]
+                },
+                {
+                    "title": "IR Prime Subscription Box",
+                        "footerlinks": [
+                            {"footerlink": "Lorem ipsum", "link": "#"},
+                            {"footerlink": "Lorem ipsum", "link": "#"},
+                            {"footerlink": "Lorem ipsum", "link": "#"},
+                            {"footerlink": "Lorem ipsum", "link": "#"}
+                        ]
+                },
+                {
+                    "title": "Retail Functions",
+                        "footerlinks": [
+                            {"footerlink": "Marketing", "link": "#"},
+                            {"footerlink": "Technology", "link": "#"},
+                            {"footerlink": "Operations", "link": "#"},
+                            {"footerlink": "HR", "link": "#"},
+                            {"footerlink": "Supply Chain", "link": "#"}
+                        ]
+                }
+            ]
+        },
+        "copy_write": "Copyright © 2023.",
+        "copy_link_text": "Indiaretailing.com",
+        "copy_link": "#"
+    },
+    "data":{
+        "address_content": "",
+        "bt1_bg": "",
+        "class_name": "oaxqckru",
+        "content": "Contact Us",
+        "content_type": "",
+        "dynamic_data": 0,
+        "email_icon": "",
+        "email_id": "",
+        "icon": "",
+        "is_full_width": 0,
+        "layout_json": null,
+        "login_required": 0,
+        "mobile_app_template": null,
+        "no_of_records": 0,
+        "phone_icon": "",
+        "phone_no": "",
+        "reference_document": null,
+        "section": "PS-23-00295",
+        "section_name": "Contact Info",
+        "section_type": "Static Section",
+        "social_links": [
+          {
+            "icon": "/files/fb-01.svg",
+            "idx": 1,
+            "redirect_link": "https://www.facebook.com/"
+          },
+          {
+            "icon": "/files/twitter-01.svg",
+            "idx": 2,
+            "redirect_link": "https://twitter.com/home"
+          },
+          {
+            "icon": "/files/instagram-01.svg",
+            "idx": 3,
+            "redirect_link": "https://www.instagram.com/"
+          }
+        ],
+        "title": "Contact Us",
+        "view_more_redirect_to": null,
+        "view_type": ""
+      }
+}

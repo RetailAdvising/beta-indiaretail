@@ -1,0 +1,41 @@
+@import './Variables.module.scss';
+
+.section_1 {
+    // display: flex;
+    // gap: 10px;
+    width: 70%;
+}
+
+.section_2 {
+    // display: flex;
+    // width: 30%;
+    text-align: start;
+}
+
+
+.list {
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+
+    .card_item {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        position: relative;
+        border-bottom: 1px solid $border-color;
+
+        .title_top {
+            position: absolute;
+            gap: 5px;
+        }
+
+        // div {
+        //     margin-top: 25px;
+        // }
+        &:last-child{
+            border-bottom: none;
+        }
+    }
+
+    
+}

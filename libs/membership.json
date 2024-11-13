@@ -1,0 +1,73 @@
+{
+    "title":"30 years of legacy delivering curated business insights",
+    "subtitle":"With 50,000+ articles, IndiaRetailing (IR) Prime is the only subscription you need for business intelligence on retail in India",
+    "membership":[
+        {
+            "plan":"Silver",
+            "descrption":"Starter plan for optimal business intelligence",
+            "offer":"25",
+            "price":"99.00",
+            "items":[
+                {
+                    "list":"Access to 10 in-depth exclusive business stories per month"
+                },
+                {
+                    "list":"Access to 6 focussed weekly newsletters on different categories of retail throughout the duration of membership"
+                },
+                {
+                    "list":"Access to the 1 limited-edition IMAGES Special Publication (digital copy worth Rs899) "
+                },
+                {
+                    "list":"10% discount on all IMAGES Group event tickets"
+                }
+            ]
+        },
+        {
+            "plan":"Gold",
+            "descrption":"Starter plan + Special benefits",
+            "offer":"30",
+            "price":"149.00",
+            "items":[
+                {
+                    "list":"Access to 15 in-depth exclusive business stories per month"
+                },
+                {
+                    "list":"Access to 6 focussed weekly newsletters on different categories of retail throughout the duration of membership"
+                },
+                {
+                    "list":"Access to the 1 limited-edition IMAGES Special Publication (digital copy worth Rs899 each)"
+                },
+                {
+                    "list":"Access to IMAGES Retail magazine digital edition"
+                },
+                {
+                    "list":"15 % discount on IMAGES Group event tickets"
+                }
+                
+            ]
+        },
+        {
+            "plan":"Platinum",
+            "descrption":"Premium plan with exclusive benefits",
+            "offer":"40",
+            "price":"249.00",
+            "items":[
+                {
+                    "list":"Access to 20 in-depth exclusive business stories per month"
+                },
+                {
+                    "list":"Access to 6 focussed weekly newsletters on different categories of retail throughout the duration of membership"
+                },
+                {
+                    "list":"Access to the 1 limited-edition IMAGES Special Publication (digital copy worth Rs899 each) "
+                },
+                {
+                    "list":"Access to IMAGES Retail + IMAGES Business of Fashion magazine digital editions "
+                },
+                {
+                    "list":"20 % discount on IMAGES Group event tickets"
+                }
+            ]
+        }
+    ]
+}

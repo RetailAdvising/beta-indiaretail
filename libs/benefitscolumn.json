@@ -1,0 +1,25 @@
+{
+    "title":"Ir Prime Membership Benefits",
+    "memberships":[
+        {
+            "title":"Multimedia content",
+            "content":"From explainers and charticles to exclusive video interviews and podcasts with who’s who of the retail ecosystem, IR Prime will open a whole new world of retail insights.",
+            "image":"/membership/multimedia.svg"
+        },
+        {
+            "title":"Get Special discounts for all IMAGES Group events",
+            "content":"IR Prime members get 10%-20% discounts on tickets to industry-leading events by IMAGES Group including retail’s biggest industry conference Phygital Retail Convention.",
+            "image":"/membership/events.svg"
+        },
+        {
+            "title":"6 Exclusive Newsletters",
+            "content":"IR Prime Members get focussed newsletters covering key categories and functions of retail such as Fashion & Lifestyle, Beauty & Wellness, Technology, Food & Beverages delivered to their Inbox every day",
+            "image":"/membership/exclusive-newsletters.svg"
+        },
+        {
+            "title":"Exclusive insights by industry leaders & veterans (collage pic of people featured)",
+            "content":"IR Prime Members will get access to a host of actionable insights and ideas by leaders and veterans of Indian retail industry through exclusive articles, interviews and podcasts.",
+            "image":"/membership/exclusive-insights.svg"
+        }
+    ]
+}

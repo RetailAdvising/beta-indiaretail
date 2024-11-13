@@ -1,0 +1,142 @@
+@import './Variables.module.scss';
+
+.forms{
+    display: flex;
+    flex-direction: column;
+}
+
+.container_{
+    .box_1{
+        flex: 0 0 calc(70% - 5px);
+        .card_detail{
+
+        }
+    }
+    
+    .box_2{
+        flex: 0 0 calc(30% - 15px);
+    }
+}
+
+.input_radio:checked {
+  background-color: $primary-color;
+  padding: 3px;
+  border: 1px solid $primary-color;
+  accent-color: $primary-color;
+}
+
+
+.input_radio {
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  // appearance: none;
+  // display: inline-block;
+  width: 17px;
+  // height: 17px;
+  // margin: 1px;
+  /* padding: 1px; */
+  background-clip: content-box;
+  border: 1px solid #000;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+
+
+.custom_input{
+    margin: 10px 0;
+    border-radius: 5px;
+    height: 45px;
+    padding: 0 10px 0 10px;
+    font-size: 16px;
+    border: 1px solid $border-color;
+}
+
+.custom_select:focus {
+  outline: none;
+}
+
+.flex_2{
+  flex: 0 0 calc(50% - 5px);
+}
+
+.flex_3{
+  // flex: 0 0 calc(33.33% - 7px);
+  width: calc(33.33% - 7px);
+}
+
+@media only screen and (min-width: 768px) {
+ 
+}
+
+@media only screen and (max-width: 768px) {
+  .container_{
+    // padding: 10px;
+    // flex-direction: column;
+  }
+
+  // .box_{
+  //   flex-direction: column;
+  // }
+}
+
+
+
+.card_detail{
+  align-items: unset !important;
+
+
+
+  .payment_sec{
+    gap: 10px;
+
+    .card_info{
+     width: 100%;
+    }
+
+    .sec_1{
+      flex: 0 0 calc(80% - 10px);
+    }
+    .sec_2{
+      flex: 1;
+    }
+
+    .sub_title,.span_cls{
+        font-size: 12px;
+        color: $secondary-color;
+    }
+    .span_cls::before{
+        content: "";
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        margin: 0 8px;
+        vertical-align: middle;
+        background-color: white;
+        transition: border-color 0.3s;
+        background: #ddd;
+    }
+  }
+}
+
+.react_selectselect__control {
+  border: none;
+  box-shadow: none;
+}
+
+.add_new{
+  border-color: $primary-color;
+  color: $primary-color;
+}
+
+.address_sec{
+  .edit_text{
+   color: #4fc716;
+  }
+  .delete_text{
+   color: #e84a50;
+  }
+}

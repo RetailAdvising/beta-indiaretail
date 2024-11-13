@@ -1,0 +1,234 @@
+{
+    "header": {
+        "is_transparent_header": 0,
+        "title": "India Retailing",
+        "is_menu_full_width": 0,
+        "layout_json": "[{\"fullwidth\":true,\"columns\":[{\"width\":\"20%\",\"rows\":[]},{\"width\":\"60%\",\"rows\":[]},{\"width\":\"20%\",\"rows\":[]}]}]",
+        "enable_top_menu": 0,
+        "sticky_on_top": 0,
+        "is_dismissable": 0,
+        "layout": "One Column",
+        "sticky_header": 1,
+        "call_to_action_button": 1,
+        "button_text": "Get Started",
+        "button_link": "#",
+        "link_target": "_self",
+        "sticky_header_background": "#ffffff",
+        "menu_text_color": "#000000",
+        "items": [
+            {
+                "class_name": "fuvrextx",
+                "column_index": 0,
+                "content_type": "",
+                "dynamic_data": 1,
+                "is_full_width": 0,
+                "layout_json": null,
+                "login_required": 0,
+                "mobile_app_template": null,
+                "no_of_records": 0,
+                "reference_document": null,
+                "section": "PS-22-00016",
+                "section_name": "Header Logo",
+                "section_type": "Static Section",
+                "view_more_redirect_to": null,
+                "view_type": ""
+            },
+            {
+                "class_name": "jkjcrroz",
+                "column_index": 1,
+                "content_type": "",
+                "dynamic_data": 1,
+                "is_full_width": 0,
+                "layout_json": null,
+                "login_required": 0,
+                "mobile_app_template": null,
+                "no_of_records": 0,
+                "reference_document": null,
+                "section": "PS-22-00017",
+                "section_name": "Header Menu",
+                "section_type": "Menu",
+                "view_more_redirect_to": null,
+                "view_type": "",
+                "menus": [
+                    {
+                        "menu_label": "Home",
+                        "redirect_url": "/",
+                        "icon": "/Navbar/home.svg",
+                        "is_mega_menu": 0,
+                        "no_of_column": 0,
+                        "child_menu": []
+                    },
+                    {
+                        "menu_label": "Categories",
+                        "redirect_url": "/categories",
+                        "icon": "/Navbar/Categories.svg",
+                        "is_mega_menu": 0,
+                        "no_of_column": 0,
+                        "child_menu": []
+                    },
+                    {
+                        "menu_label": "IR Prime",
+                        "redirect_url": "/IRPrime",
+                        "icon": "/Navbar/IR-prime.svg",
+                        "is_mega_menu": 0,
+                        "no_of_column": 0,
+                        "child_menu": []
+                    },
+                    {
+                        "menu_label": "Events",
+                        "redirect_url": "/events",
+                        "icon": "/Navbar/Events.svg",
+                        "is_mega_menu": 0,
+                        "no_of_column": 0,
+                        "child_menu": []
+                    },
+                    {
+                        "menu_label": "Book Store",
+                        "redirect_url": "/bookstore",
+                        "icon": "/Navbar/Bookstore.svg",
+                        "is_mega_menu": 0,
+                        "no_of_column": 0,
+                        "child_menu": []
+                    },
+                    {
+                        "menu_label": "Newsletters",
+                        "redirect_url": "/newsletters",
+                        "icon": "/Navbar/newsletter.svg",
+                        "is_mega_menu": 0,
+                        "no_of_column": 0,
+                        "child_menu": []
+                    },
+                    {
+                        "menu_label": "Videos",
+                        "redirect_url": "/video",
+                        "icon": "/Navbar/video.svg",
+                        "is_mega_menu": 0,
+                        "no_of_column": 0,
+                        "child_menu": []
+                    },
+                    {
+                        "menu_label": "Podcasts",
+                        "redirect_url": "/podcast",
+                        "icon": "/Navbar/Podcasts.svg",
+                        "is_mega_menu": 0,
+                        "no_of_column": 0,
+                        "child_menu": []
+                    }
+                ]
+            },
+            {
+                "class_name": "mlnfjnxl",
+                "column_index": 2,
+                "content_type": "",
+                "defalut_profile": "",
+                "dynamic_data": 1,
+                "is_full_width": 0,
+                "layout_json": null,
+                "login_required": 0,
+                "message_icon": "",
+                "mobile_app_template": null,
+                "no_of_records": 0,
+                "notification_icon": "",
+                "profile_menu": [
+                    {
+                        "idx": 1,
+                        "menu_name": "Dashboard",
+                        "redirect_url": "/dashboard"
+                    },
+                    {
+                        "idx": 2,
+                        "menu_name": "Service Request",
+                        "redirect_url": "/my-tickets"
+                    },
+                    {
+                        "idx": 3,
+                        "menu_name": "Document Vault",
+                        "redirect_url": "/vault"
+                    },
+                    {
+                        "idx": 4,
+                        "menu_name": "Invite & Earn",
+                        "redirect_url": "/referral"
+                    },
+                    {
+                        "idx": 5,
+                        "menu_name": "Search Tickets",
+                        "redirect_url": "/all-tickets"
+                    },
+                    {
+                        "idx": 6,
+                        "menu_name": "Change Password"
+                    },
+                    {
+                        "idx": 7,
+                        "menu_name": "Logout"
+                    }
+                ],
+                "reference_document": null,
+                "section": "PS-22-00018",
+                "section_name": "Header Profile Info",
+                "section_type": "Static Section",
+                "view_more_redirect_to": null,
+                "view_type": ""
+            },
+            {
+                "class_name": "mlnfjnxl",
+                "column_index": 2,
+                "content_type": "",
+                "defalut_profile": "",
+                "dynamic_data": 1,
+                "is_full_width": 0,
+                "layout_json": null,
+                "login_required": 0,
+                "message_icon": "",
+                "mobile_app_template": null,
+                "no_of_records": 0,
+                "notification_icon": "",
+                "menus": [
+                    {
+                        "idx": 1,
+                        "menu_name": "Fashion & Lifestyle",
+                        "redirect_url": "/categories/fashion-lifestyle"
+                    },
+                    {
+                        "idx": 2,
+                        "menu_name": "Beauty & Wellness",
+                        "redirect_url": "/categories/beauty-wellness"
+                    },
+                    {
+                        "idx": 3,
+                        "menu_name": "Food & Beverage",
+                        "redirect_url": "/categories/food-beverage"
+                    },
+                    {
+                        "idx": 4,
+                        "menu_name": "Consumer Durables & IT",
+                        "redirect_url": "/categories/consumer-durables-it"
+                    },
+                    {
+                        "idx": 4,
+                        "menu_name": "Entertainment",
+                        "redirect_url": "/categories/entertainment"
+                    },
+                    {
+                        "idx": 4,
+                        "menu_name": "Home Decor & Furnishing",
+                        "redirect_url": "/categories/home-decor-furnishing"
+                    },
+                    {
+                        "idx": 4,
+                        "menu_name": "Specialty Retail",
+                        "redirect_url": "/categories/specialty-retail"
+                    }
+                    
+                ],
+                "reference_document": null,
+                "section": "PS-22-00018",
+                "section_name": "Header Category Info",
+                "section_type": "Static Section",
+                "view_more_redirect_to": null,
+                "view_type": "" 
+            }
+        ]
+    }
+}

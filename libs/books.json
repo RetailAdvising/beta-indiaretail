@@ -1,0 +1,46 @@
+{
+    "title2":"Books",
+    "subtitle2":"Lorem ipsum dolor sit amet consectetur. Fusce vel donec risus pharetra adipiscing nascetur augue libero diam. Pulvinar elit tincidunt natoque semper.",
+    "books":[
+        {
+            "title":"Store Design & Interiors",
+            "image":"/about/book1.svg"
+        },
+        {
+            "title":"Malls in India",
+            "image":"/about/book1.svg"
+        },
+        {
+            "title":"Images Business of Fashion Report",
+            "image":"/about/book1.svg"
+        },
+        {
+            "title":"India D2C Yearbook",
+            "image":"/about/book1.svg"
+        },
+        {
+            "title":"Evolve",
+            "image":"/about/book1.svg"
+        },
+        {
+            "title":"Shopping Centre Next",
+            "image":"/about/book1.svg"
+        },
+        {
+            "title":"India Food Report",
+            "image":"/about/book1.svg"
+        },
+        {
+            "title":"India Retail Report",
+            "image":"/about/book1.svg"
+        },
+        {
+            "title":"India Phygital Index",
+            "image":"/about/book1.svg"
+        },
+        {
+            "title":"Retail Icons of India",
+            "image":"/about/book1.svg"
+        }
+    ]
+}

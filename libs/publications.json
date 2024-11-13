@@ -1,0 +1,110 @@
+{
+    "aboutus":[
+        {
+            "title":"About Us",
+            "subtitle1":"Indiaretailing.com",
+            "subtitle2":"Your window to the world of Retail",
+            "content":"Indiaretailing.com, offers a window to the world of Retail in India. It is an initiative of IMAGES Group, a retail intelligence organisation that is trusted globally as the catalyst for profitable growth of modern Indian retail through knowledge platform leadership. Headquartered in New Delhi, the IMAGES Group has offices across Indian metros and the Middle East.",
+            "image":"/about/about.jpg"
+        },
+        {
+            "title":"Our Vision",
+            "subtitle1":"",
+            "subtitle2":"",
+            "content":"To be trusted as the catalyst for profitable growth of modern retail, through knowledge platform leadership.",
+            "image":"/about/vision.svg"
+        },
+        {
+            "title":"Our Mission",
+            "subtitle1":"",
+            "subtitle2":"",
+            "content":"Profitably connecting our Consumers & Customers to businesses, people, knowledge and ideas associated with modern retail.",
+            "image":"/about/mission.svg"
+        }
+    ],
+    "title":"Images Publications",
+    "subtitle":"A strong portfolio of B2B publications covering all retail verticals have served since 1992 to inform, advise, and inspire industry leaders and decision makers.",
+    "publication":[
+        {
+            "title":"Images Business of Fashion",
+            "image":"/about/business_of_fashion.jpg"
+        },
+        {
+            "title":"Images Retail",
+            "image":"/about/image-Retail.jpg"
+        },
+        {
+            "title":"Images Retail ME",
+            "image":"/about/images_retail.jpg"
+
+        },
+        {
+            "title":"Progressive Grocer",
+            "image":"/about/grocer.jpg"
+        },
+        {
+            "title":"Shopping Centre News",
+            "image":"/about/shopping.jpg"
+        },
+        {
+            "title":"Phygital",
+            "image":"/about/phygital.jpg"
+        }
+    ],
+    "title1":"Images Awards",
+    "subtitle1":"Images Awards are respected for their unbiased assessment & recognition of retail performance, while other initiatives in Business Intelligence, Real Estate & Market Research, Retail Training and On-line Community Building play important roles in further developing the world’s most attractive retail destination India. Some of the prestigious awards from IMAGES Group are as follows",
+    "exhibitions":[
+        {
+            "title":"Images Retail Awards (IRA)",
+            "image":"/about/awards1.jpg"
+        },
+        {
+            "title":"Images Fashion Awards (IFA)",
+            "image":"/about/awards2.jpg"
+        },
+        {
+            "title":"India Shopping Centre Awards (ISCA)",
+            "image":"/about/awards3.jpg"
+        },
+        {
+            "title":"Images Food Service Awards",
+            "image":"/about/awards4.jpg"
+        },
+        {
+            "title":"India E-commerce Awards",
+            "image":"/about/awards5.jpg"
+        },
+        {
+            "title":"India D2C Awards",
+            "image":"/about/awards6.jpg"
+        }
+    ],
+    "title2":"Images Events & Exhibitions",
+    "subtitle2":"Images business exhibitions and knowledge forums & conferences connect businesses, people, knowledge, and ideas associated with modern retail across different verticals.",
+    "events":[
+        {
+            "title":"India Fashion Forum",
+            "image":"/about/Fashion.png"
+        },
+        {
+            "title":"India Food Forum",
+            "image":"/about/Food.png"
+        },
+        {
+            "title":"Shopping Centre Next",
+            "image":"/about/shopping.png"
+        },
+        {
+            "title":"Phygital Retail Convention",
+            "image":"/about/Retail.png"
+        },
+        {
+            "title":"India D2C Summit & Awards",
+            "image":"/about/summit.png"
+        },
+        {
+            "title":"Internet Commerce Summit",
+            "image":"/about/Commerce.png"
+        }
+    ]
+}
