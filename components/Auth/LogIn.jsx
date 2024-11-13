@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 import OTP from './OTP';
 import SignUp from './SignUp';
 import Forget from './Forget'
-import { signIn } from 'next-auth/react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CryptoJS from 'crypto-js';
@@ -83,24 +82,7 @@ export default function LogIn({ isModal, hide, auth }) {
                 localStorage['roles'] = JSON.stringify(val.message.roles);
                 setWithExpiry('api', val.message.api_key, 90)
 
-                // const day = new Date();
-                // document.cookie = `apikey=${val.message.api_key};expires=${day.getTime() + 10};`;
-                // document.cookie = `secret=${val.message.api_secret};expires=${day.getTime() + 10};`;
-                // document.cookie = `userid=${val.message.user_id};expires=${day.getTime() + 10};`;
-                // document.cookie = `customer_id=${val.message.customer_id};expires=${day.getTime() + 10};`;
-                // document.cookie = `full_name=${val.full_name};expires=${day.getTime() + 10};`;
-                // // document.cookie = `roles=${val.roles};expires=${day.getTime() + 10};`;
-                // if (data.remember) {
-                //     const day = new Date();
-                //     document.cookie = `usr=${data.email};expires=${day.Day() + 90};`;
-                //     document.cookie = `pwd=${data.password};expires=${day.Day() + 90};`;
-                // }
-
-                // const cook = document.cookie;
-                // console.log(cook)
-                // console.log(day.getTime() + 10)
-                // cookieStore.set('usr', data.email, { secure: true, maxAge: 1 })
-                // cookieStore.set('pwd', data.password, { secure: true, maxAge: 1 });
+              
                 dispatch(setUser(val));
                 (isModal || !isMobile) ? hide() : router.push('/')
             } else {
@@ -129,32 +111,6 @@ export default function LogIn({ isModal, hide, auth }) {
     }
 
 
-
-
-    const responseGoogle = (response) => {
-        console.log(response)
-        if (response.error === 'popup_closed_by_user') {
-            // Handle the error (e.g., display a message to the user)
-            console.error('Google login popup closed by the user.');
-        } else {
-            // Handle successful login
-            // console.log('Google login successful:', response);
-        }
-    };
-
-
-    //   const FacebookLoginButton = () => {
-    const responseFacebook = (response) => {
-        console.log(response, "response")
-        if (response.status === 'connected') {
-            // The user is logged in and authorized your app
-            console.log('Logged in and authorized:', response);
-        } else {
-            // The user is not logged in or did not authorize your app
-            console.log('Not logged in or not authorized:', response);
-        }
-    };
-    // };
 
 
     const [show_mob, setShowMob] = useState(false)
@@ -468,15 +424,6 @@ export default function LogIn({ isModal, hide, auth }) {
                                 {/* <button onClick={() => signIn("google")}>Login with Google</button> */}
                             </div>
 
-                            {false && <div id="apple" className='flex items-center h-[50px] w-[75px] rounded-[10px] cursor-pointer justify-center border'>
-                                <Image height={20} onClick={async () => {
-                                    await signIn('apple', {
-                                        callbackUrl: `${window.location.origin}`,
-                                        redirect: true,
-                                    })
-                                }} className='h-[25px] w-[25px] object-contain cursor-pointer' width={20} alt='apple' src={'/Apple-login.svg'} />
-                                {/* <p>Continue with Apple</p> */}
-                            </div>}
 
                             <div className='flex  items-center h-[50px] w-[75px] rounded-[10px] cursor-pointer justify-center border'>
                                 <FbBtn socialLogin={socialLogin} setCredential={setCredential} setShowMob={setShowMob} />

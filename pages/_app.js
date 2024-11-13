@@ -270,27 +270,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-thumbnail/1.1.0/lg-thumbnail.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-fullscreen/1.1.0/lg-fullscreen.min.js"></script> */}
 
-        {/* <Script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID}`}
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        /> */}
-
-        {/* <Script
-          // id="adsense-script"
-          // data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID}
-          strategy="beforeInteractive"
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js`}
-        /> */}
-
-        {/* <Script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=div-gpt-ad-1617096742911-0`}
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        ></Script> */}
 
         <script async  src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
       </Head>
@@ -298,7 +277,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
         <Provider store={store} >
           {/* { loading ? <p>loading...</p> calc(100vh_-_${tabHeight}px) */}
           <ChakraProvider>
-            {/* <GoogleOAuthProvider clientId={"630423705748-pg41popq5up1nsvs08i7n0ia47fkpt01.apps.googleusercontent.com"}> */}
 
             <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
               <SessionProvider session={session}>
