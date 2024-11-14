@@ -129,12 +129,12 @@ export default function newsletter({ ads }) {
 
   const [newsDetail,setNewsDetail] = useState(false)
   const[detail,setDetail] = useState()
-  const navigate = (res) => {
+  const navigate = (res,category) => {
     // console.log(res)
     if(isMobile){
       getNewsDetail(res.name)
     }else{
-      const route1 = window.location.origin + ('/' + res.route.split('/')[0] + '/' + res.title + '/' + res.route.split('/')[1]) // Replace with your route
+      const route1 = window.location.origin + ('/' + res.route.split('/')[0] + '/' + (isLoggedIn ? category : res.title) + '/' + res.route.split('/')[1]) // Replace with your route
       window.open(route1, '_blank');
     }
   }

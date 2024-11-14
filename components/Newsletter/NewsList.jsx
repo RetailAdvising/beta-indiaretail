@@ -93,15 +93,15 @@ export default function NewsList({ data,navigate }) {
         return (
           <div className={`flex gap-[10px] cursor-pointer justify-between ${index != data.length - 1 ? 'pb-[20px]' : ''}`} key={index}>
             {/* flex-[0_0_calc(15%_-_10px)] */}
-            <div  onClick={() => navigate(res)} className={`cursor-pointer flex gap-[10px] lg:w-[110px] md:flex-[0_0_calc(35%_-_5px)]`}>
+            <div  onClick={() => navigate(res,null)} className={`cursor-pointer flex gap-[10px] lg:w-[110px] md:flex-[0_0_calc(35%_-_5px)]`}>
               {/* <Image className={`lg:h-[93px] md:h-full w-full rounded-[6px] `} src={check_Image(res.image)} height={100} width={200} alt={res.title} /> */}
               <ImageLoader style={`lg:h-[93px] md:h-full w-full rounded-[6px]`} src={res.image} title={res.title ? res.title : 's'} />
 
             </div>
             <div  className={`lg:leading-[1.7] md:gap-[5px] md:flex-[0_0_calc(65%_-_5px)] lg:flex-[0_0_calc(60%_-_10px)]`}>
-              <p onClick={() => navigate(res)} className={`text-[#818181] leading-[17.62px] lg:text-[13px] md:text-[11px] capitalize nunito`}>{res.title}</p>
-              <h6 onClick={() => navigate(res)} className={`line-clamp-1 font-[700] text-[17px] md:text-[14px] nunito capitalize`}>{res.primary_text}</h6>
-              <p onClick={() => navigate(res)} className={`text-[14px] md:text-[12px] line-clamp-2 josefin-sans`}>{res.description}</p>
+              <p onClick={() => navigate(res,null)} className={`text-[#818181] leading-[17.62px] lg:text-[13px] md:text-[11px] capitalize nunito`}>{res.title}</p>
+              <h6 onClick={() => navigate(res,null)} className={`line-clamp-1 font-[700] text-[17px] md:text-[14px] nunito capitalize`}>{res.primary_text}</h6>
+              <p onClick={() => navigate(res,null)} className={`text-[14px] md:text-[12px] line-clamp-2 josefin-sans`}>{res.description}</p>
               <div className='flex lg:hidden items-center md:gap-[10px] gap-[20px]'>
                 {/* <p className='cursor-pointer text-[14px] md:text-[12px] font-semibold' onClick={() => router.push(`/${res.route}`)}>Preview</p> */}
                 <p className='flex cursor-pointer justify-center items-center seeMore' onClick={() => {showPopup(res, index)}}><span className='capitalize text-[11px] text-[#e21b22] font-semibold'>Sign Up</span> <Image className='img h-[14px] object-contain' src={'/arrowrightprimary.svg'} height={15} width={15} alt='signup' /></p>
@@ -109,7 +109,7 @@ export default function NewsList({ data,navigate }) {
             </div>
             {/* justify-between */}
             <div className='flex md:hidden items-center pl-[15px] gap-[10px] flex-[0_0_calc(25%_-_10px)]'>
-              <p className={`cursor-pointer nunito flex-[0_0_calc(50%_-_10px)]`} onClick={() => navigate(res)}>Preview</p>
+              <p className={`cursor-pointer nunito flex-[0_0_calc(50%_-_10px)]`} onClick={() => navigate(res,null)}>Preview</p>
               <p className={`flex cursor-pointer nunito justify-center items-center seeMore`} onClick={() => {showPopup(res, index)}}><span className='primary_text '>Sign Up</span> <Image className='img' src={'/arrowrightprimary.svg'} height={15} width={15} alt='signup' /></p>
             </div>
           </div>

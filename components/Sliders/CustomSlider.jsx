@@ -167,7 +167,7 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
             if(newsletter){
                 // const route1 = window.location.origin + ('/' + res.route.split('/')[0] + '/' + parent.day + '/' + res.route.split('/')[1]) // Replace with your route
                 // window.open(route1, '_blank');
-                navigate(res)
+                navigate(res,parent.category)
             }else{
                 router.push((parent && parent.day) ? ('/' + res.route.split('/')[0] + '/' + parent.day + '/' + res.route.split('/')[1]) : ('/' + res.route))
             }
