@@ -1054,7 +1054,7 @@ export async function getServerSideProps({ params }) {
 
   let resp = await getProductDetail(param);
   let value = resp.message;
-
+ 
 
   let data = {"res_type":"item"}
   const subscription = await get_subscription_plans(data);
@@ -1068,6 +1068,11 @@ export async function getServerSideProps({ params }) {
     let response = await getAdvertisements(para)
     let ads = response.message;
 
+    if (value.status === 'Failed') {
+      return {
+          notFound: true
+      };
+    }
 
   return {
     props: { value, res,ads }

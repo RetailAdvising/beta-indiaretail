@@ -90,6 +90,12 @@ export async function getServerSideProps({ params }) {
     const response = await postMethod("india_retailing.india_retailing.api.event_detail", datas)
     const data = await response;
 
+    if(data.status === 'Failed'){
+        return{
+            notFound : true
+        }
+    }
+
     let ads_params = { page: 'Events', page_type: 'Detail' }
     const res_ads = await getAdvertisements(ads_params);
     const ads_data = res_ads.message;

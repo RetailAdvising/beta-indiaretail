@@ -15,6 +15,9 @@ export default function BookstoreList({ value, ads }) {
     let no_product = false;
     let [breadCrumbs, setBreadCrumbs] = useState([{ name: 'Home', route: '/' }])
 
+    console.log(value);
+    
+
     useEffect(() => {
         let routPath = router.asPath.split('/')
         if (routPath && routPath.length != 0) {
@@ -88,7 +91,13 @@ export async function getServerSideProps({ params }) {
     let Id = await params?.list;
     let param = { route: Id, page_no: 1, page_size: 10 }
     let resp = await getCategoryProduct(param);
-    let value = resp.message;
+    let value = resp.message || null;
+    
+    if(value === null){
+        return {
+            notFound: true
+        }
+    } 
 
     let para = { page: 'Books', page_type: 'List' }
     let res = await getAdvertisements(para)

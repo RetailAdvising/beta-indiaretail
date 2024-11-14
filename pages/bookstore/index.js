@@ -4,17 +4,17 @@ import Sliders from '@/components/Sliders/index'
 import Title from '@/components/common/Title'
 import Card from '@/components/Bookstore/Card'
 import List from '@/components/Bookstore/List'
-import { booksLanding, sliders,getAdvertisements } from '@/libs/api'
+import { booksLanding, sliders, getAdvertisements } from '@/libs/api'
 import { checkMobile } from '@/libs/api'
 import SEO from '@/components/common/SEO'
 
 // import BreadCrumb from '@/components/common/BreadCrumb';
 
-export default function Bookstore({ data,slider_data }) {
+export default function Bookstore({ data, slider_data }) {
   // export default function Bookstore({ data, ads_data, slider_data }) {
   // console.log(data);
   let [isMobile, setIsmobile] = useState();
-  const [ads_data,setAdsData] = useState()
+  const [ads_data, setAdsData] = useState()
   // const [slider_data,setSliderData] = useState()
   // let [breadCrumbs, setBreadCrumbs] = useState([
   //   { name: 'Home', route: '/' },
@@ -43,7 +43,7 @@ export default function Bookstore({ data,slider_data }) {
     let ads_params = { page: 'Books', page_type: 'Landing' }
     const res_ads = await getAdvertisements(ads_params);
     const ads_data = res_ads.message;
-    if(ads_data){
+    if (ads_data) {
       setAdsData(ads_data)
     }
   }
@@ -53,7 +53,7 @@ export default function Bookstore({ data,slider_data }) {
   //     page: 'Product',
   //     fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image']
   //   }
-  
+
   //   const res = await sliders(slider_params)
   //   const slider_data = res.message
   //   if(slider_data){
@@ -63,7 +63,7 @@ export default function Bookstore({ data,slider_data }) {
 
   //     setSliderData(slider_data)
   //   }
-  
+
   // }
 
   return (
@@ -100,17 +100,17 @@ export default function Bookstore({ data,slider_data }) {
 
           {(data[1] && data[2]) && <div className='lg:items-baseline container md:p-[10px_15px_10px_15px] pt-[2rem] pb-[6rem] md:flex-wrap md:flex-col flex justify-between gap-[15px]'>
             <div className={`flex-[0_0_calc(70%_-_10px)] md:flex-[0_0_calc(100%_-_0px)]`}>
-              <Title data={data[1]}  seeMore={true} />
+              <Title data={data[1]} seeMore={true} />
               {/* <div className={`flex lg:gap-[15px] h-full rounded-[5px] flex-wrap border p-[15px]`}><List line_clamp={'3'} category={data[1].category_name} check={true} isLanding={true} boxShadow={true} imgWidth={'flex-[0_0_calc(40%_-_10px)]'} imgWidth1={'md:w-[60%]'} height={isMobile ? 'h-[150px]' : 'h-[210px]'} width={'w-full'} data={data[1].products.slice(0, 4)} flex={'flex-[0_0_calc(50%_-_10px)] md:flex-[0_0_calc(100%_-_10px)] lg:h-[220px] md:h-[160px] object-contain'} /></div> */}
               <div className='lg:flex lg:flex-[0_0_calc(70%_-_10px)] gap-[10px] lg:rounded-[5px] lg:border lg:border-slate-200 lg:p-[15px]'>
-                <div className={`flex-[0_0_calc(50%_-_5px)] md:flex-[0_0_calc(100%_-_0px)] flex gap-[10px]  h-full lg:rounded-[5px] flex-wrap  flex-col`}><List line_clamp={'3'}  category={data[1].route} border_b={'md:border-b-[1px] md:p-[0px_0_10px_0] md:border-slate-200 md:last:border-b-[0]'} check={true} boxShadow={true} isLanding={true} imgWidth={'flex-[0_0_calc(30%_-_10px)] md:flex-[0_0_calc(35%_-_10px)]'} height={'h-[150px]'} width={'w-full'} data={data[1].products.slice(0, 3)} /></div>
-                <div className={`flex-[0_0_calc(50%_-_5px)] md:flex-[0_0_calc(100%_-_0px)] flex gap-[10px]  h-full lg:rounded-[5px] flex-wrap  flex-col`}><List line_clamp={'3'}  category={data[1].route} border_b={'md:border-b-[1px] md:p-[0px_0_10px_0] md:border-slate-200 md:last:border-b-[0]'} check={true} boxShadow={true} isLanding={true} imgWidth={'flex-[0_0_calc(30%_-_10px)] md:flex-[0_0_calc(35%_-_10px)]'} height={'h-[150px]'} width={'w-full'} data={data[1].products.slice(4, 6)} /></div>
+                <div className={`flex-[0_0_calc(50%_-_5px)] md:flex-[0_0_calc(100%_-_0px)] flex gap-[10px]  h-full lg:rounded-[5px] flex-wrap  flex-col`}><List line_clamp={'3'} category={data[1].route} border_b={'md:border-b-[1px] md:p-[0px_0_10px_0] md:border-slate-200 md:last:border-b-[0]'} check={true} boxShadow={true} isLanding={true} imgWidth={'flex-[0_0_calc(30%_-_10px)] md:flex-[0_0_calc(35%_-_10px)]'} height={'h-[150px]'} width={'w-full'} data={data[1].products.slice(0, 3)} /></div>
+                <div className={`flex-[0_0_calc(50%_-_5px)] md:flex-[0_0_calc(100%_-_0px)] flex gap-[10px]  h-full lg:rounded-[5px] flex-wrap  flex-col`}><List line_clamp={'3'} category={data[1].route} border_b={'md:border-b-[1px] md:p-[0px_0_10px_0] md:border-slate-200 md:last:border-b-[0]'} check={true} boxShadow={true} isLanding={true} imgWidth={'flex-[0_0_calc(30%_-_10px)] md:flex-[0_0_calc(35%_-_10px)]'} height={'h-[150px]'} width={'w-full'} data={data[1].products.slice(4, 6)} /></div>
               </div>
             </div>
 
             <div className={`flex-[0_0_calc(30%_-_10px)] md:pt-[10px] md:flex-[0_0_calc(100%_-_10px)]`}>
-              <Title data={data[2]}  seeMore={true} />
-              <div className={`h-full lg:rounded-[5px] lg:border lg:border-slate-200 lg:p-[15px]`}><List line_clamp={'3'} category={data[2].route}   border_b={'md:border-b-[1px] md:p-[10px_0] md:first:pt-[0] md:border-slate-200 md:last:border-b-[0] lg:pb-[10px] lg:last:pb-[0px]'} check={true} boxShadow={true} isLanding={true} imgWidth={'flex-[0_0_calc(35%_-_10px)]'} height={'h-[150px]'} width={'w-full'} data={data[2].products.slice(0, 3)} /></div>
+              <Title data={data[2]} seeMore={true} />
+              <div className={`h-full lg:rounded-[5px] lg:border lg:border-slate-200 lg:p-[15px]`}><List line_clamp={'3'} category={data[2].route} border_b={'md:border-b-[1px] md:p-[10px_0] md:first:pt-[0] md:border-slate-200 md:last:border-b-[0] lg:pb-[10px] lg:last:pb-[0px]'} check={true} boxShadow={true} isLanding={true} imgWidth={'flex-[0_0_calc(35%_-_10px)]'} height={'h-[150px]'} width={'w-full'} data={data[2].products.slice(0, 3)} /></div>
 
               {/* <div className={`flex gap-[10px]  h-full lg:rounded-[5px] flex-wrap  flex-col lg:border lg:border-slate-200 lg:p-[15px]`}><List  line_clamp={'3'} category={data[2].category_name} border_b={'md:border-b-[1px] md:p-[0px_0_10px_0] md:border-slate-200 md:last:border-b-[0]'} check={true} boxShadow={true} isLanding={true} imgWidth={'flex-[0_0_calc(35%_-_10px)]'} height={'h-[150px]'} width={'w-full'} data={data[2].products.slice(0, 3)} /></div> */}
             </div>
@@ -118,7 +118,7 @@ export default function Bookstore({ data,slider_data }) {
 
           {data[3] && <div className='' style={{ background: '#fbfbfd' }}>
             <div className={`flex-[0_0_calc(100%_-_10px)] m-[40px_auto]  md:m-[0px_auto] container md:p-[15px] lg:py-8`}>
-              <Title data={data[3]} seeMore={true}  />
+              <Title data={data[3]} seeMore={true} />
               <div className={`flex gap-[15px] flex-wrap `}><Card category={data[3].route} object_fit={'object-contain'} padding={'p-[5px]'} isBorder={true} check={true} isLanding={true} height={isMobile ? 'h-[160px]' : 'h-[280px]'} flex={'flex-[0_0_calc(20%_-_15px)] md:flex-[0_0_calc(50%_-_10px)]'} data={data[3].products} /></div>
             </div>
           </div>}
@@ -130,8 +130,8 @@ export default function Bookstore({ data,slider_data }) {
 }
 
 
-export async function getServerSideProps() {
-  // export async function getStaticProps() {
+// export async function getServerSideProps() {
+export async function getStaticProps() {
   const resp = await booksLanding();
   const data = resp?.message;
 
@@ -142,9 +142,9 @@ export async function getServerSideProps() {
 
   const res = await sliders(slider_params)
   const slider_data = res.message
-  
+
   return {
-    props: { data,slider_data }
+    props: { data, slider_data }, revalidate: 50,
     // props: { data, ads_data, slider_data }, revalidate: 50,
   }
 

@@ -29,7 +29,7 @@ export default function CategoryType({ values, ads }) {
     let no_product = false;
     const [loading, setLoading] = useState(false);
 
-    // console.log(ads)
+    console.log(values)
 
     useEffect(() => {
         // console.log(values);
@@ -228,6 +228,12 @@ export async function getServerSideProps({ params }) {
     // let value = await getList(param);
     let value = await articlesList(param);
     let values = value.message;
+
+    if(values.length === 0){
+        return{
+            notFound : true
+        }
+    }
 
     let param1 = { page: 'Categories', page_type: 'List' }
     const resp = await getAdvertisements(param1);

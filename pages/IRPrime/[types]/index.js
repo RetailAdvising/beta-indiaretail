@@ -11,6 +11,11 @@ export default function Lists({ data, ads }) {
     const router = useRouter();
     const [pageData, setPageData] = useState([])
     const [loading, setLoading] = useState(false);
+
+    console.log(
+        data
+    );
+    
     useEffect(() => {
         // slider_data.map((res)=> {
         //     !isMobile && res.web_image ? res.image = res.web_image : res.image = ''
@@ -127,7 +132,15 @@ export async function getServerSideProps({ params }) {
 
     }
     let value = await articlesList(param);
-    let data = value.message;
+    let data;
+
+    if(value.status === 'Failed'){
+        return {
+            notFound : true
+        }
+    }else{
+        data = value.message
+    }
 
     // let param1 = { doctype: 'Articles', page_type: 'List', category_route: params.types }
     // const resp = await getAds(param1);

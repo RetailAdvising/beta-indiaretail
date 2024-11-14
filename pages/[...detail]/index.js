@@ -10,9 +10,13 @@ import Head from 'next/head'
 
 const index = ({ data, page_route }) => {
 
+    console.log('detailss', data, page_route);
+    
+
     const router = useRouter();
 
     const user = useSelector(s => s.user);
+
 
     const [values, setValues] = useState([])
     const [prev, setPrev] = useState('')
@@ -22,6 +26,7 @@ const index = ({ data, page_route }) => {
     const [meta_info, setMetaInfo] = useState();
     const [comments, setComments] = useState([]);
     const [scrollEle, setScrollEle] = useState(true)
+
 
     const generateMetaData = (data) => {
     }
@@ -397,7 +402,10 @@ export async function getServerSideProps({ params }) {
     if (value && value.message && value.message.length != 0) {
         data = value.message[0];
     } else {
-        data = value
+        // data = value
+        return {
+            notFound: true
+        };
     }
 
     return {

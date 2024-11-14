@@ -22,6 +22,7 @@ import Widgets from '../Category/Widgets'
 import ReactDOM from 'react-dom/client';
 import Benefits from '@/components/Membership/benefits';
 import { toast } from 'react-toastify'
+import { websiteUrl } from '@/libs/config/siteConfig'
 // import { Nunito } from 'next/font/google'
 // const nunito = Nunito({
 //   weight: ["300", "400", "500", "600", "700"],
@@ -536,22 +537,22 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
                   return (
                     <div key={index} onClick={() => updateShare(data)}>
                       {
-                        res.name == 'fb' ? <FacebookShareButton url={`${+ data.route}`}>
+                        res.name == 'fb' ? <FacebookShareButton url={`${websiteUrl+ data.route}`}>
                           <div key={index} className={`rounded-full bg-light-gray p-2`}>
                             <Image src={res.icon} alt={res.name} height={25} width={20} />
                           </div>
                         </FacebookShareButton>
-                          : res.name == 'ws' ? <WhatsappShareButton url={`${+ data.route}`}>
+                          : res.name == 'ws' ? <WhatsappShareButton url={`${websiteUrl+ data.route}`}>
                             <div key={index} className={`rounded-full bg-light-gray p-2`}>
                               <Image src={res.icon} alt={res.name} height={25} width={20} />
                             </div>
                           </WhatsappShareButton>
-                            : res.name == 'linkedin' ? <LinkedinShareButton url={`${+ data.route}`}>
+                            : res.name == 'linkedin' ? <LinkedinShareButton url={`${websiteUrl+ data.route}`}>
                               <div key={index} className={`rounded-full bg-light-gray p-2`}>
                                 <Image src={res.icon} alt={res.name} height={25} width={20} />
                               </div>
                             </LinkedinShareButton>
-                              : res.name == 'twitter' ? <TwitterShareButton url={`${+ data.route}`}>
+                              : res.name == 'twitter' ? <TwitterShareButton url={`${websiteUrl+ data.route}`}>
                                 <div key={index} className={`rounded-full bg-light-gray p-2`}>
                                   <Image src={res.icon} alt={res.name} height={25} width={20} />
                                 </div>

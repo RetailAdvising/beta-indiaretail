@@ -36,7 +36,7 @@ export default function Trending({ data, res, ads }) {
     const icons = [{ icon: "/bookstore/linkedin.svg", name: 'Linkedin' }, { icon: "/bookstore/FB.svg", name: 'Facebook' }, { icon: "/bookstore/twitter.svg", name: 'Twitter' }, { icon: "/bookstore/whatsapp.svg", name: 'Whatsapp' }]
 
     // console.log(ads)
-    // console.log(res)
+     console.log(data)
 
     useEffect(() => {
         getLatestNews()
@@ -298,7 +298,6 @@ export async function getServerSideProps({ params }) {
 
     const response = await getList(param1);
     const data = response.message;
-
 
     let params_id = { doctype: 'Tag', page_type: 'List' }
     const responses = await getAds(params_id);

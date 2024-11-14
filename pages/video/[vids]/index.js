@@ -27,7 +27,13 @@ export async function getServerSideProps({ params }) {
     }
 
     let value = await video_list(param);
-    let data = value.message;
+    let data = value.message || null;
+
+    if(data === null){
+        return {
+            notFound : true
+        }
+    }
 
     let param1 = { page: 'Videos', page_type: 'List'}
     const resp = await getAdvertisements(param1);

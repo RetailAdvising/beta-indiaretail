@@ -13,7 +13,7 @@ import { useRouter } from 'next/router'
 export default function PodcastDetail({ data, ads_data }) {
     const router = useRouter()
     // const {data,ads_data} = data
-    // console.log(data);
+     console.log('pos',data);
     return (
         <>
             <Head>
@@ -149,6 +149,12 @@ export async function getServerSideProps({ params }) {
     let ads_params = { page: 'Podcasts', page_type: 'Detail' }
     const res_ads = await getAdvertisements(ads_params);
     const ads_data = res_ads.message;
+
+    if(data.status === "Failed"){
+        return {
+            notFound: true
+        }
+    }
     return {
         props: { data, ads_data }
     }

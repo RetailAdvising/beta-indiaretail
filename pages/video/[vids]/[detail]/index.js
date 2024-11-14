@@ -26,7 +26,7 @@ import Advertisement from '@/components/Baners/Advertisement';
 //     variable: '--font-inter',
 // })
 export default function Videos({ meta_info, ads_data }) {
-    // console.log(meta_info, ads_data)
+     console.log(meta_info, ads_data)
     const router = useRouter();
     let [isMobile, setIsmobile] = useState();
     let [videoDetail, setVideoDetail] = useState();
@@ -462,6 +462,13 @@ export async function getServerSideProps({ params }) {
         "route": id, fields: ["name", "route", "title", "video_image", 'description']
     }
     let res = await video_details(data);
+
+    if(res.status === "Failed"){
+        return {
+            notFound: true
+        }
+    }
+    
     let meta_info = res;
 
     let ads_params = { page: 'Videos', page_type: 'Detail' }

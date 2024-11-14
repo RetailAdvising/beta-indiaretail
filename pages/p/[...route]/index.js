@@ -67,11 +67,11 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
   const [bottomBackgroundImage, setBottomBackgroundImage] = useState("/no-image.jpg");
   let [isMobile, setIsMobile] = useState(false)
 
-  useEffect(()=>{
-      if(!webinar_data){
-        router.push("/404")
-      }
-  },[webinar_data])
+  // useEffect(()=>{
+  //     if(!webinar_data){
+  //       router.push("/404")
+  //     }
+  // },[webinar_data])
 
 
   useEffect(() => {
@@ -1832,6 +1832,12 @@ export async function getServerSideProps({ params }) {
     webinar_data = res.message || null;
   } else {
     webinar_data = null;
+  }
+
+  if(webinar_data === null){
+    return {
+      notFound : true
+    }
   }
 
   return {
