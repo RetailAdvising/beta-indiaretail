@@ -1,11 +1,11 @@
 import RootLayout from '@/layouts/RootLayout'
-import React, { useEffect,useState } from 'react'
-import { primeLanding, getAds,getAdvertisements } from '@/libs/api'
+import React, { useEffect, useState } from 'react'
+import { primeLanding, getAds, getAdvertisements } from '@/libs/api'
 import ExclusiveBuilder from '@/components/Builders/ExclusiveBuilder'
 import SEO from '@/components/common/SEO'
 
 
-export default function IRPrime({ data,ads }) {
+export default function IRPrime({ data, ads }) {
     const [value, setValue] = useState()
     // let [ads,setAds] = useState()
 
@@ -24,7 +24,11 @@ export default function IRPrime({ data,ads }) {
         <>
             <RootLayout homeAd={ads ? ads : null} isLanding={true} head={'IR Prime'} adIdH={'ir-prime-head'} adIdF={'ir-prime-foot'}>
                 <SEO title={'IR Prime'} siteName={'India Retailing'} description={'IR Prime'} />
-                {(value && value.message && value.message.length != 0) ? <ExclusiveBuilder data={value} ads={ads ? ads : null} /> : <Skeleton />}
+                {(value && value.message && value.message.length != 0) ? <ExclusiveBuilder data={value} ads={ads ? ads : null} /> :
+                    <>
+                        <Skeleton />
+                    </>
+                }
             </RootLayout>
 
         </>
@@ -175,9 +179,9 @@ export async function getStaticProps() {
     let param = { page: 'IR Prime', page_type: 'Landing' }
     const resp = await getAdvertisements(param);
     let ads = resp.message
-       
+
     return {
-        props: { data,ads }, revalidate: 50,
+        props: { data, ads }, revalidate: 50,
     }
 }
 

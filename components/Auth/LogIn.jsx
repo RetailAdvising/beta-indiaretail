@@ -9,14 +9,14 @@ import OTP from './OTP';
 import SignUp from './SignUp';
 import Forget from './Forget'
 import { signIn, signOut, useSession } from 'next-auth/react'
-import FacebookLogin from 'react-facebook-login';
+// import FacebookLogin from 'react-facebook-login';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CryptoJS from 'crypto-js';
 
 // import { GoogleOAuthProvider } from '@react-oauth/google';
 // import { GoogleLogin } from '@react-oauth/google';
-import GoogleSignInButton from './GoogleSignInButton';
+// import GoogleSignInButton from './GoogleSignInButton';
 
 import { useDispatch } from 'react-redux';
 import setUser from 'redux/actions/userAction';
