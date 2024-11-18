@@ -129,6 +129,7 @@ export default function Bookstore({ data, slider_data }) {
   )
 }
 
+
 // export async function getServerSideProps() {
 export async function getStaticProps() {
   const resp = await booksLanding();

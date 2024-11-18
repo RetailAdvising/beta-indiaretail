@@ -424,7 +424,7 @@ export default function Home({ data }) {
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Leaders Ink") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/leaders-ink'} seeMore={true} />
                             {data.data[c.cid].data &&
-                              <div className='overflow-auto scrollbar-hide gap-[15px] flex'>
+                              <div className='overflow-auto scrollbar-hide '>
                                 {/* <CardCarousel isHome={'/'} data={data.data[c.cid].data} cardClass={'h-[310px] md:h-[275px] flex-[0_0_calc(33.333%_-_15px)] md:flex-[0_0_calc(70%_-_10px)]'} imgClass={'lg:h-[185px] md:h-[140px] w-full'} /> */}
                                 <CustomSlider noPrimaryText={true} slider_id={'leader_slide' + c_index} hide_scroll_button={false} slider_child_id={'leaders_ink' + c_index} isHome={'/'} data={data.data[c.cid].data} cardClass={'h-[315px] md:h-[280px] flex-[0_0_calc(20%_-_16px)] md:flex-[0_0_calc(75%_-_10px)]'}
                                   imgClass={'lg:h-[185px] md:h-[150px] w-full'} title_class={'min-h-[35px] line-clamp-2'} />

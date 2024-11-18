@@ -16,7 +16,7 @@ import CryptoJS from 'crypto-js';
 
 // import { GoogleOAuthProvider } from '@react-oauth/google';
 // import { GoogleLogin } from '@react-oauth/google';
-// import GoogleSignInButton from './GoogleSignInButton';
+import GoogleSignInButton from './GoogleSignInButton';
 
 import { useDispatch } from 'react-redux';
 import setUser from 'redux/actions/userAction';

@@ -1,11 +1,13 @@
 import ImageLoader from '../ImageLoader'
 import { useEffect, useState } from 'react';
-import { checkMobile } from '@/libs/api'
+import { checkMobile, get_ip } from '@/libs/api'
 import GoogleAds from './GoogleAds';
 import styles from '@/styles/Cards.module.scss'
+import { useRouter } from 'next/router';
 export default function Advertisement({ data, imgClass, divClass, insStyle, position, adId }) {
 
     let [isMobile, setIsMobile] = useState(false)
+    const router = useRouter()
     useEffect(() => {
         // console.log(adId, "adId")
         checkIsMobile();
@@ -22,11 +24,48 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
         setIsMobile(isMobile);
     }
 
+    const click_report = async () => {
+        
+        let ip_address = await get_ip()
+
+        let params = {
+            page: window.location.href,
+            browser: await detectBrowser(),
+            ip_address: ip_address,
+            banner_id: data.title
+        }
+
+        console.log(params,"params")
+
+        // window.open(data.ad_link, '_blank')
+    }
+
+
+    function detectBrowser() {
+        var userAgent = navigator.userAgent;
+        if (userAgent.indexOf("Edg") > -1) {
+            return "Microsoft Edge";
+        } else if (userAgent.indexOf("Chrome") > -1) {
+            return "Chrome";
+        } else if (userAgent.indexOf("Firefox") > -1) {
+            return "Firefox";
+        } else if (userAgent.indexOf("Safari") > -1) {
+            return "Safari";
+        } else if (userAgent.indexOf("Opera") > -1) {
+            return "Opera";
+        } else if (userAgent.indexOf("Trident") > -1 || userAgent.indexOf("MSIE") > -1) {
+            return "Internet Explorer";
+        }
+    
+        return "Unknown";
+    }
+
+    
     return (
         <>
             {
                 data && Object.keys(data).length != 0 &&
-                <div onClick={() => window.open(data.ad_link, '_blank')} className={`${divClass ? divClass : ''} ${data.position == 'Header' || data.position == 'Footer' ? 'h-[90px] w-[728px]' : ''}`}>
+                <div onClick={() => click_report()} className={`${divClass ? divClass : ''} ${data.position == 'Header' || data.position == 'Footer' ? 'h-[90px] w-[728px]' : ''}`}>
                     <ImageLoader style={`${imgClass ? imgClass : ''} h-full w-full`} src={isMobile ? data.mobile_image : data.web_image} title={data.title ? data.title : 's'} />
                 </div>
             }
