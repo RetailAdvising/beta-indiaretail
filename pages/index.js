@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import ImageLoader from '@/components/ImageLoader';
 // import { Nunito } from 'next/font/google';
 
-
+   
 const List = dynamic(() => import('@/components/common/List'))
 const Cards = dynamic(() => import('@/components/common/Cards'))
 // const CardCarousel = dynamic(() => import('@/components/Sliders/CardCarousel'))
