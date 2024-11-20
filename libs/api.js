@@ -418,7 +418,7 @@ export async function get_article_breadcrumb(data) {
 }
 
 export async function articlesList(data) {
-    let api = domainUrl + 'article_list';
+    let api = domainUrl + (data.category_route == 'case-studies' ? 'get_case_study_list' : 'article_list');
     return await postMethod(api, data);
 }
 export async function getDetails(data) {

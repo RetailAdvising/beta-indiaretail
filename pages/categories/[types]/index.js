@@ -19,7 +19,7 @@ import ImageLoader from '@/components/ImageLoader';
 //     subsets: ["latin"],
 //     variable: '--font-inter',
 // })
-export default function CategoryType({ values, ads }) {
+export default function CategoryType({ values, ads,Id }) {
     const router = useRouter();
     const [data, setData] = useState([]);
 
@@ -29,7 +29,8 @@ export default function CategoryType({ values, ads }) {
     let no_product = false;
     const [loading, setLoading] = useState(false);
 
-    console.log(values)
+    // console.log(values)
+
 
     useEffect(() => {
         // console.log(values);
@@ -88,7 +89,7 @@ export default function CategoryType({ values, ads }) {
         }
         let value = await articlesList(param);
         if (value && value.message.length != 0) {
-            setData(d => d = [...d, ...value.message]);
+            setData(d => d = Id == 'case-studies' ? [...d, ...value.message.message] : [...d, ...value.message]);
             // data = [...data,...value.message]
             setLoading(false)
             no_product = false;
@@ -122,12 +123,12 @@ export default function CategoryType({ values, ads }) {
                             {/* {!isMobile && <Title data={{ title: router.query.types }} />} */}
                             <div className={`${isMobile ? '' : 'border'} rounded-[10px] lg:h-[520px] lg:p-[15px] cursor-pointer`}>{data && data.slice(0, 1).map((res, index) => {
                                 return (
-                                    <div key={res.title ? res.title : index} onClick={() => router.push(`/${res.route}`)} className={` pb-[10px]`}>
+                                    <div key={res.title ? res.title : index} onClick={() => router.push(`${Id == 'case-studies' ? '/p/'+ res.route : '/'+ res.route}`)} className={` pb-[10px]`}>
                                         <h6 className={`lg:text-[18px] md:text-[16px] font-[700] nunito`}>{res.title}</h6>
-                                        <ImageLoader style={`h-[330px] w-full mt-[10px] rounded-[5px]`} src={res.image ? res.image : res.thumbnail_image} title={res.title ? res.title : 'indiaRetail'} />
+                                        <ImageLoader style={`h-[330px] w-full mt-[10px] rounded-[5px]`} src={res.image ? res.image : res.thumbnail_image ? res.thumbnail_image : res.meta_image ? res.meta_image : null} title={res.title ? res.title : 'indiaRetail'} />
                                         {/* <Image className={`h-[330px] w-full mt-[10px] rounded-[5px]`} src={check_Image(res.image ? res.image : res.thumbnail_image)} height={250} width={300} alt={res.title} /> */}
-                                        <p className={`flex items-center pt-[10px]`}><span className={`primary_text pr-[10px] nunito`}>{res.primary_text}</span><span className='h-[15px] w-[2px] bg-[#6f6f6f]'></span><span className={`secondary_text pl-[10px] nunito`}>{res.secondary_text}</span></p>
-                                        <p className={`sub_title line-clamp-2 pt-[10px]`}>{res.blog_intro}</p>
+                                        {res.primary_text && <p className={`flex items-center pt-[10px]`}><span className={`primary_text pr-[10px] nunito`}>{res.primary_text}</span><span className='h-[15px] w-[2px] bg-[#6f6f6f]'></span><span className={`secondary_text pl-[10px] nunito`}>{res.secondary_text}</span></p>}
+                                        <p className={`sub_title line-clamp-2 pt-[10px]`}>{res.blog_intro ? res.blog_intro : res.meta_description ? res.meta_description : ''}</p>
                                         {/* <p className={`hashtags pt-[5px]`}>{res.publisher}</p> */}
                                         <Tags tags={res.tags} />
                                     </div>
@@ -136,12 +137,12 @@ export default function CategoryType({ values, ads }) {
                         </div>
                         {/* lg:pt-[45px] */}
                         <div className={`lg:flex-[0_0_calc(35%_-_10px)]  md:pt-[20px] md:flex-[0_0_calc(100%_-_10px)]`}>
-                            <div className='border p-[15px] lg:grid md:h-[auto] h-[520px] rounded-[10px]'> <List primary_pb={'mb-[5px]'} hash_bg={'mt-[10px]'} contentWidth={'flex-[0_0_calc(65%_-_10px)]'} titleClamp={'line-clamp-2 '} imgWidth={'w-full'} line={'line-clamp-1 md:hidden'} imgHeight={'h-[90px] md:h-[80px]'} check={true} data={data.slice(1, 5)} borderRadius={'rounded-[5px]'} isReverse={true} /></div>
+                            <div className={`border p-[15px] ${data.length > 3 ? 'lg:grid' : '' }  md:h-[auto] h-[520px] rounded-[10px]`}> <List primary_pb={'mb-[5px]'} hash_bg={'mt-[10px]'} route={Id == 'case-studies' ? Id : null} contentWidth={'flex-[0_0_calc(65%_-_10px)]'} titleClamp={'line-clamp-2 '} imgWidth={'w-full'} line={'line-clamp-1 md:hidden'} imgHeight={'h-[90px] md:h-[80px]'} check={true} data={data.slice(1, 5)} borderRadius={'rounded-[5px]'} isReverse={true} /></div>
                         </div>
                     </div> : <Skeleton />}
                     <div className={`grid grid-cols-4 md:grid-cols-2 md:pt-[20px] lg:py-8 md:gap-[10px] lg:gap-[20px]`}>
                         {/* contentHeight={'h-[175px]'} */}
-                        <Cards cardClass={"lg:h-[315px] md:h-full"} noPrimaryText={true} borderRadius={"rounded-[10px_10px_0_0]"} height={"lg:h-[180px] md:h-[150px]"} check={true} width={"w-full"} isBorder={true} data={data.slice(5, data.length - 1)} />
+                        <Cards cardClass={"lg:h-[315px] md:h-full"} noPrimaryText={true} borderRadius={"rounded-[10px_10px_0_0]"} height={"lg:h-[180px] md:h-[150px]"} route={Id == 'case-studies' ? Id : null} check={true} width={"w-full"} isBorder={true} data={data.slice(5, data.length - 1)} />
                     </div>
                 </div>
 
@@ -227,7 +228,8 @@ export async function getServerSideProps({ params }) {
     }
     // let value = await getList(param);
     let value = await articlesList(param);
-    let values = value.message;
+    // let values = await value.message;
+    let values = await param.category_route == 'case-studies' ? value.message.message : value.message;
 
     if(values.length === 0){
         return{
@@ -240,6 +242,6 @@ export async function getServerSideProps({ params }) {
     const ads = resp.message;
 
     return {
-        props: { values, ads }
+        props: { values, ads,Id }
     }
 }

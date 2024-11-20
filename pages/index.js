@@ -13,9 +13,10 @@ import Subscribe from '@/components/Landing/Subscribe'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import ImageLoader from '@/components/ImageLoader';
+import CaseStudy from '@/components/Landing/CaseStudy';
 // import { Nunito } from 'next/font/google';
 
-   
+
 const List = dynamic(() => import('@/components/common/List'))
 const Cards = dynamic(() => import('@/components/common/Cards'))
 // const CardCarousel = dynamic(() => import('@/components/Sliders/CardCarousel'))
@@ -424,7 +425,7 @@ export default function Home({ data }) {
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Leaders Ink") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/leaders-ink'} seeMore={true} />
                             {data.data[c.cid].data &&
-                              <div className='overflow-auto scrollbar-hide '>
+                              <div className='overflow-auto scrollbar-hide'>
                                 {/* <CardCarousel isHome={'/'} data={data.data[c.cid].data} cardClass={'h-[310px] md:h-[275px] flex-[0_0_calc(33.333%_-_15px)] md:flex-[0_0_calc(70%_-_10px)]'} imgClass={'lg:h-[185px] md:h-[140px] w-full'} /> */}
                                 <CustomSlider noPrimaryText={true} slider_id={'leader_slide' + c_index} hide_scroll_button={false} slider_child_id={'leaders_ink' + c_index} isHome={'/'} data={data.data[c.cid].data} cardClass={'h-[315px] md:h-[280px] flex-[0_0_calc(20%_-_16px)] md:flex-[0_0_calc(75%_-_10px)]'}
                                   imgClass={'lg:h-[185px] md:h-[150px] w-full'} title_class={'min-h-[35px] line-clamp-2'} />
@@ -523,12 +524,16 @@ export default function Home({ data }) {
                           </>}
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Case Studies") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/case-studies'} seeMore={true} />
-                            {/* <div className={`no_scroll `}> */}
-                            {/* <Cards check={true} isHome={'/'} data={data.data[c.cid].data} cardClass={"h-[300px] "} borderRadius={"rounded-[10px_10px_0_0]"} height={"h-[180px]"} width={"w-full"} flex={'basis-1/3 md:flex-[0_0_calc(65%_-_10px)]'} isBorder={true} /> */}
                             <CustomSlider hide_scroll_button={isMobile ? true : false} noPrimaryText={true} slider_id={'case_studies_id' + c_index} slider_child_id={'case_studies' + c_index} isHome={'/'} data={data.data[c.cid].data} cardClass={'h-[315px] md:h-[275px] flex-[0_0_calc(20%_-_16px)] md:flex-[0_0_calc(65%_-_10px)]'}
                               imgClass={'lg:h-[185px] md:h-[140px] w-full'} subtitle_class={'md:line-clamp-1 line-clamp-2 md:mb-[10px]'} title_class={'min-h-[35px] line-clamp-2'} />
-                            {/* </div> */}
                           </>}
+
+                          {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Case Study") && <>
+                            <Title data={{ title: c.component_title }} route={'/categories/case-studies'} seeMore={true} />
+                            <CaseStudy imgClass={'lg:h-[285px] md:h-[140px] w-full'} title_class={'min-h-[35px] line-clamp-2'} hide_scroll_button={isMobile ? true : false} slider_id={'case_study_id' + c_index} slider_child_id={'case_study' + c_index} data={data.data[c.cid].data} cardClass={'h-[315px] md:h-[275px] flex-[0_0_calc(33.333%_-_16px)] md:flex-[0_0_calc(65%_-_10px)]'} />
+                            
+                          </>}
+
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Photo Essays") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/photo-essays'} seeMore={true} />
                             {/* overflow-auto scrollbar-hide gap-[15px] flex */}
