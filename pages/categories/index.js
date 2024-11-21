@@ -1,5 +1,5 @@
 
-import React, { Suspense, useEffect, useState, useRef } from 'react'
+import React, { Suspense, useEffect, useState, useRef, useCallback } from 'react'
 import RootLayout from '@/layouts/RootLayout';
 import { getAdvertisements, getCategoryList, checkMobile, check_Image } from '@/libs/api';
 import SectionBox from '@/components/Category/SectionBox';
@@ -54,133 +54,169 @@ export default function Categories({ data }) {
     let [loading, setLoading] = useState(false);
     let [noProduct, setNoProduct] = useState(false);
     // let no_product = false;
-    useEffect(() => {
+    // useEffect(() => {
 
 
-        // const intersectionObserver = new IntersectionObserver(entries => {
-        //     if (entries[0].intersectionRatio <= 0) return;
-        //     if (!no_product && isMobile) {
-        //         page_no > 1 ? getPageData() : null
-        //         page_no = page_no + 1
-        //     }
-        // });
+    //     // const intersectionObserver = new IntersectionObserver(entries => {
+    //     //     if (entries[0].intersectionRatio <= 0) return;
+    //     //     if (!no_product && isMobile) {
+    //     //         page_no > 1 ? getPageData() : null
+    //     //         page_no = page_no + 1
+    //     //     }
+    //     // });
 
-        // intersectionObserver?.observe(cardref?.current);
+    //     // intersectionObserver?.observe(cardref?.current);
 
-        // return () => {
-        //     cardref?.current && intersectionObserver?.unobserve(cardref?.current)
-        // }
+    //     // return () => {
+    //     //     cardref?.current && intersectionObserver?.unobserve(cardref?.current)
+    //     // }
 
-        const intersectionObserver = new IntersectionObserver(entries => {
-            if (entries[0].intersectionRatio <= 0) return;
-            if (!loading && !noProduct && isMobile) {
-                if (pageNo >= 2) {
-                    loading = true
-                    setLoading(loading)
-                    pageNo += 1
-                    setPageNo(pageNo)
-                    getPageData()
-                } else {
-                    pageNo += 1
-                    setPageNo(pageNo)
-                    getPageData()
-                }
-            }
-        });
+    //     const intersectionObserver = new IntersectionObserver(entries => {
+    //         if (entries[0].intersectionRatio <= 0) return;
+    //         if (!loading && !noProduct && isMobile) {
+    //             if (pageNo >= 2) {
+    //                 loading = true
+    //                 setLoading(loading)
+    //                 pageNo += 1
+    //                 setPageNo(pageNo)
+    //                 getPageData()
+    //             } else {
+    //                 pageNo += 1
+    //                 setPageNo(pageNo)
+    //                 getPageData()
+    //             }
+    //         }
+    //     });
 
-        intersectionObserver?.observe(cardref?.current);
+    //     intersectionObserver?.observe(cardref?.current);
 
-        return () => {
-            cardref?.current && intersectionObserver?.unobserve(cardref?.current)
+    //     return () => {
+    //         cardref?.current && intersectionObserver?.unobserve(cardref?.current)
+    //     }
+
+    // }, [])
+
+    // useEffect(() => {
+
+    //     // const intersectionObserver = new IntersectionObserver(entries => {
+    //     //   if (entries[0].intersectionRatio <= 0) return;
+    //     //   if (!no_product) {
+    //     //     page_no > 1 ? getPageData() : null
+    //     //     page_no = page_no + 1
+    //     //   }
+    //     // });
+
+    //     // intersectionObserver?.observe(cardref?.current);
+
+    //     // return () => {
+    //     //   cardref?.current && intersectionObserver?.unobserve(cardref?.current)
+    //     // }
+
+
+    //     if (!isMobile) {
+    //         const handleScroll = () => {
+    //             const scrollTop = document.documentElement.scrollTop
+    //             const scrollHeight = document.documentElement.scrollHeight
+    //             const clientHeight = document.documentElement.clientHeight
+    //             if ((scrollTop + clientHeight) + 1500 >= scrollHeight) {
+    //                 if (!loading && !noProduct && !isMobile) {
+    //                     // no_product = true
+    //                     if (pageNo > 1) {
+    //                         loading = true
+    //                         setLoading(loading)
+    //                         getPageData()
+    //                     } else {
+    //                         pageNo += 1
+    //                         setPageNo(pageNo)
+    //                     }
+    //                 }
+    //             }
+    //         };
+
+    //         window.addEventListener('scroll', handleScroll);
+
+    //         return () => {
+    //             window.removeEventListener('scroll', handleScroll);
+    //         };
+    //     }
+
+    //     const intersectionObserver = new IntersectionObserver(entries => {
+    //         if (entries[0].intersectionRatio <= 0) return;
+    //         if (!loading && !noProduct && isMobile) {
+    //             if (pageNo > 1) {
+    //                 loading = true
+    //                 setLoading(loading)
+    //                 getPageData()
+    //             } else {
+    //                 pageNo += 1
+    //                 setPageNo(pageNo)
+    //                 getPageData()
+    //             }
+    //         }
+    //     });
+
+    //     intersectionObserver?.observe(cardref?.current);
+
+    //     return () => {
+    //         cardref?.current && intersectionObserver?.unobserve(cardref?.current)
+    //     }
+
+    //     // const intersectionObserver = new IntersectionObserver(entries => {
+    //     //   if (entries[0].intersectionRatio <= 0) return;
+    //     //   if (!loading && !noProduct && isMobile) {
+    //     //     if (pageNo > 1) {
+    //     //       loading = true
+    //     //       setLoading(loading)
+    //     //       getPageData()
+    //     //     } else {
+    //     //       pageNo += 1
+    //     //       setPageNo(pageNo)
+    //     //     }
+    //     //   }
+    //     // });
+
+    //     // intersectionObserver?.observe(cardref?.current);
+
+    //     // return () => {
+    //     //   cardref?.current && intersectionObserver?.unobserve(cardref?.current)
+    //     // }
+    // }, [])
+
+
+    const observer = useRef();
+  const lastPostElementRef = useCallback(
+    (node) => {
+      if (loading && noProduct) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          setPageNo((prevPage) => prevPage + 1); // trigger loading of new posts by chaging page no
         }
+      });
 
-    }, [])
+      if (node) observer.current.observe(node);
+    },
+    [loading]
+  );
 
-    useEffect(() => {
+  useEffect(() => {
+    if (pageNo > 1 && !noProduct) {
+      // console.log(pageNo,"pageNo")
 
-        // const intersectionObserver = new IntersectionObserver(entries => {
-        //   if (entries[0].intersectionRatio <= 0) return;
-        //   if (!no_product) {
-        //     page_no > 1 ? getPageData() : null
-        //     page_no = page_no + 1
-        //   }
-        // });
+      setLoading(true);
+      getPageData()
 
-        // intersectionObserver?.observe(cardref?.current);
+      // const loadData = async () => {
+      //   await loadMore(data);
 
-        // return () => {
-        //   cardref?.current && intersectionObserver?.unobserve(cardref?.current)
-        // }
+      //   setLoading(false);
+      // };
 
+      // loadData();
+    }
+  }, [pageNo]);
 
-        if (!isMobile) {
-            const handleScroll = () => {
-                const scrollTop = document.documentElement.scrollTop
-                const scrollHeight = document.documentElement.scrollHeight
-                const clientHeight = document.documentElement.clientHeight
-                if ((scrollTop + clientHeight) + 1500 >= scrollHeight) {
-                    if (!loading && !noProduct && !isMobile) {
-                        // no_product = true
-                        if (pageNo > 1) {
-                            loading = true
-                            setLoading(loading)
-                            getPageData()
-                        } else {
-                            pageNo += 1
-                            setPageNo(pageNo)
-                        }
-                    }
-                }
-            };
-
-            window.addEventListener('scroll', handleScroll);
-
-            return () => {
-                window.removeEventListener('scroll', handleScroll);
-            };
-        }
-
-        const intersectionObserver = new IntersectionObserver(entries => {
-            if (entries[0].intersectionRatio <= 0) return;
-            if (!loading && !noProduct && isMobile) {
-                if (pageNo > 1) {
-                    loading = true
-                    setLoading(loading)
-                    getPageData()
-                } else {
-                    pageNo += 1
-                    setPageNo(pageNo)
-                    getPageData()
-                }
-            }
-        });
-
-        intersectionObserver?.observe(cardref?.current);
-
-        return () => {
-            cardref?.current && intersectionObserver?.unobserve(cardref?.current)
-        }
-
-        // const intersectionObserver = new IntersectionObserver(entries => {
-        //   if (entries[0].intersectionRatio <= 0) return;
-        //   if (!loading && !noProduct && isMobile) {
-        //     if (pageNo > 1) {
-        //       loading = true
-        //       setLoading(loading)
-        //       getPageData()
-        //     } else {
-        //       pageNo += 1
-        //       setPageNo(pageNo)
-        //     }
-        //   }
-        // });
-
-        // intersectionObserver?.observe(cardref?.current);
-
-        // return () => {
-        //   cardref?.current && intersectionObserver?.unobserve(cardref?.current)
-        // }
-    }, [])
 
 
 
@@ -241,7 +277,7 @@ export default function Categories({ data }) {
                     {/* <Title data={{ title: 'Categories' }} font={'20px'} className='md:hidden' title_class='md:hidden' /> */}
                     {(datas && datas.length != 0) ? datas.map((res, index) => {
                         return (
-                            <div key={index} className={`block md:mb-[10px] p-[15px] lg:mr-[15px] ${index == 0 ? 'lg:mb-[40px]' : 'lg:my-[35px]'} border rounded-[5px] `} style={{ backgroundImage: `url(${check_Image(res.background_image)})`, backgroundRepeat: 'no-repeat' }}>
+                            <div key={index} ref={datas.length === index + 2 ? lastPostElementRef : null} className={`block md:mb-[10px] p-[15px] lg:mr-[15px] ${index == 0 ? 'lg:mb-[40px]' : 'lg:my-[35px]'} border rounded-[5px] `} style={{ backgroundImage: `url(${check_Image(res.background_image)})`, backgroundRepeat: 'no-repeat' }}>
                                 {/* lg:w-[calc(20%_-_10px)] md:w-[calc(100%_-_0px)] */}
                                 <div className={``} ><SectionBox data={res} /></div>
                                 {/* lg:w-[calc(80%_-_10px)]  md:p-[10px] */}
