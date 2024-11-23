@@ -530,7 +530,7 @@ export default function Home({ data }) {
 
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Case Study") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/case-studies'} seeMore={true} />
-                            <CaseStudy imgClass={'lg:h-[285px] md:h-[140px] w-full'} title_class={'min-h-[35px] line-clamp-2'} hide_scroll_button={isMobile ? true : false} slider_id={'case_study_id' + c_index} slider_child_id={'case_study' + c_index} data={data.data[c.cid].data} cardClass={'h-[315px] md:h-[275px] flex-[0_0_calc(33.333%_-_16px)] md:flex-[0_0_calc(65%_-_10px)]'} />
+                            <CaseStudy imgClass={'lg:h-[285px] md:h-[140px] w-full'} title_class={'min-h-[35px] line-clamp-2'} hide_scroll_button={isMobile ? true : false} slider_id={'case_study_id' + c_index} slider_child_id={'case_study' + c_index} data={data.data[c.cid].data} cardClass={'h-[350px] md:h-[275px] flex-[0_0_calc(33.333%_-_16px)] md:flex-[0_0_calc(65%_-_10px)]'} />
                             
                           </>}
 

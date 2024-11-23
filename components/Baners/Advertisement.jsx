@@ -1,6 +1,6 @@
 import ImageLoader from '../ImageLoader'
 import { useEffect, useState } from 'react';
-import { checkMobile, get_ip } from '@/libs/api'
+import { checkMobile, get_ip, insert_banner_ad_log } from '@/libs/api'
 import GoogleAds from './GoogleAds';
 import styles from '@/styles/Cards.module.scss'
 import { useRouter } from 'next/router';
@@ -35,9 +35,14 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
             banner_id: data.title
         }
 
-        console.log(params,"params")
+        const resp = await insert_banner_ad_log(params)
+        // if(resp.message && resp.message.status && resp.message.status == "Success"){
+        //     // console.log(resp,"resp")
+        // }
 
-        // window.open(data.ad_link, '_blank')
+        // console.log(params,"params")
+
+        window.open(data.ad_link, '_blank')
     }
 
 
@@ -65,7 +70,7 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
         <>
             {
                 data && Object.keys(data).length != 0 &&
-                <div onClick={() => click_report()} className={`${divClass ? divClass : ''} ${data.position == 'Header' || data.position == 'Footer' ? 'h-[90px] w-[728px]' : ''}`}>
+                <div onClick={() => click_report()} className={`${divClass ? divClass : ''} cursor-pointer ${data.position == 'Header' || data.position == 'Footer' ? 'h-[90px] w-[728px]' : ''}`}>
                     <ImageLoader style={`${imgClass ? imgClass : ''} h-full w-full`} src={isMobile ? data.mobile_image : data.web_image} title={data.title ? data.title : 's'} />
                 </div>
             }

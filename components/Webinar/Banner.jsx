@@ -18,7 +18,7 @@ const Banner = ({ data, click_data , isMobile }) => {
         style={{
           backgroundImage: `url(${backgroundImage})`,
         }}
-        className={`lg:px-[15px] px-5 py-5 lg:py-10 flex flex-col bg-center bg-cover bg-no-repeat justify-start`}
+        className={`lg:px-[15px] px-5 py-5 lg:py-10 flex flex-col bg-center bg-cover bg-no-repeat justify-start lg:min-h-[470px] md:min-h-[430px]`}
       >
         <div className="container mx-auto">
           {/* Brand Logos */}

@@ -79,11 +79,28 @@ export function stored_customer_info() {
 export const check_Image = (Image) => {
     let baseUrl = `https://${domain}`
     if (Image) {
-        if (Image.indexOf('https') == -1) {
-            return baseUrl + Image;
-        } else if (Image.indexOf('https') == 0) {
+        // if (Image.indexOf('https') == -1) {
+        //     const encodedImageName = encodeURIComponent(Image);
+        //     return baseUrl + encodedImageName;
+        // } else if (Image.indexOf('https') == 0) {
+        //     return Image;
+        // }
+
+        if (!Image.startsWith('https')) {
+            // Ensure spaces and special characters are encoded
+            const encodedImageName = encodeURIComponent(Image.trim());
+            return `${baseUrl}/${encodedImageName}`;
+        } 
+        
+        // If the URL starts with 'https', validate it
+        try {
+            new URL(Image); // This will throw if the URL is invalid
             return Image;
+        } catch (error) {
+            // console.error('Invalid URL:', Image);
+            return '/empty_state.jpg'; // Fallback image
         }
+
     } else {
         // return '/empty_state.svg'
         return '/empty_state.jpg'
@@ -701,6 +718,10 @@ export async function get_newsletter_by_id(data) {
     return await postMethod(api, data)
 }
 
+export async function insert_banner_ad_log(data) {
+    let api = domainUrl + 'insert_banner_ad_log';
+    return await postMethod(api, data)
+}
 
 export async function newsSubscribe(data) {
     let api = domainUrl + 'subscribe_newsletter';
