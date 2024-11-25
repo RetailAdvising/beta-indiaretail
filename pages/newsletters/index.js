@@ -1,9 +1,8 @@
 // import NewsLetterBuilder from '@/components/Builders/NewsLetterBuilder'
 import RootLayout from '@/layouts/RootLayout'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import NewsList from '@/components/Newsletter/NewsList';
 import Title from '@/components/common/Title';
-import AdsBaner from '@/components/Baners/AdsBaner';
 import Advertisement from '@/components/Baners/Advertisement';
 import Subscribe from '@/components/Landing/Subscribe';
 import { checkMobile, stored_customer_info, getAdvertisements, check_Image, newsLetterLanding, newsLanding, get_newsletter_by_id } from '@/libs/api';
@@ -164,7 +163,7 @@ export default function newsletter({ ads }) {
       {enableModal && <AlertUi isOpen={enableModal} closeModal={(value) => closeModal(value)} headerMsg={'Alert'} button_2={'Ok'} alertMsg={alertMsg} />}
       {visible && <SubscribeNews data={news} visible={visible} hide={(obj) => hide(obj)} />}
       {newsDetail && <NewsDetail data={detail} visible={newsDetail} hide={hideDetail} />}
-      <RootLayout homeAd={ads ? ads : null} isLanding={true} head={'Newsletters'} adIdH={'news-head'} adIdF={'news-foot'}>
+      <RootLayout ad_payload={{ page: 'Newsletters', page_type: 'Landing' }} homeAd={ads ? ads : null} isLanding={true} head={'Newsletters'} adIdH={'news-head'} adIdF={'news-foot'}>
         {/* {!skeleton && localValue && !localValue['cust_name'] &&  */}
         <SEO title={'Newsletters'} siteName={'India Retailing'} description={'Newsletters'} />
 
@@ -182,7 +181,7 @@ export default function newsletter({ ads }) {
                   {!isMobile &&
                     <div className='flex-[0_0_calc(30%_-_15px)] md:mt-[15px] md:flex-[0_0_calc(100%_-_0px)]'>
                       <div className='pb-[20px]'>
-                        <Advertisement adId={'right_first'} divClass={'h-[250px] w-[300px] m-auto'} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} data={(ads.right_first && Object.keys(ads.right_first).length != 0) && ads.right_first} />
+                        <Advertisement ad_payload={{ page: 'Newsletters', page_type: 'Landing' }} adId={'right_first'} divClass={'h-[250px] w-[300px] m-auto'} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} data={(ads.right_first && Object.keys(ads.right_first).length != 0) && ads.right_first} />
                       </div>
                       <Subscribe />
                     </div>

@@ -1,21 +1,16 @@
 
-import React, { Suspense, useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import RootLayout from '@/layouts/RootLayout';
 import { getAdvertisements, getCategoryList, checkMobile, check_Image } from '@/libs/api';
 import SectionBox from '@/components/Category/SectionBox';
-import MultiCarousel from '@/components/Sliders/MultiCarousel';
 
-import Title from '@/components/common/Title';
 import SEO from '@/components/common/SEO'
-import CardCarousel from '../../components/Sliders/CardCarousel';
 import CustomSlider from '@/components/Sliders/CustomSlider';
-import GoogleAds from '@/components/Baners/GoogleAds';
 
 // import Loader from '@/components/Loader';
 // import { useRouter } from 'next/router';
 export default function Categories({ data }) {
     let [isMobile, setIsMobile] = useState(false)
-    const [activeNav, setActiveNav] = useState()
     const [datas, setDatas] = useState([])
     const [ads,setAds] = useState()
     useEffect(() => {
@@ -270,7 +265,7 @@ export default function Categories({ data }) {
         <>
             {/* <GoogleAds adId={'category1-head'} page={true} position={'high'} style={"display:inline-block;width:728px;height:90px;"} script={``} />
             <GoogleAds adId={'category11-side'} page={true} position={'small'} style={"display:inline-block;width:300px;height:250px;"} script={``} /> */}
-            <RootLayout homeAd={ads ? ads : null} adIdH={'category-head'} adIdF={'category-foot'} head={'Categories'} isLanding={true}>
+            <RootLayout ad_payload={{ page: 'Categories', page_type: 'Landing' }} homeAd={ads ? ads : null} adIdH={'category-head'} adIdF={'category-foot'} head={'Categories'} isLanding={true}>
                 <SEO title={'Categories'} siteName={'India Retailing'} description={'Categories'} />
 
                 <div className={`md:p-[15px_10px]  ${isMobile ? '' : 'container'}`}>

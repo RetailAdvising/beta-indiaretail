@@ -21,7 +21,7 @@ import Contact from '@/components/Advertise/Contact';
 
 
 export default function Advertise({ data }) {
-  console.log(data, "data")
+  // console.log(data, "data")
 
   // useEffect(() => {
   //   get_ad()

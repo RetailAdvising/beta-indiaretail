@@ -1,7 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
-import styles from '@/styles/newsLetter.module.scss'
-import { useRouter } from 'next/router'
 import { check_Image } from '@/libs/common';
 import AlertPopup from '../common/AlertPopup';
 import Rodal from 'rodal';
@@ -9,9 +7,6 @@ import 'rodal/lib/rodal.css';
 
 export default function SubscribeNews({ data, visible, hide, no_modal, email = undefined,cssClass }) {
 
-  // useEffect(() => {
-
-  // },[]) 
 
   return (
     <div className='NewsLetterSub'>

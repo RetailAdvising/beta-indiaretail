@@ -28,10 +28,6 @@ const index = ({ data, page_route }) => {
     const [scrollEle, setScrollEle] = useState(true)
 
 
-    const generateMetaData = (data) => {
-    }
-
-    const meta_inf = useMemo(() => generateMetaData(meta_info), [meta_info])
 
     let [divs, setDivs] = useState(['div0']);
     let [routeList, setRouteList] = useState([])
@@ -304,7 +300,7 @@ const index = ({ data, page_route }) => {
 
     return (
         <>
-            <RootLayout isLanding={true} is_detail={true} adIdH={router.query.deatil + 'aH'} adIdF={router.query.deatil + 'aF'} homeAd={advertisement ? advertisement : null} head={''}>
+            <RootLayout isLanding={true} is_detail={true} adIdH={router.query.deatil + 'aH'} adIdF={router.query.deatil + 'aF'} ad_payload={{ page: 'Categories', page_type: 'Detail' }} homeAd={advertisement ? advertisement : null} head={''}>
                 <Head>
                     <title key="title">{data?.meta_title}</title>
                     <meta name="description" content={data?.meta_description} />
@@ -365,8 +361,8 @@ const index = ({ data, page_route }) => {
                     {values.map((res, index) => {
                         return (
                             <div id={'div' + index} key={index + 'aertind'} className={`box ${'div' + index}`} >
-                                <CategoryBuilder ads_data={advertisement ? advertisement : null} productNavigation={(obj) => { productNavigation(obj) }} updateShare={(data) => updateShare(data)} isLast={index == values.length - 1} i={index} user={user} data={res} load={loadMore} comments={comments && comments.length != 0 ? comments : []} updatedCmt={(cmt, route, index) => updatedCmt(cmt, route, index)} noScroll={(val) => noScroll(val)} plans={(plans && plans.length != 0) ? plans : []} />
-                                <div className="md:hidden my-5 lg:grid lg:justify-center"><Advertisement adId={"divsad" + index} data={(advertisement && advertisement.footer) ? advertisement.footer : null} position={"high"} divClass={'h-[90px] w-[728px] m-auto'} insStyle={"display:inline-block;width:728px;height:90px;"} /></div>
+                                <CategoryBuilder ads_data={advertisement ? advertisement : null} ad_payload={{ page: 'Categories', page_type: 'Detail' }} productNavigation={(obj) => { productNavigation(obj) }} updateShare={(data) => updateShare(data)} isLast={index == values.length - 1} i={index} user={user} data={res} load={loadMore} comments={comments && comments.length != 0 ? comments : []} updatedCmt={(cmt, route, index) => updatedCmt(cmt, route, index)} noScroll={(val) => noScroll(val)} plans={(plans && plans.length != 0) ? plans : []} />
+                                <div className="md:hidden my-5 lg:grid lg:justify-center"><Advertisement adId={"divsad" + index} ad_payload={{ page: 'Categories', page_type: 'Detail' }} data={(advertisement && advertisement.footer) ? advertisement.footer : null} position={"high"} divClass={'h-[90px] w-[728px] m-auto'} insStyle={"display:inline-block;width:728px;height:90px;"} /></div>
                                 {!(index == values.length - 1) && <div id={'div_next' + res.route} className={` lg:m-[20px_auto_0]  md:p-[10px_15px] lg:p-[15px 0] container`}>
                                     <h6 className={`flex-[0_0_auto] lg:text-[18px] md:text-[14px] font-semibold pb-[10px]`}>Next Post</h6>
                                     <div style={{ background: 'linear-gradient(90deg, #E21B22 0%, #E1252C 9.73%, #D8D8D8 10.3%, #D8D8D8 97.95%)' }} className='lg:bg-[#999] w-full h-[3px] md:bg-stone-200'></div>

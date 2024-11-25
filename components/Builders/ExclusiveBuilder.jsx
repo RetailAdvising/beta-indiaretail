@@ -1,29 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import List from '../common/List'
-import { check_Image, checkMobile } from '@/libs/api'
-import Image from 'next/image'
-import AdsBaner from '../Baners/AdsBaner'
+import { checkMobile } from '@/libs/api'
 import Advertisement from '../Baners/Advertisement'
 import Title from '../common/Title'
 import { useRouter } from 'next/router'
-import ListSlider from '@/components/Sliders/ListSlider'
 import CustomSlider from '../Sliders/CustomSlider'
 import Video from '../Video/Video'
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
 export default function ExclusiveBuilder({ data, ads }) {
     const router = useRouter();
     const [isMobile, setIsMobile] = useState()
-    // console.log(data)
-    // console.log(ads)
+
     useEffect(() => {
         checkIsMobile();
         window.addEventListener('resize', checkIsMobile)
@@ -77,11 +65,6 @@ export default function ExclusiveBuilder({ data, ads }) {
                 }
             </div>
 
-            {/* {isMobile && <div>
-                
-                // Ads
-                </div>} */}
-
             {/* Section - 2 p-[20px_30px_0_0] w-[30%]*/}
             {data.leaders_ink && data.leaders_ink.data && data.leaders_ink.data.lengrh != 0 && <div className={`flex lg:pt-[20px] md:p-[0_15px]  pb-[35px] container flex-wrap items-end justify-between w-full gap-[15px]`}>
                 <div className='w-[calc(75%_-_10px)] md:basis-full md:pt-[10px]'>
@@ -94,7 +77,7 @@ export default function ExclusiveBuilder({ data, ads }) {
                 </div>
 
                 {/* {(ads.right_first && Object.keys(ads.right_first).length != 0  && !isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement divClass={'h-[250px] w-[300px] m-auto'}   data={ads.right_first} /></div>} */}
-                {(!isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement divClass={'h-[250px] w-[300px] m-auto'} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} adId={'right_first'} data={(ads.right_first && Object.keys(ads.right_first).length != 0) && ads.right_first} /></div>}
+                {(!isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement ad_payload={{ page: 'IR Prime', page_type: 'Landing' }} divClass={'h-[250px] w-[300px] m-auto'} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} adId={'right_first'} data={(ads.right_first && Object.keys(ads.right_first).length != 0) && ads.right_first} /></div>}
             </div>}
 
             {/* Section - 3 p-[20px_30px]*/}
@@ -130,7 +113,7 @@ export default function ExclusiveBuilder({ data, ads }) {
                         imgFlex={'flex-[0_0_calc(28%_-_10px)] md:flex-[0_0_calc(40%_-_10px)]'} imgWidth={'w-full'} imgHeight={'h-[160px] md:h-[130px]'} data={data.sec2.data.slice(0, 3)} borderRadius={'rounded-[5px]'} />
                 </div>
                 {/* {(ads.right_second && Object.keys(ads.right_second).length != 0 && !isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement divClass={'h-[600px] w-[300px] m-auto'}  data={ads.right_second} /></div>} */}
-                {(!isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement divClass={'h-[600px] w-[300px] m-auto'} insStyle={"display:inline-block;width:300px;height:600px;"} position={"small"} adId={'right_second'} data={(ads.right_second && Object.keys(ads.right_second).length != 0 ) && ads.right_second} /></div>}
+                {(!isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement ad_payload={{ page: 'IR Prime', page_type: 'Landing' }} divClass={'h-[600px] w-[300px] m-auto'} insStyle={"display:inline-block;width:300px;height:600px;"} position={"small"} adId={'right_second'} data={(ads.right_second && Object.keys(ads.right_second).length != 0 ) && ads.right_second} /></div>}
 
                 {/* {(val.section_4 && val.section_4.col_2 && !isMobile) && <div className='flex-[0_0_calc(25%_-_10px)] md:basis-full'> <AdsBaner height={'h-[567px]'} width={'w-full'} data={val.section_4.col_2} /></div>} */}
             </div>}

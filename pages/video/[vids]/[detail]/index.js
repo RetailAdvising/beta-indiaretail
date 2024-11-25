@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import RootLayout from '@/layouts/RootLayout'
 import { checkMobile, update_no_of_shares, get_subscription_plans, check_Image,seo_Image,getCurrentUrl } from '@/libs/api';
 import { video_details, getAdvertisements } from '@/libs/api';
@@ -7,11 +7,9 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import List from '@/components/common/List'
 import Title from '@/components/common/Title'
-import SEO from '@/components/common/SEO'
 import Video from '../../../../components/Video/Video';
 import Dropdowns from '../../../../components/common/Dropdowns';
-import { useSelector, useDispatch } from 'react-redux';
-import AdsBaner from '@/components/Baners/AdsBaner'
+import { useSelector } from 'react-redux';
 import SubscriptionAlert from '@/components/common/SubscriptionAlert';
 import Placeholders from '@/components/common/Placeholders'
 // import { Nunito } from 'next/font/google'
@@ -130,7 +128,7 @@ export default function Videos({ meta_info, ads_data }) {
     }
 
     return (
-        <RootLayout homeAd={ads_data ? ads_data : null} adIdH={router.query.vids+'vidsdH'} adIdF={router.query.vids+'vidsdF'} isLanding={false} head={'Detail'}>
+        <RootLayout ad_payload={{ page: 'Videos', page_type: 'Detail' }} homeAd={ads_data ? ads_data : null} adIdH={router.query.vids+'vidsdH'} adIdF={router.query.vids+'vidsdF'} isLanding={false} head={'Detail'}>
             <Head>
                 <title key="title">{meta_info?.message.meta_title}</title>
                 <meta name="description" content={meta_info?.message.meta_description} />
@@ -299,8 +297,8 @@ export default function Videos({ meta_info, ads_data }) {
                                 <div className='border p-[10px] rounded-[5px] mb-[10px]'>
                                     <List isHome={'/video/'} imgFlex={'flex-[0_0_calc(40%_-_10px)]'} isDesc={true} titleClamp={'line-clamp-2'} check={true} imgWidth={'w-full'} imgHeight={'h-[90px] md:h-[85px]'} data={videoDetail.related_videos.slice(0, 3)} borderRadius={'rounded-[5px]'} />
                                 </div>
-                                <Advertisement adId={'right_first'} data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
-                                {ads_data && ads_data.right_second && <Advertisement adId={'right_second'} data={(ads_data && ads_data.right_second) && ads_data.right_second} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />}
+                                <Advertisement ad_payload={{ page: 'Videos', page_type: 'Detail' }} adId={'right_first'} data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
+                                {ads_data && ads_data.right_second && <Advertisement ad_payload={{ page: 'Videos', page_type: 'Detail' }} adId={'right_second'} data={(ads_data && ads_data.right_second) && ads_data.right_second} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />}
                                 {/* <Advertisement adId={'right_third'} data={(ads_data && ads_data.right_third) && ads_data.right_third} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} /> */}
                                 {/* <AdsBaner data={bannerImg} height={'h-[250px]'} /> */}
                             </>

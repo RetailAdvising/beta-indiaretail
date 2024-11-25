@@ -196,7 +196,7 @@ export default function Trending({ data, res, ads }) {
 
     return (
         <>
-            <RootLayout isLanding={true} homeAd={ads ? ads : null}>
+            <RootLayout ad_payload={{ doctype: 'Tag', page_type: 'List' }} isLanding={true} homeAd={ads ? ads : null}  adIdH={'tags-head'} adIdF={'tags-foot'}>
                 {/* mobile tabs */}
                 <div id={'scrollTag'} class="bg-[#e7e7e7] overflow-auto scrollbar-hide mt-[3px] lg:hidden">
                     {(tabs && tag && tag.length != 0) && <Tabs categories={tag} tab={tabs} setTabs={(data) => getTabs(data)} />}
@@ -264,7 +264,7 @@ export default function Trending({ data, res, ads }) {
                             </div>}
                             {/* <AdsBaner data={{ ad_image: '/ads_baner.png' }} height={'h-[250px]'} width={'w-[300px]'} /> */}
                             {/* {(ads.right && ads.right.length != 0 && ads.right[0]) && <AdsBaner data={(ads.right && ads.right.length != 0 && ads.right[0]) ? ads.right[0] : null} height={'h-[250px]'} width={'w-[300px]'} />} */}
-                            <Advertisement data={(ads && ads.right && ads.right.length != 0 && ads.right[0]) ? ads.right[0] : null} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} />
+                            <Advertisement ad_payload={{ doctype: 'Tag', page_type: 'List' }} data={(ads && ads.right && ads.right.length != 0 && ads.right[0]) ? ads.right[0] : null} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} />
                         </div>
                         <div className='more' ref={cardref}></div>
                     </div>

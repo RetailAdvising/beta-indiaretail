@@ -1,19 +1,12 @@
-import AdsBaner from '@/components/Baners/AdsBaner'
 import Advertisement from '@/components/Baners/Advertisement'
 import MainFooter from '@/components/Footer/MainFooter'
 import Header from '@/components/Headers/Header'
 import Navbar from '@/components/Headers/Navbar'
-import BottomTabs from '@/components/common/BottomTabs'
-import PdfViewer from '@/components/common/PdfViewer'
-import SEO from '@/components/common/SEO'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { websiteSettings, get_article_breadcrumb, get_subscription_plans, get_customer_info, checkMobile, check_authorization, checkAds } from '@/libs/api'
-import MobileHead from '@/components/Headers//MobileHead';
-import Title from '@/components/common/Title'
-// import '@/styles/globals.scss
 import 'rodal/lib/rodal.css';
 import Rodal from 'rodal';
 import dynamic from 'next/dynamic'
@@ -23,19 +16,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import AlertUi from '@/components/common/AlertUi'
 import setRole from 'redux/actions/roleAction'
 import setUser from 'redux/actions/userAction'
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//   weight: ["300", "400", "500", "600", "700"],
-//   display: "block",
-//   preload: true,
-//   style: 'normal',
-//   subsets: ["latin"],
-//   variable: '--font-inter',
-// })
-export default function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_data, is_detail, adIdH, adIdF }) {
+
+export default function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_data, is_detail, adIdH, adIdF, ad_payload }) {
   // console.log(data.footer_content)
   const [breadCrumbs, setBreadCrumbs] = useState([]);
-  const [headerData, setHeaderData] = useState([]);
   let [footerData, setFooterData] = useState([]);
   const user = useSelector(s => s.user);
   const router = useRouter();
@@ -63,7 +47,6 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
       // } else setBreadCrumbs(router.asPath.split('/'))
     }
 
-    let ads = document.getElementById('ads')
     get_website_settings()
     if (typeof window !== "undefined" && localStorage['apikey']) {
       checkSession()
@@ -71,39 +54,15 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
     // ads.classList.remove('hidden')
   }, [])
 
-  const removeSpecialCharacters = (value) => {
-    // Regular expression to match any character that is not a letter, number, or space
-    // const regex = /[^a-zA-Z0-9\s%-_]/g;
-    const regex = /[%\-]/g;
-
-    let array = value.split('/')
-    // Replace matched characters with an empty string
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] != "") {
-        array[i] = array[i].replace(regex, '');
-      }
-    }
-
-    return array;
-
-  }
-
-  // console.log(homeAd,'homeAd')
 
   const article_breadcrumb = async (route) => {
     // console.log(route,"route")
     if (route) {
       if (router.query.vids || router.query.list) {
-        // console.log(router.asPath.split('/'), "router.asPath")
-        // setBreadCrumbs(removeSpecialCharacters(router.asPath))
         setBreadCrumbs(router.asPath.split('/'))
       } else {
         const resp = await get_article_breadcrumb({ article_route: route })
         if (resp && resp.message && resp.message.length != 0) {
-          // console.log(resp)
-          // resp.message.map((res)=>{
-          //   breadCrumbs.push(res)
-          // })    
           setBreadCrumbs(resp.message)
         }
       }
@@ -114,31 +73,10 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
   const get_website_settings = async () => {
     let websiteData = await websiteSettings()
     if (websiteData) {
-      setHeaderData(websiteData.message.header_template)
       footerData = websiteData.message.footer_template
       setFooterData(footerData)
     }
   }
-  // const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   const handleStart = () => {
-  //     setLoading(true);
-  //   };
-  //   const handleComplete = () => {
-  //     setLoading(false);
-  //   };
-
-  //   router.events.on("routeChangeStart", handleStart);
-  //   router.events.on("routeChangeComplete", handleComplete);
-  //   router.events.on("routeChangeError", handleComplete);
-
-  //   return () => {
-  //     router.events.off("routeChangeStart", handleStart);
-  //     router.events.off("routeChangeComplete", handleComplete);
-  //     router.events.off("routeChangeError", handleComplete);
-  //   };
-  // }, [router]);
 
 
   let [plans, setPlans] = useState([])
@@ -173,7 +111,6 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
 
   let [mand, setMand] = useState(false)
   const hides = (val) => {
-    // console.log(val)
     if (val == 'yes') {
       mand = false
       setMand(mand)
@@ -187,7 +124,6 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
 
   let [customerInfo, setCustomerInfo] = useState();
   async function customer_info() {
-
     let data = { guest_id: '', user: localStorage['customer_id'] };
     const resp = await get_customer_info(data);
     if (resp && resp.message && resp.message[0]) {
@@ -279,24 +215,11 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
     dispatch(setRole(null))
     dispatch(setUser(null))
   }
-  // console.log(router,"router")
-
-
-  // const [noAds, setNoAds] = useState(false)
-  // useEffect(() => {
-  //   if (router && router.pathname) {
-  //     let val = checkAds(router.pathname)
-  //     setNoAds(val)
-  //   }
-  // }, [router])
 
 
   return (
     <>
-      {/* <SEO /> */}
-      {/* {(!checkout || is_detail) && <div className="md:hidden lg:grid lg:justify-center"><AdsBaner homeAd={homeAd} style={styles} height={'h-full'} width={'500px'} /></div>} */}
-      {!checkAds(router.pathname) && (!checkout || is_detail) && <div className="lg:grid md:overflow-hidden lg:justify-center"><Advertisement adId={adIdH} data={(homeAd && homeAd.header) && homeAd.header} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} /></div>}
-      {/* <PdfViewer/> */}
+      {!checkAds(router.pathname) && (!checkout || is_detail) && <div className="lg:grid md:overflow-hidden lg:justify-center"><Advertisement adId={adIdH} data={(homeAd && homeAd.header) && homeAd.header} ad_payload={ad_payload} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} /></div>}
       <>
         {router.pathname != "/p/[...route]" && <Header checkout={checkout} />}
         {/* {!checkout && <Navbar isLanding={isLanding} heading={head} /> } */}
@@ -349,11 +272,8 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
           {children}
         </main>
 
-        {!checkAds(router.pathname) && (!checkout && !is_detail) && <div className="mb-[10px] lg:grid lg:justify-center md:overflow-hidden"><Advertisement adId={adIdF} data={(homeAd && homeAd.footer) && homeAd.footer} position={"high"} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} style={styles} height={'h-full'} width={'500px'} /></div>}
+        {!checkAds(router.pathname) && (!checkout && !is_detail) && <div className="mb-[10px] lg:grid lg:justify-center md:overflow-hidden"><Advertisement ad_payload={ad_payload} adId={adIdF} data={(homeAd && homeAd.footer) && homeAd.footer} position={"high"} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} style={styles} height={'h-full'} width={'500px'} /></div>}
         {!checkout && footerData && footerData.length != 0 && <MainFooter footerData={footerData} />}
-        {/* <div className='lg:hidden' >
-          <BottomTabs />
-        </div> */}
       </>
     </>
   )

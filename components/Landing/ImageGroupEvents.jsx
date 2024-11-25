@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import React from 'react'
 import { check_Image } from '../../libs/api'
 import Link from 'next/link'
 // import { Nunito } from 'next/font/google'

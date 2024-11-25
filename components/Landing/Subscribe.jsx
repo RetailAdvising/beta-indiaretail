@@ -1,8 +1,6 @@
 import Image from 'next/image'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import SubscribeNews from '../Newsletter/SubscribeNews';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 // import { Nunito } from 'next/font/google'
 // const nunito = Nunito({
 //   weight: ["300", "400", "500", "600", "700"],
@@ -16,7 +14,7 @@ export default function Subscribe({ data, height, width, isSubscribe }) {
   let [email, setEmail] = useState('')
   let [wrong, setWrong] = useState(false)
   async function showPopup() {
-    console.log(email);
+    // console.log(email);
     // let pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     // let val = email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
     // console.log(val)

@@ -1,19 +1,7 @@
-import React from 'react'
-import Image from 'next/image'
-import { check_Image } from '@/libs/api'
 import Link from 'next/link'
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
 export default function TopStories({ data }) {
-    // data = data.slice(0,3)
     return (
         <>
             {data && data.slice(0, 4).map((res, index) => {

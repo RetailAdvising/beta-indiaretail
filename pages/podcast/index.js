@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import RootLayout from '@/layouts/RootLayout'
 import Sliders from '@/components/Sliders/index'
 
@@ -35,7 +35,7 @@ export default function Podcast({ data, ads_data, slider_data }) {
 
     return (
         <>
-            <RootLayout homeAd={ads_data ? ads_data : null} isLanding={true} head="" adIdH={'podcast-head'} adIdF={'podcast-foot'}>
+            <RootLayout ad_payload={{ page: 'Podcasts', page_type: 'Landing' }} homeAd={ads_data ? ads_data : null} isLanding={true} head="" adIdH={'podcast-head'} adIdF={'podcast-foot'}>
                 <SEO title={'Podcast'} siteName={'India Retailing'} description={'Podcast'} />
                 <div className="container zero-gap ">
                     {slider_data && slider_data.length != 0 && <Sliders imgClass={'h-[400px] md:h-[220px] w-full'} event={true} data={slider_data} perView={1} className='gap-0' />}
@@ -46,7 +46,7 @@ export default function Podcast({ data, ads_data, slider_data }) {
                             <HomePodcast key={index} isLanding={true} i={index} data={res} />
                             {(ads_data && res.category_name == "Women At Work") &&
                                 <div className='py-[20px]'>
-                                    <Advertisement data={ads_data.women_at_work ? ads_data.women_at_work : null} adId={'podcast_top_first'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} />
+                                    <Advertisement ad_payload={{ page: 'Podcasts', page_type: 'Landing' }} data={ads_data.women_at_work ? ads_data.women_at_work : null} adId={'podcast_top_first'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} />
                                 </div>}
                         </>
                     )

@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
 import Image from 'next/image'
-import { check_Image } from '@/libs/api'
 import Link from 'next/link';
 import ImageLoader from '../ImageLoader';
 // import { Nunito } from 'next/font/google'

@@ -32,7 +32,7 @@ import { websiteUrl } from '@/libs/config/siteConfig'
 //   subsets: ["latin"],
 //   variable: '--font-inter',
 // })
-export default function CategoryBuilder({ data, load, isLast, i, ads, user, productNavigation, comments, updatedCmt, updateShare, noScroll, plans, ads_data }) {
+export default function CategoryBuilder({ data, load, isLast, i, ads, user, productNavigation, comments, updatedCmt, updateShare, noScroll, plans, ads_data,ad_payload }) {
   const styles = {}
   const [showComment, setshowComment] = useState(true);
   // const [data, setdatas] = useState(datas);
@@ -657,8 +657,8 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
               // sticky h-[calc(100vh_-_10px)] scrollbar-hide top-0 z-10 bg-white  overflow-auto
               <div id={'target' + i} className={` sticky h-[calc(100vh_-_10px)] scrollbar-hide top-0 z-10 bg-white  overflow-auto`}><Placeholders placeholder={data.place_holders_ads} ads_data={ads_data ? ads_data : null} tagbasedAd={data.banner_ad && Object.keys(data.banner_ad).length != 0 && data.banner_ad} productNavigation={productNavigation} /></div>
               : <>
-                <Advertisement data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
-                <Advertisement data={(ads_data && ads_data.right_second) && ads_data.right_second} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
+                <Advertisement ad_payload={ad_payload} data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
+                <Advertisement ad_payload={ad_payload} data={(ads_data && ads_data.right_second) && ads_data.right_second} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
                 {/* {ads_data && ads_data.right_first && <Advertisement data={ads_data.right_first} divClass={`h-[250px] w-[300px]`} />}
                 {ads_data && ads_data.right_second && <Advertisement data={ads_data.right_second} divClass={`h-[250px] w-[300px]`} />} */}
 

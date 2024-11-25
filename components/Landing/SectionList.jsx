@@ -1,7 +1,4 @@
-import React from 'react'
 import Image from 'next/image'
-import { check_Image, trending } from '@/libs/api'
-import Link from 'next/link'
 import Tags from '../common/Tags'
 import { useRouter } from 'next/router'
 import ImageLoader from '../ImageLoader';

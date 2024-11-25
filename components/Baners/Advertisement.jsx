@@ -2,12 +2,9 @@ import ImageLoader from '../ImageLoader'
 import { useEffect, useState } from 'react';
 import { checkMobile, get_ip, insert_banner_ad_log } from '@/libs/api'
 import GoogleAds from './GoogleAds';
-import styles from '@/styles/Cards.module.scss'
-import { useRouter } from 'next/router';
-export default function Advertisement({ data, imgClass, divClass, insStyle, position, adId }) {
+export default function Advertisement({ data, imgClass, divClass, insStyle, position, adId,ad_payload={} }) {
 
     let [isMobile, setIsMobile] = useState(false)
-    const router = useRouter()
     useEffect(() => {
         // console.log(adId, "adId")
         checkIsMobile();
@@ -32,7 +29,9 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
             page: window.location.href,
             browser: await detectBrowser(),
             ip_address: ip_address,
-            banner_id: data.title
+            banner_id: data.title,
+            position: data.section ? data.section : data.position,
+            ...ad_payload
         }
 
         const resp = await insert_banner_ad_log(params)

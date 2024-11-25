@@ -1,12 +1,10 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { eventList, get_expired_event, getAdvertisements } from '@/libs/api.js';
 import RootLayout from '@/layouts/RootLayout';
-import EventList from '@/components/Events/EventList';
 import Title from '@/components/common/Title';
 import EventCards from '@/components/Events/EventCards';
 import SEO from '@/components/common/SEO'
-import { check_Image } from '@/libs/common';
 import EventSlide from '@/components/Events/EventSlide';
 
 export default function EventDetails({ values, Id }) {
@@ -117,7 +115,7 @@ export default function EventDetails({ values, Id }) {
 
     return (
         <>
-            <RootLayout isLanding={false} head={values.title} homeAd={ads ? ads : null} adIdH={router.query.list + 'evcH'} adIdF={router.query.list + 'evcF'} >
+            <RootLayout ad_payload={{ page: 'Events', page_type: 'List' }} isLanding={false} head={values.title} homeAd={ads ? ads : null} adIdH={router.query.list + 'evcH'} adIdF={router.query.list + 'evcF'} >
                 {values && <SEO title={values.title} siteName={'India Retailing'} />}
                 {/* <SEO title={data.data.meta_title} ogImage={check_Image(data.data.image)} siteName={'India Retailing'} ogType={data.data.meta_keywords} description={data.data.meta_description}/> */}
                 <div className='md:p-[15px] container '>

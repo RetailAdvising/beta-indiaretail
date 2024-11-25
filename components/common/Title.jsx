@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { Inter } from 'next/font/google'
 const inter = Inter({
   weight: ["300","400","500","600","700"],

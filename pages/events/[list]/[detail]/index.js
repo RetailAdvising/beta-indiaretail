@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import RootLayout from '@/layouts/RootLayout';
 import EventDetail from '@/components/Events/EventDetail';
-import { postMethod, getAds, getAdvertisements,check_Image,getCurrentUrl,seo_Image } from '@/libs/api';
-import SEO from '@/components/common/SEO'
+import { postMethod, getAdvertisements,getCurrentUrl,seo_Image } from '@/libs/api';
 import Head from 'next/head'
 
 export default function EventDetails({ data, ads_data }) {
@@ -11,10 +10,9 @@ export default function EventDetails({ data, ads_data }) {
     useEffect(() => {
 
     }, [router.query])
-     //console.log(data, 'detaial')
     return (
         <>
-            <RootLayout homeAd={ads_data ? ads_data : null} adIdH={router.query.deatil+'evdH'} adIdF={router.query.deatil+'evdF'} isLanding={false} head={'Events'}>
+            <RootLayout ad_payload={{ page: 'Events', page_type: 'Detail' }} homeAd={ads_data ? ads_data : null} adIdH={router.query.deatil+'evdH'} adIdF={router.query.deatil+'evdF'} isLanding={false} head={'Events'}>
                 <Head>
                     <title key="title">{data?.message.meta_title}</title>
                     <meta name="description" content={data?.meta_description} />

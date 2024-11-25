@@ -1,24 +1,14 @@
 // 'use client'
-import React, { useEffect, useState, useRef } from 'react'
-import Title from '@/components/common/Title';
-import Image from 'next/image';
+import { useEffect, useState, useRef } from 'react'
 import RootLayout from '@/layouts/RootLayout';
 import List from '@/components/common/List';
 import Cards from '@/components/common/Cards';
-import { getList, articlesList, checkMobile, check_Image, getAdvertisements, trending } from '@/libs/api';
+import { articlesList, checkMobile, getAdvertisements } from '@/libs/api';
 import { useRouter } from 'next/router';
 import SEO from '@/components/common/SEO'
 import Tags from '@/components/common/Tags';
 import ImageLoader from '@/components/ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300", "400", "500", "600", "700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-// })
+
 export default function CategoryType({ values, ads,Id }) {
     const router = useRouter();
     const [data, setData] = useState([]);
@@ -115,7 +105,7 @@ export default function CategoryType({ values, ads,Id }) {
     }
     return (
         <>
-            <RootLayout isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.types+'catH'} adIdF={router.query.types+'catF'} head={router.query.types}>
+            <RootLayout ad_payload={{ page: 'Categories', page_type: 'List' }} isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.types+'catH'} adIdF={router.query.types+'catF'} head={router.query.types}>
                 <SEO title={router.query.types} siteName={'India Retailing'} ogType={router.query.types} description={router.query.types} />
                 <div className={`${isMobile ? 'md:p-[15px]' : 'container'}`} id='root' >
                     {(data && data.length != 0) ? <div className={`lg:flex lg:flex-wrap  lg:gap-[20px]`}>

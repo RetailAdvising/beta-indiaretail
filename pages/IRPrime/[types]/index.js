@@ -1,7 +1,6 @@
 import RootLayout from '@/layouts/RootLayout'
-import React, { useEffect, useRef, useState } from 'react'
-import { articlesList, getAds,getAdvertisements } from '@/libs/api'
-import List from '@/components/common/List'
+import { useEffect, useRef, useState } from 'react'
+import { articlesList,getAdvertisements } from '@/libs/api'
 import Cards from '@/components/common/Cards'
 import { useRouter } from 'next/router';
 export default function Lists({ data, ads }) {
@@ -12,9 +11,6 @@ export default function Lists({ data, ads }) {
     const [pageData, setPageData] = useState([])
     const [loading, setLoading] = useState(false);
 
-    console.log(
-        data
-    );
     
     useEffect(() => {
         // slider_data.map((res)=> {
@@ -68,7 +64,7 @@ export default function Lists({ data, ads }) {
     }
     return (
         <>
-            <RootLayout isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.types+'irH'} adIdF={router.query.types+'irF'} head={'List'}>
+            <RootLayout ad_payload={{ page: 'IR Prime', page_type: 'List' }} isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.types+'irH'} adIdF={router.query.types+'irF'} head={'List'}>
                 <div className=' md:p-[15px] container'>
                     {(pageData && pageData.length != 0) ? <>
                         {/* {!isChecked ? <List fullWidth={true} check={true} isBB={true} contentWidth={'w-[410px] md:w-[auto]'} imgFlex={'flex-[0_0_calc(35%_-_10px)]'} imgWidth={'w-full'} imgHeight={'h-[160px]'} data={data} borderRadius={'rounded-[5px]'} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import RootLayout from '@/layouts/RootLayout';
 import data from '@/libs/membership';
 import Image from 'next/image';

@@ -1,6 +1,6 @@
 import RootLayout from '@/layouts/RootLayout'
-import React, { useEffect,useState } from 'react'
-import { primeLanding, getAds,getAdvertisements } from '@/libs/api'
+import { useEffect,useState } from 'react'
+import { primeLanding,getAdvertisements } from '@/libs/api'
 import ExclusiveBuilder from '@/components/Builders/ExclusiveBuilder'
 import SEO from '@/components/common/SEO'
 
@@ -22,7 +22,7 @@ export default function IRPrime({ data,ads }) {
     // console.log('dadad', data, ads)
     return (
         <>
-            <RootLayout homeAd={ads ? ads : null} isLanding={true} head={'IR Prime'} adIdH={'ir-prime-head'} adIdF={'ir-prime-foot'}>
+            <RootLayout ad_payload={{ page: 'IR Prime', page_type: 'Landing' }} homeAd={ads ? ads : null} isLanding={true} head={'IR Prime'} adIdH={'ir-prime-head'} adIdF={'ir-prime-foot'}>
                 <SEO title={'IR Prime'} siteName={'India Retailing'} description={'IR Prime'} />
                 {(value && value.message && value.message.length != 0) ? <ExclusiveBuilder data={value} ads={ads ? ads : null} /> : <Skeleton />}
             </RootLayout>

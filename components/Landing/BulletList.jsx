@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from '@/styles/Components.module.scss'
 import Link from 'next/link'
 // import { Nunito } from 'next/font/google'

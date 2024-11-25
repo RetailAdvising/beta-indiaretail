@@ -3,46 +3,28 @@ import Image from 'next/image';
 import RootLayout from '@/layouts/RootLayout';
 import Card from '@/components/Bookstore/Card';
 import Title from '@/components/common/Title';
-import AdsBaner from '@/components/Baners/AdsBaner';
 import { useRouter } from 'next/router';
 import { getProductDetail, insertCartItems, insertSubscription,insert_member_subscription, make_payment_entry, insert_cart_items, updateCartItems, getCartItem, deleteCartItems , get_razorpay_settings, subscriptionPlans, get_subscription_plans,update_no_of_shares,getAdvertisements,getCurrentUrl,seo_Image } from '@/libs/api';
 import { check_Image } from '@/libs/common';
-import Modal from '@/components/common/Modal';
 import AuthModal from '@/components/Auth/AuthModal';
-import { WhatsappShareButton, LinkedinShareButton, TwitterShareButton, FacebookShareButton } from 'react-share'
 import LoaderButton from '@/components/common/LoaderButton';
 import styles from '@/styles/checkout.module.scss';
 import AlertUi from '@/components/common/AlertUi';
-import SEO from '@/components/common/SEO';
 import Sliders from '@/components/Sliders/index'
 import Dropdowns from '@/components/common/Dropdowns'
-// import PageFlip from 'react-pageflip';
-// import { Document, Page } from 'react-pdf';
-// import BreadCrumb from '@/components/common/BreadCrumb';
-// import Razorpay from 'razorpay';
-// import { Nunito } from 'next/font/google'
 import Head from 'next/head'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
 export default function Bookstoredetail({ value, res,ads }) {
 
   const [subs, setSubs] = useState();
   const [indexs, setIndex] = useState(-1);
   const [imageIndex, setIndexImage] = useState(-1);
   const [Onetime, setOnetime] = useState(-1);
-  const [open, setOpen] = useState(false);
   const router = useRouter();
   const [data, setData] = useState();
   const [razorpay_settings, setRazorpay_settings] = useState({}) ;
 
   // console.log(value,'value')
-  const ref = useRef(null);
   const [loader,setLoader] = useState(false)
   // const [variants,setVariants] = useState([{'name':'PDF','selected':true},{'name':'PRINT','selected':false}])
   const [enableModal,setEnableModal] = useState(false)
@@ -52,7 +34,6 @@ export default function Bookstoredetail({ value, res,ads }) {
 
   const icons = [{ icon: "/bookstore/linkedin.svg", name: 'Linkedin' }, { icon: "/bookstore/FB.svg", name: 'Facebook' }, { icon: "/bookstore/twitter.svg", name: 'Twitter' }, { icon: "/bookstore/whatsapp.svg", name: 'Whatsapp' }]
   
-  let [breadCrumbs,setBreadCrumbs] = useState([{name:'Home',route:'/'}])
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -87,14 +68,7 @@ export default function Bookstoredetail({ value, res,ads }) {
         // console.log(value,'before');
         // console.log(res);
         check_main_image(value)
-        let routPath = router.asPath.split('/')
-        if(routPath && routPath.length != 0){
-          routPath.map((res,i)=>{
-            if(i > 0){
-              setBreadCrumbs((d)=> d = [...d,{name:res,route:'/'+ res}]);
-            }
-          })
-        }
+
         // if(value.vendor_price_list && value.vendor_price_list.length != 0){     
         //   if(value.has_variants == 1){
         //       value.price = value.vendor_price_list[0].default_variant.product_price;
@@ -662,7 +636,7 @@ const  getCarts = async (type) => {
 
   return (
     <>
-      <RootLayout homeAd={ads ? ads : null} adIdH={router.query.detail+'bookdH'} adIdF={router.query.detail+'bookdF'}>
+      <RootLayout ad_payload={{ page: 'Books', page_type: 'Detail' }} homeAd={ads ? ads : null} adIdH={router.query.detail+'bookdH'} adIdF={router.query.detail+'bookdF'}>
       <Head>
           <title key="title">{value?.meta_title}</title>
           <meta name="description" content={value?.meta_description} />

@@ -2,17 +2,17 @@ import Title from './Title'
 import Lists from '../Category/Lists'
 import Advertisement from '../Baners/Advertisement'
 import List from '../Bookstore/List'
-export default function Placeholders({ placeholder, tagbasedAd, productNavigation, ads_data }) {
+export default function Placeholders({ placeholder, tagbasedAd, productNavigation, ads_data,ad_payload }) {
     return (
         <>
             {(placeholder && placeholder.length != 0) ?
                 placeholder.map((resp, index) => {
                     return (
                         <div key={index} className={`my-[10px]`}>
-                            {(tagbasedAd && Object.keys(tagbasedAd).length != 0 && index == 0) ? <Advertisement position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} data={tagbasedAd} /> : (resp.placeholder_type == 'Banner Ad' && resp.data && resp.data.length != 0 && resp.data[0].web_image) ? <Advertisement insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} position={"small"} data={resp.data[0]} height={'h-[250px]'} width={'w-[300px]'} /> :
-                                ads_data && ads_data.right_first ? <Advertisement data={ads_data.right_first} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} /> : <></>}
+                            {(tagbasedAd && Object.keys(tagbasedAd).length != 0 && index == 0) ? <Advertisement ad_payload={ad_payload} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} data={tagbasedAd} /> : (resp.placeholder_type == 'Banner Ad' && resp.data && resp.data.length != 0 && resp.data[0].web_image) ? <Advertisement insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} position={"small"} data={resp.data[0]} height={'h-[250px]'} width={'w-[300px]'} /> :
+                                ads_data && ads_data.right_first ? <Advertisement ad_payload={ad_payload} data={ads_data.right_first} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} /> : <></>}
                             {/* {(resp.placeholder_type == 'google_ad' && resp.data && resp.data.length != 0) && <GoogleAds data={(resp.data[0] && resp.data[0].script) ? resp.data[0].script: null} height={'260px'} width={'300px'} />} */}
-                            {(resp.placeholder_type == 'google_ad') && <Advertisement position={"small"} data={((resp.data && resp.data.length != 0) && (resp.data[0] && resp.data[0].script)) ? resp.data[0].script : null} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} />}
+                            {(resp.placeholder_type == 'google_ad') && <Advertisement ad_payload={ad_payload} position={"small"} data={((resp.data && resp.data.length != 0) && (resp.data[0] && resp.data[0].script)) ? resp.data[0].script : null} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} />}
                             {(resp.placeholder_type == 'list' && resp.data && resp.data.length != 0) &&
                                 <div className='border rounded-[5px] p-[10px_15px_15px]'>
                                     <Title data={resp} />

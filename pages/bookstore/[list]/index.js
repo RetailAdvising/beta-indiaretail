@@ -1,5 +1,5 @@
 import RootLayout from '@/layouts/RootLayout'
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 // import data from '@/libs/bookstoreList';
 import Title from '@/components/common/Title';
 import Card from '@/components/Bookstore/Card';
@@ -13,20 +13,10 @@ export default function BookstoreList({ value, ads }) {
     let cardref = useRef();
     let page_no = 1
     let no_product = false;
-    let [breadCrumbs, setBreadCrumbs] = useState([{ name: 'Home', route: '/' }])
-
-    console.log(value);
+    // console.log(value);
     
 
     useEffect(() => {
-        let routPath = router.asPath.split('/')
-        if (routPath && routPath.length != 0) {
-            routPath.map((res, i) => {
-                if (i > 0) {
-                    setBreadCrumbs((d) => d = [...d, { name: res, route: '/' + res }]);
-                }
-            })
-        }
 
         if (value && value.length != 0) {
             setData(value.data)
@@ -63,12 +53,7 @@ export default function BookstoreList({ value, ads }) {
 
     return (
         <>
-            <RootLayout adIdH={router.query.list+'booklH'} adIdF={router.query.list+'booklF'} homeAd={ads ? ads : null}>
-
-                {/* <div className='md:hidden'>
-              <BreadCrumb BreadCrumbs={breadCrumbs} cssClass={'pb-[10px]'}/>
-           </div> */}
-
+            <RootLayout ad_payload={{ page: 'Books', page_type: 'List' }} adIdH={router.query.list+'booklH'} adIdF={router.query.list+'booklF'} homeAd={ads ? ads : null}>
                 <div className='container'>
                     {(data && data.length != 0) &&
                         <div className='md:p-[15px]'>
@@ -79,7 +64,6 @@ export default function BookstoreList({ value, ads }) {
                     }
                 </div>
                 <div className='more' ref={cardref}>
-
                 </div>
             </RootLayout>
         </>

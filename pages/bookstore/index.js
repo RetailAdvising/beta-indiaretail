@@ -8,18 +8,12 @@ import { booksLanding, sliders, getAdvertisements } from '@/libs/api'
 import { checkMobile } from '@/libs/api'
 import SEO from '@/components/common/SEO'
 
-// import BreadCrumb from '@/components/common/BreadCrumb';
-
 export default function Bookstore({ data, slider_data }) {
   // export default function Bookstore({ data, ads_data, slider_data }) {
-  // console.log(data);
+
   let [isMobile, setIsmobile] = useState();
   const [ads_data, setAdsData] = useState()
-  // const [slider_data,setSliderData] = useState()
-  // let [breadCrumbs, setBreadCrumbs] = useState([
-  //   { name: 'Home', route: '/' },
-  //   { name: 'Bookstore' },
-  // ])
+
 
   useEffect(() => {
     slider_data.map((res) => {
@@ -48,44 +42,18 @@ export default function Bookstore({ data, slider_data }) {
     }
   }
 
-  // const get_slides = async () => {
-  //   let slider_params = {
-  //     page: 'Product',
-  //     fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image']
-  //   }
-
-  //   const res = await sliders(slider_params)
-  //   const slider_data = res.message
-  //   if(slider_data){
-  //     slider_data.map((res) => {
-  //       res.web_image ? res.image = res.web_image : res.image = ''
-  //     })
-
-  //     setSliderData(slider_data)
-  //   }
-
-  // }
-
   return (
     <>
-      <RootLayout homeAd={ads_data ? ads_data : null} adIdH={'book-head'} adIdF={'book-foot'} >
+      <RootLayout ad_payload={{ page: 'Books', page_type: 'Landing' }} homeAd={ads_data ? ads_data : null} adIdH={'book-head'} adIdF={'book-foot'} >
         <SEO title={'Bookstore'} siteName={'India Retailing'} description={'Bookstore'} />
-
-        {/* {!isMobile && <BreadCrumb BreadCrumbs={breadCrumbs} cssClass={'pb-[10px]'}/>} */}
-
 
         {(data && data.length != 0) && <>
           <div className="container zero-gap">
             {slider_data && slider_data.length != 0 && <Sliders imgClass={'h-[400px] md:h-[200px] w-full'} event={true} data={slider_data} isMobile={isMobile} perView={1} className='gap-0' />}
           </div>
-          {/* {(resp.recent_products && resp.recent_products.length != 0) && 
-          <div className='pt-[10px] container' style={{ background: "#f0f0f0" }}>
-            <Sliders data={resp.recent_products} perView={1} imgClass={'h-[400px] w-full'} />
-          </div>} */}
-
+          
           <div className={`lg:bg-[#FBFBFD]`}>
-            {/* {data.map((res, index) => {
-              return ( */}
+
             <div className='md:flex-wrap  md:p-[15px] py-8 container justify-between gap-[15px] flex'>
               <div className={`flex-[0_0_calc(100%_-_10px)] md:flex-[0_0_calc(100%_-_0px)]`}>
                 <Title data={data[0]} seeMore={true} />
@@ -94,8 +62,7 @@ export default function Bookstore({ data, slider_data }) {
               </div>
               {/* <div className={`flex-[0_0_calc(30%_-_10px)] md:flex-[0_0_calc(100%_-_0px)]`}><AdsBaner data={val.section_2.col_2} /></div> */}
             </div>
-            {/* )
-            })} */}
+          
           </div>
 
           {(data[1] && data[2]) && <div className='lg:items-baseline container md:p-[10px_15px_10px_15px] pt-[2rem] pb-[6rem] md:flex-wrap md:flex-col flex justify-between gap-[15px]'>
