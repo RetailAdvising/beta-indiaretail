@@ -13,7 +13,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import ImageLoader from '@/components/ImageLoader';
 
-
 const List = dynamic(() => import('@/components/common/List'))
 const Cards = dynamic(() => import('@/components/common/Cards'))
 const ImageGroupEvents = dynamic(() => import('@/components/Landing/ImageGroupEvents'))
