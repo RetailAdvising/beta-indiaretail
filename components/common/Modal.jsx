@@ -12,8 +12,6 @@ import { addComment, commentList, report } from '@/libs/api'
 import { useRouter } from 'next/router';
 import AlertUi from './AlertUi';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Modal({ modal, hide, visible, data, cur, comments, route, updatedCmt,noScroll }) {
     const [sort, setSort] = useState(false);

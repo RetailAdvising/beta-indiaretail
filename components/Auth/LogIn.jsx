@@ -8,10 +8,10 @@ import { useRouter } from 'next/router';
 import OTP from './OTP';
 import SignUp from './SignUp';
 import Forget from './Forget'
-import { signIn, signOut, useSession } from 'next-auth/react'
+// import { signIn, signOut, useSession } from 'next-auth/react'
 // import FacebookLogin from 'react-facebook-login';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {  toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import CryptoJS from 'crypto-js';
 
 // import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -615,15 +615,15 @@ export default function LogIn({ isModal, hide, auth }) {
                                 {/* <button onClick={() => signIn("google")}>Login with Google</button> */}
                             </div>
 
-                            {false && <div id="apple" className='flex items-center h-[50px] w-[75px] rounded-[10px] cursor-pointer justify-center border'>
+                            {/* {false && <div id="apple" className='flex items-center h-[50px] w-[75px] rounded-[10px] cursor-pointer justify-center border'>
                                 <Image height={20} onClick={async () => {
                                     await signIn('apple', {
                                         callbackUrl: `${window.location.origin}`,
                                         redirect: true,
                                     })
                                 }} className='h-[25px] w-[25px] object-contain cursor-pointer' width={20} alt='apple' src={'/Apple-login.svg'} />
-                                {/* <p>Continue with Apple</p> */}
-                            </div>}
+                                
+                            </div>} */}
 
                             {false && <div className='flex  items-center h-[50px] w-[75px] rounded-[10px] cursor-pointer justify-center border'>
                                 {/* <Image height={20} className='h-[25px] w-[25px] object-contain' width={20} alt='apple' src={'/login/fb-01.svg'} /> */}

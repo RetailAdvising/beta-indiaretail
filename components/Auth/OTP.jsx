@@ -8,8 +8,8 @@ import AlertUi from '../common/AlertUi';
 import SignUp from './SignUp';
 import { useDispatch, useSelector } from 'react-redux';
 import setUser from 'redux/actions/userAction';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 export default function OTP({ setotp, isModal, hide, auth }) {
     const router = useRouter();

@@ -5,8 +5,7 @@ import Image from 'next/image'
 import { useForm } from 'react-hook-form';
 import styles from '@/styles/Components.module.scss'
 import { insert_doc } from '@/libs/api';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export default function Editprofile({ customerInfo }) {
   

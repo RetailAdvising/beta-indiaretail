@@ -26,7 +26,7 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
         let ip_address = await get_ip()
 
         let params = {
-            page: window.location.href,
+            page_url: window.location.href,
             browser: await detectBrowser(),
             ip_address: ip_address,
             banner_id: data.title,

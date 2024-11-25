@@ -15,8 +15,7 @@ import { useDispatch, useSelector, Provider } from 'react-redux'
 import customerInfoAction from 'redux/actions/customerInfoAction'
 import alertAction from 'redux/actions/alertAction'
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export default function checkout() {
 

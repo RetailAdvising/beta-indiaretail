@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useLinkedIn } from 'react-linkedin-login-oauth2';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const FbBtn = ({ socialLogin, setCredential, setShowMob }) => {
   // const { data: session } = useSession();

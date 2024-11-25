@@ -11,7 +11,6 @@ import dynamic from 'next/dynamic'
 const ErrorBoundary = dynamic(() => import('@/components/Exception/ErrorBoundary'))
 // const MobileHead = dynamic(()=> import('@/components/common/BottomTabs'))
 const BottomTabs = dynamic(() => import('@/components/common/BottomTabs'))
-// const nProgress = dynamic(()=> import('nprogress'))
 // import ErrorBoundary from '@/components/Exception/ErrorBoundary'
 import MobileHead from '@/components/Headers/MobileHead'
 // import BottomTabs from '@/components/common/BottomTabs'
@@ -31,10 +30,12 @@ import "nprogress/nprogress.css"
 //   variable: '--font-inter'
 // })
 // import AuthSessionProvider from './auth/auth-session-provider'
-import { SessionProvider } from 'next-auth/react'
+// import { SessionProvider } from 'next-auth/react'
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import ScrollToTopButton from '@/components/common/ScrollToTopButton'
+const ScrollToTopButton = dynamic(()=> import('@/components/common/ScrollToTopButton'))
+
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 const inter = Faustina({
   weight: ["300", "400", "500", "600", '700'],
   display: "block",
@@ -235,27 +236,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   
   return (
     <>
-      {/* Load AdSense script */}
-      {/* <Script
-        strategy="beforeInteractive"
-        id="adsense-script"
-        async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js`}
-      /> */}
-
-      {/* Replace with your AdSense client ID */}
-      {/* <Script
-        strategy="beforeInteractive"
-        id="adsense-setup"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "div-gpt-ad-1617096742911-0",
-              enable_page_level_ads: true
-            });
-          `,
-        }}
-      /> */}
+      
       <Head>
         {/* <link href="https://indiaretailing.go1cms/files/default-theme.css" rel="stylesheet"/> */}
 
@@ -301,7 +282,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             {/* <GoogleOAuthProvider clientId={"630423705748-pg41popq5up1nsvs08i7n0ia47fkpt01.apps.googleusercontent.com"}> */}
 
             <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
-              <SessionProvider session={session}>
+              {/* <SessionProvider session={session}> */}
                 <main className={` ${inter.className} md:max-h-[100vh] md:overflow-auto`} id='scroll_div' >
                   {router.pathname != "/p/[...route]" && <div className='lg:hidden'><MobileHead getActiveTab={getActiveTab} activeTab={activeTab} /></div>}
                   {/* <Header/> */}
@@ -312,7 +293,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
                     <BottomTabs getActiveTab={getActiveTab} activeTab={activeTab} />
                   </div>}
                 </main>
-              </SessionProvider>
+              {/* </SessionProvider> */}
             </GoogleOAuthProvider>
           </ChakraProvider>
         </Provider>

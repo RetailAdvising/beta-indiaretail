@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { like, dislike, getList, addComment } from '@/libs/api';
 import Modal from '../common/Modal';
 import AlertUi from '../common/AlertUi';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import CommentModal from './CommentModal'
 // import { Nunito } from 'next/font/google'
 import format from 'date-fns/format'

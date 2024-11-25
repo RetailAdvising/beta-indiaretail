@@ -8,8 +8,8 @@ import LogIn from './LogIn';
 import { useDispatch } from 'react-redux';
 import setUser from 'redux/actions/userAction';
 // import AlertUi from '../common/AlertUi';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import CryptoJS from 'crypto-js';
 
 

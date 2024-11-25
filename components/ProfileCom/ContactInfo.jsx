@@ -5,8 +5,7 @@ import style from '@/styles/Components.module.scss'
 import styles from '@/styles/checkout.module.scss';
 import { useForm, Controller } from "react-hook-form";
 import Select from 'react-select';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export default function ContactInfo({contactInfo}){
 
