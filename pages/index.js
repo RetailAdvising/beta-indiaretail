@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import ImageLoader from '@/components/ImageLoader';
 
+
 const List = dynamic(() => import('@/components/common/List'))
 const Cards = dynamic(() => import('@/components/common/Cards'))
 const ImageGroupEvents = dynamic(() => import('@/components/Landing/ImageGroupEvents'))
@@ -176,13 +177,13 @@ export default function Home({ data }) {
 
         {(value && value.length != 0) ? value.map((data, i) => {
           return (
-            <div key={i} ref={value.length === i + 3 ? lastPostElementRef : null} className={`py-[20px] ${data.section == 'PS-24-00630' ? 'lg:p-5 bg-[#F8F9FA]' : data.section == 'PS-23-00157' || data.section == 'Infocus' ? 'border-b border-[#d4d8d8] container' : data.section == 'PS-23-00166' ? 'bg-[#000] lg:my-5 lg:p-[20px_40px] md:py-[20px]  no_scroll ' : data.section == 'PS-23-00130' ? 'lg:bg-[#f1f1f1] p-5 lg:my-5' : data.section == 'PS-24-00623' ? 'bg-[#F0F0F0]' : 'container'}  md:p-[15px]  md:py-[10px] lg:flex gap-5`}>
+            <div key={i} ref={value.length === i + 3 ? lastPostElementRef : null} className={`py-[20px] ${data.section == 'PS-24-00630' ? 'lg:p-5 bg-[#F8F9FA]' : data.section == 'PS-23-00157' || data.section == 'Infocus' ? 'border-b border-[#d4d8d8] container' : data.section == 'PS-23-00166' ? 'bg-[#000] lg:my-5 lg:p-[20px_40px] md:py-[20px]  no_scroll md:mb-5' : data.section == 'PS-23-00130' ? 'lg:bg-[#f1f1f1] p-5 lg:my-5' : data.section == 'PS-24-00623' ? 'bg-[#F0F0F0]' : 'container'}  md:p-[15px]  md:py-[10px] lg:flex gap-5`}>
               {(data.layout_json && JSON.parse(data.layout_json).length != 0) && JSON.parse(data.layout_json).map((res, index) => {
                 return (
-                  <div key={index} className={`${res.class == 'flex-[0_0_calc(100%_-_0px)]' ? 'w-full' : res.class} ${(data.section != 'PS-24-00630') ? 'md:mb-[20px]' : 'container'}  ${((data.section == 'PS-23-00130') && !isMobile) ? 'container' : ''} ${data.section == 'PS-23-00166' ? 'container' : ''} ${data.section == 'PS-24-00623' && !isMobile ? 'container' : ''}`}>
+                  <div key={index} className={`${res.class == 'flex-[0_0_calc(100%_-_0px)]' ? 'w-full' : res.class} ${(data.section != 'PS-24-00630') ? 'md:mb-[20px]' : 'container'}  ${((data.section == 'PS-23-00130') && !isMobile) ? 'container' : ''} ${data.section == 'PS-23-00166' ? 'container md:!mb-0' : ''} ${data.section == 'PS-24-00623' && !isMobile ? 'container' : ''}`}>
                     {(res.components && res.components.length != 0) && res.components.map((c, c_index) => {
                       return (
-                        <div key={c.component_title} className={`${c.component_title == "Top 4 Stories" ? 'top3  lg:justify-center md:gap-5' : c.component_title == "Featured Content" ? 'md:mb-[20px] pt-[20px]' : ''}`}>
+                        <div key={c.component_title} className={`${c.component_title == "Infocus Ad" ? 'md:pb-[10px]' : ''} ${c.component_title == "Top 4 Stories" ? 'top3  lg:justify-center md:gap-5' : c.component_title == "Featured Content" ? 'md:mb-[20px] pt-[20px]' : ''}`}>
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Top 4 Stories") && <TopStories data={data.data[c.cid].data.slice(0, 4)} />}
                           {(c.component_title == "In Focus" && c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_data_type == 'Location') && <>
                             <ImageContainer data={data.data[c.cid].data[0]} height={"h-[350px] md:h-[250px]"} contStyle={'mb-[15px]'} width={'w-full'} />
@@ -221,12 +222,12 @@ export default function Home({ data }) {
                           </>}
 
                           {(c.cid && data.data[c.cid] && (data.data[c.cid]['banner-list'] && data.data[c.cid]['banner-list'].length > 0) && c.component_title == "Web Special New") && <>
-                            <Title data={{ title: c.component_title }} />
+                            <Title data={{ title: c.component_title }} isIcon={true} see={`uppercase !font-semibold !text-[#e21b22]`} route={'/p/web-special-list/1'} seeMore={true} />
                             <div className={`flex items-center gap-[20px] md:overflow-auto lg:flex-wrap ${isMobile ? 'scrollbar-hide' : ''} md:gap-[15px] lg:justify-center`}>
                               {data.data[c.cid]['banner-list'].map((resp, index) => {
                                 return (
-                                  <div className={`flex-[0_0_calc(25%_-_15px)] md:flex-[0_0_calc(50%_-_10px)] cursor-pointer`} onClick={() => router.push(resp.url)} key={resp.url}>
-                                    <Image src={check_Image(resp['banner-image'])} className='h-[250px] md:h-[150px] w-full rounded-[10px]' height={100} width={100} alt={resp.url}></Image>
+                                  <div className={`flex-[0_0_calc(25%_-_15px)] md:flex-[0_0_calc(40%_-_10px)] cursor-pointer`} onClick={() => router.push(resp.url)} key={resp.url}>
+                                    <Image src={check_Image(resp['banner-image'])} className='h-[250px] md:h-[125px] w-full rounded-[10px]' height={100} width={100} alt={resp.url}></Image>
                                   </div>
                                 )
                               })}
@@ -235,7 +236,7 @@ export default function Home({ data }) {
                           </>}
 
                           {(c.cid && data.data[c.cid] && c.component_title == "Featured Content") && <>
-                            <Title data={{ title: c.component_title }} isIcon={true} see={`uppercase !font-semibold !text-[#e21b22]`} route={'/p/web-special-list/1'} seeMore={true} />
+                            <Title data={{ title: c.component_title }}  />
                             <div className={`flex items-center gap-[20px] md:overflow-auto lg:flex-wrap scrollbar-hide md:gap-[15px]`}>
                               {data.data[c.cid].data.map((resp, index) => {
                                 return (
@@ -366,7 +367,7 @@ export default function Home({ data }) {
 
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Case Study") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/case-studies'} seeMore={true} />
-                            <CaseStudy imgClass={'lg:h-[285px] md:h-[140px] w-full'} title_class={'min-h-[35px] line-clamp-2'} hide_scroll_button={isMobile ? true : false} slider_id={'case_study_id' + c_index} slider_child_id={'case_study' + c_index} data={data.data[c.cid].data} cardClass={'h-[350px] md:h-[275px] flex-[0_0_calc(33.333%_-_16px)] md:flex-[0_0_calc(65%_-_10px)]'} />
+                            <CaseStudy imgClass={'lg:h-[285px] md:h-[140px] w-full'} title_class={'min-h-[35px] line-clamp-2'} hide_scroll_button={isMobile ? true : false} slider_id={'case_study_id' + c_index} slider_child_id={'case_study' + c_index} data={data.data[c.cid].data} cardClass={'h-[350px] md:h-[210px] flex-[0_0_calc(33.333%_-_16px)] md:flex-[0_0_calc(65%_-_10px)]'} />
 
                           </>}
 

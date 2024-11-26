@@ -6,7 +6,7 @@ export default function TopStories({ data }) {
         <>
             {data && data.slice(0, 4).map((res, index) => {
                 return (
-                    <Link key={index} href={'/' + res.route} className='flex-[0_0_calc(25%_-_15px)] flex gap-[10px] justify-between items-center h-[85px] px-[10px]  rounded-[5px] bg-white  md:h-[85px] md:flex-[0_0_calc(85%_-_10px)]'>
+                    <Link key={index} href={'/' + res.route} className='flex-[0_0_calc(25%_-_15px)] flex gap-[10px]  items-center h-[85px] px-[10px]  rounded-[5px] bg-white  md:h-[85px] md:flex-[0_0_calc(85%_-_10px)]'>
                         {/* <div  className={`flex gap-[10px]  items-center h-[100px] px-[10px]  rounded-[5px] bg-white  md:h-[80px]  md:flex-[0_0_calc(90%_-_10px)] ${index == data.length - 1 ? 'md:mx-[15px]' : index == 0 ? '' : 'md:ml-[15px]'}`}> */}
                         {/* <div > */}
                         <div className='flex-[0_0_calc(27%_-_5px)]  md:h-[70px] md:flex-[0_0_calc(33%_-_10px)]'>

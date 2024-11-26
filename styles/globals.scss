@@ -981,6 +981,7 @@ input {
   .news_detail {
     .rodal {
       z-index: 9999 !important;
+
       .rodal-dialog {
         // left: 876px;
         left: 0% !important;
@@ -2142,7 +2143,7 @@ strong {
     }
   }
 
-  .rodal{
+  .rodal {
     z-index: 9999 !important;
   }
 
@@ -2156,9 +2157,10 @@ strong {
     }
   }
 
-  .report_popup{
-    .rodal{
+  .report_popup {
+    .rodal {
       z-index: 9999;
+
       .rodal-dialog {
         // height: 575px !important;
         // width: 1000px !important;
@@ -2714,6 +2716,7 @@ ins.adsbygoogle .default_ban_img {
 
 ins.adsbygoogle[data-ad-status="unfilled"] {
   height: var(--adheight, 90px) !important;
+  width: var(--adwidth, 728px) !important;
 }
 
 ins.adsbygoogle[data-ad-status="unfilled"] .default_ban_img {
@@ -3192,6 +3195,18 @@ ins.adsbygoogle[data-ad-status="unfilled"] .default_ban_img {
 }
 
 @media screen and (max-width:768px) {
+
+  ins.adsbygoogle[data-ad-status="unfilled"] {
+    height: var(--adheight, 90px) !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    overflow: hidden;
+  }
+
+  ins.adsbygoogle[data-ad-status="unfilled"] .default_ban_img {
+    display: block !important;
+    width: 100% !important;
+  }
 
   // Advertise with us
   .topSection {

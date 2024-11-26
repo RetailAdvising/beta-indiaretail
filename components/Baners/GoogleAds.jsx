@@ -1,7 +1,24 @@
-import Script from "next/script";
-import { useEffect } from "react";
+import { checkMobile } from "@/libs/api";
+import { useEffect, useState } from "react";
 
 const GoogleAds = (props) => {
+
+    let [isMobile, setIsMobile] = useState(false)
+    useEffect(() => {
+        // console.log(adId, "adId")
+        checkIsMobile();
+        window.addEventListener('resize', checkIsMobile)
+        return () => {
+            window.removeEventListener('resize', checkIsMobile);
+        };
+    }, [])
+
+
+    const checkIsMobile = async () => {
+        let is_mobile = await checkMobile();
+        isMobile = is_mobile
+        setIsMobile(isMobile);
+    }
 
     useEffect(() => {
         // console.log(props.adId,"props.adId")
@@ -29,14 +46,18 @@ const GoogleAds = (props) => {
         // let el = document.querySelector('.scripts');
 
         let dynamicHeight;
+        let dynamicWidth;
         if (position === 'high') {
             dynamicHeight = '90px';  // Example height for high position
+            dynamicWidth = isMobile ? '100%' : '728px'
         } else {
             dynamicHeight = '250px';  // Default height
+            dynamicWidth = isMobile ? '100%' : '300px'
         }
 
         if (parent) {
             parent.style.height = position == 'high' ? '90px !important' : '250px !important';  // Example: Set background color
+            parent.style.width = (position == 'high' && isMobile) ? '100% !important' : '728px !important';  // Example: Set background color
             parent.classList.add(position == 'high' ? 'height-90' : 'height-250')
         }
 
@@ -49,6 +70,7 @@ const GoogleAds = (props) => {
 
         // Set the custom property --adheight dynamically
         el?.style?.setProperty('--adheight', dynamicHeight);
+        el?.style?.setProperty('--adwidth', dynamicWidth);
     }
 
 

@@ -57,7 +57,7 @@ const YouTubeVideo = ({ id, click_data }) => {
     <>
       {videoDetails && (
         <div className="py-5">
-          <Title data={{ title: "Videos" }} />
+          <Title data={{ title: "Video" }} />
           <div className="pt-3 flex flex-col lg:flex-row gap-4">
             <ImageLoader
               src={videoDetails.thumbnail}

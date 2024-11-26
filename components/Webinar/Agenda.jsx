@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { format, parse } from "date-fns";
 
 const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
@@ -26,7 +27,7 @@ const Agenda = ({ data }) => {
           <div className="flex justify-between gap-3 items-center py-3 cursor-pointer" onClick={() => toggle(i)}>
             <div>
               <span className="bg-[#F2F2F2] px-2 rounded-md text-[#999999] md:text-[10px] sub_title lg:text-sm font-semibold py-[2px]">
-                {`${res.start_time} - ${res.end_time}`}
+                {`${format(parse(res.start_time,'HH:mm:ss', new Date()),'hh:mm a')} - ${format(parse(res.end_time,'HH:mm:ss', new Date()),'hh:mm a')}`}
               </span>
               <p
                 className={`mt-2 md:text-[16px] lg:text-[18px] nunito font-normal`}
