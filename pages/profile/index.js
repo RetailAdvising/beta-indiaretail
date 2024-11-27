@@ -1,5 +1,5 @@
 import RootLayout from '@/layouts/RootLayout'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { checkMobile, get_customer_info, newsLanding, stored_customer_info, get_razorpay_settings, make_payment_entry } from '@/libs/api';
 import { useRouter } from 'next/router'
 import { check_Image } from '@/libs/common'

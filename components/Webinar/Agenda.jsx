@@ -1,17 +1,7 @@
-import React, { useState } from "react";
-import { Inter } from "next/font/google";
-import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { format, parse } from "date-fns";
 
-const inter = Inter({
-  weight: ["300", "400", "500", "600", "700"],
-  display: "block",
-  preload: true,
-  style: "normal",
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
 
 const Agenda = ({ data }) => {
   const [selected, setSelected] = useState(-1);

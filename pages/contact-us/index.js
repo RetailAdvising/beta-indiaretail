@@ -1,4 +1,3 @@
-import React from 'react';
 import footer from '@/libs/contactus';
 import Image from 'next/image';
 import RootLayout from '@/layouts/RootLayout';

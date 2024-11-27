@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { check_Image } from '@/libs/common';
 import Image from 'next/image'
 import { get_order_info, getColor, get_razorpay_settings, update_order_status } from '@/libs/api';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
-import AlertUi from '@/components/common/AlertUi';
+import dynamic from 'next/dynamic';
+const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
+// import AlertUi from '@/components/common/AlertUi';
 
 export default function OrderDetail({ hide, visible, order_id, loadPage }) {
 

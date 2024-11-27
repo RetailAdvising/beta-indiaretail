@@ -1,25 +1,15 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
-import styles from '@/styles/newsLetter.module.scss'
 import { useRouter } from 'next/router'
-import { check_Image } from '@/libs/common';
-import AlertPopup from '../common/AlertPopup';
-import SubscribeNews from './SubscribeNews';
-import AlertUi from '@/components/common/AlertUi';
+// import SubscribeNews from './SubscribeNews';
+// import AlertUi from '@/components/common/AlertUi';
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+import dynamic from 'next/dynamic';
+const SubscribeNews = dynamic(()=> import('./SubscribeNews'))
+const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
 export default function NewsList({ data,navigate }) {
-  const router = useRouter();
-  const [showAlert, setShowAlert] = useState(false);
-  const [news, setNews] = useState()
+  // const [showAlert, setShowAlert] = useState(false);
+  // const [news, setNews] = useState()
 
   async function showPopup(obj,index) {
     // console.log(obj);
@@ -37,8 +27,8 @@ export default function NewsList({ data,navigate }) {
           res.selected = 0;
         }
       })
-      setNews(obj);
-      setShowAlert(true);
+      // setNews(obj);
+      // setShowAlert(true);
       show();
     }
 
@@ -72,14 +62,6 @@ export default function NewsList({ data,navigate }) {
       setEnableModal(true);
     }
   }
-
-  // const navigate = (res) => {
-  //   // console.log(res)
-  //   const route1 = window.location.origin + ('/' + res.route.split('/')[0] + '/' + res.title + '/' + res.route.split('/')[1]) // Replace with your route
-  //   window.open(route1, '_blank');
-  // }
-
-
 
   return (
     <>

@@ -1,53 +1,36 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import AdsBaner from '../Baners/AdsBaner'
-import Advertisement from '../Baners/Advertisement'
-import List from '../common/List'
-import { useState } from 'react'
 import Content from '../common/Content'
-import Title from '../common/Title'
-import Modal from '../common/Modal'
-import { check_Image, checkMobile, HomePage } from '@/libs/api'
-import Comments from '../Category/Comments'
-import Placeholders from '../common/Placeholders'
+
+import { checkMobile, HomePage } from '@/libs/api'
 // Social Share
 import { WhatsappShareButton, LinkedinShareButton, TwitterShareButton, FacebookShareButton } from 'react-share'
 import { useRouter } from 'next/router'
-import CustomSlider from '../Sliders/CustomSlider'
-import AuthModal from '../Auth/AuthModal';
-import SubscriptionAlert from '../common/SubscriptionAlert'
 // import DOMPurify from 'dompurify';
-import { useSelector, useDispatch } from 'react-redux';
-import Widgets from '../Category/Widgets'
+import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom/client';
-import Benefits from '@/components/Membership/benefits';
 import { toast } from 'react-toastify'
 import { websiteUrl } from '@/libs/config/siteConfig'
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//   weight: ["300", "400", "500", "600", "700"],
-//   display: "block",
-//   preload: true,
-//   style: 'normal',
-//   subsets: ["latin"],
-//   variable: '--font-inter',
-// })
-export default function CategoryBuilder({ data, load, isLast, i, ads, user, productNavigation, comments, updatedCmt, updateShare, noScroll, plans, ads_data,ad_payload }) {
+import dynamic from 'next/dynamic'
+const SubscriptionAlert = dynamic(()=> import('../common/SubscriptionAlert'))
+const Benefits = dynamic(()=> import('@/components/Membership/benefits'))
+const AuthModal = dynamic(()=> import('../Auth/AuthModal'))
+const Widgets = dynamic(()=> import('../Category/Widgets'))
+const CustomSlider = dynamic(()=> import('../Sliders/CustomSlider'))
+const Placeholders = dynamic(()=> import('../common/Placeholders'))
+const Comments = dynamic(()=> import('../Category/Comments'))
+const Modal = dynamic(()=> import('../common/Modal'))
+const Title = dynamic(()=> import('../common/Title'))
+const Advertisement = dynamic(()=> import('../Baners/Advertisement'))
+
+export default function CategoryBuilder({ data, load, isLast, i, ads, user, productNavigation, comments, updatedCmt, updateShare, noScroll, plans, ads_data, ad_payload }) {
   const styles = {}
   const [showComment, setshowComment] = useState(true);
-  // const [data, setdatas] = useState(datas);
 
   const [validator, setValidator] = useState(false)
   const router = useRouter();
   const [updateCmts, setupdateCmts] = useState(false)
   const role = useSelector(s => s.role);
-
-  // useEffect(()=>{
-  //   console.log(comments,"comments")
-  // },[comments])
-
-  // console.log(ads)
-  // let validate;
 
   const socials = [
     {
@@ -67,6 +50,7 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
       "name": "ws"
     }
   ]
+
   // const [searchTxt, setSearchTxt] = useState('');
   // useEffect(() => {
   // if (searchTxt && searchTxt != '') {
@@ -84,30 +68,8 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
 
   // }, [])
 
-  // console.log(data);
 
   useEffect(() => {
-    // if(data && i){
-    //   if(i == 1){}
-    //   // i == 1 ? setPrev([data]) : setPrev(d => d = [...d, ...[data]])
-    //   console.log(data)
-    //   console.log(i)
-    // }
-
-    if (typeof window !== 'undefined') {
-
-      //  checkRole()
-      // const data = JSON.parse(localStorage['roles']);
-      // if (data && data.length != 0) {
-      //   data.map(res => {
-      //     if (res.role == 'Member') {
-      //       setValidator(!validator);
-      //       // setRender(!render);
-      //     }
-      //   })
-      // }
-      // console.log(role)
-    }
 
     if (document.readyState === 'complete') {
       onPageLoad();
@@ -125,14 +87,12 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
 
   const checkRole = () => {
     if (role && role != '' && role.message && role.message.length != 0) {
-      // console.log(role)
-      // if(updateCmts == -1){
       for (let index = 0; index < role.message.length; index++) {
         if (role.message[index] == 'Member') {
           setValidator(!validator);
         }
       }
-      // }
+
     }
   }
 
@@ -200,111 +160,25 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
 
 
 
-  // let [element, setElement] = useState(['parent0'])
-  // let [shareEle, setShareEle] = useState(['share0'])
   function onPageLoad() {
-    // console.log(data)
-    // if (i > 0) {
-    //   element.push('parent' + i)
-    //   setElement(element)
-    //   // shareEle.push('share' + i)
-    //   // setShareEle(shareEle)
-    // }
-
-    // if(data){
-    //   let el = document.getElementById(`innerHtml${i}`).querySelectorAll('p')[1];
-    //   let newEl = document.createElement('div')
-    //   el.after(newEl)
-    //   const root = ReactDOM.createRoot(newEl)
-    //   root.render(<Advertisement data={{ web_image: data.image }} divClass={'h-[90px] w-[728px] m-[auto]'} />)
-    // }
 
     if ((data && data.article_sections && data.article_sections.length != 0)) {
-      // for (let j = 0; j < 5; j++) {
-
-      // console.log(el, 'el+', i)
-      // }
-      // console.log('data.article_sections', data.article_sections);
       data.article_sections.map((res, index) => {
         if (res.data && res.data.length != 0) {
           let element = document.getElementById(`${res.placeholder_key}`);
-          // console.log(element,"element")
-          // let el = document.getElementById(`innerHtml${i}`).querySelectorAll('p')[1]
-          // console.log(el,'el')
-          // element && ReactDOM.render( <SubscriptionAlert />,element)
-          // console.log(element)
-          // element?.classList.add('placeholder')
-          // let html = '';
 
-
-          // if (res.title) {
-          //   const headerElement = document.createElement('h6');
-          //   headerElement?.classList.add('mb-[18px]', 'text-[18px]', 'font-semibold')
-          //   headerElement.textContent = res.title;
-          //   (element && element.parentNode) ? element.parentNode.insertBefore(headerElement, element) : null;
-          // }
-
-          // element && element?.classList.add('py-[15px]')
-
-          // element && ReactDOM.render(<CustomSlider type={'widget'} data={res.data} parent={res} routers={router} hide_scroll_button={true} slider_child_id={res.placeholder_key + i} cardClass={'flex-[0_0_calc(33.33%_-_15px)] md:flex-[0_0_calc(65%_-_10px)]'}
-          //   imgClass={'lg:h-[185px] md:h-[170px] w-full'} subtitle_class={'line-clamp-1  md:mb-[10px]'} title_class={'min-h-[35px] line-clamp-2'} productNavigation={productNavigation} />, element)
           if (element) {
             // element && ReactDOM.render(<Widgets data={res} productNavigation={productNavigation} routers={router} />, element)
             const root = ReactDOM.createRoot(element)
             root.render(<Widgets data={res} productNavigation={productNavigation} routers={router} />)
-
           }
-          // res.data.map((item, index) => {
-          //   if (res.title) {
-          //     if (res.title == 'Articles') {
-          //       item.route = '/' + item.route
-          //     } else if (res.title == 'Community Event' || res.title == 'Events') {
-          //       item.route = '/events/' + item.route
-          //     } else if (res.title == 'Books') {
-          //       item.route = '/bookstore/' + item.category_route + '/' + item.route
-          //     } else if (res.title == 'Videos') {
-          //       item.route = '/video/' + item.route
-          //     } else if (res.title == 'Podcasts') {
-          //       item.route = '/podcast/' + item.route
-          //     }
-          //   } else {
-          //     item.route = '/' + item.route
-          //   }
-
-          //   //  onClick=${checkRoute(item)} 
-          //   // <Image class=${'img'} src='${check_Image(item.thumbnail_imagee ? item.thumbnail_imagee : item.thumbnail_path ? item.thumbnail_path : item.image_path ? item.image_path :  item.image)}' height={40} width={50} alt='image' />
-          //   // <span class='pt-[5px] line-clamp-2 sub_title'>${item.blog_intro ? item.blog_intro : item.description ? item.description : ''}</span>            
-          //   html +=
-          //     `<a href=${item.route ? item.route : '#'} key=${index} class='${'card'} cursor-pointer'>
-          //     <div>
-          //       <Image class=${'img'} src='${check_Image(item.thumbnail_imagee || item.thumbnail_path || item.image_path || item.image || item.video_image)}' height={40} width={50} alt='image' />
-          //     </div>
-          //     <div class='p-[10px]'>
-          //     <h6 class='line-clamp-2 title'>${(item.title || item.item) ? (item.title || item.item) : ''}</h6>            
-          //      <span class='pt-[5px] line-clamp-2 sub_title'>${res.placeholder_key.includes('Product') ? (item.short_description ? item.short_description : '') : (stripHtmlTags(item.blog_intro || item.description))}</span>            
-          //     </div>
-
-          //     </a>`
-          // })
-          // element ? element.innerHTML = html : null
         }
-        // element.append(data)
-        // console.log(res.placeholder_key)
+
       })
     }
 
   }
 
-  const stripHtmlTags = (html) => {
-    if (html && html != '') {
-      const cleanedHtml = html.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
-      const withoutStyles = cleanedHtml.replace(/style\s*=\s*".*?"/g, '');
-      const withoutTags = withoutStyles.replace(/<\/?[^>]+(>|$)/g, '');
-      return withoutTags;
-    } else {
-      return ''
-    }
-  };
 
   //  FUNCTION TO HANDLE CLOSE ACTION ON SIDEDRAWER/MODAL
   const sideDrawerClosedHandler = () => {
@@ -447,34 +321,10 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
               {data.content && <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(data.content) }} id={`innerHtml${i}`} className={`contents ${'innerHtml' + i} ${(data.ir_prime == 1 && !data.is_member) && 'prime-article'}`} />}
               {(!data.is_member && data.ir_prime == 1) && <div className='prime-article-after'></div>}
             </div>
-            {/* {(isPrime && !validator) && <div className='border-0 p-[20px] my-[20px] rounded-md bg-[#e21b22] mt-6'> */}
-            {/* <h6 className='text-center text-[20px] md:text-[16px] font-semibold pb-[15px] text-[white] flex'><Image src={'/ir-icon.svg'} height={38} width={38} alt={"image"} className='mr-3 object-contain' />This story is for Premium Members you  have to buy Membership to Unlock</h6>
-              <div className='flex gap-[20px] justify-center pt-[0px]'>
-                <button className='primary_btn p-[6px_8px] text-[13px] bg-[#fff] text-[#e21b22] flex' onClick={() => router.push('/membership')}><Image src={'/subscribe.svg'} height={18} width={18} alt={"image"} className='mr-1' />Subscribe</button> */}
-            {/* <button className='primary_btn h-[40px] w-[15%]' onClick={() => logInModal('login')}>LogIn</button>
-                <button className='border  h-[40px] w-[15%]' onClick={() => logInModal('signup')}>SignUp</button> */}
-            {/* </div>
-            </div>} */}
 
             {(!data.is_member && data.ir_prime == 1) &&
-              // <div className='grid place-content-center max-w-[400px] p-[30px_20px_0_20px] md:p-[20px] m-[0_auto]'>
-              //   <div className={`flex items-center gap-[10px] `}>
-              //     <Image src={'/irprime/premium.svg'} height={20} width={20} alt='premium' />
-              //     <p className='text-red font-semibold'>IR Prime</p>
-              //   </div>
-
-              //   {/* <div> */}
-              //   <h6 className='text-[32px] font-[600] leading-[40px] md:text-[17px] md:leading-[22px] pt-[10px]'>Its a Premium Content,Simply buy Membership to Unlock</h6>
-              //   <p className='text-[14px] font-[400] text-gray pt-[10px] leading-[20px] md:leading-[16px] md:pt-[15px]'>50,000+ articles IRPrime is the only subscription you need</p>
-              //   {/* </div> */}
-
-              //   <div className='w-full mt-[25px] md:mt-[15px] md:text-center'>
-              //     <button className='primary_button w-full text-[16px] h-[50px] p-[5px_10px] md:text-[14px] md:h-[35px] md:w-max' onClick={() => router.push('/membership')} style={{ borderRadius: '9999px', textTransform: 'unset' }}>Subscribe to IR Prime</button>
-              //   </div>
-              // </div>
               <>
                 <SubscriptionAlert data={plans} />
-
                 <div className='py-[20px]'>
                   {pageContent && pageContent.length != 0 && pageContent.map((res, i) => {
                     return (
@@ -491,26 +341,9 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
 
             <Modal modal={modal} show={show} visible={visible} hide={hide} />
 
-            {/* <div className={`${styles.slider_parent}`}>
-              <div>
-                <Title data={{ title: "Must Read" }} />
-              </div>
-              <ChildSlider data={categories.sections.section_1.must_read.data} per_view={3} cols={3} colsPerView={1} rows={2} type={'list'} />
-            </div> */}
 
             {/* Comments */}
 
-            {/* {data._user_tags && typeof (data._user_tags) != 'string' && data._user_tags.length != 0 &&
-              <div className='flex items-center flex-wrap pt-[15px]'>
-                <h6 className='w-max text-[13px] text-[#fff] bg-[#e21b22] border rounded-[5px] p-[3px_15px] mr-[6px] mb-[12px]'>Tags</h6>
-                {data._user_tags.map((res, index) => {
-                  return (
-                    <h6 key={index} onClick={() => { router.push('/tag/' + res) }} className='cursor-pointer w-max capitalize text-[13px] text-[#000] bg-[#f1f1f1]  rounded-[5px] p-[3px_15px] mr-[6px] mb-[12px]'>{res}</h6>
-                  )
-                })
-                }
-              </div>
-            } */}
 
             {(data.articles_tags && data.articles_tags.length != 0) && ((data.is_member && data.ir_prime == 1) || data.ir_prime == 0) &&
               <div className='flex items-center flex-wrap pt-[15px]'>
@@ -537,22 +370,22 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
                   return (
                     <div key={index} onClick={() => updateShare(data)}>
                       {
-                        res.name == 'fb' ? <FacebookShareButton url={`${websiteUrl+ data.route}`}>
+                        res.name == 'fb' ? <FacebookShareButton url={`${websiteUrl + data.route}`}>
                           <div key={index} className={`rounded-full bg-light-gray p-2`}>
                             <Image src={res.icon} alt={res.name} height={25} width={20} />
                           </div>
                         </FacebookShareButton>
-                          : res.name == 'ws' ? <WhatsappShareButton url={`${websiteUrl+ data.route}`}>
+                          : res.name == 'ws' ? <WhatsappShareButton url={`${websiteUrl + data.route}`}>
                             <div key={index} className={`rounded-full bg-light-gray p-2`}>
                               <Image src={res.icon} alt={res.name} height={25} width={20} />
                             </div>
                           </WhatsappShareButton>
-                            : res.name == 'linkedin' ? <LinkedinShareButton url={`${websiteUrl+ data.route}`}>
+                            : res.name == 'linkedin' ? <LinkedinShareButton url={`${websiteUrl + data.route}`}>
                               <div key={index} className={`rounded-full bg-light-gray p-2`}>
                                 <Image src={res.icon} alt={res.name} height={25} width={20} />
                               </div>
                             </LinkedinShareButton>
-                              : res.name == 'twitter' ? <TwitterShareButton url={`${websiteUrl+ data.route}`}>
+                              : res.name == 'twitter' ? <TwitterShareButton url={`${websiteUrl + data.route}`}>
                                 <div key={index} className={`rounded-full bg-light-gray p-2`}>
                                   <Image src={res.icon} alt={res.name} height={25} width={20} />
                                 </div>
@@ -566,11 +399,7 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
               </div>}
 
               {(data.comments && data.disable_comments != 1) && <>
-                {/* <div className={`py-1.5 relative w-[120px] ${styles.profile_div}`}> */}
-                {/* id={`cmt${data.route}`} */}
-                {/* <h6 className={`font-semibold text-[19px] md:text-[15px] ${'cmt' + i}`}>Comments</h6>
-                  <p className={`absolute top-0 right-0 bg-[#ddd] rounded-[50%] text-center min-w-[25px] min-h-[25px] max-w-max`}><span className='text-[13px]'>{comments && comments.length ? comments.length : 0}</span></p> */}
-                {/* </div> */}
+
 
                 {(comments && comments.length != 0) &&
                   comments.map((res, i) => {
@@ -605,7 +434,7 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
                             </div> : <div className={`mt-[10px] flex justify-center`}>
                               {res.data && res.data.length != 0 && <button onClick={showSidebar} className={`justify-center bg-red text-white p-[10px_20px] md:mt-4 mt-3 rounded items-center  ${styles.cmt_btn} text-[13px] flex`}>{(res.data && res.data.length != 0) && 'View Comments'} </button>}
                             </div>} */}
-                          </> 
+                          </>
                         }
                       </div>
                     )
@@ -613,18 +442,7 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
                 }
               </>}
 
-              {/* <div id={`share` + i}></div> */}
 
-              {/* {data.disable_comments != 1 &&
-                <>
-                  {isMobile ? <div className='mt-[10px] flex gap-[10px] justify-center'>
-                    <button onClick={showSidebar} className={`justify-center bg-red text-white h-[45px] rounded items-center  ${styles.cmt_btn} lg:w-[25%] md:text-[13px] md:px-[15px]  flex`}>{(data.comments && data.comments.length != 0) ? 'View Comments' : 'Add Comment'}</button>
-                  </div> : <div className={`mt-[10px] flex justify-center`}>
-                    <button onClick={showSidebar} className={`justify-center bg-red text-white p-[10px_20px] md:mt-4 mt-3 rounded items-center  ${styles.cmt_btn} text-[13px] flex`}>{(data.comments && data.comments.length != 0) ? 'View Comments' : 'Add Comment'} </button>
-                  </div>}
-                </>
-
-              } */}
               {(!showComment && data) ? <>
                 {/* <div className='popright_1'>
                   <Modal visible={true} cur={data} modal={'comments'} hide={sideDrawerClosedHandler} />
@@ -636,8 +454,6 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
                         {/* <Modal visible={true} modal={'comments'} cur={data} store_comments={(cur) => store_comments(cur)} hide={sideDrawerClosedHandler} /> */}
                         <Modal updatedCmt={(cmt, route, index) => { updatedCmt(cmt, route, index), reRender() }} cur={data} visible={true} modal={'comments'} route={res.route} noScroll={noScroll} comments={res.data} hide={sideDrawerClosedHandler} />
                         {/* scrolling="no" */}
-                        {/* <iframe className='w-full ' rel='preload' src="https://www.linkedin.com/embed/feed/update/urn:li:share:7092358111637737472" height="696" width="504" frameborder="0" allowfullscreen="false" title="Embedded post"></iframe> */}
-                        {/* <iframe className='w-full' rel='preload' src="https://www.linkedin.com/embed/feed/update/urn:li:share:7092137020289904641" height="725" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe> */}
                       </div>}
                     </div>
                   )
@@ -645,13 +461,10 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
               </> : (showComment && data && data.doctype == 'Articles' && isLogin && loginModal) ? <div className='authModal'><AuthModal visible={loginModal} hide={hideModal} /></div> : null}
             </div>}
 
-            {/* <div className='flex justify-center linkedinEmbed'>
-              <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7125803978767892480" height="600" width="600" frameborder="0" allowfullscreen="true" title="Embedded post"></iframe>
-            </div> */}
+
           </div>
 
           {((data.is_member && data.ir_prime == 1) || data.ir_prime == 0) && <div className={`w_30 md:hidden finding relative`}>
-            {/* {data.advertisement_tags && data.advertisement_tags.length != 0 && <AdsBaner data={data.advertisement_tags[0]} />} */}
             {(data.place_holders_ads && data.place_holders_ads.length != 0) ?
               // h-[calc(100vh_-_10px)] scrollbar-hide
               // sticky h-[calc(100vh_-_10px)] scrollbar-hide top-0 z-10 bg-white  overflow-auto
@@ -659,25 +472,12 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
               : <>
                 <Advertisement ad_payload={ad_payload} data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
                 <Advertisement ad_payload={ad_payload} data={(ads_data && ads_data.right_second) && ads_data.right_second} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
-                {/* {ads_data && ads_data.right_first && <Advertisement data={ads_data.right_first} divClass={`h-[250px] w-[300px]`} />}
-                {ads_data && ads_data.right_second && <Advertisement data={ads_data.right_second} divClass={`h-[250px] w-[300px]`} />} */}
+
 
               </>
             }
           </div>}
         </div>
-
-
-        {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <LinkedInEmbed
-            url="https://www.linkedin.com/embed/feed/update/urn:li:share:7125803978767892480"
-            // postUrl="https://www.linkedin.com/posts/peterdiamandis_5-discoveries-the-james-webb-telescope-will-activity-6898694773406875648-z-D7"
-            width={600}
-            height={650}
-          />
-        </div> */}
-
-        {/* <div class='sk-ww-linkedin-page-post' data-embed-id='227093'></div><script src='https://widgets.sociablekit.com/linkedin-page-posts/widget.js' async defer></script> */}
 
         {data.latest_news && data.latest_news.length != 0 && <div className={`${isMobile ? '' : 'container'}  ${styles.section_3}`}>
           {/* Slider */}
@@ -687,10 +487,6 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
           </div>
         </div>}
 
-        {/* {!isLast && <div className={`flex md:gap-[10px]  lg:m-[20px_auto_0] lg:gap-[20px] items-center md:p-[10px_15px] lg:p-[15px 0] ${isMobile ? '' : 'container'}`}>
-          <h6 className={`flex-[0_0_auto] lg:text-[18px] md:text-[14px] font-semibold`}>Next Post</h6>
-          <div className='lg:bg-[#999] w-full lg:h-[2px] md:bg-stone-200 md:h-[3px]'></div>
-        </div>} */}
       </div>
     </>
   )

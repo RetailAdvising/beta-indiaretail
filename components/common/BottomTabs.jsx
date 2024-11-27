@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Link from 'next/link'
 export default function BottomTabs({ activeTab, getActiveTab }) {
     const router = useRouter()
-    const [tabs, setTabs] = useState([
+    const tabs = [
         {
             "menu_label": "Home",
             "redirect_url": "/",
@@ -39,7 +38,7 @@ export default function BottomTabs({ activeTab, getActiveTab }) {
             "active_icon": "/tabs_icon/trending_active.svg",
 
         },
-    ])
+    ]
     useEffect(() => {
         if (!activeTab) {
             let route = router.asPath.split('/')

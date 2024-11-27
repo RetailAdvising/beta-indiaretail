@@ -1,4 +1,3 @@
-import React from 'react'
 import NewsList from '../Newsletter/NewsList'
 import NewsCard from '../Newsletter/NewsCard'
 

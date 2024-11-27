@@ -1,4 +1,3 @@
-import React from 'react'
 import ImageLoader from '../ImageLoader'
 import Image from 'next/image'
 

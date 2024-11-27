@@ -1,8 +1,8 @@
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { updatePollOptionValue } from '../../libs/api';
-import { ToastContainer, toast } from 'react-toastify';
-import { Radio, RadioGroup, Stack, Progress } from '@chakra-ui/react'
+import { toast } from 'react-toastify';
+import { Radio, RadioGroup, Stack } from '@chakra-ui/react'
 function Poll({ data, ipAddress }) {
     let [pollData, setPollData] = useState([])
     let [update, setUpdate] = useState(1)

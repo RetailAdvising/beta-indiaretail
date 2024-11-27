@@ -8,7 +8,6 @@ import { useRouter } from 'next/router'
 import List from '@/components/common/List'
 import Title from '@/components/common/Title'
 import Dropdowns from '@/components/common/Dropdowns';
-import AdsBaner from '@/components/Baners/AdsBaner'
 import ImageLoader from '@/components/ImageLoader';
 // import { Nunito } from 'next/font/google'
 import Advertisement from '@/components/Baners/Advertisement'

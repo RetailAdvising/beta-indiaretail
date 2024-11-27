@@ -1,9 +1,9 @@
-import React, { use, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router';
 
-export default function TopNavBar({ nav_data,getActiveTab,activeTab }) {
+export default function TopNavBar({ getActiveTab, activeTab }) {
     const router = useRouter()
-    const [navData, SetNavData] = useState([
+    const navData = [
         {
             "menu_label": "Home",
             "redirect_url": "/",
@@ -41,33 +41,35 @@ export default function TopNavBar({ nav_data,getActiveTab,activeTab }) {
             "redirect_url": "/podcast",
             "icon": "/Navbar/Podcasts.svg",
         }
-    ])
+    ]
     useEffect(() => {
         // console.log(activeTab)
-        if(!activeTab){
-        let route = router.route.split('/')
-        let redirect_url = route[1] ? '/' + route[1] : '/'
-        navData.map(nd => {
-            nd.active = nd.redirect_url == redirect_url ? true : false
-            if(nd.redirect_url == redirect_url) nav_to_view(nd.menu_label)
-            // SetNavData(navData)
-        })
-        }else{
+        if (!activeTab) {
+            let route = router.route.split('/')
+            let redirect_url = route[1] ? '/' + route[1] : '/'
+            navData.map(nd => {
+                nd.active = nd.redirect_url == redirect_url ? true : false
+                if (nd.redirect_url == redirect_url) nav_to_view(nd.menu_label)
+                // SetNavData(navData)
+            })
+        } else {
             navData.map(nd => {
                 nd.active = nd.redirect_url == activeTab.redirect_url ? true : false
-                if(nd.redirect_url == activeTab.redirect_url) nav_to_view(nd.menu_label)
+                if (nd.redirect_url == activeTab.redirect_url) nav_to_view(nd.menu_label)
                 // SetNavData(navData)
             })
         }
 
     }, [activeTab])
+
     const nav_to_view = (menu_label) => {
-     var active_nav = document.getElementById(menu_label)
-    setTimeout(()=>{
-        active_nav.scrollIntoView({ behavior: 'smooth', block: 'center',inline: "nearest" });
-    },300)
-    
+        var active_nav = document.getElementById(menu_label)
+        setTimeout(() => {
+            active_nav.scrollIntoView({ behavior: 'smooth', block: 'center', inline: "nearest" });
+        }, 300)
+
     }
+    
     const changeNav = (nav) => {
         router.push(nav.redirect_url)
         getActiveTab(nav)

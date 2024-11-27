@@ -15,24 +15,23 @@ import styles from "@/styles/Cards.module.scss";
 import { domain } from "@/libs/config/siteConfig";
 import { useRouter } from "next/router";
 import format from "date-fns/format";
-import { useCallback, useEffect, useRef, useState } from "react";
-import KeyPointsCard from "@/components/Webinar/KeyPointsCard";
-import SpeakerCard from "@/components/Webinar/SpeakerCard";
-import Agenda from "@/components/Webinar/Agenda";
+import { useEffect, useState } from "react";
+// import SpeakerCard from "@/components/Webinar/SpeakerCard";
+// import Agenda from "@/components/Webinar/Agenda";
 import { Inter } from "next/font/google";
-import Banner from "@/components/Webinar/Banner";
-import Form from "@/components/Webinar/Form";
-import Dropdowns from "@/components/common/Dropdowns";
-import BrandDetails from "@/components/Webinar/BrandDetails";
-import KeyDiscussion from "@/components/Webinar/KeyDiscussion";
-import WhitePaper from "@/components/Webinar/WhitePaper";
-import Reports from "@/components/Webinar/Reports";
-import Video from "@/components/Webinar/Video";
-import SocialMedia from "@/components/Webinar/SocialMedia";
-import YouTubeVideo from "@/components/Webinar/YouTubeVideo";
-import FeaturedContent from "@/components/WebSpecials/FeaturedContent";
-import SideMenu from "@/components/WebSpecials/SideMenu";
-import RegistrationForm from "@/components/WebSpecials/RegistrationForm";
+// import Banner from "@/components/Webinar/Banner";
+// import Form from "@/components/Webinar/Form";
+// import Dropdowns from "@/components/common/Dropdowns";
+// import BrandDetails from "@/components/Webinar/BrandDetails";
+// import KeyDiscussion from "@/components/Webinar/KeyDiscussion";
+// import WhitePaper from "@/components/Webinar/WhitePaper";
+// import Reports from "@/components/Webinar/Reports";
+// import Video from "@/components/Webinar/Video";
+// import SocialMedia from "@/components/Webinar/SocialMedia";
+// import YouTubeVideo from "@/components/Webinar/YouTubeVideo";
+// import FeaturedContent from "@/components/WebSpecials/FeaturedContent";
+// import SideMenu from "@/components/WebSpecials/SideMenu";
+// import RegistrationForm from "@/components/WebSpecials/RegistrationForm";
 import {
   WhatsappShareButton,
   LinkedinShareButton,
@@ -41,9 +40,23 @@ import {
 } from "react-share";
 import { websiteUrl } from "@/libs/config/siteConfig";
 import Head from "next/head";
-import Link from "next/link";
-import Error from "../../404";
 
+import dynamic from "next/dynamic";
+const RegistrationForm = dynamic(()=> import('@/components/WebSpecials/RegistrationForm'))
+const SideMenu = dynamic(()=> import('@/components/WebSpecials/SideMenu'))
+const FeaturedContent = dynamic(()=> import('@/components/WebSpecials/FeaturedContent'))
+const YouTubeVideo = dynamic(()=> import('@/components/Webinar/YouTubeVideo'))
+const SocialMedia = dynamic(()=> import('@/components/Webinar/SocialMedia'))
+const Video = dynamic(()=> import('@/components/Webinar/Video'))
+const Reports = dynamic(()=> import('@/components/Webinar/Reports'))
+const WhitePaper = dynamic(()=> import('@/components/Webinar/WhitePaper'))
+const KeyDiscussion = dynamic(()=> import('@/components/Webinar/KeyDiscussion'))
+const BrandDetails = dynamic(()=> import('@/components/Webinar/BrandDetails'))
+const Dropdowns = dynamic(()=> import('@/components/common/Dropdowns'))
+const Form = dynamic(()=> import('@/components/Webinar/Form'))
+const Banner = dynamic(()=> import('@/components/Webinar/Banner'))
+const Agenda = dynamic(()=> import('@/components/Webinar/Agenda'))
+const SpeakerCard = dynamic(()=> import('@/components/Webinar/SpeakerCard'))
 const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
   display: "block",

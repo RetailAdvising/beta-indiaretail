@@ -1,4 +1,3 @@
-import React from 'react';
 import RootLayout from '@/layouts/RootLayout'
 import { podcast_list, getAdvertisements } from '@/libs/api'
 import HomePodcast from '@/components/Podcast/HomePodcast';

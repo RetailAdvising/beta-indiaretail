@@ -1,30 +1,8 @@
-import React from 'react'
 import Image from 'next/image'
-import { check_Image, trending } from '@/libs/api'
 import exclusives from '@/styles/Exclusives.module.scss';
 import { useRouter } from 'next/router';
-import Link from 'next/link'
 import Tags from '../common/Tags';
 import ImageLoader from '../ImageLoader';
-
-// import {Roboto} from 'next/font/google'
-
-// const roboto = Roboto({
-//     weight: ["200","300","400","500","600",'700'],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"]
-//   })
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
 
 export default function Lists({ productNavigation, imgFlex, hash_bg, contentWidth, primary_pb, line, data, titleClamp, isTop, isReverse, borderRadius, imgHeight, imgWidth, isBB, flex, isMp, tittleOnly, isHome = undefined, isDesc, descLine, mb }) {
 
@@ -33,57 +11,24 @@ export default function Lists({ productNavigation, imgFlex, hash_bg, contentWidt
     const checkRoute = (data) => {
         if (productNavigation && data.doc_type == 'Articles') {
             productNavigation(data.route)
-        } 
-        // else {
-            // if (data.doc_type == 'Articles') {
-                // router.replace({pathname:'/categories' + '/' + values[ind]["route"]}, undefined, { scroll: false })
-                // router.push(data.ir_prime == 1 ? '/IRPrime/' + data.route : '/categories/' + data.route)
-                // router.push('/' + data.route)
-            // }
-             else if (data.doc_type == 'Community Event') {
-                const route = '/events/' + data.route
-                // router.push({ route }, undefined, { scroll: true })
-                router.push(route)
-            } else if (data.doc_type == 'Product') {
-                router.push('/bookstore/' + data.route)
-            } else if (data.doc_type == 'Video') {
-                router.push('/video/' + data.route)
-            } else if (data.doc_type == 'Podcast') {
-                const route = '/podcast/' + data.route
-                router.push(route)
-                // router.push({route},undefined, { shallow: false, scroll: false })  
-                // router.replace({route},undefined, { shallow: false, scroll: false }) 
-            }
+        }
+        else if (data.doc_type == 'Community Event') {
+            const route = '/events/' + data.route
+            // router.push({ route }, undefined, { scroll: true })
+            router.push(route)
+        } else if (data.doc_type == 'Product') {
+            router.push('/bookstore/' + data.route)
+        } else if (data.doc_type == 'Video') {
+            router.push('/video/' + data.route)
+        } else if (data.doc_type == 'Podcast') {
+            const route = '/podcast/' + data.route
+            router.push(route)
+            // router.push({route},undefined, { shallow: false, scroll: false })  
+            // router.replace({route},undefined, { shallow: false, scroll: false }) 
+        }
         // }
 
     }
-
-
-    // const checkRoute = (data) => {
-    //     console.log(data);
-    //     // else if (data.doc_type == 'News') {
-    //     //     router.push('/news/' + data.route)
-    //     // }
-    //     let routerLink;
-
-    //     if (data.doc_type == 'Articles') {
-    //         routerLink = '/' + data.route
-    //     }  else if (data.doc_type == 'Community Event') {
-    //         routerLink = '/events' + data.route
-    //     } else if (data.doc_type == 'Product') {
-    //         routerLink = '/bookstore' + data.route
-    //     } else if (data.doc_type == 'Video') {
-    //         routerLink = '/video' + data.route
-    //     }else if(data.doc_type == 'Podcast'){
-    //         routerLink = '/podcast' + data.route
-    //     }
-
-    //     // router.push({route},undefined, { shallow: false, scroll: false })  
-    //     // router.replace({pathname:routerLink},undefined, { shallow: false, scroll: false })  
-
-    //     productNavigation(data.route)
-    // }
-
     return (
         <>
             {data && data.map((res, index) => {

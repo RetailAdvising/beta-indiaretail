@@ -1,17 +1,6 @@
-import React from 'react'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { check_Image } from '@/libs/common';
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
 export default function List({ data, border_b, line_clamp, flex, height,isLanding, width, imgWidth, imgWidth1, route, boxShadow, check, category }) {
   const router = useRouter();
 

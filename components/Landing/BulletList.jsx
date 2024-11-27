@@ -1,14 +1,7 @@
 import styles from '@/styles/Components.module.scss'
 import Link from 'next/link'
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
+
 export default function BulletList({data,isBorder}) {
   return (
     <>

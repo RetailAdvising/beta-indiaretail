@@ -1,9 +1,6 @@
-import React from 'react'
 import ImageLoader from '../ImageLoader'
-import { useRouter } from 'next/router'
 
 const Reports = ({data, click_data}) => {
-  const router = useRouter();
   return (
     <>
       <div className='grid grid-cols-1 lg:grid-cols-3 mt-5 gap-[15px]'>

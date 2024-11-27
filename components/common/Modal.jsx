@@ -1,48 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Rodal from 'rodal';
 import { useForm } from 'react-hook-form';
 import styles from '@/styles/Components.module.scss'
 // include styles
 import 'rodal/lib/rodal.css';
-import LogIn from '../Auth/LogIn';
-import SignUp from '../Auth/SignUp';
-import Comments from '../Category/Comments';
-import Image from 'next/image';
-import { addComment, commentList, report } from '@/libs/api'
-import { useRouter } from 'next/router';
-import AlertUi from './AlertUi';
-
+// import LogIn from '../Auth/LogIn';
+// import SignUp from '../Auth/SignUp';
+// import Comments from '../Category/Comments';
+import { commentList, report } from '@/libs/api'
+// import AlertUi from './AlertUi';
+import dynamic from 'next/dynamic';
+const AlertUi = dynamic(()=> import('./AlertUi'))
+const Comments = dynamic(()=> import('../Category/Comments'))
+const SignUp = dynamic(()=> import('../Auth/SignUp'))
+const LogIn = dynamic(()=> import('../Auth/LogIn'))
 
 export default function Modal({ modal, hide, visible, data, cur, comments, route, updatedCmt,noScroll }) {
-    const [sort, setSort] = useState(false);
-    const [sortbyVal, setSortByVal] = useState('Newest');
     const [pageno, setPageno] = useState(1);
-    // const [comments, setComments] = useState([]);
     const [noData, setNoData] = useState(false)
     const [isSuccessPopup, setIsSuccessPopup] = useState(false)
     const [alertMessage, setAlertMessage] = useState("")
 
-    const router = useRouter();
+   
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     function show_alert(message) {
         setAlertMessage({ message: message })
         setIsSuccessPopup(true)
     }
-
-    // useEffect(() => {
-    //     // if (cur && pageno == 1) {
-    //     //     commentslist();
-    //     // }
-    // }, [pageno])
-
-
-    // function checkValid() {
-    //     if (!localStorage['apikey']) {
-    //         router.push('/login')
-    //     }
-    // }
-
 
     async function commentslist() {
         setNoData(!noData)
@@ -97,41 +82,8 @@ export default function Modal({ modal, hide, visible, data, cur, comments, route
         commentslist();
     }
 
-    // async function sendMsg(id) {
-    //     let element = document.getElementById(id);
-    //     if (element.value && element.value != '') {
-    //         let param = { article: cur.name, comment: element.value };
-    //         let resp = await addComment(param);
-    //         if (resp.message) {
-    //             element.value = '';
-    //             toast.success("The comment will appear once it's been approved by IndiaRetailing");
-    //             // console.log(resp.message);
-    //             // resp.message["is_liked"] = 0
-    //             // resp.message["likes"] = 0
-    //             // resp.message["is_disliked"] = 0
-    //             // resp.message["dislikes"] = 0
-    //             // setComments(c => [...c, resp.message])
-
-    //             // let array  = []
-    //             // array.push(resp['message']);
-    //             // cur.comments = [...comments, ...array];
-    //             // store_comments(cur);
-    //         }
-    //     }
-    // }
-
-
-
-
     return (
         <div className={`${modal == 'report' ? 'report_cmt_popup' : ''}`}>
-            {/* <div> */}
-            {/* <ToastContainer position={'bottom-right'} autoClose={2000} /> */}
-            {/* </div> */}
-            {/* {show ? <div >
-                <h6 >Hello modal</h6>
-            </div> : null} */}
-
             {
                 modal == 'login' ?
                     <Rodal visible={visible} animation='slideUp' onClose={hide}>

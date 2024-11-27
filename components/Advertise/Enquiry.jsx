@@ -1,7 +1,5 @@
 import { check_Image } from '@/libs/api'
-import React from 'react'
 const Enquiry = ({ data }) => {
-    // console.log(data, "data")
     return (
         <>
             <div className='topSection' style={{ backgroundImage: `url(${check_Image(data.bg_image)})` }}>

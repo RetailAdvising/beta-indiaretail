@@ -3,19 +3,9 @@ import { useRouter } from 'next/router'
 import AuthModal from '../Auth/AuthModal';
 import { useState } from 'react'
 
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
 export default function SubscriptionAlert({ data,isModal }) {
     const router = useRouter();
-    // console.log(data)
-    // Modal Popup
+
     const [modal, setModal] = useState('')
 
     const [visible, setVisible] = useState(false)
@@ -53,18 +43,7 @@ export default function SubscriptionAlert({ data,isModal }) {
                                 </div>
                             )
                         })}
-                        {/* <div className='flex items-center py-[10px] gap-[10px]'>
-                            <Image src={'/irprime/list-check-ir.svg'} height={20} width={20} alt='' />
-                            <p className='md:text-[14px]'>Access to 5000+ paywall stories written by experts</p>
-                        </div>
-                        <div className='flex items-center py-[10px] gap-[10px]'>
-                            <Image src={'/irprime/list-check-ir.svg'} height={20} width={20} alt='' />
-                            <p className='md:text-[14px]'>Access to Times Assist: your team of AI assistants**</p>
-                        </div>
-                        <div className='flex items-center py-[10px] gap-[10px]'>
-                            <Image src={'/irprime/list-check-ir.svg'} height={20} width={20} alt='' />
-                            <p className='md:text-[14px]'>Access to 6 weekly Newsletters including Gender+, Health+ Wealth+</p>
-                        </div> */}
+                       
                     </div>
                     {/* onClick={() => router.push('/membership')} */}
                     <button className='primary_btn w-full lg:my-5 rounded-[10px] text-[16px] h-[60px] md:h-[40px] md:text-[15px] ' onClick={() => router.push('/membership')}>View all plans</button>

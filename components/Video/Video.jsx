@@ -1,8 +1,7 @@
-import { check_Image, getVideoDuration, parseISO8601Duration } from '@/libs/api'
+import { check_Image, getVideoDuration } from '@/libs/api'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import ImageLoader from '../ImageLoader';
 import { useEffect, useState } from 'react';
 // import { Nunito } from 'next/font/google'
 // const nunito = Nunito({

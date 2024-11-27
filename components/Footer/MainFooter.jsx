@@ -1,17 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import footer from '@/libs/footer';
 import Image from 'next/image';
 import { check_Image } from '@/libs/api';
-// import { Nunito } from 'next/font/google'
 import { useRouter } from 'next/router';
-// const nunito = Nunito({
-//     weight: ["300", "400", "500", "600", "700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-// })
+
 export default function MainFooter({ footerData }) {
     const router = useRouter();
     let [subsBox, setSubsBox] = useState()

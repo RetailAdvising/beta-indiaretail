@@ -1,19 +1,8 @@
-import React from 'react'
 import styles from '@/styles/Cards.module.scss'
-import { check_Image } from '@/libs/api'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Tags from './Tags'
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//   weight: ["300", "400", "500", "600", "700"],
-//   display: "block",
-//   preload: true,
-//   style: 'normal',
-//   subsets: ["latin"],
-//   variable: '--font-inter',
-// })
+
 export default function Cards({ searchNavigation, titleOnly, noPrimaryText, data, isHome = undefined, check, contentHeight, flex, border_none, isBorder, width, height, borderRadius, cardClass,route }) {
   const router = useRouter();
   const navigateDetail = (data) => {
@@ -32,7 +21,7 @@ export default function Cards({ searchNavigation, titleOnly, noPrimaryText, data
     } else if (data.type == 'Video') {
       route = '/video/' + data.route
     } else if (data.type == 'Newsletter') {
-      console.log(data, "data news card")
+      // console.log(data, "data news card")
       route = '/newsletters/' + data.route
     }
 

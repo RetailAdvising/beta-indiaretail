@@ -1,10 +1,12 @@
-import NoProductFound from '@/components/common/NoProductFound';
-import NewsCard from '@/components/Newsletter/NewsCard';
+// import NoProductFound from '@/components/common/NoProductFound';
+// import NewsCard from '@/components/Newsletter/NewsCard';
 import RootLayout from '@/layouts/RootLayout';
 import { get_all_newsletter_by_category } from '@/libs/api';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react'
-
+import dynamic from 'next/dynamic';
+const NewsCard = dynamic(()=> import('@/components/Newsletter/NewsCard'))
+const NoProductFound = dynamic(()=> import('@/components/common/NoProductFound'))
 const index = ({ data }) => {
     let [allNewsLetter, setAllNewsLetter] = useState([])
     const [noProduct, setNoProduct] = useState(false)

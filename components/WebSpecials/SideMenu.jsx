@@ -1,4 +1,3 @@
-import React from 'react'
 
 const SideMenu = ({side_menu,activateSection,activeIndex}) => {
     return (

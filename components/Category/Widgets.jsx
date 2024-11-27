@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { check_Image, checkMobile } from '@/libs/api'
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//   weight: ["300", "400", "500", "600", "700"],
-//   display: "block",
-//   preload: true,
-//   style: 'normal',
-//   subsets: ["latin"],
-//   variable: '--font-inter',
-// })
+
 export default function Widgets({ data, index, routers, productNavigation }) {
   //  console.log('wight',data)
   const checkRoute = (res, data) => {
@@ -45,39 +37,6 @@ export default function Widgets({ data, index, routers, productNavigation }) {
     isMobile = is_mobile
     setIsMobile(isMobile);
   }
-
-  useEffect(() => {
-    if ((data && data.title == "Custom Widget") && (data.data && data.data.length > 0 && data.data[0].snippet)) {
-      // console.log(data.data[0].snippet,"snipeet")
-      setTimeout(() => {
-        // console.log(getAllIframeArticleHeights(),"getAllIframeArticleHeights")
-      }, 4000);
-    }
-  }, [data])
-
-  function getAllIframeArticleHeights() {
-    const iframes = Array.from(document.querySelectorAll('iframe'));
-  
-    return iframes.map((iframe) => {
-      
-      if(iframe.getAttribute('title') == "Embedded post"){
-        // console.log(`Iframe title: ${iframe.getAttribute('title')}`);
-        if (iframe.contentDocument || iframe.contentWindow) {
-          // console.log(iframe.contentDocument,"iframe.contentDocument")
-          // console.log(iframe.contentWindow,"iframe.contentWindow")
-          // const article = iframe.contentDocument.querySelector('article');
-    
-          // if (article) {
-          //   const articleHeight = article.offsetHeight;
-          //   console.log(`Article height inside iframe: ${articleHeight}px`);
-          //   return { title: iframe.getAttribute('title'), articleHeight };
-          // }
-        } 
-      }
-    });
-  }
-
-
 
   return (
     <>

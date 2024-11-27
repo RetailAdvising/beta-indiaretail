@@ -1,18 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import { check_Image } from '../../libs/api'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300", "400", "500", "600", "700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-// })
+
 export default function CustomSlider({ data, cardClass, imgClass, slider_id, slider_child_id, type, route, title_class, subtitle_class, primary_text_class, hashtags_class, hide_scroll_button, noPrimaryText, routers, parent, productNavigation,newsletter,navigate }) {
     // let router = routers ? routers : useRouter();
     // let router = routers ;
@@ -70,7 +62,6 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
     }
 
     const containerRef = useRef(null);
-    const [isDragging, setIsDragging] = useState(false);
     let startX = ''
     let scrollLeft = ''
 
@@ -95,10 +86,6 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
         const dist = (x - startX);
         slider.scrollLeft = scrollLeft - dist;
     }
-
-    // end
-
-    // };
 
 
     const handleScroll = () => {

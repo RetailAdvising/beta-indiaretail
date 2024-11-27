@@ -5,7 +5,9 @@ import Sliders from '@/components/Sliders/index'
 import EventCards from '@/components/Events/EventCards'
 import { getCategoryList, sliders, checkMobile, getAdvertisements } from '@/libs/api'
 import SEO from '@/components/common/SEO'
-import Advertisement from '@/components/Baners/Advertisement'
+import dynamic from 'next/dynamic'
+const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))
+// import Advertisement from '@/components/Baners/Advertisement'
 
 export default function Events({ data, slider_data, ads_data }) {
     // console.log(ads_data,"ads_data")

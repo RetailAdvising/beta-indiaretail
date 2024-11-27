@@ -1,16 +1,7 @@
 import Image from 'next/image';
 import { check_Image } from '@/libs/common';
-import React from 'react';
-// import { Nunito } from 'next/font/google'
 import Dropdowns from '../common/Dropdowns';
-// const nunito = Nunito({
-//   weight: ["300", "400", "500", "600", "700"],
-//   display: "block",
-//   preload: true,
-//   style: 'normal',
-//   subsets: ["latin"],
-//   variable: '--font-inter',
-// })
+
 function AudioPlayer(data) {
 
   // console.log('podcast', data)

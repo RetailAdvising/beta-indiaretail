@@ -2,15 +2,19 @@ import { useEffect, useState } from 'react'
 import RootLayout from '@/layouts/RootLayout';
 import data from '@/libs/membership';
 import Image from 'next/image';
-import Faq from '@/components/Membership/faq';
-import Benefits from '@/components/Membership/benefits';
-import ConfirmationScreen from '@/components/Membership/ConfirmationScreen';
-import Modal from '@/components/common/Modal';
+// import Faq from '@/components/Membership/faq';
+// import Benefits from '@/components/Membership/benefits';
+// import ConfirmationScreen from '@/components/Membership/ConfirmationScreen';
 import { checkMobile, HomePage, get_subscription_plans, get_razorpay_settings, make_payment_entry } from '@/libs/api'
-import AlertUi from '@/components/common/AlertUi';
-import AuthModal from '@/components/Auth/AuthModal';
+// import AlertUi from '@/components/common/AlertUi';
+// import AuthModal from '@/components/Auth/AuthModal';
 import { useRouter } from 'next/router';
-
+import dynamic from 'next/dynamic';
+const AuthModal = dynamic(()=> import('@/components/Auth/AuthModal'))
+const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
+const ConfirmationScreen = dynamic(()=> import('@/components/Membership/ConfirmationScreen'))
+const Faq = dynamic(()=> import('@/components/Membership/faq'))
+const Benefits = dynamic(()=> import('@/components/Membership/benefits'))
 export default function Membership() {
 
   let [btnState, setbtnState] = useState(true);

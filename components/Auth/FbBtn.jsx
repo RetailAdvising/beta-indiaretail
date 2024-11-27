@@ -139,41 +139,7 @@ const FbBtn = ({ socialLogin, setCredential, setShowMob }) => {
 
   return (
     <>
-      {/* <ToastContainer position={'bottom-right'} autoClose={2000} /> */}
-      {/* {!session ? (
-        <button onClick={async () => {
-          await signIn('facebook', {
-            callbackUrl: `${doamin_url}`,
-            redirect: true,
-          })
-        }}>Sign in with Facebook</button>
-      ) : (
-        <button onClick={() => signOut()}>Sign out</button>
-      )} */}
-
-
-      {/* await signIn('linkedin', {
-          // callbackUrl: `http://localhost:3000/auth/signin`,
-          callbackUrl: `${doamin_url}/auth/signin`,
-          redirect: true,
-        }) */}
-
-      {/* <Image height={20} onClick={async () => {
-        // await signIn('linkedin')
-        // {callbackUrl: `http://localhost:3000/api/auth/callback/linkedin`}
-        await signIn('linkedin')
-        // await signIn('linkedin',{callbackUrl: `http://localhost:3000/auth/signin`})
-      }} className='h-[25px] w-[25px] object-contain cursor-pointer' width={20} alt='facebook' src={'/login/linkedin.webp'} /> */}
-
       <Image height={20} onClick={linkedInLogin} className='h-[25px] w-[25px] object-contain cursor-pointer' width={20} alt='linkedin' src={'/login/linkedin.webp'} />
-
-
-      {/* <Image height={20} onClick={async () => {
-          await signIn('facebook', {
-            callbackUrl: `${doamin_url}`,
-            redirect: true,
-          })
-        }} className='h-[25px] w-[25px] object-contain cursor-pointer' width={20} alt='facebook' src={'/login/fb-01.svg'} /> */}
     </>
   )
 }

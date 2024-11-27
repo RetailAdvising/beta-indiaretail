@@ -1,6 +1,6 @@
 import { forget_password,checkMobile } from '@/libs/api';
 import Image from 'next/image'
-import React, { useState,useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from '@/styles/Components.module.scss'
 import { useRouter } from 'next/router';

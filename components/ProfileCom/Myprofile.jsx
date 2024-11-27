@@ -1,11 +1,6 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-import { check_Image } from '@/libs/common';
 import Image from 'next/image'
 
 export default function Myprofile({ profileInfo, navigateToProfile }) {
-  
-  const router = useRouter();
 
   const clickTogo = (res,index) =>{
     navigateToProfile(res)

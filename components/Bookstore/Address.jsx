@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '@/styles/checkout.module.scss';
 import { useForm, Controller } from "react-hook-form";
 import { get_country_list, get_country_states, insert_address, update_address } from '@/libs/api';
@@ -95,12 +95,6 @@ export default function Address({ hide, edit_address, modal }) {
     }
   }
 
-  const setFormsValue = (selectedOption, field) => {
-    // console.log(selectedOption,field);
-    field.name = selectedOption.value;
-    field.value = selectedOption.value;
-  }
-
   const validatePhoneNumber = (value) => {
     if (!value) {
       return 'Phone is required';
@@ -129,47 +123,6 @@ export default function Address({ hide, edit_address, modal }) {
   return (
     <>
       <form className={`${modal ? 'px-[20px]' : null}`} onSubmit={handleSubmit(onSubmit)}>
-
-
-        {/* {selectedValues && selectedValues['country'] ?
-      <Controller
-          name="country"
-          control={control}
-          render={({ field }) => 
-            <Select className={`${styles.custom_input} custom-select_ w-full`} placeholder='Country'
-              {...field} 
-              options={countryList} 
-              // value={(selectedValues && selectedValues['country']) ? selectedValues['country'] : 'India' } // Set the value directly
-              value={countryList.find(option => option.value === (selectedValues && selectedValues['country']))}
-              styles={{
-              control: (provided) => ({
-              ...provided,
-              border: 'none', // Set border to none
-              height: '43px',
-              }),
-              // Other style overrides
-              }}
-            />}
-        />
-        :
-        <Controller
-          name="country"
-          control={control}
-          render={({ field }) => 
-            <Select className={`${styles.custom_input} custom-select_ w-full`} placeholder='Country'
-              {...field} 
-              options={countryList} 
-              styles={{
-              control: (provided) => ({
-              ...provided,
-              border: 'none', // Set border to none
-              height: '43px',
-              }),
-              // Other style overrides
-              }}
-            />}
-        />
-      } */}
 
         <Controller
           name="country"

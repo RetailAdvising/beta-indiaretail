@@ -1,15 +1,7 @@
 import Image from 'next/image'
 import { check_Image } from '../../libs/api'
 import Link from 'next/link'
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
 export default function ImageGroupEvents({ data, height, width}) {
     return (
         <>

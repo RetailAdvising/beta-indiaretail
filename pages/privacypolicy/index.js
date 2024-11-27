@@ -1,11 +1,6 @@
-import React from 'react';
 import RootLayout from '@/layouts/RootLayout';
-import Image from 'next/image';
-import { Value } from 'sass';
 import data from '@/libs/privacypolicy'
 import SEO from '@/components/common/SEO';
-
-
 
 export default function PrivacyPolicy() {
     return (

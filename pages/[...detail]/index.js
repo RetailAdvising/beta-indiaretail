@@ -1,22 +1,23 @@
 'use client'
 import RootLayout from '@/layouts/RootLayout'
-import React, { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { articlesDetail, getList, commentList, update_no_of_shares, get_subscription_plans, getAdvertisements, seo_Image, getCurrentUrl } from '@/libs/api';
-import CategoryBuilder from '@/components/Builders/CategoryBuilder';
+// import CategoryBuilder from '@/components/Builders/CategoryBuilder';
 import { useRouter } from 'next/router';
-import Advertisement from '@/components/Baners/Advertisement'
+// import Advertisement from '@/components/Baners/Advertisement'
 import { useSelector } from 'react-redux';
 import Head from 'next/head'
-
+import dynamic from 'next/dynamic';
+const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))
+const CategoryBuilder = dynamic(()=> import('@/components/Builders/CategoryBuilder'))
 const index = ({ data, page_route }) => {
 
-    console.log('detailss', data, page_route);
+    // console.log('detailss', data, page_route);
     
 
     const router = useRouter();
 
     const user = useSelector(s => s.user);
-
 
     const [values, setValues] = useState([])
     const [prev, setPrev] = useState('')
@@ -26,8 +27,6 @@ const index = ({ data, page_route }) => {
     const [meta_info, setMetaInfo] = useState();
     const [comments, setComments] = useState([]);
     const [scrollEle, setScrollEle] = useState(true)
-
-
 
     let [divs, setDivs] = useState(['div0']);
     let [routeList, setRouteList] = useState([])
@@ -94,7 +93,6 @@ const index = ({ data, page_route }) => {
         ads();
     }, [])
 
-    const role = useSelector(s => s.role);
     useEffect(() => {
         if (typeof window !== 'undefined' && localStorage['apikey']) {
             // if (role) {

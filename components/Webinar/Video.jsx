@@ -1,11 +1,7 @@
-import React from "react";
 import ImageLoader from "../ImageLoader";
-import Form from '@/components/Webinar/Form'
 import styles from '@/styles/Cards.module.scss'
-import { useRouter } from "next/router";
 
 const Video = ({ data, click_data }) => {  
-  const router = useRouter()
   return (
     <>
       <div className="md:flex lg:grid lg:grid-cols-4 mt-5 no_scroll gap-4">

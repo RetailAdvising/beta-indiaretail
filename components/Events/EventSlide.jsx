@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import ImageLoader from '../ImageLoader'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -39,12 +39,7 @@ const EventSlide = ({slider_id,slider_child_id,data,card,height,width,flex}) => 
             } else {
                 slider_div.scrollLeft -= slider_width
             }
-            // let nextBtn = document.getElementById('next_' + slider_id)
-            // let prevBtn = document.getElementById('prev_' + slider_id)
-            // if (slider_div.scrollLeft >= slider_div.clientWidth) nextBtn.classList.add('hidden')
-            // else nextBtn.classList.remove('hidden')
-            // if (slider_div.scrollLeft == 0) prevBtn.classList.add('hidden')
-            // else prevBtn.classList.remove('hidden')
+           
         }
     }
 

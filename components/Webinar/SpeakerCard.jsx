@@ -1,16 +1,5 @@
-import React from 'react'
 import ImageLoader from '../ImageLoader'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({
-    weight: ["300","400","500","600","700"],
-    display: "block",
-    preload: true,
-    style: 'normal',
-    subsets: ["latin"],
-    variable: '--font-inter'
-})
 
 const SpeakerCard = ({ data }) => {
   return (

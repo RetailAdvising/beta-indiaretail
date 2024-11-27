@@ -1,18 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image';
 import RootLayout from '@/layouts/RootLayout';
 import Card from '@/components/Bookstore/Card';
 import Title from '@/components/common/Title';
 import { useRouter } from 'next/router';
-import { getProductDetail, insertCartItems, insertSubscription,insert_member_subscription, make_payment_entry, insert_cart_items, updateCartItems, getCartItem, deleteCartItems , get_razorpay_settings, subscriptionPlans, get_subscription_plans,update_no_of_shares,getAdvertisements,getCurrentUrl,seo_Image } from '@/libs/api';
+import { getProductDetail,insert_member_subscription, make_payment_entry, insert_cart_items, updateCartItems, getCartItem, deleteCartItems , get_razorpay_settings, get_subscription_plans,update_no_of_shares,getAdvertisements,getCurrentUrl,seo_Image } from '@/libs/api';
 import { check_Image } from '@/libs/common';
-import AuthModal from '@/components/Auth/AuthModal';
-import LoaderButton from '@/components/common/LoaderButton';
+// import AuthModal from '@/components/Auth/AuthModal';
+// import LoaderButton from '@/components/common/LoaderButton';
 import styles from '@/styles/checkout.module.scss';
-import AlertUi from '@/components/common/AlertUi';
+// import AlertUi from '@/components/common/AlertUi';
 import Sliders from '@/components/Sliders/index'
-import Dropdowns from '@/components/common/Dropdowns'
+// import Dropdowns from '@/components/common/Dropdowns'
 import Head from 'next/head'
+import dynamic from 'next/dynamic';
+const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
+const LoaderButton = dynamic(()=> import('@/components/common/LoaderButton'))
+const AuthModal = dynamic(()=> import('@/components/Auth/AuthModal'))
+const Dropdowns = dynamic(()=> import('@/components/common/Dropdowns'))
 
 export default function Bookstoredetail({ value, res,ads }) {
 
@@ -704,7 +709,6 @@ const  getCarts = async (type) => {
         </Head>
       {/* { value && <SEO title={value.meta_title ? value.meta_title : value.item_title} ogImage={check_Image(value.image)} siteName={'India Retailing'} ogType={value.meta_keywords ? value.meta_keywords : value.item_title} description={value.meta_description ? value.meta_description : value.item_title}/>} */}
       {/* <div className='md:hidden'>
-        <BreadCrumb BreadCrumbs={breadCrumbs} cssClass={'pb-[10px]'}/>
       </div> */}
     
     { enableModal && <AlertUi isOpen={enableModal} closeModal={(value)=>closeModal(value)} headerMsg={'Alert'} button_2={'Ok'} alertMsg={alertMsg} />}

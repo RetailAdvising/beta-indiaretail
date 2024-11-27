@@ -1,8 +1,6 @@
-import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { Nunito } from 'next/font/google'
-import { check_Image } from '@/libs/api'
 
 const nunito = Nunito({
     weight: ["300", "400", "500", "600", "700"],

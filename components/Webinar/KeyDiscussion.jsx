@@ -1,7 +1,8 @@
-import React from 'react'
 import Title from '../common/Title'
 import Image from 'next/image'
-import KeyPointsCard from './KeyPointsCard'
+import dynamic from 'next/dynamic'
+const KeyPointsCard = dynamic(()=> import('./KeyPointsCard'))
+// import KeyPointsCard from './KeyPointsCard'
 
 const KeyDiscussion = ({setShowMore,webinar_data,showMore}) => {
     return (

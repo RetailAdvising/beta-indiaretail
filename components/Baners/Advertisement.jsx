@@ -1,8 +1,10 @@
 import ImageLoader from '../ImageLoader'
 import { useEffect, useState } from 'react';
 import { checkMobile, get_ip, insert_banner_ad_log } from '@/libs/api'
-import GoogleAds from './GoogleAds';
-export default function Advertisement({ data, imgClass, divClass, insStyle, position, adId,ad_payload={} }) {
+import dynamic from 'next/dynamic';
+// import GoogleAds from './GoogleAds';
+const GoogleAds = dynamic(() => import('./GoogleAds'))
+export default function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_payload = {} }) {
 
     let [isMobile, setIsMobile] = useState(false)
     useEffect(() => {
@@ -22,7 +24,7 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
     }
 
     const click_report = async () => {
-        
+
         let ip_address = await get_ip()
 
         let params = {
@@ -60,11 +62,11 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
         } else if (userAgent.indexOf("Trident") > -1 || userAgent.indexOf("MSIE") > -1) {
             return "Internet Explorer";
         }
-    
+
         return "Unknown";
     }
 
-    
+
     return (
         <>
             {
@@ -95,57 +97,6 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
                     </script>
  
             `} />}
-
-            {/* function loadAd(adId) {
-                            var adElement = document.getElementById(adId);
-                            if (adElement) {
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                // setTimeout(function() {
-                                //     checkAdStatus(adId);
-                                // }, 1000);
-                            }else {
-                                console.log("Ad element not found for:", adId);
-                            }
-                        }
-
-                        // Load ads individually
-                        loadAd(${adId}); */}
-
-            {/* function refreshAd(adId) {
-                            var adElement = document.getElementById(adId);
-                            adElement.innerHTML = ''; // Remove current ad
-                            adElement.className = 'adsbygoogle'; // Reset class for new ad
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        }
-
-                        refreshAd(${adId}) */}
-
-            {/* (adsbygoogle = window.adsbygoogle || []).push({}); */}
-            {/* <script>
-                (adsbygoogle = window.adsbygoogle || []).push({ });
-            </script> */}
-
-
-
-
-
-            {/* <script src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous" async></script> */}
-            {/* <script>
-                // GPT slots
-                var gptAdSlots = []; // Created the Array To Get BrowserSize,Ad Size
-                googletag.cmd.push(function()
-                {
-                var mapping = googletag.sizeMapping().
-                //addSize is the browser size and each subsequent dimension is an ad size addSize([Browser Width,Browser Height],[Ad Width,Ad Height]).
-                build();
-
-                slot1=googletag.defineSlot('/21631575671/IR-728x90-Leaderboard', [[320, 50], [728, 90], [970, 250]], 'div-gpt-ad-1617096742911-0').setTargeting("test", "refresh").
-                defineSizeMapping(mapping).
-                addService(googletag.pubads());
-                googletag.pubads().enableSingleRequest();
-                googletag.enableServices();
-                });
-            </script> */}
 
         </>
     )

@@ -1,17 +1,7 @@
-import React,{useState} from 'react'
+import {useState} from 'react'
 
 export default function Tabs({ data, type }) {
 
-    // function tabActive(item, index) {
-    //     data.map((res, i) => {
-    //         if (index == i) {
-    //             item['active'] = item['active'] ? false : true;
-    //         } else {
-    //             res['active'] = false;
-    //         }
-    //     })
-    //     // console.log(data)
-    // }
     const [isChecked, setIsChecked] = useState(false)
 
     const handleCheckboxChange = () => {
@@ -19,14 +9,6 @@ export default function Tabs({ data, type }) {
     }
     return (
         <>
-            {/* {data && data.map((res, index) => {
-                return (
-                    <div className={`tab ${res.active ? 'tabActive' : ''}`}>
-                        <p className={`tablink`} onClick={()=> tabActive(res,index)}>{res.name}</p>
-                    </div>
-                )
-            })} */}
-
             {type == 'toggle' ? <>
                 <label className='themeSwitcherTwo shadow-card relative inline-flex cursor-pointer select-none items-center justify-center rounded-md bg-white p-1'>
                     <input

@@ -83,7 +83,7 @@ export default function EventDetails({ values, Id }) {
         }
     }
 
-    console.log('ee', expiredEvents);
+    // console.log('ee', expiredEvents);
     
 
     async function loadMore() {
@@ -123,28 +123,7 @@ export default function EventDetails({ values, Id }) {
                         <div className='mt-[20px]'>
                             <Title data={values} />
                         </div>
-                        {/* <div>
-                            <label className='themeSwitcherTwo shadow-card relative inline-flex cursor-pointer select-none items-center justify-center rounded-md bg-white p-1'>
-                                <input
-                                    type='checkbox'
-                                    className='sr-only'
-                                    checked={isChecked}
-                                    onChange={handleCheckboxChange}
-                                />
-                                <span
-                                    className={`flex items-center space-x-[6px] rounded py-2 px-[18px] text-sm font-medium ${!isChecked ? 'text-primary bg-[#f4f7ff]' : 'text-body-color'
-                                        }`}
-                                >
-                                    List View
-                                </span>
-                                <span
-                                    className={`flex items-center space-x-[6px] rounded py-2 px-[18px] text-sm font-medium ${isChecked ? 'text-primary bg-[#f4f7ff]' : 'text-body-color'
-                                        }`}
-                                >
-                                    Grid View
-                                </span>
-                            </label>
-                        </div> */}
+                        
 
                     </div>
                     {/*  ${!isChecked ? 'grid-cols-2 md:grid-cols-1' : 'grid-cols-4 md:grid-cols-2'} */}

@@ -1,10 +1,10 @@
 import Title from '@/components/common/Title'
 import RootLayout from '@/layouts/RootLayout'
-import { deleteCartItems, get_razorpay_settings, getCartItem, updateCartItems } from '@/libs/api'
+import { deleteCartItems, getCartItem, updateCartItems } from '@/libs/api'
 import { check_Image } from '@/libs/common'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { checkMobile } from '@/libs/api';
 import AlertUi from '@/components/common/AlertUi';
 import LoaderButton from '@/components/common/LoaderButton';
@@ -14,10 +14,8 @@ export default function cart() {
     // const [total, setTotal] = useState(0);
 
     let [cart_items, setCartItems] = useState({});
-    const [cartTotal, setCartTotal] = useState(0);
     const [load, setload] = useState(false);
     const [skeleton, setSkeleton] = useState(false)
-    const [indexs, setIndex] = useState(-1)
     const router = useRouter();
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -98,7 +96,7 @@ export default function cart() {
     const updateCart = async (dataValue, type, i) => {
 
         setload(true);
-        console.log(dataValue, 'dataValue')
+        // console.log(dataValue, 'dataValue')
         loadAttr = dataValue.name
         setLoadAttr(loadAttr)
         if (type == 'dec' && dataValue['quantity'] == 1) {
@@ -108,7 +106,6 @@ export default function cart() {
         }
 
     }
-
 
     const [enableModal, setEnableModal] = useState(false)
     const [enableModal_1, setEnableModal_1] = useState(false)
@@ -141,14 +138,12 @@ export default function cart() {
         setload(false);
     }
 
-
     const [loader, setLoader] = useState(false)
 
     const buttonClick = () => {
         setLoader(true)
         router.push('/checkout')
     }
-
 
     return (
         <>

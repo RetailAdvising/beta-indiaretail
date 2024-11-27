@@ -7,7 +7,6 @@ import 'rodal/lib/rodal.css';
 
 export default function SubscribeNews({ data, visible, hide, no_modal, email = undefined,cssClass }) {
 
-
   return (
     <div className='NewsLetterSub'>
       {!no_modal && <Rodal visible={visible} onClose={hide}>
@@ -25,10 +24,6 @@ const NewsLetterSub = ({ data, hide,email,cssClass }) => {
   let [indexNews, setIndexNews] = useState(-1);
 
 
-  // useEffect(() => {
-
-  // },[]) 
-
   function selectNewLetter(array, index) {
     array.map((res, i) => {
       if (i == index) {
@@ -37,7 +32,7 @@ const NewsLetterSub = ({ data, hide,email,cssClass }) => {
     })
     setNews(array);
     setIndexNews(indexNews + 1);
-    console.log(array)
+    // console.log(array)
   }
 
 

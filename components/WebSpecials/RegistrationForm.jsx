@@ -2,18 +2,12 @@ import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import { useForm } from 'react-hook-form';
 import styles from '@/styles/Components.module.scss'
-import { useState } from 'react';
 import { insert_web_special_registration } from '@/libs/api';
-import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-const RegistrationForm = ({ webinar_data,visible, hide }) => {
-    const { register, handleSubmit, formState: { errors },reset } = useForm();
-    const [submitted, setSubmitted] = useState(false)
-    const [formData, setFormData] = useState()
-    const router = useRouter()
+const RegistrationForm = ({ webinar_data, visible, hide }) => {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const registerForm = async (data) => {
         // console.log(data,"data")
-        setFormData(data)
         if (data) {
             // let curRoute = router.asPath.split('/')[2] + "/" + router.asPath.split('/')[3]
             const res = await insert_web_special_registration({ ...data, from_page: webinar_data.name });
@@ -72,7 +66,7 @@ const RegistrationForm = ({ webinar_data,visible, hide }) => {
                                 {errors?.phone && <p className={`${styles.danger}`}>{errors.phone.message}</p>}
                             </div>
 
-                            <button type="submit" onClick={() => setSubmitted(true)} className={`${styles.loginBtn} my-[10px]`}>Register</button>
+                            <button type="submit" className={`${styles.loginBtn} my-[10px]`}>Register</button>
                             {/* {(submitted && !formData) && <p className={`${styles.danger} !text-[13px] text-center`}>All fields are required</p>} */}
                         </form>
                     </div>

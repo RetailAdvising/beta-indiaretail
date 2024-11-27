@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '@/styles/category.module.scss'
 import Image from 'next/image'
 import { check_Image } from '@/libs/api'
-import { useRouter } from 'next/router'
-import Dropdowns from './Dropdowns'
 import format from 'date-fns/format'
 import ImageLoader from '../ImageLoader';
+import dynamic from 'next/dynamic'
+const Dropdowns = dynamic(() => import('./Dropdowns'))
 // import { Nunito } from 'next/font/google'
 // const nunito = Nunito({
 //     weight: ["300","400","500","600","700"],
@@ -16,9 +16,9 @@ import ImageLoader from '../ImageLoader';
 //     variable: '--font-inter',
 //   })
 export default function Content({ res, i, updateShare, noScroll }) {
-    const router = useRouter()
+
     const icons = [{ icon: "/bookstore/linkedin.svg", name: 'Linkedin' }, { icon: "/bookstore/FB.svg", name: 'Facebook' }, { icon: "/bookstore/twitter.svg", name: 'Twitter' }, { icon: "/bookstore/whatsapp.svg", name: 'Whatsapp' }]
-    const [setings,setSettings] = useState([{ name: 'Copy Link', icon: '/bookstore/Copy.svg' }, { name: 'Comment', icon: '/bookstore/comment.svg' }, { name: 'More Stories', icon: '/bookstore/more-stories.svg' }])
+    const [setings, setSettings] = useState([{ name: 'Copy Link', icon: '/bookstore/Copy.svg' }, { name: 'Comment', icon: '/bookstore/comment.svg' }, { name: 'More Stories', icon: '/bookstore/more-stories.svg' }])
 
     const dateFormat = (data) => {
         // console.log(data)
@@ -36,15 +36,15 @@ export default function Content({ res, i, updateShare, noScroll }) {
         return type == 'yt' ? 'https://www.youtube.com/embed/' + link : 'https://player.vimeo.com/video/' + link
     }
 
-    useEffect(()=>{
-        if(res.disable_comments && res.comments){
-            setSettings(val=>{
+    useEffect(() => {
+        if (res.disable_comments && res.comments) {
+            setSettings(val => {
                 let pre = val
-                pre.splice(1,1)
+                pre.splice(1, 1)
                 return pre
             })
         }
-    },[res])
+    }, [res])
 
     return (
         <>
@@ -69,12 +69,6 @@ export default function Content({ res, i, updateShare, noScroll }) {
 
             <div className={`flex items-center justify-between ${styles.profile_div} md:hidden`}>
                 <div className='lg:hidden flex gap-4 items-center'>
-
-                    {/* <Image className='rounded-full object-cover w-[48px] h-[48px]' priority={true} src={(res.avatar && res.avatar != null) ? check_Image(res.avatar) : '/profit.svg'} height={43.12} width={43.12} alt={"image"} />
-                    <div className='flex flex-col'>
-                        <h6 className="text-[14x] font-semibold">{res.publisher}</h6>
-                        <span className='text-gray lg:text-[13px] md:text-[12px] gray-text'>{dateFormat(res.published_on)}</span>
-                    </div> */}
                     <div className='flex lg:gap-4 items-center md:gap-[10px] md:justify-between '>
                         {/* {res.primary_text && <p className={`${res.primary_text ? 'primary_text' : ''}`}>{res.primary_text ? res.primary_text : ''}</p>} */}
                         <div className='flex md:block items-center gap-2'><Image height={11} width={11} alt={"image"} src={'/views.svg'} className='md:m-auto' /><span className='text-[12px] md:text-[10px] gray-text'>{res.views ? res.views : res.no_of_views ? res.no_of_views : 1} Views</span></div>

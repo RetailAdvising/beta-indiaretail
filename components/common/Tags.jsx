@@ -1,14 +1,6 @@
 import { trending } from "@/libs/api";
 import { useRouter } from "next/router";
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
 function Tags({ tags, count = 2,tagClass }) {
 
     const router = useRouter();

@@ -1,4 +1,4 @@
-import { getList, getPollsList, get_ip } from '@/libs/api'
+import { getPollsList, get_ip } from '@/libs/api'
 import RootLayout from '@/layouts/RootLayout';
 import Poll from '@/components/Poll/Poll';
 import { useEffect, useState } from 'react';

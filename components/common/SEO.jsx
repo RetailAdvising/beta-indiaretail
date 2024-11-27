@@ -1,14 +1,6 @@
 import Head from 'next/head'
-import React from 'react'
 import { domain, websiteUrl } from '@/libs/config/siteConfig'
 
-// export const metadata = {
-//     title: "IndiaRetailing",
-//     openGraph: {
-//         title: "Home",
-//         image: '/ads_baner.png'
-//     }
-// }
 const DEFAULT_OG_IMAGE = '/indiaretail_new.png'
 export default function SEO({ title = "India Retailing",
     description = "This is IndiaRetailing and its about news and articles based on the popular site.",

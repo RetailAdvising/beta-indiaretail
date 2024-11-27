@@ -1,81 +1,36 @@
-import React, { useEffect, useState } from 'react'
 import nav from '@/libs/header'
 import header from '@/styles/Header.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useDispatch, useSelector } from 'react-redux'
-import setRoutes from 'redux/actions/routesAction'
-import { checkMobile } from '@/libs/api';
 import format from 'date-fns/format'
-import MobileHead from './MobileHead';
-// const inter = Inter({
-//   weight: ["300","400","500","600","700"],
-//   display: "block",
-//   preload: true,
-//   style: 'normal',
-//   subsets: ["latin"],
-//   variable: '--font-inter'
-// })
 
 import { Nunito } from 'next/font/google'
 const nunito = Nunito({
-    weight: ["300","400","500","600","700"],
+    weight: ["300", "400", "500", "600", "700"],
     display: "block",
     preload: true,
     style: 'normal',
     subsets: ["latin"],
     variable: '--font-inter',
-  })
+})
+
 export default function Navbar({ heading, isLanding, checkout }) {
     const router = useRouter();
-    const route = useSelector(state => state.routes)
-    const dispatch = useDispatch();
-    const [navbar, setNavbar] = useState(false);
+    const navbar = false;
+    // const [navbar, setNavbar] = useState(false);
     // const [isMobile, setIsMobile] = useState(false)
-    const [date, setDate] = useState(undefined)
+    // const [date, setDate] = useState(undefined)
 
+    // useEffect(() => {
 
-    // const [activeIndex, setActiveIndex] = useState(false);
+    //     dispatch(setRoutes(router.route));
+    //     const formattedDate = format(new Date(), "iiii, d MMMM yyyy");
+    //     setDate(formattedDate)
+    //     // console.log('router.asPath',router.asPath); 
+    //     // console.log('router.asPath',nav); 
+    // }, [])
 
-    // const handleItemClick = (index) => {
-    // // Toggle the active state for the clicked item
-    // if (index === activeIndex) {
-    //     setActiveIndex(null); // Remove active class if clicked item is already active
-    //   } else {
-    //     setActiveIndex(index); // Add active class to the clicked item
-    //   }
-    // };
-
-    // console.log(subnavrouter);
-
-
-
-
-    useEffect(() => {
-
-        dispatch(setRoutes(router.route));
-        const formattedDate = format(new Date(), "iiii, d MMMM yyyy");
-        setDate(formattedDate)
-        // console.log('router.asPath',router.asPath); 
-        // console.log('router.asPath',nav); 
-    }, [])
-
-
-
-    const [isMobile, setIsMobile] = useState()
-    useEffect(() => {
-        checkIsMobile();
-        window.addEventListener('resize', checkIsMobile)
-        return () => {
-            window.removeEventListener('resize', checkIsMobile);
-        };
-    }, [])
-
-    const checkIsMobile = async () => {
-        let isMobile = await checkMobile();
-        setIsMobile(isMobile);
-    }
 
     return (
         <>
@@ -110,9 +65,9 @@ export default function Navbar({ heading, isLanding, checkout }) {
                                     </div>
 
                                 </>}
-                                {res.section_name == 'Header Profile Info' && <div className={`text-end items-center ${date && 'lg:flex lg:items-center lg:gap-[5px] lg:justify-end'} md:float-right ${navbar ? 'md:pr-[20px]' : ''}`}>
+                                {res.section_name == 'Header Profile Info' && <div className={`text-end items-center lg:flex lg:items-center lg:gap-[5px] lg:justify-end md:float-right ${navbar ? 'md:pr-[20px]' : ''}`}>
                                     {/* <Image src={'/Navbar/Date-and-time-01.svg'} className='md:hidden lg1:hidden' height={20} width={20} alt={'weather'} /> */}
-                                    {date && <> <p className={`md:hidden text-[#66161] text-[12px] lg1:text-[10px] ${nunito.className}`}>{date ? date : ''}</p></>}
+                                     <> <p className={`md:hidden text-[#66161] text-[12px] lg1:text-[10px] ${nunito.className}`}>{format(new Date(), "iiii, d MMMM yyyy")}</p></>
                                     <Image className='lg:hidden' style={{ objectFit: 'contain' }} height={50} priority width={24} alt='search' src={'/search.svg'} ></Image>
                                 </div>}
 

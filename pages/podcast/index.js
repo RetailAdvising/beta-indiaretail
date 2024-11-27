@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import RootLayout from '@/layouts/RootLayout'
 import Sliders from '@/components/Sliders/index'
 
-import HomePodcast from '@/components/Podcast/HomePodcast'
+// import HomePodcast from '@/components/Podcast/HomePodcast'
 import { podcastLanding, getAdvertisements, sliders, checkMobile } from '@/libs/api'
 import SEO from '@/components/common/SEO'
-import Advertisement from '@/components/Baners/Advertisement'
-
+// import Advertisement from '@/components/Baners/Advertisement'
+import dynamic from 'next/dynamic'
+const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))
+const HomePodcast = dynamic(()=> import('@/components/Podcast/HomePodcast'))
 export default function Podcast({ data, ads_data, slider_data }) {
     const [isMobile, setIsMobile] = useState();
     const [values, setValues] = useState([])

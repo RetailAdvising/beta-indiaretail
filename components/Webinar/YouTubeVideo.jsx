@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ImageLoader from "../ImageLoader";
 import Image from "next/image";
-import { parseISO8601Duration } from "@/libs/api";
 import { YOUTUBE_API_KEY } from "@/libs/config/siteConfig";
 import Title from "../common/Title";
-import Link from "next/link";
 
 const YouTubeVideo = ({ id, click_data }) => {
   const [videoDetails, setVideoDetails] = useState(null);

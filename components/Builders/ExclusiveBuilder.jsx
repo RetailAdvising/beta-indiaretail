@@ -115,7 +115,6 @@ export default function ExclusiveBuilder({ data, ads }) {
                 {/* {(ads.right_second && Object.keys(ads.right_second).length != 0 && !isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement divClass={'h-[600px] w-[300px] m-auto'}  data={ads.right_second} /></div>} */}
                 {(!isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement ad_payload={{ page: 'IR Prime', page_type: 'Landing' }} divClass={'h-[600px] w-[300px] m-auto'} insStyle={"display:inline-block;width:300px;height:600px;"} position={"small"} adId={'right_second'} data={(ads.right_second && Object.keys(ads.right_second).length != 0 ) && ads.right_second} /></div>}
 
-                {/* {(val.section_4 && val.section_4.col_2 && !isMobile) && <div className='flex-[0_0_calc(25%_-_10px)] md:basis-full'> <AdsBaner height={'h-[567px]'} width={'w-full'} data={val.section_4.col_2} /></div>} */}
             </div>}
             {/* </div> */}
         </>

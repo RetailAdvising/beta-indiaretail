@@ -1,18 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
-import { check_Image, insert_contact_form, insert_doc } from "@/libs/api";
+import { insert_doc } from "@/libs/api";
 import style from '@/styles/Components.module.scss'
 import styles from '@/styles/checkout.module.scss';
 import { useForm, Controller } from "react-hook-form";
-import Select from 'react-select';
 import { toast } from 'react-toastify';
 
 export default function ContactInfo({contactInfo}){
-
-
-    useEffect(() => {
-
-    },[])
    
     return (
         <div className="md:flex-col flex rounded-[10px] border lg:mt-10 relative overflow-hidden">

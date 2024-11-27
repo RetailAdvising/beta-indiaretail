@@ -2,7 +2,6 @@ import Video from './Video'
 import VideoSlide from './VideoSlide'
 import Title from '../common/Title'
 import {  Inter } from 'next/font/google'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 const inter = Inter({

@@ -1,9 +1,5 @@
-import React from 'react'
-import Image from 'next/image'
-import { check_Image, trending } from '@/libs/api'
 import exclusives from '@/styles/Exclusives.module.scss';
 import { useRouter } from 'next/router';
-import Link from 'next/link'
 import Tags from './Tags';
 import ImageLoader from '../ImageLoader';
 // import { Nunito } from 'next/font/google'

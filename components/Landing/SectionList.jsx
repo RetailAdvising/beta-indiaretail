@@ -2,15 +2,7 @@ import Image from 'next/image'
 import Tags from '../common/Tags'
 import { useRouter } from 'next/router'
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//   weight: ["300", "400", "500", "600", "700"],
-//   display: "block",
-//   preload: true,
-//   style: 'normal',
-//   subsets: ["latin"],
-//   variable: '--font-inter',
-// })
+
 export default function SectionList({ data, isHome }) {
   const router = useRouter();
   function navigate(event, res) {

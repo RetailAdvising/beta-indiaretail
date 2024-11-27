@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { newsSubscribe } from '@/libs/api';
 
@@ -89,9 +89,6 @@ export default function AlertPopup({ message, show, data, news, hide, email = un
             </div> 
           }
 
-            {/* <div className='absolute bottom-5 right-5 w-[75%] h-[45px] bg-[#eca2a273] rounded-[10px] flex items-center justify-between p-[10px] z-99'>
-              <p className='text-[14px]'>Please select any one of the newsletter</p>
-           </div> */}
 
         </>
     )

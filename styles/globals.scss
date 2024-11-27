@@ -2723,6 +2723,13 @@ ins.adsbygoogle[data-ad-status="unfilled"] .default_ban_img {
   display: block !important;
 }
 
+.ad{
+  overflow: hidden !important;
+  ins{
+    overflow: hidden !important;
+  }
+}
+
 .height-90 {
   height: 90px !important;
 }

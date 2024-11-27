@@ -1,22 +1,24 @@
 import RootLayout from '@/layouts/RootLayout'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/checkout.module.scss';
-import { get_cart_items, get_customer_info, getCartItem, update_order_status, stored_customer_info, get_payment_method, delete_address, get_razorpay_settings, insertOrder } from '@/libs/api';
+import { get_customer_info, getCartItem, update_order_status, stored_customer_info, get_payment_method, delete_address, get_razorpay_settings, insertOrder } from '@/libs/api';
 import { check_Image } from '@/libs/common'
 import Image from 'next/image'
 import { checkMobile } from '@/libs/api';
-import AddressModal from '@/components/Bookstore/AddressModal';
-import Address from '@/components/Bookstore/Address';
-import AlertUi from '@/components/common/AlertUi';
+// import AddressModal from '@/components/Bookstore/AddressModal';
+// import Address from '@/components/Bookstore/Address';
+// import AlertUi from '@/components/common/AlertUi';
 import LoaderButton from '@/components/common/LoaderButton';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router'
-import { useDispatch, useSelector, Provider } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import customerInfoAction from 'redux/actions/customerInfoAction'
 import alertAction from 'redux/actions/alertAction'
-
 import { toast } from 'react-toastify';
-
+import dynamic from 'next/dynamic';
+const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
+const Address = dynamic(()=> import('@/components/Bookstore/Address'))
+const AddressModal = dynamic(()=> import('@/components/Bookstore/AddressModal'))
 export default function checkout() {
 
 

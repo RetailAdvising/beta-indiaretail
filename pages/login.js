@@ -1,8 +1,6 @@
 import LogIn from '@/components/Auth/LogIn'
-import SignUp from '@/components/Auth/SignUp'
-import Modal from '@/components/common/Modal'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function login() {
   const [shows, setShows] = useState(false);

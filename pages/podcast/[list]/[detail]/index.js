@@ -1,19 +1,21 @@
-import React from 'react'
 import RootLayout from '@/layouts/RootLayout'
 import AudioPlayer from '@/components/Podcast/AudioPlayer';
 import { podcast_details, getAdvertisements, getCurrentUrl, seo_Image } from '@/libs/api'
-import SEO from '@/components/common/SEO'
 import Title from '@/components/common/Title'
 import Cards from '@/components/common/Cards'
-import List from '@/components/common/List'
-import Advertisement from '@/components/Baners/Advertisement'
-import Placeholders from '@/components/common/Placeholders'
+// import List from '@/components/common/List'
+// import Advertisement from '@/components/Baners/Advertisement'
+// import Placeholders from '@/components/common/Placeholders'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic';
+const Placeholders = dynamic(()=> import('@/components/common/Placeholders'))
+const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))
+const List = dynamic(()=> import('@/components/common/List'))
 export default function PodcastDetail({ data, ads_data }) {
     const router = useRouter()
     // const {data,ads_data} = data
-     console.log('pos',data);
+    //  console.log('pos',data);
     return (
         <>
             <Head>

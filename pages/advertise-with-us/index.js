@@ -1,13 +1,4 @@
-import React, { useEffect } from 'react';
 import RootLayout from '@/layouts/RootLayout';
-import Image from 'next/image';
-import { Value } from 'sass';
-import Values from '@/components/Aboutus/values';
-import Publications from '@/components/Aboutus/publications';
-import Exhibitions from '@/components/Aboutus/exhibitions';
-import Events from '@/components/Aboutus/events';
-import About from '@/components/Aboutus/about';
-import Books from '@/components/Aboutus/books';
 import SEO from '@/components/common/SEO';
 import { HomePage } from '@/libs/api';
 import Enquiry from '@/components/Advertise/Enquiry';
@@ -16,8 +7,6 @@ import Partners from '@/components/Advertise/Partners';
 import BrandsGrowth from '@/components/Advertise/BrandsGrowth';
 import MultipleRoutes from '@/components/Advertise/MultipleRoutes';
 import Contact from '@/components/Advertise/Contact';
-
-
 
 
 export default function Advertise({ data }) {

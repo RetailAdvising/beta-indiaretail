@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router'
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { search_product, checkMobile, all_category_list } from '@/libs/api';
 import RootLayout from '@/layouts/RootLayout';
-import Cards from '@/components/common/Cards';
+// import Cards from '@/components/common/Cards';
 import Image from 'next/image'
 import { check_Image } from '@/libs/common'
-import BreadCrumb from '@/components/common/BreadCrumb';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+const Cards = dynamic(()=> import('@/components/common/Cards'))
 // import { Nunito } from 'next/font/google'
 // const nunito = Nunito({
 //     weight: ["300","400","500","600","700"],
@@ -215,7 +216,6 @@ export default function search({ searchTxt, data }) {
 
         {!Skeleton && !enableSearch &&
           <>
-            {/* {!isMobile && <BreadCrumb BreadCrumbs={breadCrumbs}/>} */}
             {searchResult && searchResult.length == 0 ?
               // <EmptySection searchValue={searchValue} />
               <div className={'px-[10px] lg:w-[60%] lg:m-[16px_auto_0px_auto]'}>

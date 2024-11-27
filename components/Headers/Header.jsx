@@ -1,24 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import styles from '@/styles/Header.module.scss'
 import { useRouter } from 'next/router'
 import { check_Image } from '@/libs/common'
-import Dropdowns from '../common/Dropdowns';
-import { search_product, checkMobile, stored_customer_info,user_roles } from '@/libs/api';
-import AuthModal from '../Auth/AuthModal';
+import { search_product, checkMobile,user_roles } from '@/libs/api';
+// import AuthModal from '../Auth/AuthModal';
 import { useSelector, useDispatch } from 'react-redux';
 import setUser from 'redux/actions/userAction';
 import setRole from 'redux/actions/roleAction';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
-// import {setUser} from '@/redux/actions/userAction'
+import dynamic from 'next/dynamic'
+const AuthModal = dynamic(()=> import('../Auth/AuthModal'))
 export default function Header({ checkout }) {
     const router = useRouter();
     const head = {
@@ -33,10 +24,6 @@ export default function Header({ checkout }) {
     const profile = [{ name: 'Logout', icon: '/Navbar/Logout.svg' }, { name: 'Profile', icon: '/login/profile-01.svg', route: '/profile?my_account=edit-profile', mob_route: '/profile?my_account=' }]
     const [valid, setValid] = useState(false);
     const [loader, setLoader] = useState(false);
-    const [usrName,setUsrName] = useState()
-    // const [member, setMember] = useState(false);
-    // const [sort, setSort] = useState(false);
-    const ref = useRef(null);
 
     // Search
     const [enableSearch, setEnableSearch] = useState(false)
@@ -47,7 +34,6 @@ export default function Header({ checkout }) {
         // console.log(user)
         if (typeof window !== 'undefined' && localStorage['apikey']) {
             roles()
-            let data = stored_customer_info();
             // console.log(data)
             // dispatch(setUser(s => s['message']['user_id'] = data.user_id))
             localStorage['apikey'] ? setValid(false) : null;
@@ -99,31 +85,8 @@ export default function Header({ checkout }) {
         }
     }
 
-
-    // const profileMenu = () => {
-    //     setSort(!sort);
-    //     let element = document.getElementById('dropdown1');
-    //     sort ? element.classList.add('dropdown-menu-active') : element.classList.remove('dropdown-menu-active');
-    // }
-
-    // const roleMember = () => {
-    //     // console.log(localStorage['roles']);
-    //     if (localStorage['roles'] && localStorage['roles'] != 'undefined') {
-    //         const data = JSON.parse(localStorage['roles']);
-    //         if (data && data.length != 0) {
-    //             data.map(res => {
-    //                 if (res.role == 'Member') {
-    //                     setMember(!member)
-    //                 }
-    //             })
-    //         }
-    //     }
-    // }
-
     const [isMobile, setIsMobile] = useState()
     useEffect(() => {
-        // console.log(user,'user')
-        // console.log(role,'role')
        
         checkIsMobile();
         window.addEventListener('resize', checkIsMobile)

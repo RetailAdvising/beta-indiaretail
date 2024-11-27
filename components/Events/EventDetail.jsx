@@ -1,24 +1,18 @@
 import Image from 'next/image'
 import { check_Image } from '@/libs/common'
-// import detail from '@/libs/eventDetail'
-import Title from '../common/Title'
-import EventCards from './EventCards'
-import { useRouter } from 'next/router'
-import Placeholders from '../common/Placeholders'
+// import Title from '../common/Title'
+// import EventCards from './EventCards'
+// import Placeholders from '../common/Placeholders'
 import format from 'date-fns/format'
-// import { Nunito } from 'next/font/google'
-import Advertisement from '../Baners/Advertisement'
-import Dropdowns from '../common/Dropdowns'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+// import Advertisement from '../Baners/Advertisement'
+// import Dropdowns from '../common/Dropdowns'
+import dynamic from 'next/dynamic'
+const Placeholders = dynamic(()=> import('../common/Placeholders'))
+const Advertisement = dynamic(()=> import('../Baners/Advertisement'))
+const Dropdowns = dynamic(()=> import('../common/Dropdowns'))
+const EventCards = dynamic(()=> import('./EventCards'))
+const Title = dynamic(()=> import('../common/Title'))
 export default function EventDetail({ data, ads_data }) {
-    const router = useRouter();
 
     const redirectTo = () => {
         if (data.message && data.message.link) {

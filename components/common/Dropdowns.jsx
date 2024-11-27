@@ -1,12 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import Image from 'next/image';
 import { WhatsappShareButton, LinkedinShareButton, TwitterShareButton, FacebookShareButton } from 'react-share'
 import { useRouter } from 'next/router';
 import { checkMobile } from '@/libs/api'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { website, websiteUrl } from '@/libs/config/siteConfig';
-import { CloseButton } from '@chakra-ui/react';
 
 // import { Menu } from '@headlessui/react'
 export default function Dropdowns({ data, showLeft, img, width, share, setting, element, type, link, updateShare, noScroll, btnClass, cur_data, copy_link, noBg, i }) {
@@ -42,73 +41,10 @@ export default function Dropdowns({ data, showLeft, img, width, share, setting, 
                 noScroll(isMobile ? false : true);
                 el.scrollIntoView({ block: 'center', behavior: 'smooth', inline: 'nearest' })
 
-                // setTimeout(() => {
-                //     let ele_next = document.getElementById('div_next'+cur_data.route)
-                //     console.log(ele_next,"ele_next")
-                //     if(ele_next){
-                //         ele_next.click()
-                //     }
-                // }, 400);
-
-                // doc[0].scrollIntoView({ block: 'center', behavior: 'smooth', inline: 'nearest' })
             }
 
-            // noScroll(isMobile ? false : true);
-            // for (let index = 0; index < doc.length; index++) {
-            //     if('cmt'+ cur_data.name == element){
-            //         // const element = doc[index];
-            //         const element = 'cmt'+ cur_data.name;
-            //         // console.log(element)
-            //         element.scrollIntoView({ block: 'center', behavior: 'smooth', inline: 'nearest' })
-
-            //     }
-            // }
-
-
-
-            // console.log(el)
-            // console.log(doc)
-            // el && window.scrollTo(0, 10000)
-            // el && el.scrollIntoView({ block: 'center', behavior: 'smooth', inline: 'nearest' })
-            // (doc) && doc.scrollIntoView({ block: 'end', behavior: 'smooth', inline: 'nearest' })
-            // window.location.href= el && el
         }
     }
-
-    function Position(obj) {
-        var currenttop = 0;
-        if (obj.offsetParent) {
-            do {
-                currenttop += obj.offsetTop;
-            } while ((obj = obj.offsetParent));
-            return [currenttop];
-        }
-    }
-
-
-    // async function copyToClipboard(text) {
-    //     if (!navigator.clipboard) {
-    //       console.error('undefined navigator.clipboard');
-    //       return;
-    //     }
-    //     await navigator?.clipboard?.writeText(text).then(function() {
-    //       console.log('Async: Copying to clipboard was successful!');
-    //     }, function(err) {
-    //       console.error('Async: Could not copy text: ', err);
-    //     });
-    //   }
-
-    //   function getCurrentURL() {
-    //       $parameters.URL = window.location.href.split('?')[0];
-
-    //       var params = window.location.href.split('?')[1];
-    //       $parameters.Parameters = params ? params : '';
-
-    //       return $parameters.URL;
-    //   }
-
-    //   var currentURL = getCurrentURL();
-
 
 
     const [isMobile, setIsMobile] = useState()
@@ -137,46 +73,6 @@ export default function Dropdowns({ data, showLeft, img, width, share, setting, 
             router.push(isMobile ? data.mob_route : data.route)
         }
     }
-
-    // const [title, setTitle] = useState()
-    // const [description, setDescription] = useState()
-    // const [image, setImage] = useState()
-    // const onClick = async () => {
-    //     // Be sure to check for the "none" state, so we don't trigger an infinite loop.
-    //     // if (url === "none") {
-    //     //   const newUrl = await getUrFromService();
-    //     //   setUrl(newUrl);
-    //     // }
-    //     // console.log('btn clicked...')
-    //     let titles = document.querySelector('meta[property="og:title"]')
-    //     let desc = document.querySelector('meta[property="og:description"]')
-    //     let images = document.querySelector('meta[property="og:image"]')
-    //     // console.log(titles.getAttribute('content'))
-    //     setTitle(titles.getAttribute('content'))
-    //     // console.log(desc.getAttribute('content'))
-    //     setDescription(desc.getAttribute('content'))
-    //     // console.log(images.getAttribute('content'))
-    //     setImage(images.getAttribute('content'))
-    // };
-
-    // Whenever "url" changes and we re-render, we manually fire the click event on the button, and then re-set the url.
-    // useEffect(() => {
-    //     // if (url !== "none") {
-    //     //   shareButton.current?.click();
-    //     //   setUrl("none");
-    //     // }
-    //     if (typeof window != 'undefined') {
-    //         let titles = document.querySelector('meta[property="og:title"]')
-    //         let desc = document.querySelector('meta[property="og:description"]')
-    //         let images = document.querySelector('meta[property="og:image"]')
-    //         setTitle(titles.getAttribute('content'))
-    //         // console.log(images,'meta image')
-    //         setDescription(desc.getAttribute('content'))
-    //         setImage(images.getAttribute('content'))
-    //     }
-
-    // }, []);
-
 
     const setings1 = [{ name: 'Copy Link', icon: '/bookstore/Copy.svg' }]
     return (

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import nav from '@/libs/header'
-import SideBar from './SideBar';
-import TopNavBar from './TopNavBar';
+import dynamic from 'next/dynamic';
+const SideBar = dynamic(() => import('./SideBar'))
+const TopNavBar = dynamic(() => import('./SideBar'))
+// import SideBar from './SideBar';
+// import TopNavBar from './TopNavBar';
 import { useRouter } from 'next/router';
 import { checkMobile } from '@/libs/api';
 
-export default function MobileHead({ isLanding = true, Heading, checkout, getActiveTab, activeTab }) {
+export default function MobileHead({ isLanding = true, getActiveTab, activeTab }) {
     const [isMobile, setIsMobile] = useState()
     const [isVisible, setIsVisible] = useState(false);
     const router = useRouter()
@@ -19,7 +22,7 @@ export default function MobileHead({ isLanding = true, Heading, checkout, getAct
         // Clear the timeout if the component unmounts before the 2 seconds
         return () => clearTimeout(timeout);
     }, [isMobile, router.query, activeTab]);
-  
+
     useEffect(() => {
         checkIsMobile();
         window.addEventListener('resize', checkIsMobile)
@@ -27,10 +30,12 @@ export default function MobileHead({ isLanding = true, Heading, checkout, getAct
             window.removeEventListener('resize', checkIsMobile);
         };
     }, [])
-  const  emit_nav_item=(item)=>{
-    activeTab = item
-    getActiveTab(item)
-  }
+
+    const emit_nav_item = (item) => {
+        activeTab = item
+        getActiveTab(item)
+    }
+
     const checkIsMobile = async () => {
         let isMobile = await checkMobile();
         setIsMobile(isMobile);
@@ -67,8 +72,8 @@ export default function MobileHead({ isLanding = true, Heading, checkout, getAct
             lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
         }, false);
     }
-    const [navbar, setNavbar] = useState(false);
 
+    const [navbar, setNavbar] = useState(false);
 
     const showSidebar = () => {
         setNavbar(!navbar)
@@ -84,12 +89,12 @@ export default function MobileHead({ isLanding = true, Heading, checkout, getAct
         }
     }
 
-
-
     return (
         <>
-            {<div className={`fixed sidebar ${navbar ? 'sideActive' : ''} `} ><div className={`${isVisible ? 'visible' : ''}`}></div>
-                <SideBar data={nav} navbar={navbar} close={() => close()} emit_item={emit_nav_item}/></div>}
+            <div className={`fixed sidebar ${navbar ? 'sideActive' : ''} `} >
+                <div className={`${isVisible ? 'visible' : ''}`}></div>
+                {nav && <SideBar data={nav} navbar={navbar} close={() => close()} emit_item={emit_nav_item} />}
+            </div>
             {navbar && <Backdrop />}
 
             <div id="header" className=''>

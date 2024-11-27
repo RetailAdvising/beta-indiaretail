@@ -1,17 +1,7 @@
-import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { check_Image } from '@/libs/common';
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
 export default function EventCards({ data, flex,height,width,card }) {
     const router = useRouter();
     return (

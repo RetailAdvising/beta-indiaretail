@@ -1,14 +1,3 @@
-import React from 'react'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({
-    weight: ["300","400","500","600","700"],
-    display: "block",
-    preload: true,
-    style: 'normal',
-    subsets: ["latin"],
-    variable: '--font-inter'
-  })
 
 const KeyPointsCard = ({data, index}) => {
 

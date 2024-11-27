@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import styles from '@/styles/Components.module.scss'
+import { useEffect, useState } from 'react';
 import { check_Image } from '@/libs/common'
 import Image from 'next/image';
 

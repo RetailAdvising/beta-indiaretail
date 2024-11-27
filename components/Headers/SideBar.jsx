@@ -107,7 +107,7 @@ export default function SideBar({ data, close, navbar,emit_item }) {
 
     return (
         <>
-            {(data.header && data.header.items.length != 0 && navbar) && <div id='side' ref={ref} className={`bg-[#fff] w-[75%] h-full relative `}>
+            {(data && data.header && data.header.items.length != 0 && navbar) && <div id='side' ref={ref} className={`bg-[#fff] w-[75%] h-full relative `}>
                 {/* <div className=''> */}
                 {valid ? <div className='flex items-center gap-[10px] border_bottom p-[15px]' onClick={myAccount}>
                     <Image className='h-[40px] w-[40px]' src={'/profit.svg'} height={17} width={17} alt={'profile'} />

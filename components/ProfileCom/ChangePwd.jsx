@@ -1,26 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { check_Image } from '@/libs/common';
+import { useState } from 'react'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form';
 import styles from '@/styles/Components.module.scss'
 import { update_password } from '@/libs/api';
-import AlertUi from '@/components/common/AlertUi';
+import dynamic from 'next/dynamic';
+const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
+// import AlertUi from '@/components/common/AlertUi';
 import CryptoJS from 'crypto-js';
 
 export default function ChangePwd({ customerInfo }) {
 
-  const router = useRouter();
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [wrong, setWrong] = useState(false);
   const [show, setShow] = useState({ show_1: false, show_2: false, show_3: false })
   const [alertUi, setAlertUi] = useState(false)
   const [alertMsg, setAlertMsg] = useState({})
-
-  useEffect(() => {
-
-  }, [show])
 
   async function signup(data) {
     if (data) {

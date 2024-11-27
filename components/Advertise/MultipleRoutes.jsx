@@ -1,5 +1,4 @@
 import { check_Image } from '@/libs/api'
-import React from 'react'
 
 const MultipleRoutes = ({ data }) => {
     return (

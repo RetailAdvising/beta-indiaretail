@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import { check_Image, getVideoDuration, parseISO8601Duration } from '../../libs/api';
-import Link from 'next/link';
+import { check_Image, getVideoDuration } from '../../libs/api';
 import { useRouter } from 'next/router';
-import ImageLoader from '../ImageLoader';
 
 export default function VideoSlide({ data, cardClass, imgClass, slider_id, slider_child_id, title_class, hide_scroll_button }) {
     const router = useRouter();

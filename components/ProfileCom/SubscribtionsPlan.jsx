@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { check_Image } from '@/libs/common';
 import Image from 'next/image'
 import {  get_customer_plan_based_subscritpions, getColor } from '@/libs/api';
-import NoProductFound from '@/components/common/NoProductFound';
+import dynamic from 'next/dynamic';
+const NoProductFound = dynamic(()=> import('@/components/common/NoProductFound'))
 
 export default function SubscribtionsPlan({ index, payNow, type }) {
   

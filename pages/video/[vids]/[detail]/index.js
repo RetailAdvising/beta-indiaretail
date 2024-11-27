@@ -29,9 +29,7 @@ export default function Videos({ meta_info, ads_data }) {
     let [isMobile, setIsmobile] = useState();
     let [videoDetail, setVideoDetail] = useState();
     const [validator, setValidator] = useState(false)
-    const [prev, setPrev] = useState('')
     const icons = [{ icon: "/bookstore/linkedin.svg", name: 'Linkedin' }, { icon: "/bookstore/FB.svg", name: 'Facebook' }, { icon: "/bookstore/twitter.svg", name: 'Twitter' }, { icon: "/bookstore/whatsapp.svg", name: 'Whatsapp' }]
-    const user = useSelector(s => s.user);
     const role = useSelector(s => s.role);
 
     // let bannerImg = { ad_image: '/ads_baner.png' };

@@ -6,8 +6,9 @@ import Video from '@/components/Video/Video'
 import Title from '@/components/common/Title'
 import SEO from '@/components/common/SEO'
 import Sliders from '@/components/Sliders/index'
-import Advertisement from '@/components/Baners/Advertisement'
-
+// import Advertisement from '@/components/Baners/Advertisement'
+import dynamic from 'next/dynamic'
+const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))
 export default function Videos({ data, ads, slider_data }) {
   
   const [isMobile, setIsMobile] = useState();

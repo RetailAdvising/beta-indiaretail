@@ -1,4 +1,3 @@
-import React from 'react';
 import RootLayout from '@/layouts/RootLayout';
 import Image from 'next/image';
 import data from '@/libs/teams'

@@ -1,23 +1,9 @@
-import React from 'react'
-import Image from 'next/image'
-import styles from '@/styles/newsLetter.module.scss'
-import { check_Image } from '@/libs/common'
 import { useRouter } from 'next/router'
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//   weight: ["300", "400", "500", "600", "700"],
-//   display: "block",
-//   preload: true,
-//   style: 'normal',
-//   subsets: ["latin"],
-//   variable: '--font-inter',
-// })
+
 export default function NewsCard({ data, imgClass, imgFlex, cardClass }) {
   const router = useRouter();
-  // console.log(router.asPath)
-  // const route1 = window.location.origin + ('/' + res.route.split('/')[0] + '/' + parent.day + '/' + res.route.split('/')[1]) // Replace with your route
-  //               window.open(route1, '_blank');
+
   return (
     <>
       {data && data.map((res, index) => {

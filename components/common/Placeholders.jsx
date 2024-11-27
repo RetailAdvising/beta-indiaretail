@@ -1,7 +1,12 @@
-import Title from './Title'
-import Lists from '../Category/Lists'
-import Advertisement from '../Baners/Advertisement'
-import List from '../Bookstore/List'
+// import Title from './Title'
+// import Lists from '../Category/Lists'
+// import Advertisement from '../Baners/Advertisement'
+// import List from '../Bookstore/List'
+import dynamic from 'next/dynamic'
+const List = dynamic(()=> import('../Bookstore/List'))
+const Advertisement = dynamic(()=> import('../Baners/Advertisement'))
+const Lists = dynamic(()=> import('../Category/Lists'))
+const Title = dynamic(()=> import('./Title'))
 export default function Placeholders({ placeholder, tagbasedAd, productNavigation, ads_data,ad_payload }) {
     return (
         <>

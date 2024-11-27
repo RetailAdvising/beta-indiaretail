@@ -1,39 +1,24 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { like, dislike, getList, addComment } from '@/libs/api';
-import Modal from '../common/Modal';
-import AlertUi from '../common/AlertUi';
+// import Modal from '../common/Modal';
+// import AlertUi from '../common/AlertUi';
 import { toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-import CommentModal from './CommentModal'
-// import { Nunito } from 'next/font/google'
+// import CommentModal from './CommentModal'
 import format from 'date-fns/format'
-
-// const nunito = Nunito({
-//     weight: ["300", "400", "500", "600", "700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-// })
+import dynamic from 'next/dynamic';
+const AlertUi = dynamic(()=> import('../common/AlertUi'))
+const Modal = dynamic(()=> import('../common/Modal'))
+const CommentModal = dynamic(()=> import('./CommentModal'))
 export default function Comments({ data, isLast, load, comments, route, updatedCmt, cur, isModal, hide, noScroll, no_data, showSidebar }) {
-    const [input, setInput] = useState({ index: -1, show: false })
-    const [comment, setComment] = useState()
     const [reportComment, setReporComment] = useState()
     const [selecedComment, setSelecedComment] = useState()
     const [isSuccessPopup, setIsSuccessPopup] = useState(false)
     const [alertMessage, setAlertMessage] = useState("")
-    function showInputs(index) {
-        setInput({ index: index, show: true });
-    }
 
     const cardref = useRef(null)
     useEffect(() => {
-        // setComment(data)
-        // setTimeout(() => {
-        //     scrollElement()
-        // }, 1000);
         if (!cardref?.current) return;
         const observer = new IntersectionObserver(([entry]) => {
             if (isLast && entry.isIntersecting) {
@@ -46,7 +31,6 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
     }, [isLast, reportComment])
 
     const likeCmt = async (e,comm, index) => {
-        // console.log(route)
         e.stopPropagation()
         noScroll(true);
         if ((localStorage || !localStorage) && !localStorage['apikey'] && !localStorage['secret']) {
@@ -63,20 +47,12 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
             if (resp.status == 'Success') {
                 // console.log(comm)
                 updatedCmt(comm, route, index)
-                // setComment(resp.message);
-                // if (comments) {
-                //     let index = comments.comments.findIndex(res => { return res.name == resp.message.name })
-                //     if (index >= 0) {
-                //         comments['comments'][index] = resp.message
-                //         // store_comments(comments); john
-                //     }
-                // }
+               
             }
-            // setComment({...comm,likes:(comm.is_liked && comm.is_liked == 1) ? comm.likes - 1:comm.likes + 1
-            //     ,is_liked:(comm.is_liked && comm.is_liked == 1) ? 0 : 1})  ;
-            //     if(comm.is_disliked ==1 && comm.is_liked == 0) dislikeCmt(comm);
+            
         }
     }
+
     const dislikeCmt = async (e,comm, index) => {
         // console.log(comment);
         // console.log(route)
@@ -97,24 +73,14 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
                 // setComment(resp.message);
                 // console.log(comm)
                 updatedCmt(comm, route, index)
-                // if (comments.comments) {
-                //     let index = comments.comments.findIndex(res => { return res.name == resp.message.name })
-                //     if (index >= 0) {
-                //         comments['comments'][index] = resp.message
-                //         store_comments(comments);
-                //     }
-                // }
-
-
             }
-            // setComment({...comm,dislikes:(comm.is_disliked && comm.is_disliked == 1) ? comm.dislikes - 1:comm.dislikes + 1,
-            //     is_disliked:(comm.is_disliked && comm.is_disliked == 1) ? 0 : 1});
-            //     console.log(comment);
         }
     }
+
     const closeModal = () => {
         setIsSuccessPopup(false)
     }
+
     const report = async (cur_command) => {
         // noScroll(false);
         noScroll(true);
@@ -155,47 +121,8 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
         }
     }
 
-    let [mod, setMod] = useState(false)
-    function hides() {
-        mod = true
-        setMod(mod)
-        // setVisible(false)
-        // if (localStorage['roles']) {
-        //     const data = JSON.parse(localStorage['roles']);
-
-        //     if (data && data.length != 0) {
-        //         data.map(res => {
-        //             if (res.role == 'Member') {
-        //                 setValidator(true);
-        //             }
-        //         })
-        //     }
-        // }
-    }
 
     let [showPopup, setShowPopup] = useState(false)
-    let [cmtVal, setCmtVal] = useState('')
-    async function sendMsg(id) {
-        if ((localStorage || !localStorage) && !localStorage['apikey'] && !localStorage['secret']) {
-            setAlertMessage({ message: 'Do you want to comment this article ? you need to login.' })
-            setIsSuccessPopup(true)
-            return
-        }
-        let element = document.getElementById(id + cur.name);
-        // console.log(element, 'element')
-        if (element?.value && element?.value != '') {
-            cmtVal = element.value;
-            setCmtVal(cmtVal)
-            showPopup = true
-            setShowPopup(showPopup)
-
-        } else {
-            cmtVal = '';
-            setCmtVal(cmtVal)
-            showPopup = true
-            setShowPopup(showPopup)
-        }
-    }
 
     const hides1 = (type, data) => {
         showPopup = false;
@@ -237,41 +164,13 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
                 setTimeout(() => {
                     if (element) element.value = '';
                 }, 200);
-                // console.log(resp.message);
-                // resp.message["is_liked"] = 0
-                // resp.message["likes"] = 0
-                // resp.message["is_disliked"] = 0
-                // resp.message["dislikes"] = 0
-                // setComments(c => [...c, resp.message])
-
-                // let array  = []
-                // array.push(resp['message']);
-                // cur.comments = [...comments, ...array];
-                // store_comments(cur);
+                
             }
         }
         else {
             setAlertMessage({ message: "Please enter a comment." })
             setIsSuccessPopup(true)
         }
-    }
-
-    const scrollElement = () => {
-        const el = document.getElementById('scroll');
-        // const el1 = document.getElementById('scrollTag');
-        el?.addEventListener('scroll', ($event) => {
-            console.log($event)
-            if ($event.target.scrollTop + $event.target.offsetHeight >= $event.target.scrollHeight) {
-                // console.log('pagination.....')
-                // if (!no_product) {
-                //     // console.log('scroll')
-                //     page_no > 1 ? get_list() : null
-                //     page_no = page_no + 1
-                // }
-                // page_no = page_no + 1
-                // get_list()
-            }
-        })
     }
 
     const dateFormat = (data) => {
@@ -290,7 +189,6 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
     // console.log(comment)
     return (
         <>
-            {/* <ToastContainer position={'bottom-right'} autoClose={2000} /> */}
             {data && false &&
                 data.map((comment, index) => {
                     return (
@@ -340,15 +238,6 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
                 })
             }
 
-            {/* {mod && <ModPopup />} */}
-
-            {/* {isModal && <div className={`flex justify-between p-[20px_15px] `}>
-                <h6 className={`text-[18px] font-[700] nunito`}>All Comments</h6>
-                <div>
-                    <Image src={'/categories/close.svg'} onClick={hide} className='cursor-pointer ' height={22} width={22} alt='close' />
-                </div>
-            </div>} */}
-
             {isModal && <div className={`p-[20px_20px_0_20px]`}>
                 <h1 className={`lg:text-[24px] md:text-[16px] md:leading-[29.23px] font-semibold leading-[1.3] m-[8px_0] md:my-1 md:mb-[5px]`}>{cur.title}</h1>
 
@@ -371,15 +260,11 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
                 </div>
             </div>}
             {!isModal && <div onClick={() => showSidebar()} className={`relative cursor-pointer bg-[#EEEEEE] mt-[10px] rounded-full flex justify-between border p-[5px]`}>
-                {/* <div className='flex gap-5 items-center'> */}
-                {/* <Image src={'/categories/send-01.svg'} className='cursor-pointer ' height={22} width={22} alt='send' /> */}
                 <p className={`nunito p-[5px_10px]`}>Be the first to comment</p>
-                {/* </div> */}
 
-                {/* <button onClick={() => sendMsg('cmt')} className={`primary_button h-[35px] w-[120px] !rounded-full text-[13px]`}>Comment Now</button> */}
                 <button className={`primary_button h-[35px] w-[120px] !rounded-full text-[13px]`}>Comment Now</button>
             </div>}
-            {showPopup && <CommentModal type={''} hides1={(type, data) => hides1(type, data)} element={cmtVal} msgChange={(val) => msgChange(val)} />}
+            {showPopup && <CommentModal type={''} hides1={(type, data) => hides1(type, data)} msgChange={(val) => msgChange(val)} />}
 
             {/* rounded-[30px_30px_0_0] border*/}
             {data && data.length != 0 &&
@@ -416,8 +301,6 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
                                                 <Image src={'/categories/flag.svg'} height={16} width={16} alt={"image"} className='h-[25px] w-[25px]  cursor-pointer object-contain' onClick={() => report(res)} />
                                             </div>
                                         </div>
-                                        {/* {reportComment && <Modal modal={modal} show={show} visible={visible} hide={(resp_message) => hideReport(resp_message)} data={reportComment} cur={selecedComment.name} />}
-                                        {isSuccessPopup && <AlertUi alertMsg={alertMessage && alertMessage} isOpen={isSuccessPopup} closeModal={closeModal} button_2={"ok"} />} */}
                                     </div>
                                 </div>
                             )
@@ -429,46 +312,11 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
             }
 
             {isModal && <div className={`flex items-center border mx-[10px] h-[40px] bg-[#EEEEEE] rounded-full justify-between`}>
-                {/* <div> */}
+              
                 <input id={'cmt' + cur.name} type='text' placeholder="What's on your mind" autoComplete='off' className={`h-full w-full flex-[0_0_calc(83%_-_10px)] md:flex-[0_0_calc(75%_-_10px)] nunito text-[13px] !border-0 bg-[#EEEEEE] px-[10px] rounded-full`} />
-                {/* </div> */}
+                
                 <div className={`p-[5px] w-full h-full`}><button onClick={submitMsg} className={`primary_button cursor-pointer w-full h-full  text-[13px] md:text-[12px] nunito !rounded-full`}>Post comment</button></div>
             </div>}
         </>
     )
 }
-
-
-// const Alert = () => {
-//     const { isOpen, onOpen, onClose } = useDisclosure()
-//     const finalRef = useRef(null)
-
-//     return (
-//         <>
-//             <Box ref={finalRef} tabIndex={-1} aria-label='Focus moved to this box'>
-//                 Some other content that'll receive focus on close.
-//             </Box>
-
-//             <Button mt={4} onClick={onOpen}>
-//                 Open Modal
-//             </Button>
-//             <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-//                 <ModalOverlay />
-//                 <ModalContent>
-//                     <ModalHeader>Modal Title</ModalHeader>
-//                     <ModalCloseButton />
-//                     <ModalBody>
-//                        <h6>sknskmslcm</h6>
-//                     </ModalBody>
-
-//                     <ModalFooter>
-//                         <Button colorScheme='blue' mr={3} onClick={onClose}>
-//                             Close
-//                         </Button>
-//                         <Button variant='ghost'>Secondary Action</Button>
-//                     </ModalFooter>
-//                 </ModalContent>
-//             </Modal>
-//         </>
-//     )
-// }
