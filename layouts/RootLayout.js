@@ -239,7 +239,17 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
                   </div>
                 </Link> : index == breadCrumbs.length - 1 ?
                   <div className={`flex gap-[5px] items-center capitalize hover:text-red `}>
-                    <p className={`text-[12px] max-w-[250px] line-clamp-1 ${breadCrumbs.length - 1 == index ? 'font-[700]' : 'font-[500]'} nunito`}> {decodeURIComponent(bc).replaceAll('-', ' ')}</p>
+                    <p className={`text-[12px] max-w-[250px] line-clamp-1 ${breadCrumbs.length - 1 == index ? 'font-[700]' : 'font-[500]'} nunito`}>
+                      {(() => {
+                        try {
+                          return decodeURIComponent(bc).replaceAll('-', ' ');
+                        } catch (error) {
+                          console.error("Error decoding URI component:", error);
+                          return bc.replaceAll('-', ' '); // Fallback to a safe string transformation
+                        }
+                      })()}
+                    </p>
+                    {/* <p className={`text-[12px] max-w-[250px] line-clamp-1 ${breadCrumbs.length - 1 == index ? 'font-[700]' : 'font-[500]'} nunito`}> {decodeURIComponent(bc).replaceAll('-', ' ')}</p> */}
                     {/* <p className={`text-[12px] max-w-[250px] line-clamp-1 ${breadCrumbs.length - 1 == index ? 'font-[700]' : 'font-[500]'} nunito`}> {bc.replaceAll('-', ' ')}</p> */}
                     {(index !== 0 && index != breadCrumbs.length - 1) &&
                       <div className='ml-[5px] pt-[4px]'>
