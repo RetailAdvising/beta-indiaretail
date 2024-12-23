@@ -49,7 +49,7 @@ export default function Bookstore({ data, slider_data }) {
 
         {(data && data.length != 0) && <>
           <div className="container zero-gap">
-            {slider_data && slider_data.length != 0 && <Sliders imgClass={'h-[400px] md:h-[200px] w-full'} event={true} data={slider_data} isMobile={isMobile} perView={1} className='gap-0' />}
+            {slider_data && slider_data.length != 0 && <Sliders common_slide={true} imgClass={'h-[400px] md:h-[200px] w-full'} event={true} data={slider_data} isMobile={isMobile} perView={1} className='gap-0' />}
           </div>
           
           <div className={`lg:bg-[#FBFBFD]`}>
@@ -104,7 +104,7 @@ export async function getStaticProps() {
 
   let slider_params = {
     page: 'Product',
-    fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image']
+    fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image','redirect_url']
   }
 
   const res = await sliders(slider_params)

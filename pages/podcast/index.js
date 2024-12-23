@@ -40,7 +40,7 @@ export default function Podcast({ data, ads_data, slider_data }) {
             <RootLayout ad_payload={{ page: 'Podcasts', page_type: 'Landing' }} homeAd={ads_data ? ads_data : null} isLanding={true} head="" adIdH={'podcast-head'} adIdF={'podcast-foot'}>
                 <SEO title={'Podcast'} siteName={'India Retailing'} description={'Podcast'} />
                 <div className="container zero-gap ">
-                    {slider_data && slider_data.length != 0 && <Sliders imgClass={'h-[400px] md:h-[220px] w-full'} event={true} data={slider_data} perView={1} className='gap-0' />}
+                    {slider_data && slider_data.length != 0 && <Sliders common_slide={true} imgClass={'h-[400px] md:h-[220px] w-full'} event={true} data={slider_data} perView={1} className='gap-0' />}
                 </div>
                 {(values && values.length != 0) ? values.map((res, index) => {
                     return (
@@ -94,7 +94,7 @@ export async function getStaticProps() {
 
     let slider_params = {
         page: 'Podcast',
-        fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image']
+        fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image','redirect_url']
     }
     const res = await sliders(slider_params)
     const slider_data = res.message

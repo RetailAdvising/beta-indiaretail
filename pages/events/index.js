@@ -82,9 +82,9 @@ export default function Events({ data, slider_data, ads_data }) {
                 <SEO title={'Events'} siteName={'India Retailing'} description={'Events'} />
                 {/* !mt-6 */}
                 <div className="container zero-gap ">
-                    {slider_data && slider_data.length != 0 && <Sliders imgClass={'h-[400px] md:h-[220px] w-full'} event={true} data={slider_data} perView={1} className='gap-0' />}
+                    {slider_data && slider_data.length != 0 && <Sliders common_slide={true} imgClass={'h-[400px] md:h-[220px] w-full rounded-[5px]'} event={true} data={slider_data} perView={1} className='gap-0' />}
                 </div>
-                <div className='gap-[20px] container justify-between flex-wrap p-[30px_0px] md:p-[15px] lg:flex mb-[20px]'>
+                <div className='gap-[20px] container justify-between flex-wrap pt-[30px] md:p-[15px] lg:flex mb-[20px]'>
                     {(pageData && pageData.length != 0) ? pageData.map((resp, index) => {
                         return (
                             <div key={index} className={`flex flex-col md:flex-[0_0_calc(100%_-_0px)] flex-[0_0_calc(100%_-_15px)] ${index != 0 ? 'md:pt-[15px]' : ''}`}>
@@ -92,7 +92,7 @@ export default function Events({ data, slider_data, ads_data }) {
                                 {/* flex={'flex-[0_0_calc(50%_-_10px)] md:flex-[0_0_calc(100%_-_0px)]'} */}
                                 <div className={`lg:grid lg:grid-cols-4 eventCards md:flex  md:gap-[15px] md:overflow-auto justify-between lg:gap-[20px]`}><EventCards data={resp.events.slice(0, 4)} flex={'md:flex-[0_0_calc(70%_-_10px)]'} height={'h-[210px] md:h-[150px]'} width={'w-full'} /></div>
                                 {(ads_data && resp.name == "Conferences & Summits" ) &&
-                                    <div className='py-[20px]'>
+                                    <div className='py-[20px] lg:mt-4'>
                                         <Advertisement ad_payload={{ page: 'Events', page_type: 'Landing' }} data={ads_data.web_special ? ads_data.web_special : null} adId={'top_first'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} />
                                     </div>}
                             </div>
@@ -155,7 +155,7 @@ export async function getStaticProps() {
 
     let slider_params = {
         page: 'Community Event',
-        fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image']
+        fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image','redirect_url']
     }
     const res = await sliders(slider_params)
     const data = resp.message;

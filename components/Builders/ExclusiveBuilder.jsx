@@ -27,7 +27,7 @@ export default function ExclusiveBuilder({ data, ads }) {
 
     return (
         <>
-            <div className={`lg:flex lg:flex-wrap lg:gap-[15px] ${isMobile ? 'p-[15px] ' : 'container'}`}>
+            <div className={`lg:flex lg:pb-[10px] lg:flex-wrap lg:gap-[15px] ${isMobile ? 'p-[15px] ' : 'container'}`}>
                 {/* lg:h-[685px] */}
                 {(data.message && data.message.length != 0) && <div className={`lg:h-[640px] ${isMobile ? '' : 'border p-5 md:p-[10px]'} rounded-[5px]  flex-[0_0_calc(42%_-_10px)] md:basis-full`}>
                     {data.message.slice(0, 1).map((res, index) => {
@@ -66,7 +66,7 @@ export default function ExclusiveBuilder({ data, ads }) {
             </div>
 
             {/* Section - 2 p-[20px_30px_0_0] w-[30%]*/}
-            {data.leaders_ink && data.leaders_ink.data && data.leaders_ink.data.lengrh != 0 && <div className={`flex lg:pt-[20px] md:p-[0_15px]  pb-[35px] container flex-wrap items-end justify-between w-full gap-[15px]`}>
+            {data.leaders_ink && data.leaders_ink.data && data.leaders_ink.data.length != 0 && <div className={`flex lg:pt-[20px] md:p-[0_15px]  pb-[35px] container flex-wrap items-center justify-between w-full gap-[15px]`}>
                 <div className='w-[calc(75%_-_10px)] md:basis-full md:pt-[10px]'>
                     <Title data={{ title: data.leaders_ink.title }} route={'/IRPrime/leaders-ink'} seeMore={true} />
                     <div className='primeSlide'>
@@ -83,7 +83,7 @@ export default function ExclusiveBuilder({ data, ads }) {
             {/* Section - 3 p-[20px_30px]*/}
 
             {(data.videos && data.videos.ir_video && data.videos.ir_video.length != 0) &&
-                <div className='bg-[#F8F8F8] md:mt-[20px]'>
+                <div className='bg-[#F8F8F8] md:mt-[20px] lg:mb-[40px]'>
                     <div className='lg:py-8 md:p-[15px] container'>
                         <Title data={data.videos} isVid={true} route={'/video/ir-studio'} seeMore={true} />
                         {/* <div className='flex  gap-[15px] justify-between'><YTVideo data={res.ir_video} flex={"flex-[0_0_calc(25%_-_10px)]"} /></div> */}

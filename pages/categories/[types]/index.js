@@ -130,14 +130,14 @@ export default function CategoryType({ values, ads,Id }) {
                             <div className={`border p-[15px] ${data.length > 3 ? 'lg:grid' : '' }  md:h-[auto] h-[520px] rounded-[10px]`}> <List primary_pb={'mb-[5px]'} hash_bg={'mt-[10px]'} route={Id == 'case-studies' ? Id : null} contentWidth={'flex-[0_0_calc(65%_-_10px)]'} titleClamp={'line-clamp-2 '} imgWidth={'w-full'} line={'line-clamp-1 md:hidden'} imgHeight={'h-[90px] md:h-[80px]'} check={true} data={data.slice(1, 5)} borderRadius={'rounded-[5px]'} isReverse={true} /></div>
                         </div>
                     </div> : <Skeleton />}
-                    <div className={`grid grid-cols-4 md:grid-cols-2 md:pt-[20px] lg:py-8 md:gap-[10px] lg:gap-[20px]`}>
+                    <div className={`grid grid-cols-4 md:grid-cols-2 md:pt-[20px] lg:pt-8 lg:pb-4 md:gap-[10px] lg:gap-[20px]`}>
                         {/* contentHeight={'h-[175px]'} */}
                         <Cards cardClass={"lg:h-[315px] md:h-full"} noPrimaryText={true} borderRadius={"rounded-[10px_10px_0_0]"} height={"lg:h-[180px] md:h-[150px]"} route={Id == 'case-studies' ? Id : null} check={true} width={"w-full"} isBorder={true} data={data.slice(5, data.length - 1)} />
                     </div>
                 </div>
 
 
-                <div className='more h-[30px]' ref={cardref}></div>
+                <div className='more h-[20px]' ref={cardref}></div>
                 {(loading && isMobile) && <div id="wave">
                     <span className="dot"></span>
                     <span className="dot"></span>

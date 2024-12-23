@@ -41,7 +41,7 @@ export default function Videos({ data, ads, slider_data }) {
       <RootLayout ad_payload={{ page: 'Videos', page_type: 'Landing' }} homeAd={ads ? ads : null} isLanding={true} head={'IR Prime Videos'} adIdH={'video-head'} adIdF={'video-foot'} >
         <SEO title={'IR Prime Videos'} siteName={'India Retailing'} description={'IR Prime Videos'} />
         <div className="container zero-gap ">
-          {slider_data && slider_data.length != 0 && <Sliders imgClass={'h-[400px] md:h-[220px] w-full'} event={true} data={slider_data} perView={1} className='gap-0' />}
+          {slider_data && slider_data.length != 0 && <Sliders common_slide={true} imgClass={'h-[400px] md:h-[220px] w-full'} event={true} data={slider_data} perView={1} className='gap-0' />}
         </div>
         {(values && values.length != 0) ? <div className='container lg:p-[30px_0px] md:p-[15px]'>
           {values.map((res, index) => {
@@ -107,7 +107,7 @@ export async function getStaticProps() {
 
   let slider_params = {
     page: 'Video',
-    fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image']
+    fields: ['name', 'title', 'web_image', 'mobile_image', 'mobile_app_image','redirect_url']
   }
   const ress = await sliders(slider_params)
   const slider_data = ress.message
