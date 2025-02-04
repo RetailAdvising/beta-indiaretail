@@ -176,7 +176,7 @@ export default function Home({ data }) {
             <div key={i} ref={value.length === i + 3 ? lastPostElementRef : null} className={`py-[20px] ${data.section == 'PS-24-00630' ? 'lg:p-5 bg-[#F8F9FA]' : data.section == 'PS-23-00157' || data.section == 'Infocus' ? 'border-b border-[#d4d8d8] container' : data.section == 'PS-23-00166' ? 'bg-[#000] lg:my-5 lg:p-[20px_40px] md:py-[20px]  no_scroll md:mb-5' : data.section == 'PS-23-00130' ? 'lg:bg-[#f1f1f1] p-5 lg:my-5' : data.section == 'PS-24-00623' ? 'bg-[#F0F0F0]' : 'container'}  md:p-[15px]  md:py-[10px] lg:flex gap-5 ${data.section == 'Reconnect' ? 'lg:items-center' : ''}`}>
               {(data.layout_json && JSON.parse(data.layout_json).length != 0) && JSON.parse(data.layout_json).map((res, index) => {
                 return (
-                  <div key={index} className={`${res.class == 'flex-[0_0_calc(100%_-_0px)]' ? 'w-full' : res.class} ${(data.section != 'PS-24-00630') ? 'md:mb-[20px]' : 'container'}  ${((data.section == 'PS-23-00130') && !isMobile) ? 'container' : ''} ${data.section == 'PS-23-00166' ? 'container md:!mb-0' : ''} ${data.section == 'PS-24-00623' && !isMobile ? 'container' : ''}`}>
+                  <div key={index} className={`${res.class == 'flex-[0_0_calc(100%_-_0px)]' ? 'w-full' : res.class} ${(data.section != 'PS-24-00630') ? 'md:my-[10px]' : 'container'}  ${((data.section == 'PS-23-00130') && !isMobile) ? 'container' : ''} ${data.section == 'PS-23-00166' ? 'container md:!mb-0' : ''} ${data.section == 'PS-24-00623' && !isMobile ? 'container' : ''}`}>
                     {(res.components && res.components.length != 0) && res.components.map((c, c_index) => {
                       return (
                         <div key={c.component_title} className={`${c.component_title == "Infocus Ad" ? 'md:pb-[10px]' : ''} ${c.component_title == "Top 4 Stories" ? 'top3  lg:justify-center md:gap-5' : c.component_title == "Featured Content" ? 'md:mb-[20px] pt-[20px]' : ''}`}>
@@ -187,7 +187,7 @@ export default function Home({ data }) {
                           </>}
                           {(c.component_title == "Latest News" && c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_data_type == 'Location') && <>
                             <Title data={{ title: 'Latest News' }} seeMore={true} route={'/categories/latest-news'} />
-                            {isMobile ? <><div className='no_scroll md:mb-[15px]'><LatestNews height={'h-[190px]'} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} /></div><LatestNews height={'h-[190px]'} width={'w-full'} isList={true} data={data.data[c.cid].data.slice(4, 6)} /></> : <LatestNews height={'md:h-[222px] lg:h-[235px]'} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} />}
+                            {isMobile ? <><div className='no_scroll md:mb-[15px]'><LatestNews  height={'h-[190px] '} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} /></div><LatestNews  height={'h-[190px]'} width={'w-full'} isList={true} data={data.data[c.cid].data.slice(4, 6)} /></> : <LatestNews marginstyle={'lg:mb-[10px]'} height={'md:h-[222px] lg:h-[235px]'} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} />}
                           </>}
                           {(ads && c.component_title == "Infocus Ad" && data.section == 'Infocus' && c.cid && data.data[c.cid]) &&
                             <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.infocus ? ads.infocus : null} position={'small'} adId={'infocus'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} />
@@ -388,7 +388,7 @@ export default function Home({ data }) {
 
                           {(c.cid && books && books.length != 0 && c.component_title == "Book Store") && <>
                             <Title data={{ title: c.component_title }} route={'/bookstore'} seeMore={true} />
-                            <div className={`lg:grid lg:gap-5 lg:grid-cols-5 no_scroll`}><Card isHome={true} imgClass={'lg:h-[300px] md:h-[225px] mouse'} check={true} flex={'md:flex-[0_0_calc(50%_-_10px)]'} data={books} boxShadow={true} /></div>
+                            <div className={`lg:grid lg:gap-5 lg:grid-cols-5 no_scroll`}><Card isHome={true} imgClass={'lg:h-[300px] md:h-[225px] mouse aspect-[2/2.5]'} check={true} flex={'md:flex-[0_0_calc(50%_-_10px)]'} data={books} boxShadow={true} /></div>
                           </>}
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Reconnect") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/reconnect'} seeMore={true} />

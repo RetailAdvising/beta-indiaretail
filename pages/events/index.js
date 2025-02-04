@@ -32,10 +32,16 @@ export default function Events({ data, slider_data, ads_data }) {
         }
 
         const intersectionObserver = new IntersectionObserver(entries => {
-            if (entries[0].intersectionRatio <= 0) return;
+            if (entries[0].intersectionRatio <= 0){
+                
+                return
+            };
             if (!no_product) {
                 page_no > 1 ? getEvents() : null
                 page_no = page_no + 1
+            }else{
+                let more = document.getElementsByClassName("more")[0]
+                more.style.display = "none"
             }
         });
 
@@ -84,7 +90,7 @@ export default function Events({ data, slider_data, ads_data }) {
                 <div className="container zero-gap ">
                     {slider_data && slider_data.length != 0 && <Sliders common_slide={true} imgClass={'h-[400px] md:h-[220px] w-full rounded-[5px]'} event={true} data={slider_data} perView={1} className='gap-0' />}
                 </div>
-                <div className='gap-[20px] container justify-between flex-wrap pt-[30px] md:p-[15px] lg:flex mb-[20px]'>
+                <div className='gap-[20px] container justify-between flex-wrap pt-[30px] md:p-[15px] lg:flex lg:mb-[30px]'>
                     {(pageData && pageData.length != 0) ? pageData.map((resp, index) => {
                         return (
                             <div key={index} className={`flex flex-col md:flex-[0_0_calc(100%_-_0px)] flex-[0_0_calc(100%_-_15px)] ${index != 0 ? 'md:pt-[15px]' : ''}`}>

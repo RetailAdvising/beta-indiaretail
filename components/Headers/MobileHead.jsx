@@ -49,7 +49,7 @@ export default function MobileHead({ isLanding = true, getActiveTab, activeTab }
         var header = document.getElementById('header')
         element.scrollTop = 0
         header.className = 'nav-down'
-        element.classList.add('mt-[95px]')
+        element.classList.add('lg:mt-[95px]' , 'md:mt-[60px]');
         tabs.className = 'tabs-down'
 
         element.addEventListener("scroll", function () { // or window.addEventListener("scroll"....
@@ -57,16 +57,16 @@ export default function MobileHead({ isLanding = true, getActiveTab, activeTab }
             if (st < 100) {
                 // console.log(st);
                 header.className = 'nav-down'
-                element.classList.add('mt-[95px]')
+                element.classList.add('lg:mt-[95px]' , 'md:mt-[60px]');
                 tabs.className = 'tabs-down'
             }
             else if (st > lastScrollTop) {
                 header.className = 'nav-up'
-                element.classList.remove('mt-[95px]')
+                element.classList.remove('lg:mt-[95px]', 'md:mt-[60px]');
                 tabs.className = 'tabs-up'
             } else if (st < lastScrollTop && st > 100) {
                 header.className = 'nav-down'
-                element.classList.remove('mt-[95px]')
+                element.classList.remove('lg:mt-[95px]', 'md:mt-[60px]');
                 tabs.className = 'tabs-down'
             } // else was horizontal scroll
             lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
@@ -97,7 +97,7 @@ export default function MobileHead({ isLanding = true, getActiveTab, activeTab }
             </div>
             {navbar && <Backdrop />}
 
-            <div id="header" className=''>
+            <div id="header" className=' md:!h-fit'>
                 <div className='flex border_bottom items-center z-30 justify-between p-[5px_15px] min-h-[60px]' >
                     <div className='flex gap-[15px] items-center'>
                         <div >

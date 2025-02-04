@@ -38,7 +38,7 @@ export default function Title({ data, textClass, seeMore, font, noPadding, isVid
           </div>
           {
             seeMore &&
-            <div className={`flex items-center gap-[5px] cursor-pointer z-[9] ${data.title == 'Shopping Centers' ? 'lg:pr-[10px]' : ''}`} onClick={() => goTo(data)}>
+            <div className={`flex items-center gap-[5px] cursor-pointer z-[9] ${data.title == 'Shopping Centers' ? 'lg:pr-[25px]' : ''}`} onClick={() => goTo(data)}>
               <p className={`text-[12px] font-normal ${see} nunito`}>View All</p>
               <Image className='h-[11px] w-[5px] object-contain' src={!isIcon && see ? '/arrow-white.svg' : '/forwardIcon.svg' } height={5} width={5} alt='View All' />
             </div>

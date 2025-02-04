@@ -180,7 +180,7 @@ export default function search({ searchTxt, data }) {
       <RootLayout checkout={isMobile ? false : true}>
         {/* onKeyPress={()=>{navigateSearchScreen('search')}} */}
         
-        <div className={`${isMobile ? 'hidden' : 'container flex justify-end pt-[15px]'} `}>
+        <div className={`${isMobile ? 'hidden' : 'container flex justify-end pt-[15px]'} md:hidden`}>
           <Image src={'/categories/close.svg'} onClick={() => router.back()}  className='cursor-pointer ' height={22} width={22} alt='close' />
         </div>
         

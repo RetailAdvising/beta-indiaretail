@@ -52,8 +52,8 @@ export default function Widgets({ data, index, routers, productNavigation }) {
                   </div>
                   <div>
                     {(res.primary_text && res.secondary_text) && <p className={`flex gap-2 !mb-[5px] items-center py-[5px] line-clamp-1`}><span className={`primary_text nunito leading-normal tracking-wider !text-[10px] line-clamp-1 flex-[0_0_50%]`}>{res.primary_text}</span> {res.secondary_text && <span className="h-[10px] w-[1px] bg-[#6f6f6f] flex-[0_0_1%]"></span>} <span className={`secondary_text nunito line-clamp-1 flex-[0_0_49%]`}>{res.secondary_text}</span></p>}
-                    {res.title && <p className={`line-clamp-2 !mb-0 !text-[14px] title nunito`}>{res.title}</p>}
-                    {res.item && <p className={`line-clamp-2 !mb-0 !text-[14px] title nunito`}>{res.item}</p>}
+                    {res.title && <p className={`line-clamp-2 !mb-0 !text-[14px] title nunito text-start`}>{res.title}</p>}
+                    {res.item && <p className={`line-clamp-2 !mb-0 !text-[14px] title nunito text-start`}>{res.item}</p>}
                     {data.title == 'Events' &&
                       <div className={`flex gap-[5px] items-center lg:pt-[10px]`}>
                         <p className={`flex !mb-0 items-center gap-[5px] md:flex-direction`}><Image src={'/calendar.svg'} className=' h-[15px] w-[13px] !p-0' objectFit='contain' height={25} width={20} alt={res.title} />  <span className={`light_text !text-[9px]  nunito`}>{res.start_date}</span></p>{res.locations && <span className='h-[18px] w-[2px] mx-[6px] bg-[#ddd]'></span>}

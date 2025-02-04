@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import ImageLoader from '../ImageLoader';
 
-export default function LatestNews({ data, height, width, isList }) {
+export default function LatestNews({ data, height, width, isList,marginstyle }) {
   const [isMobile, setIsMobile] = useState()
   const router = useRouter()
   useEffect(() => {
@@ -23,9 +23,9 @@ export default function LatestNews({ data, height, width, isList }) {
     <>
       {(data && !isMobile) ? data.map((res, index) => {
         return (
-          <Link key={index} href={'/' + res.route}>
+          <Link key={index} href={'/' + res.route} className={``}>
             {/* !res.image && */}
-            <div className={`pb-[10px] ${((index != data.length - 1 || index == 1)) && 'border_bottom'}`}>
+            <div className={`pb-[10px] ${((index != data.length - 1 || index == 1)) && 'border_bottom'} ${marginstyle}`}>
               {/* loader={imageLoader} */}
               {/* {(res.thumbnail_imagee && index < 2) && <Image loading="lazy" blurDataURL={'/empty_state.svg'}  placeholder='blur' src={check_Image(res.thumbnail_imagee ? res.thumbnail_imagee : res.image)} className={`rounded-[5px] ${height} ${width}`} width={400} height={200} alt={res.title} />} */}
               {(res.thumbnail_imagee && index < 2) && <ImageLoader style={`rounded-[5px] ${height} ${width}`} src={res.thumbnail_imagee ? res.thumbnail_imagee : res.image} title={res.title} />}
