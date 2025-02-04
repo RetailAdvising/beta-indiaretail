@@ -169,7 +169,7 @@ export default function Home({ data }) {
     <>
 
       <RootLayout ad_payload={{ page: "Home", page_type: "Landing" }} data={data} isLanding={true} head={''} adIdH={'home-head'} adIdF={'home-foot'} homeAd={ads && ads.header ? ads : null}>
-        <SEO title={'India Retailing'} siteName={'India Retailing'} description={'This is IndiaRetailing and its about news and articles based on the popular site.'} />
+        <SEO title={'Retail News | Latest Retail Industry News & Business Updates'} siteName={'India Retailing'} description={'Discover India Retail News, Trends, Reports, Case Studies, Business Analysis, Technology, Startup & Videos Trusted by Retail Business Leaders'} keywords={`Retail News, Online Retail News, Latest Retail News, Retail industry News, Retail Business News, Retail Technology News, Retail Updates, Retail Sector News, Best Retail Industry News`} />
 
         {(value && value.length != 0) ? value.map((data, i) => {
           return (

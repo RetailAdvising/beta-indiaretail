@@ -23,7 +23,7 @@ export default function IRPrime({ data,ads }) {
     return (
         <>
             <RootLayout ad_payload={{ page: 'IR Prime', page_type: 'Landing' }} homeAd={ads ? ads : null} isLanding={true} head={'IR Prime'} adIdH={'ir-prime-head'} adIdF={'ir-prime-foot'}>
-                <SEO title={'IR Prime'} siteName={'India Retailing'} description={'IR Prime'} />
+                <SEO title={'IR Prime - Retail Insights & Retail Industry News Portal'} siteName={'India Retailing'} description={'Stay updated with the latest retail news, insights & trends on India Retailing ( IR Prime). Discover exclusive articles, industry analysis & expert opinions.'}  keywords={`IR Prime , Retail Prime News , Retail Industry News , industry insights , Retail Prime , Retail Trends , Retail Prime Information , Retail Prime Update`}/>
                 {(value && value.message && value.message.length != 0) ? <ExclusiveBuilder data={value} ads={ads ? ads : null} /> : <Skeleton />}
             </RootLayout>
 

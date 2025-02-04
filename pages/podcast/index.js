@@ -38,7 +38,7 @@ export default function Podcast({ data, ads_data, slider_data }) {
     return (
         <>
             <RootLayout ad_payload={{ page: 'Podcasts', page_type: 'Landing' }} homeAd={ads_data ? ads_data : null} isLanding={true} head="" adIdH={'podcast-head'} adIdF={'podcast-foot'}>
-                <SEO title={'Podcast'} siteName={'India Retailing'} description={'Podcast'} />
+                <SEO title={`Retail Trends Podcast : Insights for India's Market`} siteName={'India Retailing'} description={`Explore retail trends, strategies, and insights in India's dynamic market with expert interviews and analysis. Tune in for actionable takeaways.`} keywords={`Retail trends Podcast, India market Podcast , retail insights Podcast, retail podcast, market strategies Podcast, Indian retail Podcast, expert interviews, retail analysis, business growth Podcas`} />
                 <div className="container zero-gap ">
                     {slider_data && slider_data.length != 0 && <Sliders common_slide={true} imgClass={'h-[400px] md:h-[220px] w-full'} event={true} data={slider_data} perView={1} className='gap-0' />}
                 </div>

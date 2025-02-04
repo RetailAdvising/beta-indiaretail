@@ -45,7 +45,7 @@ export default function Bookstore({ data, slider_data }) {
   return (
     <>
       <RootLayout ad_payload={{ page: 'Books', page_type: 'Landing' }} homeAd={ads_data ? ads_data : null} adIdH={'book-head'} adIdF={'book-foot'} >
-        <SEO title={'Bookstore'} siteName={'India Retailing'} description={'Bookstore'} />
+        <SEO title={'India Retailing Bookstore - Retail Books & Latest Magazines'} siteName={'India Retailing'} description={'Get Retail-Focused Books & Latest Magazines at India Retailing Bookstore. Access Industry Insights, Business Strategies & Market Trends in Retail.'} keywords={`Latest Magazines , Retail Business Magazine, Retail Magazine Online, Top Retail Magazine, Best Retail Magazine, Retail Magazine Editions, Retail Books, Business Magazine `} />
 
         {(data && data.length != 0) && <>
           <div className="container zero-gap">

@@ -85,7 +85,7 @@ export default function Events({ data, slider_data, ads_data }) {
     return (
         <>
             <RootLayout ad_payload={{ page: 'Events', page_type: 'Landing' }} homeAd={ads_data ? ads_data : null} isLanding={true} head={'Events'} adIdH={'events-head'} adIdF={'events-foot'}>
-                <SEO title={'Events'} siteName={'India Retailing'} description={'Events'} />
+                <SEO title={'India Retailing Events - Retail Industry Conference & Awards'} siteName={'India Retailing'} description={'Explore Upcoming Retail Events, Conferences & Awards on India Retailing. Join Industry Leaders & Professionals for Insights, Networking & Business Growth.'} keywords={`Retail Event Update , Industry Event Update , Explore Retail Event , Explore Retail Industry , Retail Industry Growth , Retail Networking`} />
                 {/* !mt-6 */}
                 <div className="container zero-gap ">
                     {slider_data && slider_data.length != 0 && <Sliders common_slide={true} imgClass={'h-[400px] md:h-[220px] w-full rounded-[5px]'} event={true} data={slider_data} perView={1} className='gap-0' />}

@@ -39,7 +39,7 @@ export default function Videos({ data, ads, slider_data }) {
   return (
     <>
       <RootLayout ad_payload={{ page: 'Videos', page_type: 'Landing' }} homeAd={ads ? ads : null} isLanding={true} head={'IR Prime Videos'} adIdH={'video-head'} adIdF={'video-foot'} >
-        <SEO title={'IR Prime Videos'} siteName={'India Retailing'} description={'IR Prime Videos'} />
+        <SEO title={'India Retailing Videos - Retail Industry Insights & Trends'} siteName={'India Retailing'} description={'Watch India Retailing videos featuring retail industry insights, expert interviews & trend analysis. Stay updated on the latest retail developments.'} keywords={`Retail Industry Video , Retail News Video , Latest Industry Video , Latest Retail Video, Retail Update Video, Business Growth Video, expert interviews`}/>
         <div className="container zero-gap ">
           {slider_data && slider_data.length != 0 && <Sliders common_slide={true} imgClass={'h-[400px] md:h-[220px] w-full'} event={true} data={slider_data} perView={1} className='gap-0' />}
         </div>

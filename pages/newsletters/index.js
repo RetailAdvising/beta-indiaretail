@@ -171,7 +171,7 @@ export default function newsletter({ ads }) {
       {newsDetail && <NewsDetail data={detail} visible={newsDetail} hide={hideDetail} />}
       <RootLayout ad_payload={{ page: 'Newsletters', page_type: 'Landing' }} homeAd={ads ? ads : null} isLanding={true} head={'Newsletters'} adIdH={'news-head'} adIdF={'news-foot'}>
         {/* {!skeleton && localValue && !localValue['cust_name'] &&  */}
-        <SEO title={'Newsletters'} siteName={'India Retailing'} description={'Newsletters'} />
+        <SEO title={'India Retailing Newsletters - Retail Insights & Updates'} siteName={'India Retailing'} description={'Subscribe to India Retailing Newsletters for the Latest Retail News, Industry Updates & Insights. Stay Informed on Trends, Innovations & Market Analysis.'} keywords={`Retail Newsletters , India Retailing Newsletters , Latest Retail Newsletter , Newsletter Update , Top Retail News , Market Trends`} />
 
         {!isLoggedIn && <>
           {skeleton ? <SkeletonLoader /> :
