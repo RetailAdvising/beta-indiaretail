@@ -84,7 +84,7 @@ export default function Bookstore({ data, slider_data }) {
           </div>}
 
           {data[3] && <div className='' style={{ background: '#fbfbfd' }}>
-            <div className={`flex-[0_0_calc(100%_-_10px)] m-[40px_auto]  md:m-[0px_auto] container md:p-[15px] lg:py-8`}>
+            <div className={`flex-[0_0_calc(100%_-_10px)] m-[40px_auto] lg:mb-[30px]  md:m-[0px_auto] container md:p-[15px] lg:py-8`}>
               <Title data={data[3]} seeMore={true} />
               <div className={`flex gap-[15px] flex-wrap `}><Card category={data[3].route} object_fit={'object-contain'} padding={'p-[5px]'} isBorder={true} check={true} isLanding={true} height={isMobile ? 'h-[160px]' : 'h-[280px]'} flex={'flex-[0_0_calc(20%_-_15px)] md:flex-[0_0_calc(50%_-_10px)]'} data={data[3].products} /></div>
             </div>
