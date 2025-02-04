@@ -3,13 +3,13 @@ import { useEffect, useState, useRef } from 'react'
 import RootLayout from '@/layouts/RootLayout';
 import List from '@/components/common/List';
 import Cards from '@/components/common/Cards';
-import { articlesList, checkMobile, getAdvertisements } from '@/libs/api';
+import { articlesList, checkMobile, getAdvertisements, getList } from '@/libs/api';
 import { useRouter } from 'next/router';
 import SEO from '@/components/common/SEO'
 import Tags from '@/components/common/Tags';
 import ImageLoader from '@/components/ImageLoader';
 
-export default function CategoryType({ values, ads,Id }) {
+export default function CategoryType({ values, ads, Id,metaInfo }) {
     const router = useRouter();
     const [data, setData] = useState([]);
 
@@ -19,7 +19,7 @@ export default function CategoryType({ values, ads,Id }) {
     let no_product = false;
     const [loading, setLoading] = useState(false);
 
-    // console.log(values)
+ 
 
 
     useEffect(() => {
@@ -64,7 +64,7 @@ export default function CategoryType({ values, ads,Id }) {
             cardref?.current && intersectionObserver?.unobserve(cardref?.current)
         }
 
-    }, [router.query,cardref]);
+    }, [router.query, cardref]);
 
     async function loadMore() {
         setLoading(true)
@@ -105,15 +105,15 @@ export default function CategoryType({ values, ads,Id }) {
     }
     return (
         <>
-            <RootLayout ad_payload={{ page: 'Categories', page_type: 'List' }} isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.types+'catH'} adIdF={router.query.types+'catF'} head={router.query.types}>
-                <SEO title={router.query.types} siteName={'India Retailing'} ogType={router.query.types} description={router.query.types} />
+            <RootLayout ad_payload={{ page: 'Categories', page_type: 'List' }} isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.types + 'catH'} adIdF={router.query.types + 'catF'} head={router.query.types}>
+                <SEO title={metaInfo && metaInfo.meta_title ? metaInfo.meta_title :  router.query.types} siteName={'India Retailing'} ogType={router.query.types} description={metaInfo && metaInfo.meta_description ? metaInfo.meta_description :router.query.types} keywords={metaInfo && metaInfo.meta_keywords ? metaInfo.meta_keywords :router.query.types} />
                 <div className={`${isMobile ? 'md:p-[15px]' : 'container'}`} id='root' >
                     {(data && data.length != 0) ? <div className={`lg:flex lg:flex-wrap  lg:gap-[20px]`}>
                         <div className={`flex-[0_0_calc(65%_-_10px)]  md:flex-[0_0_calc(100%_-_10px)]`}>
                             {/* {!isMobile && <Title data={{ title: router.query.types }} />} */}
                             <div className={`${isMobile ? '' : 'border'} rounded-[10px] lg:h-[520px] lg:p-[15px] cursor-pointer`}>{data && data.slice(0, 1).map((res, index) => {
                                 return (
-                                    <div key={res.title ? res.title : index} onClick={() => router.push(`${Id == 'case-studies' ? '/p/'+ res.route : '/'+ res.route}`)} className={` pb-[10px]`}>
+                                    <div key={res.title ? res.title : index} onClick={() => router.push(`${Id == 'case-studies' ? '/p/' + res.route : '/' + res.route}`)} className={` pb-[10px]`}>
                                         <h6 className={`lg:text-[18px] md:text-[16px] font-[700] nunito`}>{res.title}</h6>
                                         <ImageLoader style={`h-[330px] w-full mt-[10px] rounded-[5px]`} src={res.image ? res.image : res.thumbnail_image ? res.thumbnail_image : res.meta_image ? res.meta_image : null} title={res.title ? res.title : 'indiaRetail'} />
                                         {/* <Image className={`h-[330px] w-full mt-[10px] rounded-[5px]`} src={check_Image(res.image ? res.image : res.thumbnail_image)} height={250} width={300} alt={res.title} /> */}
@@ -127,7 +127,7 @@ export default function CategoryType({ values, ads,Id }) {
                         </div>
                         {/* lg:pt-[45px] */}
                         <div className={`lg:flex-[0_0_calc(35%_-_10px)]  md:pt-[20px] md:flex-[0_0_calc(100%_-_10px)]`}>
-                            <div className={`border p-[15px] ${data.length > 3 ? 'lg:grid' : '' }  md:h-[auto] h-[520px] rounded-[10px]`}> <List primary_pb={'mb-[5px]'} hash_bg={'mt-[10px]'} route={Id == 'case-studies' ? Id : null} contentWidth={'flex-[0_0_calc(65%_-_10px)]'} titleClamp={'line-clamp-2 '} imgWidth={'w-full'} line={'line-clamp-1 md:hidden'} imgHeight={'h-[90px] md:h-[80px]'} check={true} data={data.slice(1, 5)} borderRadius={'rounded-[5px]'} isReverse={true} /></div>
+                            <div className={`border p-[15px] ${data.length > 3 ? 'lg:grid' : ''}  md:h-[auto] h-[520px] rounded-[10px]`}> <List primary_pb={'mb-[5px]'} hash_bg={'mt-[10px]'} route={Id == 'case-studies' ? Id : null} contentWidth={'flex-[0_0_calc(65%_-_10px)]'} titleClamp={'line-clamp-2 '} imgWidth={'w-full'} line={'line-clamp-1 md:hidden'} imgHeight={'h-[90px] md:h-[80px]'} check={true} data={data.slice(1, 5)} borderRadius={'rounded-[5px]'} isReverse={true} /></div>
                         </div>
                     </div> : <Skeleton />}
                     <div className={`grid grid-cols-4 md:grid-cols-2 md:pt-[20px] lg:pt-8 lg:pb-4 md:gap-[10px] lg:gap-[20px]`}>
@@ -221,10 +221,22 @@ export async function getServerSideProps({ params }) {
     // let values = await value.message;
     let values = await param.category_route == 'case-studies' ? value.message.message : value.message;
 
-    if(values.length === 0){
-        return{
-            notFound : true
+    if (values.length === 0) {
+        return {
+            notFound: true
         }
+    }
+
+    let metaparam = {
+        doctype: "Articles Category",
+        fields: [ "meta_title", "meta_description", "meta_keywords", "meta_image"],
+        filters: { "route": Id }
+    }
+
+    let metadata = await getList(metaparam);
+    let metaInfo = {};
+    if (metadata && metadata.message && metadata.message.length != 0) {
+        metaInfo = metadata.message[0];
     }
 
     let param1 = { page: 'Categories', page_type: 'List' }
@@ -232,6 +244,6 @@ export async function getServerSideProps({ params }) {
     const ads = resp.message;
 
     return {
-        props: { values, ads,Id }
+        props: { values, ads, Id, metaInfo }
     }
 }
