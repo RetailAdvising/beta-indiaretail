@@ -9,7 +9,7 @@ import OTP from './OTP';
 import SignUp from './SignUp';
 import Forget from './Forget'
 // import FacebookLogin from 'react-facebook-login';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import CryptoJS from 'crypto-js';
 
 // import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -24,7 +24,7 @@ import { GoogleLogin } from '@react-oauth/google';
 
 
 export default function LogIn({ isModal, hide, auth }) {
-   
+
     const [show, setShow] = useState(false)
     const [wrong, setWrong] = useState(false)
     const [otp, setOtp] = useState(false)
@@ -34,7 +34,7 @@ export default function LogIn({ isModal, hide, auth }) {
 
     // const cookieStore = cookies();
     const { register, handleSubmit, formState: { errors } } = useForm();
- 
+
     const [isMobile, setIsMobile] = useState()
     useEffect(() => {
         checkIsMobile();
@@ -228,10 +228,10 @@ export default function LogIn({ isModal, hide, auth }) {
                     // console.log(val, "val")
                     setShowMob(true)
                     // socialLogin(parseJwt(response.credential))
-                }else{
+                } else {
                     toast.error(resp.message.message)
                 }
-            }else{
+            } else {
                 toast.error(resp.message.message)
             }
         }
@@ -370,6 +370,7 @@ export default function LogIn({ isModal, hide, auth }) {
                                 </div>
                                 {errors?.email && <p className={`${styles.danger}`}>{errors.email.message}</p>}
                             </div>
+
                             <div className={`flex flex-col  pb-4 relative`}>
                                 <label className={`text-[#808D9E] ${styles.label}`} htmlFor='password'>Password</label>
                                 <div className='border rounded-[5px] flex gap-[10px] mt-[5px] p-[0_10px] h-[40px] items-center'>
@@ -380,7 +381,7 @@ export default function LogIn({ isModal, hide, auth }) {
                                 </div>
                                 {errors.password && <p className={`${styles.danger}`}>{errors.password.message}</p>}
                             </div>
-                            
+
 
                             <div className={`flex items-center justify-between gap-[50px] pb-5`}>
                                 <div className='flex cursor-pointer items-center gap-[10px]'>
@@ -399,8 +400,10 @@ export default function LogIn({ isModal, hide, auth }) {
                         {/* <p className='text-center pt-[20px] text-[#B5B5BE]'>Instant Login</p> */}
 
                         <div className='flex gap-[15px] m-[18px_auto] lg:w-[75%] items-center justify-center'>
-                            <div className='flex h-[50px] w-[75px] rounded-[10px] border cursor-pointer googleBtn items-center justify-center '>
-                                {/* <Image height={20} className='h-[25px] w-[25px] object-contain' width={20} alt='google' src={'/google-login.svg'} /> */}
+                            <div className='flex h-[50px] w-[75px] rounded-[10px] relative border cursor-pointer googleBtn items-center justify-center '>
+                                <div className='absolute h-[90%] w-full flex items-center justify-center'>
+                                    <Image height={20} className='h-[25px] w-[25px] object-contain' width={20} alt='google' src={'/google-login.svg'} />
+                                </div>
                                 {/* <p>Continue with Google</p> onClick={() => signIn('google')} */}
                                 {/* {<GoogleLogin buttonText="" clientId="189689673866-irqdceaurkp36epq803g6gdbcsj0rum7.apps.googleusercontent.com" onSuccess={responseGoogle} onFailure={responseGoogle} cookiePolicy={'single_host_origin'}/>} */}
                                 {/* <GoogleOAuthProvider clientId="189689673866-irqdceaurkp36epq803g6gdbcsj0rum7.apps.googleusercontent.com"></GoogleOAuthProvider>; */}
@@ -409,7 +412,7 @@ export default function LogIn({ isModal, hide, auth }) {
                                     text=' '
                                     size='large'
                                     width={'50px'}
-                                    style={{ border: 'none !important' }}
+                                    style={{ border: 'none !important',opacity:0 }}
                                     onSuccess={handleSuccess}
                                     onFailure={handleFailure} />
                                 {/* <button onClick={() => signIn("google")}>Login with Google</button> */}

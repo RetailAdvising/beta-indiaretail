@@ -732,7 +732,7 @@ input {
   font-size: 14px;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:767px) {
 
   html,
   body {
@@ -2156,7 +2156,7 @@ strong {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .order_detail {
     .rodal-dialog {
       width: 100% !important;
@@ -2331,6 +2331,12 @@ $nav-height: 55px;
 }
 
 .googleBtn {
+
+  .S9gUrf-YoZ4jf{
+    opacity: 0 !important;
+  }
+
+
   button {
     box-shadow: none !important;
     background: none !important;
@@ -2554,7 +2560,7 @@ span {
   box-shadow: -1px 1px 1px 0 #dddddd;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .arrow_::before {
     right: 0;
     left: unset !important;

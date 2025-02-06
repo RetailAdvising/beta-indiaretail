@@ -15,11 +15,12 @@ module.exports = {
       },
       screens: {
         // 'sm': {'min':'400px',  },
-        'md': { 'max': '768px' },
+        'md': { 'max': '767px' },
         'lg1': { 'max': '1024px' },
         'lg': { 'min': '768px' },
         'xl': { 'min': '1024px' },
         '2xl': { 'min': '1200px' },
+        'tab': {min:'768px',max:'1024px'}
         
 
         
