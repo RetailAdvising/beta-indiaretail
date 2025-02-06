@@ -110,6 +110,16 @@ export default function Header({ checkout }) {
         // }
     }
 
+    useEffect(()=>{
+        if(typeof window != "undefined"){
+            document.addEventListener("DOMContentLoaded",()=>{
+                let parentNode = document.querySelectorAll(".haAclf")
+                console.log(parentNode,"parentNode")
+            })
+        }
+
+    },[])
+
 
 
 

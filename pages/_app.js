@@ -29,6 +29,8 @@ const inter = Faustina({
   variable: '--font-faustina'
 })
 
+
+
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
   const [activeTab, setActiveTab] = useState(0)
 
@@ -98,6 +100,67 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     }, 500);
     // Call the function to append the script after the page has loaded
   }, []);
+  // useEffect(()=>{
+  //   if(typeof window != "undefined"){
+      
+  //     screen.orientation.addEventListener("change", () => {
+       
+
+  //       if(screen.orientation.type == "landscape-primary"){
+  //         document.documentElement.requestFullscreen().then(()=>screen.orientation.lock("portrait-primary"))
+  //       }
+  //       // alert(`${screen.orientation} screen.orientation`)
+  //       // console.log(`The orientation of the screen is: ${screen.orientation}`);
+        
+  //       // lockOrientation()
+  //     });
+  //   }
+
+  // },[])
+
+  useEffect(() => {
+    const lockOrientation = async () => {
+      if (screen.orientation && screen.orientation.lock) {
+        // debugger
+        try {
+          // alert(screen.orientation.type)
+          await screen.orientation.lock("portrait-primary");
+          console.log("Screen locked to portrait-primary");
+        } catch (error) {
+          // alert(screen.orientation.type,error)
+          console.error("Failed to lock screen orientation:", error);
+        }
+      } else {
+        console.warn("Screen orientation locking is not supported in this browser.");
+      }
+    };
+
+    lockOrientation(); // Lock on component mount
+
+    const handleOrientationChange = () => {
+      // alert(screen.orientation.type)
+      if (screen.orientation.type.startsWith("landscape")) {
+        lockOrientation(); // Re-lock if user rotates
+      }
+    };
+
+    window.addEventListener("orientationchange", handleOrientationChange);
+
+    return () => {
+      window.removeEventListener("orientationchange", handleOrientationChange);
+    };
+  }, []);
+
+
+  // const lockOrientation = async () => {
+  //   try {
+  //    debugger
+  //       await screen.orientation.lock("portrait-primary");
+    
+  //   } catch (error) {
+  //     console.error("Error locking orientation:", error);
+  //   }
+  // };
 
 
   return (

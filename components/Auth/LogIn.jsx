@@ -380,6 +380,7 @@ export default function LogIn({ isModal, hide, auth }) {
                                 </div>
                                 {errors.password && <p className={`${styles.danger}`}>{errors.password.message}</p>}
                             </div>
+                            
 
                             <div className={`flex items-center justify-between gap-[50px] pb-5`}>
                                 <div className='flex cursor-pointer items-center gap-[10px]'>

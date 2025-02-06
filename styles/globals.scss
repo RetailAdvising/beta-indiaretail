@@ -2056,6 +2056,22 @@ strong {
   }
 }
 
+@media only screen and (min-width: 820px) and (max-width: 825px){
+  .navigation_c{
+    flex: 0 0 auto;
+    font-size: 13px !important;
+  }
+  .today_date{
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 770px){
+  .res-nav{
+    display: block !important;
+  }
+}
+
 .active_member_ship:hover,
 .cur_member_ship {
   border: 1px solid $primary-color !important;
@@ -3432,4 +3448,13 @@ ins.adsbygoogle[data-ad-status="unfilled"] .default_ban_img {
 
 .webinar-btn {
   background: $primary-color;
+}
+
+#container [aria-labelledby="button-label"] {
+  border: none;
+}
+
+
+.google-login iframe {
+  border: none !important;
 }

@@ -37,11 +37,11 @@ export default function Navbar({ heading, isLanding, checkout }) {
             {/* sticky_header */}
             {/* {<div className={` lg:hidden sidebar ${navbar ? 'sideActive' : ''} `} ><SideBar data={nav} close={() => close()} /></div>} */}
             {/* onClick={showSidebar} */}
-            {!checkout && (nav.header && nav.header.items.length != 0) && <div className={`${router.asPath.split('/')[1] == 'tag' ? 'sticky_header z-20' : ''}  md:hidden ${(router.asPath == '' || router.asPath == '/') ? 'lg:p-[15px_30px]' : 'lg:p-[15px_30px]'} ${navbar ? '' : 'md:p-[0_20px]'} ${header.navHead} md:h-[55px]`}>
+            {!checkout && (nav.header && nav.header.items.length != 0) && <div className={`res-nav ${router.asPath.split('/')[1] == 'tag' ? 'sticky_header z-20' : ''}  md:hidden ${(router.asPath == '' || router.asPath == '/') ? 'lg:p-[15px_30px]' : 'lg:p-[15px_30px]'} ${navbar ? '' : 'md:p-[0_20px]'} ${header.navHead} md:h-[55px]`}>
                 <div className={`${navbar ? '' : 'container'} flex flex-wrap items-center justify-between`}>
                     {nav.header.items.map(res => {
                         return (
-                            <div key={res.section_name} className={`${(res.section_name == 'Header Logo' || res.section_name == 'Header Profile Info') ? 'flex-[0_0_calc(20%_-_10px)]' : (res.section_name == 'Header Category Info') ? 'lg:flex-[0_0_calc(100%_-_10px)] container pt-[10px]' : 'flex-[0_0_calc(60%_-_10px)]'}`}>
+                            <div key={res.section_name} className={`${(res.section_name == 'Header Logo' || res.section_name == 'Header Profile Info') ? '' : (res.section_name == 'Header Category Info') ? 'lg:flex-[0_0_calc(100%_-_10px)] container pt-[10px]' : 'flex-[0_0_calc(80%_-_10px)]'}`}>
                                 {res.section_name == 'Header Logo' && <div>
                                     {/* <Image priority height={20} width={20} alt={res.section_name} src={'/menu.svg'} /> */}
                                 </div>}
@@ -65,7 +65,7 @@ export default function Navbar({ heading, isLanding, checkout }) {
                                     </div>
 
                                 </>}
-                                {res.section_name == 'Header Profile Info' && <div className={`text-end items-center lg:flex lg:items-center lg:gap-[5px] lg:justify-end md:float-right ${navbar ? 'md:pr-[20px]' : ''}`}>
+                                {res.section_name == 'Header Profile Info' && <div className={`text-end today_date items-center lg:flex lg:items-center lg:gap-[5px] lg:justify-end md:float-right ${navbar ? 'md:pr-[20px]' : ''}`}>
                                     {/* <Image src={'/Navbar/Date-and-time-01.svg'} className='md:hidden lg1:hidden' height={20} width={20} alt={'weather'} /> */}
                                      <> <p className={`md:hidden text-[#66161] text-[12px] lg1:text-[10px] ${nunito.className}`}>{format(new Date(), "iiii, d MMMM yyyy")}</p></>
                                     <Image className='lg:hidden' style={{ objectFit: 'contain' }} height={50} priority width={24} alt='search' src={'/search.svg'} ></Image>
