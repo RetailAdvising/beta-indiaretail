@@ -71,8 +71,8 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
         <>
             {
                 data && Object.keys(data).length != 0 &&
-                <div onClick={() => click_report()} className={`${divClass ? divClass : ''} cursor-pointer ${data.position == 'Header' || data.position == 'Footer' ? 'h-[90px] w-[728px]' : ''}`}>
-                    <ImageLoader style={`${imgClass ? imgClass : ''} h-full w-full`} src={isMobile ? data.mobile_image : data.web_image} title={data.title ? data.title : 's'} />
+                <div onClick={() => click_report()} className={`${divClass ? divClass : ''} cursor-pointer md:h-full ${data.position == 'Header' || data.position == 'Footer' ? 'h-[90px] w-[728px]' : ''}`}>
+                    <ImageLoader style={`${imgClass ? imgClass : ''} md:object-contain h-full w-full`} src={isMobile ? data.mobile_image : data.web_image} title={data.title ? data.title : 's'} />
                 </div>
             }
 

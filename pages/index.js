@@ -394,7 +394,7 @@ export default function Home({ data }) {
                             <Title data={{ title: c.component_title }} route={'/categories/reconnect'} seeMore={true} />
                             <div className={`lg:flex lg:gap-5 lg:justify-between no_scroll`}><Cards check={true} isHome={'/'} flex={'flex-[0_0_calc(33.333%_-_15px)] md:flex-[0_0_calc(75%_-_10px)]'} cardClass={'h-[320px] md:h-[290px]'} data={isMobile ? data.data[c.cid].data : data.data[c.cid].data.slice(0, 3)} borderRadius={"rounded-[10px_10px_0_0]"} height={"h-[180px] md:h-[160px]"} width={"w-full"} isBorder={true} /></div>
                           </>}
-                          {(ads && c.component_title == "Reconnect Ad" && c.cid && data.data[c.cid]) && <div className='pt-[10px]'><Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.reconnect ? ads.reconnect : null} position={'small'} adId={'reconnect'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[280px] w-[336px] tab:w-full m-auto`} />
+                          {(ads && c.component_title == "Reconnect Ad" && c.cid && data.data[c.cid]) && <div className='pt-[10px]'><Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.reconnect ? ads.reconnect : null} position={'small'} adId={'reconnect'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] tab:w-full m-auto`} />
                           </div>}
 
                         </div>
