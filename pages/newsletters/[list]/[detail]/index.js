@@ -81,10 +81,11 @@ export default function NewsLists({ data, Id }) {
   };
 
   useEffect(() => {
-    allNews();
-    getAd();
-    newsLanding_info();
-    getCategory()
+    // allNews();
+    // getAd();
+    // newsLanding_info();
+    // getCategory()
+    router.push('/404')
   }, [router.query])
 
   // All News

@@ -15,6 +15,15 @@ const nunito = Nunito({
     variable: '--font-inter',
 })
 
+// {
+//     "menu_label": "Newsletters",
+//     "redirect_url": "/newsletters",
+//     "icon": "/Navbar/newsletter.svg",
+//     "is_mega_menu": 0,
+//     "no_of_column": 0,
+//     "child_menu": []
+// },
+
 export default function Navbar({ heading, isLanding, checkout }) {
     const router = useRouter();
     const navbar = false;
@@ -67,7 +76,7 @@ export default function Navbar({ heading, isLanding, checkout }) {
                                 </>}
                                 {res.section_name == 'Header Profile Info' && <div className={`text-end today_date items-center lg:flex lg:items-center lg:gap-[5px] lg:justify-end md:float-right ${navbar ? 'md:pr-[20px]' : ''}`}>
                                     {/* <Image src={'/Navbar/Date-and-time-01.svg'} className='md:hidden lg1:hidden' height={20} width={20} alt={'weather'} /> */}
-                                     <> <p className={`md:hidden tab:hidden text-[#66161] text-[12px] lg1:text-[10px] ${nunito.className}`}>{format(new Date(), "iiii, d MMMM yyyy")}</p></>
+                                    <> <p className={`md:hidden tab:hidden text-[#66161] text-[12px] lg1:text-[10px] ${nunito.className}`}>{format(new Date(), "iiii, d MMMM yyyy")}</p></>
                                     <Image className='lg:hidden' style={{ objectFit: 'contain' }} height={50} priority width={24} alt='search' src={'/search.svg'} ></Image>
                                 </div>}
 

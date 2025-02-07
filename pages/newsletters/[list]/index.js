@@ -39,35 +39,36 @@ const index = ({ data }) => {
 
 
     useEffect(() => {
-        if (data && data.message && data.message.length > 0) {
-            allNewsLetter = data.message
-            setAllNewsLetter(allNewsLetter)
-        }
+        router.push('/404')
+        // if (data && data.message && data.message.length > 0) {
+        //     allNewsLetter = data.message
+        //     setAllNewsLetter(allNewsLetter)
+        // }
 
-        const intersectionObserver = new IntersectionObserver(entries => {
-            if (entries[0].intersectionRatio <= 0) return;
-            if (!loading && !noProduct) {
-                pageNo += 1
-                setPageNo(pageNo)
-                loading = true
-                setLoading(loading)
-                allNews()
-                // if (pageNo > 1) {
-                //     loading = true
-                //     setLoading(loading)
-                //     allNews()
-                // } else {
-                //     pageNo += 1
-                //     setPageNo(pageNo)
-                // }
-            }
-        });
+        // const intersectionObserver = new IntersectionObserver(entries => {
+        //     if (entries[0].intersectionRatio <= 0) return;
+        //     if (!loading && !noProduct) {
+        //         pageNo += 1
+        //         setPageNo(pageNo)
+        //         loading = true
+        //         setLoading(loading)
+        //         allNews()
+        //         // if (pageNo > 1) {
+        //         //     loading = true
+        //         //     setLoading(loading)
+        //         //     allNews()
+        //         // } else {
+        //         //     pageNo += 1
+        //         //     setPageNo(pageNo)
+        //         // }
+        //     }
+        // });
 
-        intersectionObserver?.observe(cardref?.current);
+        // intersectionObserver?.observe(cardref?.current);
 
-        return () => {
-            cardref?.current && intersectionObserver?.unobserve(cardref?.current)
-        }
+        // return () => {
+        //     cardref?.current && intersectionObserver?.unobserve(cardref?.current)
+        // }
     }, [router.query])
     return (
         <>

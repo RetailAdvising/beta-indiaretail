@@ -33,23 +33,23 @@ export default function newsletter({ ads }) {
   const router = useRouter()
 
   useEffect(() => {
-    // setSkeleton(true);
-    if (typeof window != 'undefined') {
-      if (localStorage['apikey']) {
-        setIsLoggedIn(true)
-      } else {
-        setIsLoggedIn(false)
-      }
-      newsLanding_info();
-      getNewsLetters()
-    }
-    checkIsMobile();
-    // let localValue = stored_customer_info()
-    // setLocalValue(localValue);
-    window.addEventListener('resize', checkIsMobile)
-    return () => {
-      window.removeEventListener('resize', checkIsMobile);
-    };
+
+    // if (typeof window != 'undefined') {
+    //   if (localStorage['apikey']) {
+    //     setIsLoggedIn(true)
+    //   } else {
+    //     setIsLoggedIn(false)
+    //   }
+    //   newsLanding_info();
+    //   getNewsLetters()
+    // }
+    // checkIsMobile();
+
+    // window.addEventListener('resize', checkIsMobile)
+    // return () => {
+    //   window.removeEventListener('resize', checkIsMobile);
+    // };
+    router.push('/404')
   }, [user])
 
   const checkIsMobile = async () => {
