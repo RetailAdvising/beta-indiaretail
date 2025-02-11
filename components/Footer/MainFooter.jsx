@@ -139,13 +139,13 @@ export default function MainFooter({ footerData }) {
                                                             })}
                                                         </div>
                                                     </div>
-                                                    <div className='md:flex-[0_0_calc(100%_-_10px)]' >
+                                                    {/* <div className='md:flex-[0_0_calc(100%_-_10px)]' >
                                                         <h6 className={`text-[16px] md:text-[14px] font-[700] py-3 nunito`}>Download Indiaretailing App</h6>
                                                         <div className='flex gap-[15px] md:gap-[10px] items-center'>
                                                             <Image src={'/footer/play-store.svg'} className='h-[32px] w-[101px] md:w-[90px] md:object-contain' height={15} width={20} alt={'app-store'} />
                                                             <Image src={'/footer/app-store.svg'} className='h-[32px] w-[101px] md:w-[90px] md:object-contain' height={15} width={20} alt={'app-store'} />
                                                         </div>
-                                                    </div>
+                                                    </div> */}
                                                 </>
 
                                             }

@@ -997,7 +997,7 @@ export const getVideoDuration = async (id) => {
 }
 
 export const checkAds = (path) => {
-    let paths = ["/p/[...route]", "/cart", "/checkout", "/thankyou", "/profile", "/teams", "/aboutus", "/advertise-with-us", "/contact-us"]
+    let paths = ["/p/[...route]", "/cart", "/checkout", "/thankyou", "/profile", "/teams", "/aboutus", "/advertise-with-us", "/contact-us","/pr/[detail]"]
     for (let i = 0; i < paths.length; i++) {
         if (paths[i] == path) {
             return true
