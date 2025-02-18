@@ -48,7 +48,7 @@ export default function Podcast({ data, ads_data, slider_data }) {
                             <HomePodcast key={index} isLanding={true} i={index} data={res} />
                             {(ads_data && res.category_name == "Women At Work") &&
                                 <div className='py-[20px]'>
-                                    <Advertisement ad_payload={{ page: 'Podcasts', page_type: 'Landing' }} data={ads_data.women_at_work ? ads_data.women_at_work : null} adId={'podcast_top_first'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} />
+                                    <Advertisement ad_payload={{ page: 'Podcasts', page_type: 'Landing' }} data={ads_data.women_at_work ? ads_data.women_at_work : null} adId={'podcast_top_first'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} adPos={'middle'} />
                                 </div>}
                         </>
                     )

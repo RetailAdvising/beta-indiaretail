@@ -113,9 +113,9 @@ export default function PodcastDetail({ data, ads_data }) {
                                             </div>
                                     }
                                     <div className='mb-[15px]'>
-                                        <Advertisement adId={'right_first'} data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
+                                        <Advertisement adId={'right_first'} data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} adPos={'300'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
                                         {(ads_data && ads_data.right_second) && <div className='lg:py-[10px]'>
-                                            <Advertisement adId={'right_second'} data={(ads_data && ads_data.right_second) && ads_data.right_second} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
+                                            <Advertisement adId={'right_second'} data={(ads_data && ads_data.right_second) && ads_data.right_second} position={"small"} adPos={'300'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
                                         </div>}
                                     </div>
                                 </div>

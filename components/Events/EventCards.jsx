@@ -21,7 +21,7 @@ export default function EventCards({ data, flex,height,width,card }) {
                             <p className={`sub_title lg:pt-[5px] line-clamp-2`}>{res.description}</p>
                             {/* <p className={`sub_title pt-[5px]`}>{res.end}</p> */}
                             <div className={`flex gap-[5px] items-center lg:pt-[5px]`}>
-                                <div className={`flex items-center gap-[5px] md:flex-direction`}><Image src={'/calendar.svg'} className='md:object-contain md:h-[15px] md:w-[17px]' objectFit='contain' height={15} width={20} alt={res.title} />  <span className={`light_text nunito`}>{res.start_date}</span></div><span className='h-[18px] w-[2px] mx-[6px] bg-[#ddd]'></span>
+                                <div className={`flex items-center gap-[5px] md:flex-direction`}><Image src={'/calendar.svg'} className='md:object-contain md:h-[15px] md:w-[17px]' objectFit='contain' height={15} width={20} alt={res.title} />  <span className={`light_text nunito`}>{res.event_date}</span></div><span className='h-[18px] w-[2px] mx-[6px] bg-[#ddd]'></span>
                                 <div className={`flex flex-wrap items-center gap-[5px]`}><Image src={'/location.svg'} className='md:object-contain md:h-[15px] md:w-[17px]' height={15} width={20} alt={res.title} /> 
                                 {res.locations && res.locations.slice(0,1).map((item,index)=>{
                                     return(

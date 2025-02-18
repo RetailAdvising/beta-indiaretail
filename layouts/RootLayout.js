@@ -219,7 +219,7 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
 
   return (
     <>
-      {!checkAds(router.pathname) && (!checkout || is_detail) && <div className="lg:grid md:overflow-hidden lg:justify-center lg:pt-[15px] lg:mt-[10px] md:p-[10px_15px] "><Advertisement adId={adIdH} data={(homeAd && homeAd.header) && homeAd.header} ad_payload={ad_payload} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} /></div>}
+      {!checkAds(router.pathname) && (!checkout || is_detail) && <div className="lg:grid md:overflow-hidden lg:justify-center lg:pt-[15px] lg:mt-[10px] md:p-[10px_15px] "><Advertisement adId={adIdH} data={(homeAd && homeAd.header) && homeAd.header} ad_payload={ad_payload} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} adPos={'header'} position={"high"} /></div>}
       <>
         {router.pathname != "/p/[...route]" && <Header checkout={checkout} />}
         {/* {!checkout && <Navbar isLanding={isLanding} heading={head} /> } */}
@@ -283,7 +283,7 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
           {children}
         </main>
 
-        {!checkAds(router.pathname) && (!checkout && !is_detail) && <div className="my-[10px] md:mb-[15px] lg:py-5 lg:grid lg:justify-center md:overflow-hidden md:px-[10px]"><Advertisement ad_payload={ad_payload} adId={adIdF} data={(homeAd && homeAd.footer) && homeAd.footer} position={"high"} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} style={styles} height={'h-full'} width={'500px'} /></div>}
+        {!checkAds(router.pathname) && (!checkout && !is_detail) && <div className="my-[10px] md:mb-[15px] lg:py-5 lg:grid lg:justify-center md:overflow-hidden md:px-[10px]"><Advertisement ad_payload={ad_payload} adId={adIdF} data={(homeAd && homeAd.footer) && homeAd.footer} position={"high"} adPos={'footer'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} style={styles} height={'h-full'} width={'500px'} /></div>}
         {!checkout && footerData && footerData.length != 0 && <MainFooter footerData={footerData} />}
       </>
     </>

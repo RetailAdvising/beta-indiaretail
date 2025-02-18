@@ -151,7 +151,7 @@ export default function EventDetails({ values, Id }) {
 }
 export async function getServerSideProps({ params }) {
     const Id = await params?.list;
-    const datas = { route: Id, page_no: 1, page_length: 12, fields: ["name", "title", "description", "category_name", "start_date", "thumbnail_path", "route"] }
+    const datas = { route: Id, page_no: 1, page_length: 12, fields: ["name", "title", "description", "category_name", "event_date", "thumbnail_path", "route"] }
     const response = await eventList(datas)
     const values = await response;
 

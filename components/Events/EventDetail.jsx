@@ -89,7 +89,7 @@ export default function EventDetail({ data, ads_data }) {
                 <div className={`lg:flex md:flex-wrap gap-[20px] pb-[20px] pt-[30px] md:pt-[10px]`}>
                     <div className={`flex-[0_0_calc(75%_-_10px)] md:flex-[0_0_calc(100%_-_10px)] p-[10px] border rounded-[5px]`}>
                         <div className='flex items-center justify-between gap-[15px]'>
-                            <p className={`nunito`}>{dateFormat(data.message.start_date, 'start')}</p>
+                            <p className={`nunito`}>{dateFormat(data.message.event_date, 'start')}</p>
                             <div>
                                 {icons && <Dropdowns copy_link={true} share={true} updateShare={(data) => updateShare(data)} link={data.message} width={'w-[170px]'} btnClass={'md:w-[32px]'} data={icons} type={'books'} />}
                             </div>
@@ -110,7 +110,7 @@ export default function EventDetail({ data, ads_data }) {
                             {/* pr-[60px] */}
                             <div className='flex gap-[10px] items-center'>
                                 <Image src={'/Events/Date-time.svg'} className='md:h-[18px] md:w-[18px]' height={20} width={20} alt={'date and time'} />
-                                <p className={`flex flex-col`}><span className={`text-[15px] nunito md:text-[14px] font-[700]`}>Date and Time</span><span className={`sub_title josefin-sans`}>{dateFormat(data.message.start_date, 'end')}</span></p>
+                                <p className={`flex flex-col`}><span className={`text-[15px] nunito md:text-[14px] font-[700]`}>Date and Time</span><span className={`sub_title josefin-sans`}>{dateFormat(data.message.event_date, 'end')}</span></p>
                             </div>
                             {/* pl-[20px] */}
                             <div className='flex gap-[10px] items-center'>
@@ -142,7 +142,7 @@ export default function EventDetail({ data, ads_data }) {
                         {(data.place_holders_ads && data.place_holders_ads.length != 0) ? <Placeholders ad_payload={{ page: 'Events', page_type: 'Detail' }} placeholder={data.place_holders_ads} /> :
 
                             <>
-                                <Advertisement ad_payload={{ page: 'Events', page_type: 'Detail' }} adId={'right_first'} data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
+                                <Advertisement ad_payload={{ page: 'Events', page_type: 'Detail' }} adId={'right_first'} data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} adPos={'300'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
                                 {/* <Advertisement adId={'right_second'} data={(ads_data && ads_data.right_second) && ads_data.right_second} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
                          <Advertisement adId={'right_third'} data={(ads_data && ads_data.right_third) && ads_data.right_third} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} /> */}
                             </>

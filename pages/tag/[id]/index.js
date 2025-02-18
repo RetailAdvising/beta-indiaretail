@@ -263,7 +263,7 @@ export default function Trending({ data, res, ads }) {
                             </div>}
                             {/* <AdsBaner data={{ ad_image: '/ads_baner.png' }} height={'h-[250px]'} width={'w-[300px]'} /> */}
                             {/* {(ads.right && ads.right.length != 0 && ads.right[0]) && <AdsBaner data={(ads.right && ads.right.length != 0 && ads.right[0]) ? ads.right[0] : null} height={'h-[250px]'} width={'w-[300px]'} />} */}
-                            <Advertisement ad_payload={{ doctype: 'Tag', page_type: 'List' }} data={(ads && ads.right && ads.right.length != 0 && ads.right[0]) ? ads.right[0] : null} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} />
+                            <Advertisement ad_payload={{ doctype: 'Tag', page_type: 'List' }} data={(ads && ads.right && ads.right.length != 0 && ads.right[0]) ? ads.right[0] : null} position={"small"} adPos={'300'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} />
                         </div>
                         <div className='more' ref={cardref}></div>
                     </div>

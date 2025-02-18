@@ -187,7 +187,7 @@ export default function newsletter({ ads }) {
                   {!isMobile &&
                     <div className='flex-[0_0_calc(30%_-_15px)] md:mt-[15px] md:flex-[0_0_calc(100%_-_0px)]'>
                       <div className='pb-[20px]'>
-                        <Advertisement ad_payload={{ page: 'Newsletters', page_type: 'Landing' }} adId={'right_first'} divClass={'h-[250px] w-[300px] m-auto'} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} data={(ads.right_first && Object.keys(ads.right_first).length != 0) && ads.right_first} />
+                        <Advertisement ad_payload={{ page: 'Newsletters', page_type: 'Landing' }} adId={'right_first'} divClass={'h-[250px] w-[300px] m-auto'} position={"small"} adPos={'300'} insStyle={"display:inline-block;width:300px;height:250px;"} data={(ads.right_first && Object.keys(ads.right_first).length != 0) && ads.right_first} />
                       </div>
                       <Subscribe />
                     </div>
