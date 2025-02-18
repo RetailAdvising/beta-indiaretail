@@ -169,6 +169,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       {/* <Head>
         <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
       </Head> */}
+      <GPTScript />
       <ErrorBoundary >
         <Provider store={store} >
           <ChakraProvider>
@@ -189,3 +190,17 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     </>
   )
 }
+const GPTScript = () => {
+  useEffect(() => {
+      const script = document.createElement("script");
+      script.src = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
+      script.async = true;
+      document.head.appendChild(script);
+
+      return () => {
+          document.head.removeChild(script);
+      };
+  }, []);
+
+  return null;
+};
