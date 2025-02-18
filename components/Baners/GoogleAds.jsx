@@ -223,38 +223,38 @@ const GoogleAds = (props) => {
         setIsMobile(is_mobile);
     };
 
-    useEffect(() => {
-        if (typeof window !== 'undefined' && props.adId && props.position) {
-            try {
-                // Initialize adsbygoogle
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
+    // useEffect(() => {
+    //     if (typeof window !== 'undefined' && props.adId && props.position) {
+    //         try {
+    //             // Initialize adsbygoogle
+    //             (window.adsbygoogle = window.adsbygoogle || []).push({});
                 
-                // Render GPT slot if ad position and id are set
-                if (props.adId && props.position) {
-                    setAdHeight(props.adId, props.position);
-                }
-            } catch (err) {
-                console.log(err, "error initializing ads");
-            }
-        }
-    }, [props.adId, props.position]);
+    //             // Render GPT slot if ad position and id are set
+    //             if (props.adId && props.position) {
+    //                 setAdHeight(props.adId, props.position);
+    //             }
+    //         } catch (err) {
+    //             console.log(err, "error initializing ads");
+    //         }
+    //     }
+    // }, [props.adId, props.position]);
 
-    const setAdHeight = (adElement, position) => {
-        let el = document.getElementById(adElement);
-        let dynamicHeight;
-        let dynamicWidth;
+    // const setAdHeight = (adElement, position) => {
+    //     let el = document.getElementById(adElement);
+    //     let dynamicHeight;
+    //     let dynamicWidth;
         
-        if (position === 'high') {
-            dynamicHeight = '90px';
-            dynamicWidth = isMobile ? '100%' : '728px';
-        } else {
-            dynamicHeight = '250px';
-            dynamicWidth = isMobile ? '100%' : '300px';
-        }
+    //     if (position === 'high') {
+    //         dynamicHeight = '90px';
+    //         dynamicWidth = isMobile ? '100%' : '728px';
+    //     } else {
+    //         dynamicHeight = '250px';
+    //         dynamicWidth = isMobile ? '100%' : '300px';
+    //     }
 
-        el?.style?.setProperty('--adheight', dynamicHeight);
-        el?.style?.setProperty('--adwidth', dynamicWidth);
-    };
+    //     el?.style?.setProperty('--adheight', dynamicHeight);
+    //     el?.style?.setProperty('--adwidth', dynamicWidth);
+    // };
 
     return (
         <div
