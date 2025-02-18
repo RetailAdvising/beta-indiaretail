@@ -69,7 +69,7 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
 
 
     const scripts = {
-        "300": `<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+        "300": `
                 <script>
                 window.googletag = window.googletag || {cmd: []};
                 googletag.cmd.push(function() {
@@ -78,13 +78,15 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
                     googletag.enableServices();
                 });
                 </script>
+
                 <!-- /21631575671/Indiaretailing_mid_center_300x250 -->
                 <div id='div-gpt-ad-1711950996868-0' style='min-width: 300px; min-height: 250px;'>
                 <script>
                     googletag.cmd.push(function() { googletag.display('div-gpt-ad-1711950996868-0'); });
                 </script>
                 </div>`,
-        "middle": `<!--Images Retail Awards-->
+
+        "middle": `
                     <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
                     <script>
                     var googletag = googletag || {};
@@ -118,7 +120,7 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
                     </script>  
 
 
-                    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>        
+                            
                     <script>        
                     window.googletag = window.googletag || {cmd: []};        
                     googletag.cmd.push(function() {        
@@ -135,8 +137,7 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
                     setInterval(function(){googletag.pubads().refresh([slot1]);}, 5000); 
                     </script>
                     </div>`,
-        "header": `// Top Header Add Home Page
-                    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+        "header": `
                     <script>
                     window.googletag = window.googletag || {cmd: []};
                     googletag.cmd.push(function() {
