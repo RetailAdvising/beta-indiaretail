@@ -75,6 +75,7 @@ export default function Dropdowns({ data, showLeft, img, width, share, setting, 
     }
 
     const setings1 = [{ name: 'Copy Link', icon: '/bookstore/Copy.svg' }]
+
     return (
         <>
             {/* ${share ? 'w-[17px]' : type == 'head' ? 'w-[auto]' : 'w-[8px]'} */}

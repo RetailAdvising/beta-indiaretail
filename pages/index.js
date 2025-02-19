@@ -215,7 +215,7 @@ export default function Home({ data }) {
                           </>}
 
                           {(c.cid && data.data[c.cid] && (data.data[c.cid]['banner-list'] && data.data[c.cid]['banner-list'].length > 0) && c.component_title == "Web Special New") && <>
-                            <Title data={{ title: c.component_title }} isIcon={true} see={`uppercase !font-semibold !text-[#e21b22]`} route={'/p/web-special-list/1'} seeMore={true} />
+                            <Title data={{ title: "Web Special" }} isIcon={true} see={`uppercase !font-semibold !text-[#e21b22]`} route={'/p/web-special-list/1'} seeMore={true} />
                             <div className={`flex items-center gap-[20px] md:overflow-auto lg:flex-wrap ${isMobile ? 'scrollbar-hide' : ''} md:gap-[15px] lg:justify-center`}>
                               {data.data[c.cid]['banner-list'].map((resp, index) => {
                                 return (

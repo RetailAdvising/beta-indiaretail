@@ -32,6 +32,8 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
   const [updateCmts, setupdateCmts] = useState(false)
   const role = useSelector(s => s.role);
 
+  console.log(data,"data")
+
   const socials = [
     {
       "icon": "/fb.svg",

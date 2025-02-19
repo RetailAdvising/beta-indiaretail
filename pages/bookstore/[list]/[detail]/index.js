@@ -639,6 +639,8 @@ const  getCarts = async (type) => {
     }
   }
 
+  // console.log(value,"value")
+
   return (
     <>
       <RootLayout ad_payload={{ page: 'Books', page_type: 'Detail' }} homeAd={ads ? ads : null} adIdH={router.query.detail+'bookdH'} adIdF={router.query.detail+'bookdF'}>

@@ -27,7 +27,7 @@ export default function profile({ my_account }) {
     { 'title': 'My Address', icon: '/Profile/My-Address.svg', route: 'my-address' },
     { 'title': 'Membership', icon: '/Profile/membership.svg', route: 'membership' },
     { 'title': 'Subscription', icon: '/Profile/subscription.svg', route: 'subscription' },
-    { 'title': 'Newsletter', icon: '/Navbar/newsletter.svg', route: 'newsletter' },
+    // { 'title': 'Newsletter', icon: '/Navbar/newsletter.svg', route: 'newsletter' },
     { 'title': 'Change Password', icon: '/Profile/edit.svg', route: 'change-password' },
     { 'title': 'Logout', icon: '/Navbar/Logout.svg', route: 'logout' },
   ]

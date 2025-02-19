@@ -257,7 +257,7 @@ export default function Tags({ res, data }) {
                             </div>}
 
                             {/* <AdsBaner data={{ ad_image: '/ads_baner.png' }} height={'h-[250px]'} width={'w-[300px]'} /> */}
-                            <Advertisement data={null} insStyle={"display:inline-block;width:300px;height:250px;"} position={"small"} adPos={'300'} divClass={`h-[250px] w-[300px] m-auto`} />
+                            {/* <Advertisement data={null} insStyle={"display:inline-block;width:300px;height:250px;"} position={"small"} adPos={'300'} divClass={`h-[250px] w-[300px] m-auto`} /> */}
                         </div>
                         <div className='more h-[30px]' ref={cardref}></div>
 
