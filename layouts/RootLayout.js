@@ -5,7 +5,7 @@ import Navbar from '@/components/Headers/Navbar'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, memo } from 'react'
 import { websiteSettings, get_article_breadcrumb, get_subscription_plans, get_customer_info, checkMobile, check_authorization, checkAds } from '@/libs/api'
 import 'rodal/lib/rodal.css';
 import Rodal from 'rodal';
@@ -17,7 +17,7 @@ import AlertUi from '@/components/common/AlertUi'
 import setRole from 'redux/actions/roleAction'
 import setUser from 'redux/actions/userAction'
 
-export default function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_data, is_detail, adIdH, adIdF, ad_payload }) {
+function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_data, is_detail, adIdH, adIdF, ad_payload }) {
   // console.log(data.footer_content)
   const [breadCrumbs, setBreadCrumbs] = useState([]);
   let [footerData, setFooterData] = useState([]);
@@ -289,3 +289,6 @@ export default function RootLayout({ children, checkout, isLanding, head, homeAd
     </>
   )
 }
+
+
+export default memo(RootLayout)

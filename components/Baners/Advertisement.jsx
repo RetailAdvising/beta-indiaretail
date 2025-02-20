@@ -1,10 +1,10 @@
 import ImageLoader from '../ImageLoader'
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { checkMobile, get_ip, insert_banner_ad_log } from '@/libs/api'
 import dynamic from 'next/dynamic';
 // import GoogleAds from './GoogleAds';
 const GoogleAds = dynamic(() => import('./GoogleAds'))
-export default function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_payload = {}, adPos }) {
+function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_payload = {}, adPos }) {
 
     let [isMobile, setIsMobile] = useState(false)
     useEffect(() => {
@@ -237,3 +237,7 @@ export default function Advertisement({ data, imgClass, divClass, insStyle, posi
                     <script>
                      (adsbygoogle = window.adsbygoogle || []).push({});
                     </script> */}
+
+
+
+export default memo(Advertisement)

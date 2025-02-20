@@ -205,7 +205,7 @@
 
 // New
 import { checkMobile } from '@/libs/api';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 const GoogleAds = (props) => {
     const [isMobile, setIsMobile] = useState(false);
@@ -265,7 +265,7 @@ const GoogleAds = (props) => {
     );
 };
 
-export default GoogleAds;
+export default memo(GoogleAds);
 
 
 

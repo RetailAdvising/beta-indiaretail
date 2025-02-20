@@ -91,7 +91,7 @@ export default function EventDetail({ data, ads_data }) {
                         <div className='flex items-center justify-between gap-[15px]'>
                             <p className={`nunito`}>{dateFormat(data.message.event_date, 'start')}</p>
                             <div>
-                                {icons && <Dropdowns copy_link={true} share={true} updateShare={(data) => updateShare(data)} link={data.message} width={'w-[170px]'} btnClass={'md:w-[32px]'} data={icons} type={'books'} />}
+                                {typeof window !== "undefined" && icons && <Dropdowns copy_link={true} share={true} updateShare={(data) => updateShare(data)} link={data.message} width={'w-[170px]'} btnClass={'md:w-[32px]'} data={icons} type={'books'} />}
                             </div>
                         </div>
                         {/* <div className={`flex items-center pt-[15px] justify-between`}> */}
