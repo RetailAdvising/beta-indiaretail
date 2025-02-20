@@ -652,7 +652,7 @@ input {
 
 .eventeam .flex,
 .evenabout .flex {
-  flex-direction: row-reverse;
+  // flex-direction: row-reverse;
 }
 
 //Trending
@@ -901,9 +901,9 @@ input {
   }
 
 
-  .eventeam .flex {
-    flex-direction: column-reverse;
-  }
+  // .eventeam .flex {
+  //   flex-direction: column-reverse;
+  // }
 
   .evenabout .flex,
   .oddabout .flex {
