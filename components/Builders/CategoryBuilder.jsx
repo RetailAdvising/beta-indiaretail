@@ -32,7 +32,7 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
   const [updateCmts, setupdateCmts] = useState(false)
   const role = useSelector(s => s.role);
 
-  console.log(data,"data")
+  // console.log(data,"data")
 
   const socials = [
     {
@@ -251,6 +251,7 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
 
 
   const sanitizeHtml = (html) => {
+    return html
     // Replace all &nbsp; entities with a space character
     if (html && typeof (html) == 'string') {
       let cleanedHtml = html.replace(/&nbsp;/g, ' ');

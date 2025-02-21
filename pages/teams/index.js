@@ -1,6 +1,6 @@
 import RootLayout from '@/layouts/RootLayout';
 import Image from 'next/image';
-import value from '@/libs/teams'
+// import value from '@/libs/teams'
 import SEO from '@/components/common/SEO';
 import { check_Image, HomePage } from '@/libs/api';
 import Link from 'next/link';
