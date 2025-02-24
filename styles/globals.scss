@@ -133,6 +133,19 @@
   }
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse; /* Ensures borders are merged properly */
+}
+th, td {
+  border: 1px solid black; /* Sets the border for table cells */
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+
 .nunito {
   // font-family: "Nunito", sans-serif;
   font-family: "Jost", sans-serif;
@@ -1634,10 +1647,19 @@ button:focus {
   z-index: 10000;
   top: 0;
   height: 100%;
-  background: #00000038;
+  // background: #00000038;
   // &::backdrop{
   //   background: #111111;
   // }
+}
+
+.sideBackdrop{
+  background: #00000038;
+  height: 100%;
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 
 // .visible {

@@ -180,7 +180,7 @@ export default function SideBar({ data, close, navbar, emit_item }) {
                     }
                 </div>
 
-                {valid ? <div className='absolute bottom-[10px] w-[90%]  left-[15px]'>
+                {valid ? <div className='absolute bottom-[10px] w-full left-[15px]'>
                     <div className='justify-between items-center'>
                         {/* <div className='flex items-center gap-[10px] w-[50%] cursor-pointer' onClick={() => logout()}>
                             <Image className='h-[22px] w-[20px]' src={'/Navbar/Logout.svg'} height={20} width={20} alt={'logout'}></Image>
@@ -195,7 +195,7 @@ export default function SideBar({ data, close, navbar, emit_item }) {
                         </div>}
                     </div>
 
-                </div> : <div className='absolute bottom-[10px] w-[90%]'>
+                </div> : <div className='absolute bottom-[10px] w-full px-[10px]'>
                     <div className='flex justify-between items-center py-[10px]'>
                         {!member && <div className='flex  cursor-pointer justify-center w-full'>
                             <div className='flex bg-[#e21b22] rounded-[5px] p-[8px_15px] gap-[5px] items-center justify-end px-[20px]'>

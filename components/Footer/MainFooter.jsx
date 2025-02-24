@@ -115,11 +115,11 @@ export default function MainFooter({ footerData }) {
                                                     <h6 className='font-medium pb-1  text-[13px]'>{item.title}</h6>
                                                     <p className='address font-normal text-[13px]'>{item.address_content}</p>
                                                     <span className='flex flex-row mt-2.5 gray-text'>
-                                                        <Image src={check_Image(item.phone_icon)} height={18} width={18} alt={"image"} className='mr-2 m-0.5' />
+                                                        <Image src={check_Image(item.phone_icon)} height={18} width={18} alt={"image"} className='mr-2 m-0.5 object-contain' />
                                                         <a href={`tel:${item.phonenumber}`} className='hover:text-[red] text-[12px]'>{item.phone_no}</a>
                                                     </span>
                                                     <span className='flex flex-row mt-2.5 gray-text'>
-                                                        <Image src={check_Image(item.email_icon)} height={19} width={19} alt={"image"} className='mr-2 m-0.5' />
+                                                        <Image src={check_Image(item.email_icon)} height={19} width={19} alt={"image"} className='mr-2 m-0.5 object-contain' />
                                                         <a href={`mailto:${item.email_id}`} className='hover:text-[red] text-[12px]'>{item.email_id}</a>
                                                     </span>
                                                 </div>}

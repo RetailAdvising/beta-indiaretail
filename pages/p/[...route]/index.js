@@ -88,11 +88,15 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
 
 
   useEffect(() => {
+
+    const element = document.getElementById('scroll_div')
+    element.classList.add('md:!mt-0');
     checkIsMobile();
 
     window.addEventListener('resize', checkIsMobile)
     return () => {
       window.removeEventListener('resize', checkIsMobile);
+      element.classList.remove('md:!mt-0');
     };
   }, [])
 

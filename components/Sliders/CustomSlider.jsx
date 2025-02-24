@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
-import { check_Image } from '../../libs/api'
+import { check_Image, checkMobile } from '../../libs/api'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import ImageLoader from '../ImageLoader';
 
-export default function CustomSlider({ data, cardClass, imgClass, slider_id, slider_child_id, type, route, title_class, subtitle_class, primary_text_class, hashtags_class, hide_scroll_button, noPrimaryText, routers, parent, productNavigation,newsletter,navigate }) {
+export default function CustomSlider({ data, cardClass, imgClass, slider_id, slider_child_id, type, route, title_class, subtitle_class, primary_text_class, hashtags_class, hide_scroll_button, noPrimaryText, routers, parent, productNavigation, newsletter, navigate }) {
     // let router = routers ? routers : useRouter();
     // let router = routers ;
     let router;
@@ -19,11 +19,30 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
     } else {
         router = useRouter()
     }
+
+
+    let [isMobile, setIsMobile] = useState(false)
+    useEffect(() => {
+        checkIsMobile();
+
+        window.addEventListener('resize', checkIsMobile)
+        return () => {
+            window.removeEventListener('resize', checkIsMobile);
+        };
+    }, [])
+
+
+    const checkIsMobile = async () => {
+        let is_mobile = await checkMobile();
+        isMobile = is_mobile
+        setIsMobile(isMobile);
+    }
+
     let isDown = false;
     var slider = '';
     useEffect(() => {
         // router = type == 'widget' ?  routers : useRouter()
-        if (slider_child_id) {
+        if (!isMobile && slider_child_id) {
             slider = document.getElementById(slider_child_id);
             // setTimeout(() => {
             // }, 2000);
@@ -93,17 +112,17 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
         if (sliderDiv) {
             const isAtStart = sliderDiv.scrollLeft === 0;
             const isAtEnd = sliderDiv.scrollLeft + sliderDiv.clientWidth >= sliderDiv.scrollWidth;
-    
+
             setAtStart(isAtStart);
             setAtEnd(isAtEnd);
         }
     };
 
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         slider.addEventListener('scroll', handleScroll);
         handleScroll();
-    },[])
+    }, [])
 
     const checkRoute = (res) => {
         if (type == 'widget') {
@@ -151,16 +170,16 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
             router.push(route + res.route)
         } else {
             // let route = res.route.split('/')
-            if(newsletter){
+            if (newsletter) {
                 // const route1 = window.location.origin + ('/' + res.route.split('/')[0] + '/' + parent.day + '/' + res.route.split('/')[1]) // Replace with your route
                 // window.open(route1, '_blank');
-                navigate(res,parent.category)
-            }else{
+                navigate(res, parent.category)
+            } else {
                 router.push((parent && parent.day) ? ('/' + res.route.split('/')[0] + '/' + parent.day + '/' + res.route.split('/')[1]) : ('/' + res.route))
             }
             // console.log(route, "route")
             // console.log(router.asPath, "route")
-        
+
             // router.push('/' + res.route)
         }
         // : route ? route + res.route : '/' + res.route

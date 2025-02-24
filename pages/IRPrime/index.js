@@ -1,12 +1,14 @@
 import RootLayout from '@/layouts/RootLayout'
-import { useEffect,useState } from 'react'
-import { primeLanding,getAdvertisements } from '@/libs/api'
+import { useEffect, useState } from 'react'
+import { primeLanding, getAdvertisements } from '@/libs/api'
 import ExclusiveBuilder from '@/components/Builders/ExclusiveBuilder'
 import SEO from '@/components/common/SEO'
+import Image from 'next/image'
 
 
-export default function IRPrime({ data,ads }) {
+export default function IRPrime({ data, ads }) {
     const [value, setValue] = useState()
+    const [skeleton, setSkeleton] = useState(true)
     // let [ads,setAds] = useState()
 
     useEffect(() => {
@@ -15,16 +17,28 @@ export default function IRPrime({ data,ads }) {
                 // console.log(data,'data')
                 // console.log(ads,'ads')
                 setValue(data)
+                
             }, 200);
         }
+        setTimeout(() => {
+            setSkeleton(false)
+        }, 200);
     }, [])
 
     // console.log('dadad', data, ads)
     return (
         <>
             <RootLayout ad_payload={{ page: 'IR Prime', page_type: 'Landing' }} homeAd={ads ? ads : null} isLanding={true} head={'IR Prime'} adIdH={'ir-prime-head'} adIdF={'ir-prime-foot'}>
-                <SEO title={'IR Prime - Retail Insights & Retail Industry News Portal'} siteName={'India Retailing'} description={'Stay updated with the latest retail news, insights & trends on India Retailing ( IR Prime). Discover exclusive articles, industry analysis & expert opinions.'}  keywords={`IR Prime , Retail Prime News , Retail Industry News , industry insights , Retail Prime , Retail Trends , Retail Prime Information , Retail Prime Update`}/>
-                {(value && value.message && value.message.length != 0) ? <ExclusiveBuilder data={value} ads={ads ? ads : null} /> : <Skeleton />}
+                <SEO title={'IR Prime - Retail Insights & Retail Industry News Portal'} siteName={'India Retailing'} description={'Stay updated with the latest retail news, insights & trends on India Retailing ( IR Prime). Discover exclusive articles, industry analysis & expert opinions.'} keywords={`IR Prime , Retail Prime News , Retail Industry News , industry insights , Retail Prime , Retail Trends , Retail Prime Information , Retail Prime Update`} />
+                {(!skeleton && value && value.message && value.message.length != 0) ? <ExclusiveBuilder data={value} ads={ads ? ads : null} /> : skeleton ? <Skeleton /> : <>
+
+                    <div className='grid lg:flex-[0_0_calc(50%_-_10px)] place-content-center'>
+                        <div>
+                            <Image src={'/empty_states/no-article.svg'} className='' height={200} width={300} alt={'no data'} />
+                        </div>
+                        <h6 className='text-[16px] font-semibold text-center pt-[15px]'> No Data Found...</h6>
+                    </div>
+                </>}
             </RootLayout>
 
         </>
@@ -175,9 +189,9 @@ export async function getStaticProps() {
     let param = { page: 'IR Prime', page_type: 'Landing' }
     const resp = await getAdvertisements(param);
     let ads = resp.message
-       
+
     return {
-        props: { data,ads }, revalidate: 50,
+        props: { data, ads }, revalidate: 50,
     }
 }
 

@@ -18,7 +18,10 @@ export default function MobileHead({ isLanding = true, getActiveTab, activeTab }
         const timeout = setTimeout(() => {
             setIsVisible(true);
         }, 2000);
-        if (isMobile) show_header()
+
+        if (isMobile && router) {
+            show_header()
+        }
         // Clear the timeout if the component unmounts before the 2 seconds
         return () => clearTimeout(timeout);
     }, [isMobile, router.query, activeTab]);
@@ -49,15 +52,16 @@ export default function MobileHead({ isLanding = true, getActiveTab, activeTab }
         var header = document.getElementById('header')
         element.scrollTop = 0
         header.className = 'nav-down'
-        element.classList.add('lg:mt-[95px]' , 'md:mt-[60px]');
-        tabs.className = 'tabs-down'
+        element.classList.add('lg:mt-[95px]', 'md:mt-[60px]');
+        if (tabs)
+            tabs.className = 'tabs-down'
 
         element.addEventListener("scroll", function () { // or window.addEventListener("scroll"....
             var st = element.scrollTop // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
             if (st < 100) {
                 // console.log(st);
                 header.className = 'nav-down'
-                element.classList.add('lg:mt-[95px]' , 'md:mt-[60px]');
+                element.classList.add('lg:mt-[95px]', 'md:mt-[60px]');
                 tabs.className = 'tabs-down'
             }
             else if (st > lastScrollTop) {
@@ -91,9 +95,11 @@ export default function MobileHead({ isLanding = true, getActiveTab, activeTab }
 
     return (
         <>
-            <div className={`fixed sidebar ${navbar ? 'sideActive' : ''} `} >
-                <div className={`${isVisible ? 'visible' : ''}`}></div>
-                {nav && <SideBar data={nav} navbar={navbar} close={() => close()} emit_item={emit_nav_item} />}
+            <div className={`${navbar ? 'sideBackdrop' : ''} `} >
+                <div className={`fixed sidebar ${navbar ? 'sideActive' : ''} `}>
+                    <div className={`${isVisible ? 'visible' : ''}`}></div>
+                    {nav && <SideBar data={nav} navbar={navbar} close={() => close()} emit_item={emit_nav_item} />}
+                </div>
             </div>
             {navbar && <Backdrop />}
 
