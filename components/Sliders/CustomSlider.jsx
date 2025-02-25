@@ -42,10 +42,12 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
     var slider = '';
     useEffect(() => {
         // router = type == 'widget' ?  routers : useRouter()
-        if (!isMobile && slider_child_id) {
+        if (typeof window !== "undefined" && slider_child_id && window.innerWidth > 768) {
+            // console.log(window.innerWidth,"window.innerWidth")
             slider = document.getElementById(slider_child_id);
             // setTimeout(() => {
             // }, 2000);
+           
             (() => {
                 slider.addEventListener('mousedown', start);
                 slider.addEventListener('touchstart', start);
@@ -120,8 +122,10 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
 
 
     useEffect(() => {
-        slider.addEventListener('scroll', handleScroll);
-        handleScroll();
+        if(slider){
+            slider?.addEventListener('scroll', handleScroll);
+            handleScroll();
+        }
     }, [])
 
     const checkRoute = (res) => {
