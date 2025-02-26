@@ -23,7 +23,7 @@ export default function ListSlider({ data, auto, noDots, route = undefined, isEv
                                 <p className="text-[11px] pt-1">{res.publisher}</p>
                                 {isEvent && <>
                                     <p className="line-clamp-2 sub_title">{res.description}</p>
-                                    <p className="text-[12px] text-[#b5b5b5]">{res.start_date}</p>
+                                    <p className="text-[12px] text-[#b5b5b5]">{res.event_date}</p>
                                     <p className="primary_text">Register Now</p>
                                 </>}
                             </div>

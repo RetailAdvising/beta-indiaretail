@@ -14,7 +14,7 @@ export default function Card({ data, height, category, padding, isHome = false, 
               {/* <Image className={` ${object_fit ? object_fit : 'object-cover'} ${imgClass ? imgClass : (height ? height : 'h-[150px]')} ${boxShadow && 'rounded-[5px]'}`} src={check_Image(res.product_image ? res.product_image : res.image ? res.image : null)} height={300} width={242} alt={res.title ? res.title : 's'}></Image> */}
               <ImageLoader style={`${object_fit ? object_fit : 'object-cover'} ${imgClass ? imgClass : (height ? height : 'h-[150px]')} ${boxShadow && 'rounded-[5px]'}`} src={res.product_image ? res.product_image : res.image ? res.image : null} title={res.title ? res.title : 's'} />
             </div>
-            <h6 className={`pt-[10px] line-clamp-1 text-[14px] md:text-[14px] leading-normal font-[700] nunito`}>{res.item_title ? res.item_title : res.item ? res.item : ''}</h6>
+            <h6 className={`pt-[10px] text-[14px] md:text-[14px] leading-normal font-medium nunito`}>{res.item_title ? res.item_title : res.item ? res.item : ''}</h6>
           </div>
         )
       })}

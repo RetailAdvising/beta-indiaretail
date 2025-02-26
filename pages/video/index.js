@@ -97,7 +97,7 @@ const Skeleton = () => {
 
 export async function getStaticProps() {
   let params = {
-    fields: ["name", "route", "title", "video_image"]
+    fields: ["name", "route", "title", "video_image","duration"]
   }
   const res = await video_list_with_categoies(params);
   let data = await res.message;

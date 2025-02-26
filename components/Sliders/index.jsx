@@ -40,7 +40,7 @@ export default function Sliders({ data, perView, imgClass, event, isMobile, comm
         // sliderClass=""
 
         autoPlay
-        arrows={false}
+        arrows={true}
         autoPlaySpeed={2500}
         infinite
         pauseOnHover

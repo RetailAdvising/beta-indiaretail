@@ -1,5 +1,5 @@
 // import { checkMobile } from "@/libs/api";
-// import { useEffect, useState } from "react";
+// import { useEffect, useState,memo } from "react";
 
 // const GoogleAds = (props) => {
 
@@ -199,7 +199,7 @@
 //     )
 // }
 
-// export default GoogleAds;
+// export default memo(GoogleAds);
 
 
 
@@ -208,20 +208,20 @@ import { checkMobile } from '@/libs/api';
 import { memo, useEffect, useState } from 'react';
 
 const GoogleAds = (props) => {
-    const [isMobile, setIsMobile] = useState(false);
+    // const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
-        checkIsMobile();
-        window.addEventListener('resize', checkIsMobile);
-        return () => {
-            window.removeEventListener('resize', checkIsMobile);
-        };
-    }, []);
+    // useEffect(() => {
+    //     checkIsMobile();
+    //     window.addEventListener('resize', checkIsMobile);
+    //     return () => {
+    //         window.removeEventListener('resize', checkIsMobile);
+    //     };
+    // }, []);
 
-    const checkIsMobile = async () => {
-        let is_mobile = await checkMobile();
-        setIsMobile(is_mobile);
-    };
+    // const checkIsMobile = async () => {
+    //     let is_mobile = await checkMobile();
+    //     setIsMobile(is_mobile);
+    // };
 
     // useEffect(() => {
     //     if (typeof window !== 'undefined' && props.adId && props.position) {
@@ -256,9 +256,28 @@ const GoogleAds = (props) => {
     //     el?.style?.setProperty('--adwidth', dynamicWidth);
     // };
 
+    useEffect(() => {
+        // Ensure googletag is loaded and ready
+        if (window.googletag && window.googletag.cmd) {
+            window.googletag.cmd.push(function() {
+                const adSlotElement = document.getElementById(`${props.adSlotEle}`);
+                // const adSlotElement = document.getElementById(`div-gpt-ad-${props.adId}-${props.position}`);
+                // console.log(adSlotElement,"adSlotElement")
+                if (adSlotElement) {
+                    googletag.defineSlot(props.slotId, props.adSizes, adSlotElement)
+                        .addService(googletag.pubads());
+                    googletag.pubads().enableSingleRequest();
+                    googletag.enableServices();
+                }
+            });
+        }
+        // console.log(window,"window")
+        // console.log(window.googletag,"window googletag")
+    }, [props.adId, props.position, props.slotId, props.adSizes]);
+
     return (
         <div
-            id={props.adId}
+            id={`div-gpt-ad-${props.adId}-${props.position}`}
             className={`${props.style} scripts`}
             dangerouslySetInnerHTML={{ __html: props.script }}
         />

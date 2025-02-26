@@ -7,6 +7,8 @@ import customerInfoReducer from './customerInfoReducer';
 import isMobileReducer from './isMobileReducer';
 import commentsReducer from './commentsReducer';
 import rolesReducer from './rolesReducer';
+import homePageReducer from "./homePageReducer";
+import paginationCountReducer from "./paginationCountReducer";
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -15,7 +17,9 @@ const rootReducer = combineReducers({
     alert: alertReducer,
     customer:customerInfoReducer,
     comments:commentsReducer,
-    role: rolesReducer
+    role: rolesReducer,
+    home: homePageReducer,
+    page_no: paginationCountReducer
     // isMobile: isMobileReducer
 })
 

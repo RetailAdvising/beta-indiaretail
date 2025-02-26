@@ -7,10 +7,11 @@ function Tags({ tags, count = 2,tagClass }) {
 
     return (
         <>
-            {(tags && tags.length != 0) && <p className={` ${tagClass ? tagClass : 'pt-[10px]'} light_text  flex gap-[5px]`}>{tags.map((tag, index_no) => {
+            {(tags && tags.length != 0) && <p className={` ${tagClass ? tagClass : 'pt-[10px]'} light_text overflow-hidden flex gap-[5px]`}>{tags.map((tag, index_no) => {
                 if (index_no < count) {
                     return (
-                        <span onClick={($event) => trending($event, tag, router)} key={index_no} className={`text-[12px] max-w-[100px] line-clamp-1 !font-[500] nunito`}>#{tag.tag}</span>
+                        // max-w-[100px] line-clamp-1
+                        <span onClick={($event) => trending($event, tag, router)} key={index_no} className={`text-[12px] leading-[15px] flex-[0_0_auto] !font-[500] nunito`}>#{tag.tag}</span>
                     )
                 }
             })

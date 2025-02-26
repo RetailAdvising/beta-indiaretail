@@ -3,8 +3,10 @@ import footer from '@/libs/footer';
 import Image from 'next/image';
 import { check_Image } from '@/libs/api';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Accordion from './Accordion';
 
-export default function MainFooter({ footerData }) {
+export default function MainFooter({ footerData,isMobile }) {
     const router = useRouter();
     let [subsBox, setSubsBox] = useState()
 
@@ -17,7 +19,7 @@ export default function MainFooter({ footerData }) {
         }
 
 
-    }, [])
+    }, [isMobile])
 
     const setFooter1 = (data) => {
         if (data && data && data.length != 0) {
@@ -89,7 +91,7 @@ export default function MainFooter({ footerData }) {
 
             <div className='footer overflow-hidden lg:mt-[30px]'>
                 {subsBox && Object.keys(subsBox).length != 0 && <div className='lg:hidden md:p-[15px] conatiner'>
-                    <div className={`h-[230px] border p-[10px] rounded-[5px] flex gap-[10px] items-center`}>
+                    <div className={`h-[230px] md:h-[170px] border p-[10px] rounded-[5px] flex gap-[10px] items-center`}>
                         <div className={`flex-[0_0_40%]`}>
                             <Image src={check_Image(subsBox.image)} className={`object-contain w-full`} height={100} width={100} alt={subsBox.primary_text} />
                         </div>
@@ -100,18 +102,19 @@ export default function MainFooter({ footerData }) {
                         </div>
                     </div>
                 </div>}
+
                 {footerData && <div className={` container flex md:block gap-[20px] py-[20px] md:px-[15px] `}>
                     {footerData.items && footerData.items.map((footer_item, index) => {
                         return (
                             // flex-[0_0_calc(${100 / footerData.items.length}%_-_16px)]
-                            <div key={index} className={`${index == 0 ? 'flex-[0_0_calc(20%_-_15px)] md:gap-[10px]' : 'flex-[0_0_calc(16%_-_15px)]'}  ${'md:grid md:grid-cols-2  md:justify-between md:mb-[10px]'}`}>
+                            <div key={index} className={`${index == 0 ? 'flex-[0_0_calc(20%_-_15px)] md:gap-[10px]' : 'flex-[0_0_calc(16%_-_15px)]'} md:grid`}>
                                 {footer_item.items && footer_item.items.map((item, i) => {
                                     return (
                                         <div key={i} className={`${item.section_name == 'Footer 1' ? 'relative md:hidden' : ''}`}>
                                             {/* // <> */}
                                             {item.section_name == 'Footer Contact' &&
                                                 <div className={` flex-[0_0_calc(25%_-_10px)] md:flex-[0_0_calc(100%_-_10px)]`}>
-                                                    <Image src={check_Image(item.logo)} onClick={()=> router.push("/")} height={66} width={200} alt={"image"} className='mb-[20px] cursor-pointer' />
+                                                    <Image src={check_Image(item.logo)} onClick={() => router.push("/")} height={66} width={200} alt={"image"} className='mb-[20px] cursor-pointer' />
                                                     <h6 className='font-medium pb-1  text-[13px]'>{item.title}</h6>
                                                     <p className='address font-normal text-[13px]'>{item.address_content}</p>
                                                     <span className='flex flex-row mt-2.5 gray-text'>
@@ -119,10 +122,11 @@ export default function MainFooter({ footerData }) {
                                                         <a href={`tel:${item.phonenumber}`} className='hover:text-[red] text-[12px]'>{item.phone_no}</a>
                                                     </span>
                                                     <span className='flex flex-row mt-2.5 gray-text'>
-                                                        <Image src={check_Image(item.email_icon)} height={19} width={19} alt={"image"} className='mr-2 m-0.5 object-contain' />
+                                                        <Image src={check_Image(item.email_icon)} height={18} width={18} alt={"image"} className='mr-2 m-0.5 object-contain' />
                                                         <a href={`mailto:${item.email_id}`} className='hover:text-[red] text-[12px]'>{item.email_id}</a>
                                                     </span>
                                                 </div>}
+
                                             {item.section_name == 'Social Links' &&
                                                 <>
                                                     {/* <><h6 className='font-medium pb-1 pt-2'>Advertise with us</h6 >
@@ -130,7 +134,7 @@ export default function MainFooter({ footerData }) {
                                                     <p className='address font-normal text-[14px]'>We have various ways to promote your brand and to know how, please get in touch with Bhavesh Pitroda email : himanshurawal@imagesgroup.in</p>
                                                     </>  */}
                                                     <div className='md:flex-[0_0_calc(100%_-_10px)]' >
-                                                        <h6 className={`text-[16px] font-[700] pb-[10px] pt-[20px] nunito`}>Our Social Media</h6>
+                                                        <h6 className={`text-[16px] font-[700] lg:pb-[10px] lg:pt-[20px] nunito`}>Our Social Media</h6>
                                                         <div className='flex items-center gap-[13px] py-[10px]'>
                                                             {item.social_links && item.social_links.map((res, index) => {
                                                                 return (
@@ -150,16 +154,17 @@ export default function MainFooter({ footerData }) {
 
                                             }
 
-                                            {item.section_name == "Menu" &&
-                                                <div className={`list_div leading-[2.5] ${(i % 2 == 0) ? 'min-h-[290px]' : ''} md:flex-[0_0_calc(50%_-_20px)] md:min-h-[20px]  md:mr-[20px]`} >
+                                            {item.section_name == "Menu" && <>
+                                                {/* <div className={`list_div leading-[2.5] ${(i % 2 == 0) ? 'min-h-[290px]' : ''} md:flex-[0_0_calc(50%_-_20px)] md:min-h-[20px]  md:mr-[20px]`} >
                                                     <h6 className={`text-[15px] font-[700] mb-3 nunito`}>{item.title}</h6>
                                                     {(item.menus && item.menus.length != 0) && item.menus.map((item, index) => {
                                                         return (
-                                                            <a target={item.title == 'Events' ? '_blank' : '_self'} href={item.redirect_url} key={index}><p className={`sub_title  text-[15px] font-semibold mb-2  hover:text-[red] nunito`}>{item.menu_label}</p></a>
+                                                            <Link target={item.title == 'Events' ? '_blank' : '_self'} href={item.redirect_url} key={index}><p className={`sub_title  text-[15px] font-semibold mb-2  hover:text-[red] nunito`}>{item.menu_label}</p></Link>
                                                         )
                                                     })}
-                                                </div>
-                                            }
+                                                </div> */}
+                                                <Accordion isMobile={isMobile} item={item} i={i} />
+                                            </>}
 
                                             {item.section_name == 'Footer 1' && <div className={`absolute top-0 left-0 right-[-390px] h-[230px] border p-[10px] rounded-[5px] flex gap-[10px] items-center`}>
                                                 <div className={`flex-[0_0_40%]`}>

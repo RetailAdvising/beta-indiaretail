@@ -25,7 +25,7 @@ export default function EventCards({ data, flex,height,width,card }) {
                                 <div className={`flex  items-center gap-[5px]`}><Image src={'/location.svg'} className='md:object-contain md:h-[15px] md:w-[17px]' height={15} width={20} alt={res.title} /> 
                                 {res.locations && res.locations.slice(0,1).map((item,index)=>{
                                     return(
-                                        <span key={index} className={`light_text nunito`}>{item.event_location}</span>
+                                        <span key={index} className={`light_text nunito line-clamp-1`}>{item.event_location}</span>
                                     )
                                 })}
                                 </div>

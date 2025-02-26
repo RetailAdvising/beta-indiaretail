@@ -42,21 +42,21 @@ import { websiteUrl } from "@/libs/config/siteConfig";
 import Head from "next/head";
 
 import dynamic from "next/dynamic";
-const RegistrationForm = dynamic(()=> import('@/components/WebSpecials/RegistrationForm'))
-const SideMenu = dynamic(()=> import('@/components/WebSpecials/SideMenu'))
-const FeaturedContent = dynamic(()=> import('@/components/WebSpecials/FeaturedContent'))
-const YouTubeVideo = dynamic(()=> import('@/components/Webinar/YouTubeVideo'))
-const SocialMedia = dynamic(()=> import('@/components/Webinar/SocialMedia'))
-const Video = dynamic(()=> import('@/components/Webinar/Video'))
-const Reports = dynamic(()=> import('@/components/Webinar/Reports'))
-const WhitePaper = dynamic(()=> import('@/components/Webinar/WhitePaper'))
-const KeyDiscussion = dynamic(()=> import('@/components/Webinar/KeyDiscussion'))
-const BrandDetails = dynamic(()=> import('@/components/Webinar/BrandDetails'))
-const Dropdowns = dynamic(()=> import('@/components/common/Dropdowns'))
-const Form = dynamic(()=> import('@/components/Webinar/Form'))
-const Banner = dynamic(()=> import('@/components/Webinar/Banner'))
-const Agenda = dynamic(()=> import('@/components/Webinar/Agenda'))
-const SpeakerCard = dynamic(()=> import('@/components/Webinar/SpeakerCard'))
+const RegistrationForm = dynamic(() => import('@/components/WebSpecials/RegistrationForm'))
+const SideMenu = dynamic(() => import('@/components/WebSpecials/SideMenu'))
+const FeaturedContent = dynamic(() => import('@/components/WebSpecials/FeaturedContent'))
+const YouTubeVideo = dynamic(() => import('@/components/Webinar/YouTubeVideo'))
+const SocialMedia = dynamic(() => import('@/components/Webinar/SocialMedia'))
+const Video = dynamic(() => import('@/components/Webinar/Video'))
+const Reports = dynamic(() => import('@/components/Webinar/Reports'))
+const WhitePaper = dynamic(() => import('@/components/Webinar/WhitePaper'))
+const KeyDiscussion = dynamic(() => import('@/components/Webinar/KeyDiscussion'))
+const BrandDetails = dynamic(() => import('@/components/Webinar/BrandDetails'))
+const Dropdowns = dynamic(() => import('@/components/common/Dropdowns'))
+const Form = dynamic(() => import('@/components/Webinar/Form'))
+const Banner = dynamic(() => import('@/components/Webinar/Banner'))
+const Agenda = dynamic(() => import('@/components/Webinar/Agenda'))
+const SpeakerCard = dynamic(() => import('@/components/Webinar/SpeakerCard'))
 const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
   display: "block",
@@ -102,6 +102,15 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
 
 
   useEffect(() => {
+
+    if (typeof window !== "undefined") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Smooth scrolling
+      });
+    }
+
+
     if (isMobile && webinar_data?.bottom_mobile_banner) {
       setBottomBackgroundImage(`https://${domain}${webinar_data.bottom_mobile_banner.replace(/ /g, "%20")}`);
     } else if (!isMobile && webinar_data?.bottom_banner_image) {
@@ -346,124 +355,124 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
             }
           />
         ) : (
-           <>
-             {
+          <>
+            {
               webinar_data && (
                 <Head>
-                <title key="title">
-                  {category_route == "featured-content" &&
-                    webinar_data.message &&
-                    webinar_data.message.article_detail
-                    ? webinar_data.message.article_detail[0]["title"]
-                    : webinar_data?.meta_title}
-                </title>
-                <meta
-                  name="description"
-                  content={
-                    category_route == "featured-content" &&
-                      webinar_data.message &&
-                      webinar_data.message.article_detail
-                      ? webinar_data.message.article_detail[0]["blog_intro"]
-                      : webinar_data?.meta_description
-                  }
-                />
-                <meta
-                  name="viewport"
-                  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
-                />
-                <meta name="theme-color" content="#e21b22" />
-                <meta property="og:type" content={"Article"} />
-                <meta
-                  property="og:title"
-                  content={
-                    category_route == "featured-content" &&
+                  <title key="title">
+                    {category_route == "featured-content" &&
                       webinar_data.message &&
                       webinar_data.message.article_detail
                       ? webinar_data.message.article_detail[0]["title"]
-                      : webinar_data?.meta_title
-                  }
-                />
-                <meta
-                  property="og:description"
-                  content={
-                    category_route == "featured-content" &&
-                      webinar_data.message &&
-                      webinar_data.message.article_detail
-                      ? webinar_data.message.article_detail[0]["blog_intro"]
-                      : webinar_data?.meta_description
-                  }
-                />
-                <meta
-                  property="og:url"
-                  content={getCurrentUrl(router.asPath)}
-                ></meta>
-                <meta property="og:locale" content="en_IE" />
-                <meta
-                  property="og:image"
-                  itemprop="image"
-                  content={seo_Image(
-                    category_route == "featured-content" &&
-                      webinar_data.message &&
-                      webinar_data.message.article_detail
-                      ? webinar_data.message.article_detail[0]["thumbnail_imagee"]
-                      : webinar_data.meta_image
-                        ? webinar_data.meta_image
-                        : webinar_data.thumbnail_imagee
-                  )}
-                />
-                <meta
-                  property="og:image:alt"
-                  content={`${category_route == "featured-content" &&
-                    webinar_data.message &&
-                    webinar_data.message.article_detail
-                    ? webinar_data.message.article_detail[0]["title"]
-                    : webinar_data?.title
-                    } | ${"IndiaRetailing"}`}
-                />
-                <meta property="og:image:width" content="1200" />
-                <meta property="og:image:height" content="630" />
-    
-                <meta name="robots" content="index,follow" />
-    
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:site" content={"@d__indiaRetail"} />
-                <meta name="twitter:creator" content={"@d__indiaRetail"} />
-                <meta
-                  property="twitter:image"
-                  content={seo_Image(
-                    category_route == "featured-content" &&
-                      webinar_data.message &&
-                      webinar_data.message.article_detail
-                      ? webinar_data.message.article_detail[0]["thumbnail_imagee"]
-                      : webinar_data?.meta_image
-                  )}
-                />
-                <meta
-                  property="twitter:title"
-                  content={
-                    category_route == "featured-content" &&
+                      : webinar_data?.meta_title}
+                  </title>
+                  <meta
+                    name="description"
+                    content={
+                      category_route == "featured-content" &&
+                        webinar_data.message &&
+                        webinar_data.message.article_detail
+                        ? webinar_data.message.article_detail[0]["blog_intro"]
+                        : webinar_data?.meta_description
+                    }
+                  />
+                  <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+                  />
+                  <meta name="theme-color" content="#e21b22" />
+                  <meta property="og:type" content={"Article"} />
+                  <meta
+                    property="og:title"
+                    content={
+                      category_route == "featured-content" &&
+                        webinar_data.message &&
+                        webinar_data.message.article_detail
+                        ? webinar_data.message.article_detail[0]["title"]
+                        : webinar_data?.meta_title
+                    }
+                  />
+                  <meta
+                    property="og:description"
+                    content={
+                      category_route == "featured-content" &&
+                        webinar_data.message &&
+                        webinar_data.message.article_detail
+                        ? webinar_data.message.article_detail[0]["blog_intro"]
+                        : webinar_data?.meta_description
+                    }
+                  />
+                  <meta
+                    property="og:url"
+                    content={getCurrentUrl(router.asPath)}
+                  ></meta>
+                  <meta property="og:locale" content="en_IE" />
+                  <meta
+                    property="og:image"
+                    itemprop="image"
+                    content={seo_Image(
+                      category_route == "featured-content" &&
+                        webinar_data.message &&
+                        webinar_data.message.article_detail
+                        ? webinar_data.message.article_detail[0]["thumbnail_imagee"]
+                        : webinar_data.meta_image
+                          ? webinar_data.meta_image
+                          : webinar_data.thumbnail_imagee
+                    )}
+                  />
+                  <meta
+                    property="og:image:alt"
+                    content={`${category_route == "featured-content" &&
                       webinar_data.message &&
                       webinar_data.message.article_detail
                       ? webinar_data.message.article_detail[0]["title"]
                       : webinar_data?.title
-                  }
-                />
-                <meta
-                  property="twitter:description"
-                  content={
-                    category_route == "featured-content" &&
-                      webinar_data.message &&
-                      webinar_data.message.article_detail
-                      ? webinar_data.message.article_detail[0]["blog_intro"]
-                      : webinar_data?.meta_description
-                  }
-                />
-    
-                <link rel="shortcut icon" href="/ir_2023.png" />
-              </Head>
+                      } | ${"IndiaRetailing"}`}
+                  />
+                  <meta property="og:image:width" content="1200" />
+                  <meta property="og:image:height" content="630" />
+
+                  <meta name="robots" content="index,follow" />
+
+                  <meta name="twitter:card" content="summary_large_image" />
+                  <meta name="twitter:site" content={"@d__indiaRetail"} />
+                  <meta name="twitter:creator" content={"@d__indiaRetail"} />
+                  <meta
+                    property="twitter:image"
+                    content={seo_Image(
+                      category_route == "featured-content" &&
+                        webinar_data.message &&
+                        webinar_data.message.article_detail
+                        ? webinar_data.message.article_detail[0]["thumbnail_imagee"]
+                        : webinar_data?.meta_image
+                    )}
+                  />
+                  <meta
+                    property="twitter:title"
+                    content={
+                      category_route == "featured-content" &&
+                        webinar_data.message &&
+                        webinar_data.message.article_detail
+                        ? webinar_data.message.article_detail[0]["title"]
+                        : webinar_data?.title
+                    }
+                  />
+                  <meta
+                    property="twitter:description"
+                    content={
+                      category_route == "featured-content" &&
+                        webinar_data.message &&
+                        webinar_data.message.article_detail
+                        ? webinar_data.message.article_detail[0]["blog_intro"]
+                        : webinar_data?.meta_description
+                    }
+                  />
+
+                  <link rel="shortcut icon" href="/ir_2023.png" />
+                </Head>
               )
-             }
-           </>
+            }
+          </>
         )}
 
         {category_route == "web-special-list" &&
@@ -1006,801 +1015,801 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
           )}
 
         {
-          webinar_data  &&
-            <>
-              {/* Webinar */}
-              {category_route == "webinars" && webinar_data && (
-                <>
-                  <div>
-                    {/*Tob Banner */}
-                    <Banner data={webinar_data} click_data={click_data} isMobile={isMobile} />
+          webinar_data &&
+          <>
+            {/* Webinar */}
+            {category_route == "webinars" && webinar_data && (
+              <>
+                <div>
+                  {/*Tob Banner */}
+                  <Banner data={webinar_data} click_data={click_data} isMobile={isMobile} />
 
-                    {/*Webinar Details */}
-                    <div className="py-[20px] container md:p-[15px] md:py-[10px]">
-                      {/*Brand Details */}
-                      <BrandDetails
-                        webinar_data={webinar_data}
-                        updateShare={updateShare}
-                        dateShow
-                        icons={icons}
-                      />
+                  {/*Webinar Details */}
+                  <div className="py-[20px] container md:p-[15px] md:py-[10px]">
+                    {/*Brand Details */}
+                    <BrandDetails
+                      webinar_data={webinar_data}
+                      updateShare={updateShare}
+                      dateShow
+                      icons={icons}
+                    />
 
-                      {/*Overview */}
-                      <div className="py-[20px]">
-                        {webinar_data.overview && (
-                          <>
-                            <div>
-                              <Title data={{ title: "Overview" }} />
-                              <p className="md:text-[16px] lg:text-[18px] font-normal contents text-[#202121B2] text-justify pt-3">
-                                {webinar_data.overview}
+                    {/*Overview */}
+                    <div className="py-[20px]">
+                      {webinar_data.overview && (
+                        <>
+                          <div>
+                            <Title data={{ title: "Overview" }} />
+                            <p className="md:text-[16px] lg:text-[18px] font-normal contents text-[#202121B2] text-justify pt-3">
+                              {webinar_data.overview}
+                            </p>
+                          </div>
+                        </>
+                      )}
+                    </div>
+
+                    <div>
+                      {webinar_data.video_id && (
+                        <>
+                          <div>
+                            <YouTubeVideo
+                              id={webinar_data.video_id}
+                              click_data={click_data}
+                            />
+                          </div>
+                        </>
+                      )}
+                    </div>
+
+                    {/*Key discussion */}
+                    <div>
+                      {webinar_data.key_points &&
+                        webinar_data.key_points.length !== 0 && (
+                          <KeyDiscussion
+                            setShowMore={setShowMore}
+                            webinar_data={webinar_data}
+                            showMore={showMore}
+                          />
+                        )}
+                    </div>
+
+                    {/* speakers details */}
+                    {webinar_data.speakers &&
+                      webinar_data.speakers.length !== 0 && (
+                        <>
+                          <div className="my-5">
+                            <Title data={{ title: "SPEAKERS" }} />
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
+                              {webinar_data.speakers.map((res, i) => (
+                                <div key={i}>
+                                  <SpeakerCard data={res} />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </>
+                      )}
+
+                    {/* Agenda */}
+
+                    {webinar_data.agenda && webinar_data.agenda.length !== 0 && (
+                      <>
+                        <div className="py-5">
+                          <Title data={{ title: "AGENDA" }} />
+
+                          <div className="">
+                            <Agenda data={webinar_data.agenda} />
+                          </div>
+                        </div>
+                      </>
+                    )}
+
+                    {/*Who Should Attend */}
+                    {webinar_data.who_should_attend && (
+                      <>
+                        <div className="py-5">
+                          <Title data={{ title: "WHO SHOULD ATTEND" }} />
+
+                          <div
+                            className={`mt-3 text-[20px] font-medium text-[#202121] tinos bg-[#F2F2F2] rounded-md py-3 px-2 w-fit ${inter.className}`}
+                          >
+                            <p>{webinar_data.who_should_attend}</p>
+                          </div>
+                        </div>
+                      </>
+                    )}
+
+                    {/* contact */}
+
+                    {webinar_data.contact_name &&
+                      webinar_data.contact_number &&
+                      webinar_data.contact_email && (
+                        <>
+                          <div className="py-5">
+                            <Title data={{ title: "CONTACT US" }} />
+                            <div className={`pt-3 ${inter.className}`}>
+                              <p className="md:text-base lg:text-lg font-normal break-words tinos">
+                                {`For Delegation | ${webinar_data.contact_name} | ${webinar_data.contact_email} | ${webinar_data.contact_number}`}
                               </p>
                             </div>
-                          </>
-                        )}
-                      </div>
-
-                      <div>
-                        {webinar_data.video_id && (
-                          <>
-                            <div>
-                              <YouTubeVideo
-                                id={webinar_data.video_id}
-                                click_data={click_data}
-                              />
-                            </div>
-                          </>
-                        )}
-                      </div>
-
-                      {/*Key discussion */}
-                      <div>
-                        {webinar_data.key_points &&
-                          webinar_data.key_points.length !== 0 && (
-                            <KeyDiscussion
-                              setShowMore={setShowMore}
-                              webinar_data={webinar_data}
-                              showMore={showMore}
-                            />
-                          )}
-                      </div>
-
-                      {/* speakers details */}
-                      {webinar_data.speakers &&
-                        webinar_data.speakers.length !== 0 && (
-                          <>
-                            <div className="my-5">
-                              <Title data={{ title: "SPEAKERS" }} />
-                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
-                                {webinar_data.speakers.map((res, i) => (
-                                  <div key={i}>
-                                    <SpeakerCard data={res} />
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </>
-                        )}
-
-                      {/* Agenda */}
-
-                      {webinar_data.agenda && webinar_data.agenda.length !== 0 && (
-                        <>
-                          <div className="py-5">
-                            <Title data={{ title: "AGENDA" }} />
-
-                            <div className="">
-                              <Agenda data={webinar_data.agenda} />
-                            </div>
                           </div>
                         </>
                       )}
 
-                      {/*Who Should Attend */}
-                      {webinar_data.who_should_attend && (
+                    {/* bottom banner */}
+                    {
+                      <div
+                        style={{
+                          // backgroundImage: `url(${webinar_data.bottom_banner_image
+                          //   ? `https://${domain}${webinar_data.bottom_banner_image.replace(
+                          //     / /g,
+                          //     "%20"
+                          //   )}`
+                          //   : "/no-image.jpg"
+                          //   })`,
+                          backgroundImage: `url(${bottomBackgroundImage})`,
+                        }}
+                        className="p-5 md:p-8 lg:p-10 flex flex-col gap-3 my-5 bg-cover bg-center"
+                      >
+                        {webinar_data.bottom_banner_title && (
+                          <h3 className="text-[24px] md:text-[28px] lg:text-[30px] nunito font-bold">
+                            {webinar_data.bottom_banner_title}
+                          </h3>
+                        )}
+                        {webinar_data.bottom_banner_description && (
+                          <p className="text-[18px] md:text-[20px] lg:text-[22px] text-[#8D9D9D]">
+                            {webinar_data.bottom_banner_description}
+                          </p>
+                        )}
+                        {webinar_data.date && webinar_data.is_buttom_banner_date_required === 1 && (
+                          <span className="text-[16px] md:text-[18px] lg:text-[20px] font-medium contents text-[#202121]">
+                            {webinar_data.date}
+                          </span>
+                        )}
+                        <button
+                          onClick={() => click_data(webinar_data, "register")}
+                          className="px-4 py-2 text-sm md:text-base font-bold w-fit mt-2 webinar-btn rounded-md text-white"
+                        >
+                          Register
+                        </button>
+                      </div>
+                    }
+
+                    {webinar_data.social_media &&
+                      webinar_data.social_media.length !== 0 && (
                         <>
-                          <div className="py-5">
-                            <Title data={{ title: "WHO SHOULD ATTEND" }} />
+                          <SocialMedia data={webinar_data.social_media} />
+                        </>
+                      )}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Lead Generation */}
+            {category_route == "lead-generation" && webinar_data && (
+              <>
+                <Banner data={webinar_data} click_data={click_data} isMobile={isMobile} />
+                <div className="py-[20px] container md:p-[15px] md:py-[10px]">
+                  <div className="py-[20px]">
+                    <BrandDetails
+                      webinar_data={webinar_data}
+                      updateShare={updateShare}
+                      icons={icons}
+                    />
+                  </div>
+
+                  {webinar_data.overview && (
+                    <div className="py-[20px]">
+                      <Title data={{ title: "Overview" }} />
+                      <p className="md:text-[16px] lg:text-[18px] contents font-normal text-[#202121B2] text-justify mt-3">
+                        {webinar_data.overview}
+                      </p>
+                    </div>
+                  )}
+
+                  <div>
+                    {webinar_data.key_points &&
+                      webinar_data.key_points.length !== 0 && (
+                        <KeyDiscussion
+                          setShowMore={setShowMore}
+                          webinar_data={webinar_data}
+                          showMore={showMore}
+                        />
+                      )}
+                  </div>
+
+                  <div>
+                    {webinar_data.white_papers && webinar_data.white_papers.length !== 0 && (
+                      <div className="mt-5">
+                        <Title data={{ title: "WHITE PAPERS" }} />
+                        <WhitePaper
+                          data={webinar_data.white_papers}
+                          click_data={click_data}
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    {webinar_data.reports_detail &&
+                      webinar_data.reports_detail.length !== 0 && (
+                        <div className="mt-5">
+                          <Title data={{ title: "REPORTS" }} />
+                          <Reports
+                            data={webinar_data.reports_detail}
+                            click_data={click_data}
+                          />
+                        </div>
+                      )}
+                  </div>
+
+                  <div>
+                    {webinar_data.video_detail && webinar_data.video_detail.length !== 0 && (
+                      <div className="mt-5">
+                        <Title data={{ title: "VIDEOS" }} />
+                        <Video
+                          data={webinar_data.video_detail}
+                          click_data={click_data}
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {webinar_data.articles_detail &&
+                    webinar_data.articles_detail.length > 0 && (
+                      <>
+                        <div className="py-[20px]">
+                          <Title data={{ title: "ARTICLES" }} />
+
+                          <FeaturedContent
+                            click_data={click_data}
+                            article={true}
+                            cols={"grid-cols-5 md:grid-cols-2"}
+                            webinar_data={webinar_data.articles_detail.slice(
+                              0,
+                              5
+                            )}
+                          />
+                        </div>
+                      </>
+                    )}
+
+                  {webinar_data.is_connect_now_required === 1 && (
+                    <div>
+                      <Form webinar_data={webinar_data} />
+                    </div>
+                  )}
+
+                  {webinar_data.social_media &&
+                    webinar_data.social_media.length !== 0 && (
+                      <>
+                        <SocialMedia data={webinar_data.social_media} />
+                      </>
+                    )}
+                </div>
+              </>
+            )}
+
+            {/* brand Profile */}
+            {category_route == "brand-profile" && webinar_data && (
+              <>
+                <Banner data={webinar_data} click_data={click_data} isMobile={isMobile} />
+
+                <div className="py-[20px] container md:p-[15px] md:py-[10px]">
+                  <div className="py-[20px]">
+                    <BrandDetails
+                      webinar_data={webinar_data}
+                      updateShare={updateShare}
+                      icons={icons}
+                    />
+                  </div>
+
+                  {webinar_data.overview && (
+                    <div className="py-[20px]">
+                      <Title data={{ title: "Overview" }} />
+                      <p className="md:text-[16px] lg:text-[18px] contents font-normal text-[#202121B2] text-justify mt-3">
+                        {webinar_data.overview}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="">
+                    {webinar_data.key_points &&
+                      webinar_data.key_points.length !== 0 && (
+                        <KeyDiscussion
+                          setShowMore={setShowMore}
+                          webinar_data={webinar_data}
+                          showMore={showMore}
+                        />
+                      )}
+                  </div>
+
+                  <div>
+                    {webinar_data.white_papers && webinar_data.white_papers.length !== 0 && (
+                      <div className="mt-5">
+                        <Title data={{ title: "WHITE PAPERS" }} />
+                        <WhitePaper
+                          data={webinar_data.white_papers}
+                          click_data={click_data}
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    {webinar_data.reports_detail &&
+                      webinar_data.reports_detail.length !== 0 && (
+                        <div className="mt-5">
+                          <Title data={{ title: "REPORTS" }} />
+                          <Reports
+                            data={webinar_data.reports_detail}
+                            click_data={click_data}
+                          />
+                        </div>
+                      )}
+                  </div>
+
+                  <div>
+                    {webinar_data.video_detail && webinar_data.video_detail.length !== 0 && (
+                      <div className="mt-5">
+                        <Title data={{ title: "VIDEOS" }} />
+                        <Video
+                          data={webinar_data.video_detail}
+                          click_data={click_data}
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {webinar_data.articles_detail && webinar_data.articles_detail.length !== 0 && (
+                    <div className="py-[20px]">
+                      <Title data={{ title: "ARTICLES" }} />
+
+                      <FeaturedContent
+                        click_data={click_data}
+                        article={true}
+                        cols={"grid-cols-5 md:grid-cols-2"}
+                        webinar_data={webinar_data.articles_detail}
+                      />
+                    </div>
+                  )}
+
+
+                  {webinar_data.social_media &&
+                    webinar_data.social_media.length !== 0 && (
+                      <>
+                        <SocialMedia data={webinar_data.social_media} />
+                      </>
+                    )}
+                </div>
+              </>
+            )}
+
+            {/* Case Study */}
+            {category_route == "case-studies" && webinar_data && (
+              <>
+                <Banner data={webinar_data} click_data={click_data} isMobile={isMobile} />
+
+                <div className="py-[20px] container md:p-[15px] md:py-[10px]">
+                  <div className="py-[20px]">
+                    <BrandDetails
+                      updateShare={updateShare}
+                      icons={icons}
+                      webinar_data={webinar_data}
+                    />
+                  </div>
+
+                  <div className="lg:flex gap-5 md:pt-[10px] lg:pt-[20px]">
+                    <SideMenu
+                      side_menu={side_menu}
+                      activateSection={activateSection}
+                      activeIndex={activeIndex}
+                    />
+
+                    <div className={`md:py-[15px] flex-[0_0_calc(80%_-_15px)]`}>
+                      {webinar_data.content_1 &&
+                        webinar_data.content_1.length > 0 &&
+                        webinar_data.content_1.map((res) => {
+                          return (
+                            <div id={res.title} data-section className="py-[20px]">
+                              <Title data={{ title: res.title }} />
+                              <p className="text-[18px] contents font-normal text-[#202121B2] text-justify mt-3">
+                                {res.description}
+                              </p>
+                            </div>
+                          );
+                        })}
+
+                      {webinar_data.video_id && (
+                        <div>{<YouTubeVideo id={webinar_data.video_id} click_data={click_data} />}</div>
+                      )}
+
+                      {webinar_data.content_2 &&
+                        webinar_data.content_2.length > 0 &&
+                        webinar_data.content_2.map((res) => {
+                          return (
+                            <div id={res.title} data-section className="py-[20px]">
+                              <Title data={{ title: res.title }} />
+                              <p className="text-[18px] contents font-normal text-[#202121B2] text-justify mt-3">
+                                {res.description}
+                              </p>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+
+                  {webinar_data.articles_detail && webinar_data.articles_detail.length !== 0 && (
+                    <div className="py-[20px]">
+                      <Title data={{ title: "ARTICLES" }} />
+
+                      <FeaturedContent
+                        click_data={click_data}
+                        article={true}
+                        cols={"grid-cols-5 md:grid-cols-2"}
+                        webinar_data={webinar_data.articles_detail}
+                      />
+                    </div>
+                  )}
+
+                  {webinar_data.social_media &&
+                    webinar_data.social_media.length !== 0 && (
+                      <>
+                        <SocialMedia data={webinar_data.social_media} />
+                      </>
+                    )}
+                </div>
+              </>
+            )}
+
+            {/* Featured Contente */}
+            {category_route == "featured-content" &&
+              webinar_data &&
+              webinar_data.message && (
+                <>
+                  {webinar_data.message.article_detail &&
+                    webinar_data.message.article_detail.length > 0 && (
+                      <div>
+                        <div className={`w-full lg:h-[375px] md:h-[200px]`}>
+                          <ImageLoader
+                            style={`lg:h-full md:object-contain w-full md:h-[200px]`}
+                            src={
+                              webinar_data.message.article_detail[0].image
+                                ? webinar_data.message.article_detail[0].image
+                                : webinar_data.message.article_detail[0]
+                                  .thumbnail_image
+                            }
+                            title={webinar_data.message.article_detail[0]["title"]}
+                          />
+                        </div>
+
+                        <div className="container md:p-[15px] md:py-[10px]">
+                          <div className="py-[20px]">
+                            <h1 className="text-[22px] md:text-[16px] font-semibold">
+                              {webinar_data.message.article_detail[0]["title"]}
+                            </h1>
 
                             <div
-                              className={`mt-3 text-[20px] font-medium text-[#202121] tinos bg-[#F2F2F2] rounded-md py-3 px-2 w-fit ${inter.className}`}
+                              className={`flex items-center justify-between py-[20px] md:py-[10px]`}
                             >
-                              <p>{webinar_data.who_should_attend}</p>
-                            </div>
-                          </div>
-                        </>
-                      )}
-
-                      {/* contact */}
-
-                      {webinar_data.contact_name &&
-                        webinar_data.contact_number &&
-                        webinar_data.contact_email && (
-                          <>
-                            <div className="py-5">
-                              <Title data={{ title: "CONTACT US" }} />
-                              <div className={`pt-3 ${inter.className}`}>
-                                <p className="md:text-base lg:text-lg font-normal break-words tinos">
-                                  {`For Delegation | ${webinar_data.contact_name} | ${webinar_data.contact_email} | ${webinar_data.contact_number}`}
-                                </p>
-                              </div>
-                            </div>
-                          </>
-                        )}
-
-                      {/* bottom banner */}
-                      {
-                        <div
-                          style={{
-                            // backgroundImage: `url(${webinar_data.bottom_banner_image
-                            //   ? `https://${domain}${webinar_data.bottom_banner_image.replace(
-                            //     / /g,
-                            //     "%20"
-                            //   )}`
-                            //   : "/no-image.jpg"
-                            //   })`,
-                            backgroundImage: `url(${bottomBackgroundImage})`,
-                          }}
-                          className="p-5 md:p-8 lg:p-10 flex flex-col gap-3 my-5 bg-cover bg-center"
-                        >
-                          {webinar_data.bottom_banner_title && (
-                            <h3 className="text-[24px] md:text-[28px] lg:text-[30px] nunito font-bold">
-                              {webinar_data.bottom_banner_title}
-                            </h3>
-                          )}
-                          {webinar_data.bottom_banner_description && (
-                            <p className="text-[18px] md:text-[20px] lg:text-[22px] text-[#8D9D9D]">
-                              {webinar_data.bottom_banner_description}
-                            </p>
-                          )}
-                          {webinar_data.date && webinar_data.is_buttom_banner_date_required === 1 && (
-                            <span className="text-[16px] md:text-[18px] lg:text-[20px] font-medium contents text-[#202121]">
-                              {webinar_data.date}
-                            </span>
-                          )}
-                          <button
-                            onClick={() => click_data(webinar_data, "register")}
-                            className="px-4 py-2 text-sm md:text-base font-bold w-fit mt-2 webinar-btn rounded-md text-white"
-                          >
-                            Register
-                          </button>
-                        </div>
-                      }
-
-                      {webinar_data.social_media &&
-                        webinar_data.social_media.length !== 0 && (
-                          <>
-                            <SocialMedia data={webinar_data.social_media} />
-                          </>
-                        )}
-                    </div>
-                  </div>
-                </>
-              )}
-
-              {/* Lead Generation */}
-              {category_route == "lead-generation" && webinar_data && (
-                <>
-                  <Banner data={webinar_data} click_data={click_data} isMobile={isMobile} />
-                  <div className="py-[20px] container md:p-[15px] md:py-[10px]">
-                    <div className="py-[20px]">
-                      <BrandDetails
-                        webinar_data={webinar_data}
-                        updateShare={updateShare}
-                        icons={icons}
-                      />
-                    </div>
-
-                    {webinar_data.overview && (
-                      <div className="py-[20px]">
-                        <Title data={{ title: "Overview" }} />
-                        <p className="md:text-[16px] lg:text-[18px] contents font-normal text-[#202121B2] text-justify mt-3">
-                          {webinar_data.overview}
-                        </p>
-                      </div>
-                    )}
-
-                    <div>
-                      {webinar_data.key_points &&
-                        webinar_data.key_points.length !== 0 && (
-                          <KeyDiscussion
-                            setShowMore={setShowMore}
-                            webinar_data={webinar_data}
-                            showMore={showMore}
-                          />
-                        )}
-                    </div>
-
-                    <div>
-                      {webinar_data.white_papers && webinar_data.white_papers.length !== 0 && (
-                        <div className="mt-5">
-                          <Title data={{ title: "WHITE PAPERS" }} />
-                          <WhitePaper
-                            data={webinar_data.white_papers}
-                            click_data={click_data}
-                          />
-                        </div>
-                      )}
-                    </div>
-
-                    <div>
-                      {webinar_data.reports_detail &&
-                        webinar_data.reports_detail.length !== 0 && (
-                          <div className="mt-5">
-                            <Title data={{ title: "REPORTS" }} />
-                            <Reports
-                              data={webinar_data.reports_detail}
-                              click_data={click_data}
-                            />
-                          </div>
-                        )}
-                    </div>
-
-                    <div>
-                      {webinar_data.video_detail && webinar_data.video_detail.length !== 0 && (
-                        <div className="mt-5">
-                          <Title data={{ title: "VIDEOS" }} />
-                          <Video
-                            data={webinar_data.video_detail}
-                            click_data={click_data}
-                          />
-                        </div>
-                      )}
-                    </div>
-
-                    {webinar_data.articles_detail &&
-                      webinar_data.articles_detail.length > 0 && (
-                        <>
-                          <div className="py-[20px]">
-                            <Title data={{ title: "ARTICLES" }} />
-
-                            <FeaturedContent
-                              click_data={click_data}
-                              article={true}
-                              cols={"grid-cols-5 md:grid-cols-2"}
-                              webinar_data={webinar_data.articles_detail.slice(
-                                0,
-                                5
-                              )}
-                            />
-                          </div>
-                        </>
-                      )}
-
-                    {webinar_data.is_connect_now_required === 1 && (
-                      <div>
-                        <Form webinar_data={webinar_data} />
-                      </div>
-                    )}
-
-                    {webinar_data.social_media &&
-                      webinar_data.social_media.length !== 0 && (
-                        <>
-                          <SocialMedia data={webinar_data.social_media} />
-                        </>
-                      )}
-                  </div>
-                </>
-              )}
-
-              {/* brand Profile */}
-              {category_route == "brand-profile" && webinar_data && (
-                <>
-                  <Banner data={webinar_data} click_data={click_data} isMobile={isMobile} />
-
-                  <div className="py-[20px] container md:p-[15px] md:py-[10px]">
-                    <div className="py-[20px]">
-                      <BrandDetails
-                        webinar_data={webinar_data}
-                        updateShare={updateShare}
-                        icons={icons}
-                      />
-                    </div>
-
-                    {webinar_data.overview && (
-                      <div className="py-[20px]">
-                        <Title data={{ title: "Overview" }} />
-                        <p className="md:text-[16px] lg:text-[18px] contents font-normal text-[#202121B2] text-justify mt-3">
-                          {webinar_data.overview}
-                        </p>
-                      </div>
-                    )}
-
-                    <div className="">
-                      {webinar_data.key_points &&
-                        webinar_data.key_points.length !== 0 && (
-                          <KeyDiscussion
-                            setShowMore={setShowMore}
-                            webinar_data={webinar_data}
-                            showMore={showMore}
-                          />
-                        )}
-                    </div>
-
-                    <div>
-                      {webinar_data.white_papers && webinar_data.white_papers.length !== 0 && (
-                        <div className="mt-5">
-                          <Title data={{ title: "WHITE PAPERS" }} />
-                          <WhitePaper
-                            data={webinar_data.white_papers}
-                            click_data={click_data}
-                          />
-                        </div>
-                      )}
-                    </div>
-
-                    <div>
-                      {webinar_data.reports_detail &&
-                        webinar_data.reports_detail.length !== 0 && (
-                          <div className="mt-5">
-                            <Title data={{ title: "REPORTS" }} />
-                            <Reports
-                              data={webinar_data.reports_detail}
-                              click_data={click_data}
-                            />
-                          </div>
-                        )}
-                    </div>
-
-                    <div>
-                      {webinar_data.video_detail && webinar_data.video_detail.length !== 0 && (
-                        <div className="mt-5">
-                          <Title data={{ title: "VIDEOS" }} />
-                          <Video
-                            data={webinar_data.video_detail}
-                            click_data={click_data}
-                          />
-                        </div>
-                      )}
-                    </div>
-
-                    {webinar_data.articles_detail && webinar_data.articles_detail.length !== 0 && (
-                      <div className="py-[20px]">
-                        <Title data={{ title: "ARTICLES" }} />
-
-                        <FeaturedContent
-                          click_data={click_data}
-                          article={true}
-                          cols={"grid-cols-5 md:grid-cols-2"}
-                          webinar_data={webinar_data.articles_detail}
-                        />
-                      </div>
-                    )}
-
-
-                    {webinar_data.social_media &&
-                      webinar_data.social_media.length !== 0 && (
-                        <>
-                          <SocialMedia data={webinar_data.social_media} />
-                        </>
-                      )}
-                  </div>
-                </>
-              )}
-
-              {/* Case Study */}
-              {category_route == "case-studies" && webinar_data && (
-                <>
-                  <Banner data={webinar_data} click_data={click_data} isMobile={isMobile} />
-
-                  <div className="py-[20px] container md:p-[15px] md:py-[10px]">
-                    <div className="py-[20px]">
-                      <BrandDetails
-                        updateShare={updateShare}
-                        icons={icons}
-                        webinar_data={webinar_data}
-                      />
-                    </div>
-
-                    <div className="lg:flex gap-5 md:pt-[10px] lg:pt-[20px]">
-                      <SideMenu
-                        side_menu={side_menu}
-                        activateSection={activateSection}
-                        activeIndex={activeIndex}
-                      />
-
-                      <div className={`md:py-[15px] flex-[0_0_calc(80%_-_15px)]`}>
-                        {webinar_data.content_1 &&
-                          webinar_data.content_1.length > 0 &&
-                          webinar_data.content_1.map((res) => {
-                            return (
-                              <div id={res.title} data-section className="py-[20px]">
-                                <Title data={{ title: res.title }} />
-                                <p className="text-[18px] contents font-normal text-[#202121B2] text-justify mt-3">
-                                  {res.description}
-                                </p>
-                              </div>
-                            );
-                          })}
-
-                        {webinar_data.video_id && (
-                          <div>{<YouTubeVideo id={webinar_data.video_id} click_data={click_data} />}</div>
-                        )}
-
-                        {webinar_data.content_2 &&
-                          webinar_data.content_2.length > 0 &&
-                          webinar_data.content_2.map((res) => {
-                            return (
-                              <div id={res.title} data-section className="py-[20px]">
-                                <Title data={{ title: res.title }} />
-                                <p className="text-[18px] contents font-normal text-[#202121B2] text-justify mt-3">
-                                  {res.description}
-                                </p>
-                              </div>
-                            );
-                          })}
-                      </div>
-                    </div>
-
-                    {webinar_data.articles_detail && webinar_data.articles_detail.length !== 0 && (
-                      <div className="py-[20px]">
-                        <Title data={{ title: "ARTICLES" }} />
-
-                        <FeaturedContent
-                          click_data={click_data}
-                          article={true}
-                          cols={"grid-cols-5 md:grid-cols-2"}
-                          webinar_data={webinar_data.articles_detail}
-                        />
-                      </div>
-                    )}
-
-                    {webinar_data.social_media &&
-                      webinar_data.social_media.length !== 0 && (
-                        <>
-                          <SocialMedia data={webinar_data.social_media} />
-                        </>
-                      )}
-                  </div>
-                </>
-              )}
-
-              {/* Featured Contente */}
-              {category_route == "featured-content" &&
-                webinar_data &&
-                webinar_data.message && (
-                  <>
-                    {webinar_data.message.article_detail &&
-                      webinar_data.message.article_detail.length > 0 && (
-                        <div>
-                          <div className={`w-full lg:h-[375px] md:h-[200px]`}>
-                            <ImageLoader
-                              style={`lg:h-full md:object-contain w-full md:h-[200px]`}
-                              src={
-                                webinar_data.message.article_detail[0].image
-                                  ? webinar_data.message.article_detail[0].image
-                                  : webinar_data.message.article_detail[0]
-                                    .thumbnail_image
-                              }
-                              title={webinar_data.message.article_detail[0]["title"]}
-                            />
-                          </div>
-
-                          <div className="container md:p-[15px] md:py-[10px]">
-                            <div className="py-[20px]">
-                              <h1 className="text-[22px] md:text-[16px] font-semibold">
-                                {webinar_data.message.article_detail[0]["title"]}
-                              </h1>
-
                               <div
-                                className={`flex items-center justify-between py-[20px] md:py-[10px]`}
+                                className={`flex items-center gap-[8px] flex-wrap`}
                               >
-                                <div
-                                  className={`flex items-center gap-[8px] flex-wrap`}
-                                >
-                                  {webinar_data.message.article_detail[0].publisher &&
-                                    webinar_data.message.article_detail[0].publisher
-                                      .length != 0 &&
-                                    webinar_data.message.article_detail[0].publisher
-                                      .slice(0, 1)
-                                      .map((r, index) => {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="flex gap-[8px] items-center inner_line"
-                                          >
-                                            <Image
-                                              className="rounded-full object-contain w-[40px] h-[40px]"
-                                              priority={true}
-                                              src={
-                                                r.avatar &&
-                                                  r.avatar != "" &&
-                                                  r.avatar != ""
-                                                  ? check_Image(r.avatar)
-                                                  : "/profit.svg"
-                                              }
-                                              height={43.12}
-                                              width={43.12}
-                                              alt={"image"}
-                                            />
-                                            <div className="block">
-                                              <h6
-                                                className={`font-[700] nunito text-[12px]`}
-                                              >
-                                                {r.full_name}
-                                              </h6>
+                                {webinar_data.message.article_detail[0].publisher &&
+                                  webinar_data.message.article_detail[0].publisher
+                                    .length != 0 &&
+                                  webinar_data.message.article_detail[0].publisher
+                                    .slice(0, 1)
+                                    .map((r, index) => {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="flex gap-[8px] items-center inner_line"
+                                        >
+                                          <Image
+                                            className="rounded-full object-contain w-[40px] h-[40px]"
+                                            priority={true}
+                                            src={
+                                              r.avatar &&
+                                                r.avatar != "" &&
+                                                r.avatar != ""
+                                                ? check_Image(r.avatar)
+                                                : "/profit.svg"
+                                            }
+                                            height={43.12}
+                                            width={43.12}
+                                            alt={"image"}
+                                          />
+                                          <div className="block">
+                                            <h6
+                                              className={`font-[700] nunito text-[12px]`}
+                                            >
+                                              {r.full_name}
+                                            </h6>
 
-                                              <div className="flex lg:gap-4 items-center md:gap-[10px] md:justify-between md:hidden">
-                                                <div className="flex md:block items-center gap-2">
-                                                  <Image
-                                                    height={11}
-                                                    width={11}
-                                                    alt={"image"}
-                                                    src={"/views.svg"}
-                                                    className="md:m-auto"
-                                                  />
-                                                  <span className="text-[12px] md:text-[10px] gray-text">
-                                                    {webinar_data.message
+                                            <div className="flex lg:gap-4 items-center md:gap-[10px] md:justify-between md:hidden">
+                                              <div className="flex md:block items-center gap-2">
+                                                <Image
+                                                  height={11}
+                                                  width={11}
+                                                  alt={"image"}
+                                                  src={"/views.svg"}
+                                                  className="md:m-auto"
+                                                />
+                                                <span className="text-[12px] md:text-[10px] gray-text">
+                                                  {webinar_data.message
+                                                    .article_detail[0].views
+                                                    ? webinar_data.message
                                                       .article_detail[0].views
+                                                    : webinar_data.message
+                                                      .article_detail[0]
+                                                      .no_of_views
                                                       ? webinar_data.message
-                                                        .article_detail[0].views
-                                                      : webinar_data.message
                                                         .article_detail[0]
                                                         .no_of_views
-                                                        ? webinar_data.message
-                                                          .article_detail[0]
-                                                          .no_of_views
-                                                        : 1}{" "}
-                                                    Views
-                                                  </span>
-                                                </div>
-                                                <div className="flex  items-center gap-2">
-                                                  <Image
-                                                    height={11}
-                                                    width={13}
-                                                    alt={"image"}
-                                                    className="md:h-[13px] md:w-[11px] md:m-auto"
-                                                    src={"/shares.svg"}
-                                                  />
-                                                  <span className="md:text-[10px] text-[12px] gray-text">
-                                                    {webinar_data.message
-                                                      .article_detail[0]
-                                                      .no_of_shares + " shares"}
-                                                  </span>
-                                                </div>
-                                                <div className="flex md:block items-center gap-2">
-                                                  <Image
-                                                    height={12}
-                                                    width={12}
-                                                    alt={"image"}
-                                                    src={"/time.svg"}
-                                                    className="md:m-auto"
-                                                  />
-                                                  <span className="text-[12px] md:text-[10px] gray-text">
-                                                    {
-                                                      webinar_data.message
-                                                        .article_detail[0].read_time
-                                                    }{" "}
-                                                  </span>
-                                                </div>
+                                                      : 1}{" "}
+                                                  Views
+                                                </span>
+                                              </div>
+                                              <div className="flex  items-center gap-2">
+                                                <Image
+                                                  height={11}
+                                                  width={13}
+                                                  alt={"image"}
+                                                  className="md:h-[13px] md:w-[11px] md:m-auto"
+                                                  src={"/shares.svg"}
+                                                />
+                                                <span className="md:text-[10px] text-[12px] gray-text">
+                                                  {webinar_data.message
+                                                    .article_detail[0]
+                                                    .no_of_shares + " shares"}
+                                                </span>
+                                              </div>
+                                              <div className="flex md:block items-center gap-2">
+                                                <Image
+                                                  height={12}
+                                                  width={12}
+                                                  alt={"image"}
+                                                  src={"/time.svg"}
+                                                  className="md:m-auto"
+                                                />
+                                                <span className="text-[12px] md:text-[10px] gray-text">
+                                                  {
+                                                    webinar_data.message
+                                                      .article_detail[0].read_time
+                                                  }{" "}
+                                                </span>
                                               </div>
                                             </div>
                                           </div>
-                                        );
-                                      })}
-                                </div>
-
-                                {typeof window !== "undefined" && (
-                                  <div className="flex items-center gap-[15px] pr-[10px]">
-                                    {icons && (
-                                      <Dropdowns
-                                        noBg={true}
-                                        updateShare={(data) => updateShare(data)}
-                                        share={true}
-                                        copy_link={true}
-                                        link={webinar_data.message.article_detail[0]}
-                                        type={"articles"}
-                                        width={"w-[170px]"}
-                                        data={icons}
-                                      />
-                                    )}
-                                  </div>
-                                )}
+                                        </div>
+                                      );
+                                    })}
                               </div>
 
-                              <div className="flex md:gap-5 items-center lg:hidden md:p-[5px_0_15px_0]">
-                                <div className="flex items-center gap-2">
-                                  <Image
-                                    height={11}
-                                    width={11}
-                                    alt={"image"}
-                                    src={"/views.svg"}
-                                    className="md:m-auto"
-                                  />
-                                  <span className="text-[12px] md:text-[10px] gray-text">
-                                    {webinar_data.message.article_detail[0].views
-                                      ? webinar_data.message.article_detail[0].views
-                                      : webinar_data.message.article_detail[0]
+                              {typeof window !== "undefined" && (
+                                <div className="flex items-center gap-[15px] pr-[10px]">
+                                  {icons && (
+                                    <Dropdowns
+                                      noBg={true}
+                                      updateShare={(data) => updateShare(data)}
+                                      share={true}
+                                      copy_link={true}
+                                      link={webinar_data.message.article_detail[0]}
+                                      type={"articles"}
+                                      width={"w-[170px]"}
+                                      data={icons}
+                                    />
+                                  )}
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="flex md:gap-5 items-center lg:hidden md:p-[5px_0_15px_0]">
+                              <div className="flex items-center gap-2">
+                                <Image
+                                  height={11}
+                                  width={11}
+                                  alt={"image"}
+                                  src={"/views.svg"}
+                                  className="md:m-auto"
+                                />
+                                <span className="text-[12px] md:text-[10px] gray-text">
+                                  {webinar_data.message.article_detail[0].views
+                                    ? webinar_data.message.article_detail[0].views
+                                    : webinar_data.message.article_detail[0]
+                                      .no_of_views
+                                      ? webinar_data.message.article_detail[0]
                                         .no_of_views
-                                        ? webinar_data.message.article_detail[0]
-                                          .no_of_views
-                                        : 1}{" "}
-                                    Views
-                                  </span>
-                                </div>
-                                <div className="flex  items-center gap-2">
-                                  <Image
-                                    height={11}
-                                    width={13}
-                                    alt={"image"}
-                                    className="md:h-[13px] md:w-[11px] md:m-auto"
-                                    src={"/shares.svg"}
-                                  />
-                                  <span className="md:text-[10px] text-[12px] gray-text">
-                                    {webinar_data.message.article_detail[0]
-                                      .no_of_shares + " shares"}
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <Image
-                                    height={12}
-                                    width={12}
-                                    alt={"image"}
-                                    src={"/time.svg"}
-                                    className="md:m-auto"
-                                  />
-                                  <span className="text-[12px] md:text-[10px] gray-text">
-                                    {webinar_data.message.article_detail[0].read_time}{" "}
-                                  </span>
-                                </div>
+                                      : 1}{" "}
+                                  Views
+                                </span>
                               </div>
-
-                              <h6 className="text-[20px] pb-[15px] md:pb-[10px] md:text-[16px] font-semibold nunito">
-                                {webinar_data.message.article_detail[0]["blog_intro"]}
-                              </h6>
-
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html:
-                                    webinar_data.message.article_detail[0].content,
-                                }}
-                                id={`innerHtml`}
-                                className={`contents  ${"innerHtml"} `}
-                              />
-
-                              <div className="flex flex-row gap-3 items-center justify-center py-5">
-                                {socials.map((res, index) => {
-                                  return (
-                                    <div
-                                      key={index}
-                                      onClick={() =>
-                                        updateShare(
-                                          webinar_data.message.article_detail[0]
-                                        )
-                                      }
-                                    >
-                                      {res.name == "fb" ? (
-                                        <FacebookShareButton
-                                          url={`${websiteUrl +
-                                            webinar_data.message.article_detail[0]
-                                              .route
-                                            }`}
-                                        >
-                                          <div
-                                            key={index}
-                                            className={`rounded-full bg-light-gray p-[10px]`}
-                                          >
-                                            <Image
-                                              src={res.icon}
-                                              alt={res.name}
-                                              height={25}
-                                              width={20}
-                                            />
-                                          </div>
-                                        </FacebookShareButton>
-                                      ) : res.name == "ws" ? (
-                                        <WhatsappShareButton
-                                          url={`${websiteUrl +
-                                            webinar_data.message.article_detail[0]
-                                              .route
-                                            }`}
-                                        >
-                                          <div
-                                            key={index}
-                                            className={`rounded-full bg-light-gray p-[10px]`}
-                                          >
-                                            <Image
-                                              src={res.icon}
-                                              alt={res.name}
-                                              height={25}
-                                              width={20}
-                                            />
-                                          </div>
-                                        </WhatsappShareButton>
-                                      ) : res.name == "linkedin" ? (
-                                        <LinkedinShareButton
-                                          url={`${websiteUrl +
-                                            webinar_data.message.article_detail[0]
-                                              .route
-                                            }`}
-                                        >
-                                          <div
-                                            key={index}
-                                            className={`rounded-full bg-light-gray p-[10px]`}
-                                          >
-                                            <Image
-                                              src={res.icon}
-                                              alt={res.name}
-                                              height={25}
-                                              width={20}
-                                            />
-                                          </div>
-                                        </LinkedinShareButton>
-                                      ) : res.name == "twitter" ? (
-                                        <TwitterShareButton
-                                          url={`${websiteUrl +
-                                            webinar_data.message.article_detail[0]
-                                              .route
-                                            }`}
-                                        >
-                                          <div
-                                            key={index}
-                                            className={`rounded-full bg-light-gray p-[10px]`}
-                                          >
-                                            <Image
-                                              src={res.icon}
-                                              alt={res.name}
-                                              height={25}
-                                              width={20}
-                                            />
-                                          </div>
-                                        </TwitterShareButton>
-                                      ) : null}
-                                    </div>
-                                  );
-                                })}
+                              <div className="flex  items-center gap-2">
+                                <Image
+                                  height={11}
+                                  width={13}
+                                  alt={"image"}
+                                  className="md:h-[13px] md:w-[11px] md:m-auto"
+                                  src={"/shares.svg"}
+                                />
+                                <span className="md:text-[10px] text-[12px] gray-text">
+                                  {webinar_data.message.article_detail[0]
+                                    .no_of_shares + " shares"}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Image
+                                  height={12}
+                                  width={12}
+                                  alt={"image"}
+                                  src={"/time.svg"}
+                                  className="md:m-auto"
+                                />
+                                <span className="text-[12px] md:text-[10px] gray-text">
+                                  {webinar_data.message.article_detail[0].read_time}{" "}
+                                </span>
                               </div>
                             </div>
 
-                            {webinar_data.message.featured_content_data &&
-                              webinar_data.message.featured_content_data.length >
-                              0 && (
-                                <>
-                                  <div className="py-[20px]">
-                                    <Title data={{ title: "Featured Content" }} />
+                            <h6 className="text-[20px] pb-[15px] md:pb-[10px] md:text-[16px] font-semibold nunito">
+                              {webinar_data.message.article_detail[0]["blog_intro"]}
+                            </h6>
 
-                                    <FeaturedContent
-                                      click_data={click_data}
-                                      cols={"grid-cols-5 md:grid-cols-2"}
-                                      webinar_data={webinar_data.message.featured_content_data.slice(
-                                        0,
-                                        5
-                                      )}
-                                    />
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  webinar_data.message.article_detail[0].content,
+                              }}
+                              id={`innerHtml`}
+                              className={`contents  ${"innerHtml"} `}
+                            />
+
+                            <div className="flex flex-row gap-3 items-center justify-center py-5">
+                              {socials.map((res, index) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    onClick={() =>
+                                      updateShare(
+                                        webinar_data.message.article_detail[0]
+                                      )
+                                    }
+                                  >
+                                    {res.name == "fb" ? (
+                                      <FacebookShareButton
+                                        url={`${websiteUrl +
+                                          webinar_data.message.article_detail[0]
+                                            .route
+                                          }`}
+                                      >
+                                        <div
+                                          key={index}
+                                          className={`rounded-full bg-light-gray p-[10px]`}
+                                        >
+                                          <Image
+                                            src={res.icon}
+                                            alt={res.name}
+                                            height={25}
+                                            width={20}
+                                          />
+                                        </div>
+                                      </FacebookShareButton>
+                                    ) : res.name == "ws" ? (
+                                      <WhatsappShareButton
+                                        url={`${websiteUrl +
+                                          webinar_data.message.article_detail[0]
+                                            .route
+                                          }`}
+                                      >
+                                        <div
+                                          key={index}
+                                          className={`rounded-full bg-light-gray p-[10px]`}
+                                        >
+                                          <Image
+                                            src={res.icon}
+                                            alt={res.name}
+                                            height={25}
+                                            width={20}
+                                          />
+                                        </div>
+                                      </WhatsappShareButton>
+                                    ) : res.name == "linkedin" ? (
+                                      <LinkedinShareButton
+                                        url={`${websiteUrl +
+                                          webinar_data.message.article_detail[0]
+                                            .route
+                                          }`}
+                                      >
+                                        <div
+                                          key={index}
+                                          className={`rounded-full bg-light-gray p-[10px]`}
+                                        >
+                                          <Image
+                                            src={res.icon}
+                                            alt={res.name}
+                                            height={25}
+                                            width={20}
+                                          />
+                                        </div>
+                                      </LinkedinShareButton>
+                                    ) : res.name == "twitter" ? (
+                                      <TwitterShareButton
+                                        url={`${websiteUrl +
+                                          webinar_data.message.article_detail[0]
+                                            .route
+                                          }`}
+                                      >
+                                        <div
+                                          key={index}
+                                          className={`rounded-full bg-light-gray p-[10px]`}
+                                        >
+                                          <Image
+                                            src={res.icon}
+                                            alt={res.name}
+                                            height={25}
+                                            width={20}
+                                          />
+                                        </div>
+                                      </TwitterShareButton>
+                                    ) : null}
                                   </div>
-                                </>
-                              )}
-
-                            {webinar_data.message.other_articles_data &&
-                              webinar_data.message.other_articles_data.length > 0 && (
-                                <>
-                                  <div className="py-[20px]">
-                                    <Title data={{ title: "ARTICLES" }} />
-
-                                    <FeaturedContent
-                                      click_data={click_data}
-                                      article={true}
-                                      cols={"grid-cols-5 md:grid-cols-2"}
-                                      webinar_data={webinar_data.message.other_articles_data.slice(
-                                        0,
-                                        5
-                                      )}
-                                    />
-                                  </div>
-                                </>
-                              )}
-
-
-                            {webinar_data.is_connect_now_required === 1 && (
-                              <div className="py-5">
-                                <Form webinar_data={webinar_data} />
-                              </div>
-                            )}
+                                );
+                              })}
+                            </div>
                           </div>
+
+                          {webinar_data.message.featured_content_data &&
+                            webinar_data.message.featured_content_data.length >
+                            0 && (
+                              <>
+                                <div className="py-[20px]">
+                                  <Title data={{ title: "Featured Content" }} />
+
+                                  <FeaturedContent
+                                    click_data={click_data}
+                                    cols={"grid-cols-5 md:grid-cols-2"}
+                                    webinar_data={webinar_data.message.featured_content_data.slice(
+                                      0,
+                                      5
+                                    )}
+                                  />
+                                </div>
+                              </>
+                            )}
+
+                          {webinar_data.message.other_articles_data &&
+                            webinar_data.message.other_articles_data.length > 0 && (
+                              <>
+                                <div className="py-[20px]">
+                                  <Title data={{ title: "ARTICLES" }} />
+
+                                  <FeaturedContent
+                                    click_data={click_data}
+                                    article={true}
+                                    cols={"grid-cols-5 md:grid-cols-2"}
+                                    webinar_data={webinar_data.message.other_articles_data.slice(
+                                      0,
+                                      5
+                                    )}
+                                  />
+                                </div>
+                              </>
+                            )}
+
+
+                          {webinar_data.is_connect_now_required === 1 && (
+                            <div className="py-5">
+                              <Form webinar_data={webinar_data} />
+                            </div>
+                          )}
                         </div>
-                      )}
-                  </>
-                )}
-            </>
+                      </div>
+                    )}
+                </>
+              )}
+          </>
         }
       </RootLayout>
     </>
@@ -1825,12 +1834,12 @@ export async function getServerSideProps({ params }) {
   //     props: { data, page_route }
   // }
 
-  let webinar_data={};
+  let webinar_data = {};
 
   let category_route = page_route && page_route.length > 0 ? page_route[0] : null;
   if (page_route && Array.isArray(page_route) && page_route.length > 2) {
     page_route = page_route.join("/") + "/"
-  } else if(page_route && Array.isArray(page_route) && page_route.length > 1){
+  } else if (page_route && Array.isArray(page_route) && page_route.length > 1) {
     page_route = page_route.join("/")
   } else {
     page_route = page_route.join(" ")
@@ -1851,9 +1860,9 @@ export async function getServerSideProps({ params }) {
     webinar_data = null;
   }
 
-  if(webinar_data === null){
+  if (webinar_data === null) {
     return {
-      notFound : true
+      notFound: true
     }
   }
 

@@ -22,7 +22,7 @@ export async function getServerSideProps({ params }) {
     // let Id = 'beauty-wellness';
     let param = {
       route: Id,
-      fields:["name", "route", "title", "video_image"]
+      fields:["name", "route", "title", "video_image","duration"]
     }
 
     let value = await video_list(param);

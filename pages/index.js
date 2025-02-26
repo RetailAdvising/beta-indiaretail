@@ -1,6 +1,6 @@
 import RootLayout from '@/layouts/RootLayout'
 import { HomePage, newsLanding, checkMobile, getList, getPollsList, get_ip, HomePageAds, check_Image } from '../libs/api';
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import SEO from '@/components/common/SEO'
 import dynamic from 'next/dynamic'
 import TopStories from '@/components/Landing/TopStories'
@@ -12,6 +12,9 @@ import Subscribe from '@/components/Landing/Subscribe'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import ImageLoader from '@/components/ImageLoader';
+import { useDispatch, useSelector } from 'react-redux';
+import setData from 'redux/actions/homePageAction';
+import setCount from 'redux/actions/paginationCountAction';
 
 
 const List = dynamic(() => import('@/components/common/List'))
@@ -32,15 +35,20 @@ const CaseStudy = dynamic(() => import('@/components/Landing/CaseStudy'))
 
 
 export default function Home({ data }) {
-  const [value, setValue] = useState([])
+  // const [value, setValue] = useState([])
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [books, setBooks] = useState([])
   const [ads, setAds] = useState()
-  const [pageNo, setPageNo] = useState(2)
+  // const [pageNo, setPageNo] = useState(2)
   const [noProduct, setNoProduct] = useState(false)
   const router = useRouter()
 
+  const home = useSelector(state => state.home);
+  const page = useSelector(state => state.page_no);
+  const dispatch = useDispatch()
+  // console.log(home, "home")
+  // console.log(page, "page")
 
   const getAd = async () => {
     const resp = await HomePageAds();
@@ -81,9 +89,10 @@ export default function Home({ data }) {
   }
 
   useEffect(() => {
-    if (data && data.page_content && data.page_content.length != 0) {
+    if (home && home.length === 0 && data && data.page_content && data.page_content.length != 0) {
       setTimeout(() => {
-        setValue(data.page_content)
+        // setValue(data.page_content)
+        dispatch(setData(data.page_content))
       }, 100)
     }
 
@@ -101,7 +110,8 @@ export default function Home({ data }) {
 
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setPageNo((prevPage) => prevPage + 1); // trigger loading of new posts by chaging page no
+          // setPageNo((prevPage) => prevPage + 1); // trigger loading of new posts by chaging page no
+          dispatch(setCount(page))
         }
       });
 
@@ -111,14 +121,13 @@ export default function Home({ data }) {
   );
 
   useEffect(() => {
-    if (pageNo > 1 && !noProduct) {
+    if (page > 1 && !noProduct) {
 
       setLoading(true);
       getPageData()
 
     }
-  }, [pageNo]);
-
+  }, [page]);
 
   const getNewsLetters = async () => {
     let param = {
@@ -131,17 +140,17 @@ export default function Home({ data }) {
     }
   }
 
-
   const getPageData = async () => {
-    if (pageNo > 1) {
+    if (page > 1) {
       const param = {
         "route": "home",
-        page_no: pageNo,
+        page_no: page,
         page_size: 4
       }
       const resp = await HomePage(param);
       if (resp.message && resp.message.page_content && resp.message.page_content.length != 0) {
-        setValue(d => d = [...d, ...resp.message.page_content])
+        // setValue(d => d = [...d, ...resp.message.page_content])
+        dispatch(setData(resp.message.page_content))
         setLoading(false)
         setNoProduct(false)
       } else {
@@ -171,9 +180,9 @@ export default function Home({ data }) {
       <RootLayout ad_payload={{ page: "Home", page_type: "Landing" }} data={data} isLanding={true} head={''} adIdH={'home-head'} adIdF={'home-foot'} homeAd={ads && ads.header ? ads : null}>
         <SEO title={'Retail News | Latest Retail Industry News & Business Updates'} siteName={'India Retailing'} description={'Discover India Retail News, Trends, Reports, Case Studies, Business Analysis, Technology, Startup & Videos Trusted by Retail Business Leaders'} keywords={`Retail News, Online Retail News, Latest Retail News, Retail industry News, Retail Business News, Retail Technology News, Retail Updates, Retail Sector News, Best Retail Industry News`} />
 
-        {(value && value.length != 0) ? value.map((data, i) => {
+        {(home && home.length != 0) ? home.map((data, i) => {
           return (
-            <div key={i} ref={value.length === i + 3 ? lastPostElementRef : null} className={`py-[20px] ${data.section == 'PS-24-00630' ? 'lg:p-5 bg-[#F8F9FA]' : data.section == 'PS-23-00157' || data.section == 'Infocus' ? 'border-b border-[#d4d8d8] container' : data.section == 'PS-23-00166' ? 'bg-[#000] lg:my-5 lg:p-[20px_40px] md:py-[20px]  no_scroll md:mb-5' : data.section == 'PS-23-00130' ? 'lg:bg-[#f1f1f1] p-5 lg:my-5' : data.section == 'PS-24-00623' ? 'bg-[#F0F0F0]' : 'container'}  md:p-[15px]  md:py-[10px] lg:flex gap-5 ${data.section == 'Reconnect' ? 'lg:items-center' : ''}`}>
+            <div key={i} ref={home.length === i + 3 ? lastPostElementRef : null} className={`py-[20px] ${data.section == 'PS-24-00630' ? 'lg:p-5 bg-[#F8F9FA]' : data.section == 'PS-23-00157' || data.section == 'Infocus' ? 'border-b border-[#d4d8d8] container' : data.section == 'PS-23-00166' ? 'bg-[#000] lg:my-5 lg:p-[20px_40px] md:py-[20px]  no_scroll md:mb-5' : data.section == 'PS-23-00130' ? 'lg:bg-[#f1f1f1] p-5 lg:my-5' : data.section == 'PS-24-00623' ? 'bg-[#F0F0F0]' : 'container'}  md:p-[15px]  md:py-[10px] lg:flex gap-5 ${data.section == 'Reconnect' ? 'lg:items-center' : ''}`}>
               {(data.layout_json && JSON.parse(data.layout_json).length != 0) && JSON.parse(data.layout_json).map((res, index) => {
                 return (
                   <div key={index} className={`${res.class == 'flex-[0_0_calc(100%_-_0px)]' ? 'w-full' : res.class} ${(data.section != 'PS-24-00630') ? 'md:my-[10px]' : 'container'}  ${((data.section == 'PS-23-00130') && !isMobile) ? 'container' : ''} ${data.section == 'PS-23-00166' ? 'container md:!mb-0' : ''} ${data.section == 'PS-24-00623' && !isMobile ? 'container' : ''}`}>
@@ -187,7 +196,7 @@ export default function Home({ data }) {
                           </>}
                           {(c.component_title == "Latest News" && c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_data_type == 'Location') && <>
                             <Title data={{ title: 'Latest News' }} seeMore={true} route={'/categories/latest-news'} />
-                            {isMobile ? <><div className='no_scroll md:mb-[15px]'><LatestNews  height={'h-[190px] '} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} /></div><LatestNews  height={'h-[190px]'} width={'w-full'} isList={true} data={data.data[c.cid].data.slice(4, 6)} /></> : <LatestNews marginstyle={'lg:mb-[10px]'} height={'md:h-[222px] lg:h-[235px]'} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} />}
+                            {isMobile ? <><div className='no_scroll md:mb-[15px]'><LatestNews height={'h-[190px] '} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} /></div><LatestNews height={'h-[190px]'} width={'w-full'} isList={true} data={data.data[c.cid].data.slice(4, 6)} /></> : <LatestNews marginstyle={'lg:mb-[10px]'} height={'md:h-[222px] lg:h-[235px]'} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} />}
                           </>}
                           {(ads && c.component_title == "Infocus Ad" && data.section == 'Infocus' && c.cid && data.data[c.cid]) &&
                             <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.infocus ? ads.infocus : null} position={'small'} adPos={'300'} adId={'infocus'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] tab:w-full w-[300px] m-auto`} />
@@ -219,8 +228,8 @@ export default function Home({ data }) {
                             <div className={`flex items-center gap-[20px] md:overflow-auto lg:flex-wrap ${isMobile ? 'scrollbar-hide' : ''} md:gap-[15px] lg:justify-center`}>
                               {data.data[c.cid]['banner-list'].map((resp, index) => {
                                 return (
-                                  <div className={`flex-[0_0_calc(25%_-_15px)] md:flex-[0_0_calc(40%_-_10px)] cursor-pointer`} onClick={() => router.push(resp.url)} key={resp.url}>
-                                    <Image src={check_Image(resp['banner-image'])} className='h-[250px] md:h-[125px] w-full rounded-[10px]' height={100} width={100} alt={resp.url}></Image>
+                                  <div className={`flex-[0_0_calc(25%_-_15px)] md:flex-[0_0_calc(65%_-_10px)] cursor-pointer`} onClick={() => router.push(resp.url)} key={resp.url}>
+                                    <Image src={check_Image(resp['banner-image'])} className='h-[250px] md:h-[175px] w-full rounded-[10px]' height={100} width={100} alt={resp.url}></Image>
                                   </div>
                                 )
                               })}
@@ -281,7 +290,14 @@ export default function Home({ data }) {
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Research") && <>
                             {/* route={'/categories/'} seeMore={true} */}
                             <Title data={{ title: c.component_title }} route={'/categories/research'} seeMore={true} />
-                            {data.data[c.cid].data && isMobile ? <div className='mb-[10px] research'><ListSlider route={'/'} noDots={true} auto={false} data={data.data[c.cid].data} /></div> :
+                            {data.data[c.cid].data && isMobile ? <div className='mb-[10px] research'>
+                              {data.data[c.cid].data.length > 0 && <>
+                                <ListSlider route={'/'} noDots={true} auto={false} data={data.data[c.cid].data.slice(0, 10)} />
+                                {data.data[c.cid].data.length > 10 && <div className='pt-[15px]'>
+                                  <ListSlider route={'/'} noDots={true} auto={false} data={data.data[c.cid].data.slice(10, 20)} />
+                                </div>}
+                              </>}
+                            </div> :
                               // className='overflow-auto scrollbar-hide gap-[15px] flex '
                               <>
                                 {/* <CardCarousel isHome={'/'} data={data.data[c.cid].data} cardClass={'h-[310px] md:h-[220px] flex-[0_0_calc(70%_-_15px)] md:flex-[0_0_calc(50%_-_10px)]'} imgClass={'lg:h-[185px] md:h-[140px] w-full'} /> */}
@@ -348,7 +364,7 @@ export default function Home({ data }) {
                             <Title data={{ title: c.component_title }} route={c.component_title == "Supply Chain" ? '/categories/supply-chain' : c.component_title == "Marketing" ? '/categories/marketting' : null} seeMore={true} />
                             <div className='md:flex md:flex-col md:gap-[5px]'><List isHome={'/'} primary_pb={'lg:pb-[5px]'} mb={true} data={data.data[c.cid].data.slice(0, 3)} titleClamp={'line-clamp-2'} line={'line-clamp-1 md:line-clamp-1'} hash_bg={'pt-[10px] md:pt-[10px]'} check={true} imgFlex={'flex-[0_0_calc(35%_-_10px)] md:flex-[0_0_calc(40%_-_10px)]'} imgWidth={"w-full"} imgHeight={"h-[125px] md:h-[115px]"} borderRadius={"rounded-[10px]"} /></div>
                           </>}
-                          
+
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Technology") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/technology'} seeMore={true} />
                             <div className={'border p-[10px] rounded-[5px]'}><List line={'line-clamp-1'} isHome={'/'} titleClamp={'line-clamp-2'} check={true} data={data.data[c.cid].data.slice(0, 3)} imgFlex={'flex-[0_0_calc(30%_-_10px)]'} imgWidth={"w-full"} imgHeight={"h-[92px] md:h-[80px]"} isBB={true} isTop={true} borderRadius={"rounded-[10px] md:rounded-[5px]"} /></div>

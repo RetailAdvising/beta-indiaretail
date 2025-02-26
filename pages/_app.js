@@ -65,11 +65,11 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     };
     const handleComplete = () => {
       nProgress.done()
-      if (typeof window !== 'undefined')
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth' // Smooth scroll
-        });
+      // if (typeof window !== 'undefined')
+      //   window.scrollTo({
+      //     top: 0,
+      //     behavior: 'smooth' // Smooth scroll
+      //   });
     };
 
     if (router.pathname != "/[...detail]") {
@@ -152,15 +152,35 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   }, []);
 
 
-  // const lockOrientation = async () => {
-  //   try {
-  //    debugger
-  //       await screen.orientation.lock("portrait-primary");
-    
-  //   } catch (error) {
-  //     console.error("Error locking orientation:", error);
-  //   }
-  // };
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      // Save scroll position for the current route
+      const currentRoute = router.asPath;
+      sessionStorage.setItem(`${currentRoute}_scrollPosition`, window.scrollY);
+    };
+
+    // Add event listener to detect route changes
+    router.events.on("routeChangeStart", handleRouteChangeStart);
+
+    const handleRouteChangeComplete = (e) => {
+      // Get the saved scroll position for the current route
+      const savedPosition = sessionStorage.getItem(`${e}_scrollPosition`);
+
+      if (savedPosition !== null) {
+        // Restore the scroll position if it exists
+        window.scrollTo(0, parseInt(savedPosition, 10));
+      }
+    };
+
+    // Add event listener to restore the scroll position after a route change
+    router.events.on("routeChangeComplete", handleRouteChangeComplete);
+
+    // Cleanup on component unmount
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChangeStart);
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+    };
+  }, [router]);
 
 
   return (
