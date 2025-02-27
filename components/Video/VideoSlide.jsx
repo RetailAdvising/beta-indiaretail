@@ -36,27 +36,27 @@ export default function VideoSlide({ data, cardClass, imgClass, slider_id, slide
         slider.scrollLeft += direction === 'next' ? sliderWidth : -sliderWidth;
     };
 
-    const get_durations = async (id) => {
-        let val =  await getVideoDuration(id)
-        return await (val && val.duration) ? val.duration : '00:00'
-    }
+    // const get_durations = async (id) => {
+    //     let val =  await getVideoDuration(id)
+    //     return await (val && val.duration) ? val.duration : '00:00'
+    // }
 
-    const [durations, setDurations] = useState({});
+    // const [durations, setDurations] = useState({});
 
-  useEffect(() => {
-    const fetchDurations = async () => {
-      const durationsObj = {};
-      for (const item of data) {
-        const val = await get_durations(item.video_id);
-        durationsObj[item.video_id] = val;
-      }
-      setDurations(durationsObj);
-    };
+//   useEffect(() => {
+//     const fetchDurations = async () => {
+//       const durationsObj = {};
+//       for (const item of data) {
+//         const val = await get_durations(item.video_id);
+//         durationsObj[item.video_id] = val;
+//       }
+//       setDurations(durationsObj);
+//     };
 
-    if (data) {
-      fetchDurations();
-    }
-  }, [data]);
+//     if (data) {
+//       fetchDurations();
+//     }
+//   }, [data]);
 
     return (
         <>
@@ -102,7 +102,8 @@ export default function VideoSlide({ data, cardClass, imgClass, slider_id, slide
                                             alt={res.title}
                                         />
                                         <p className="text-white text-[11px] font-[500]">
-                                            {durations[res.video_id]}
+                                            {res.duration ? res.duration : "00:00"}
+                                            {/* {durations[res.video_id]} */}
                                         </p>
                                     </div>
                                 </div>

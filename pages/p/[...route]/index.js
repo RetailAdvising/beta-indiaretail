@@ -175,7 +175,7 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
     { title: "Featured Content", url: "Featured Content" },
   ]);
 
-  console.log(webinar_data,"webinar_data")
+  // console.log(webinar_data,"webinar_data")
 
   useEffect(() => {
     if (category_route == "case-studies") {
