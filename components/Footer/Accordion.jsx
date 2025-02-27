@@ -51,7 +51,7 @@ const Accordion = ({ item, i, isMobile }) => {
                     {item.menus && item.menus.length !== 0 && (
                         <div>
                             {item.menus.map((menuItem, index) => (
-                                <Link
+                                <a
                                     target={menuItem.title === "Events" ? "_blank" : "_self"}
                                     href={menuItem.redirect_url}
                                     key={index}
@@ -59,7 +59,7 @@ const Accordion = ({ item, i, isMobile }) => {
                                     <p className="sub_title text-[15px] font-semibold mb-2 hover:text-[red] nunito">
                                         {menuItem.menu_label}
                                     </p>
-                                </Link>
+                                </a>
                             ))}
                         </div>
                     )}

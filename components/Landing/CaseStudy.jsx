@@ -16,7 +16,7 @@ const CaseStudy = ({ data, cardClass, imgClass, slider_id, slider_child_id, titl
     var slider = '';
     useEffect(() => {
         // router = type == 'widget' ?  routers : useRouter()
-        if (slider_child_id) {
+        if (typeof window !== "undefined" && slider_child_id && window.innerWidth > 768) {
             slider = document.getElementById(slider_child_id);
             // setTimeout(() => {
             // }, 2000);
@@ -99,8 +99,10 @@ const CaseStudy = ({ data, cardClass, imgClass, slider_id, slider_child_id, titl
 
 
     useEffect(() => {
-        slider.addEventListener('scroll', handleScroll);
-        handleScroll();
+        if(slider){
+            slider?.addEventListener('scroll', handleScroll);
+            handleScroll();
+        }
     }, [])
 
     const checkRoute = (res) => {

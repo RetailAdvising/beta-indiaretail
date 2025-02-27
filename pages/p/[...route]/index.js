@@ -112,9 +112,11 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
 
 
     if (isMobile && webinar_data?.bottom_mobile_banner) {
-      setBottomBackgroundImage(`https://${domain}${webinar_data.bottom_mobile_banner.replace(/ /g, "%20")}`);
+      setBottomBackgroundImage(check_Image(webinar_data.bottom_mobile_banner.replace(/ /g, "%20")));
+      // setBottomBackgroundImage(`https://${domain}${webinar_data.bottom_mobile_banner.replace(/ /g, "%20")}`);
     } else if (!isMobile && webinar_data?.bottom_banner_image) {
-      setBottomBackgroundImage(`https://${domain}${webinar_data.bottom_banner_image.replace(/ /g, "%20")}`);
+      setBottomBackgroundImage(check_Image(webinar_data.bottom_banner_image.replace(/ /g, "%20")));
+      // setBottomBackgroundImage(`https://${domain}${webinar_data.bottom_banner_image.replace(/ /g, "%20")}`);
     } else {
       setBottomBackgroundImage("/no-image.jpg");
     }
@@ -172,6 +174,8 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
     { title: "Case Studies", url: "Case Studies" },
     { title: "Featured Content", url: "Featured Content" },
   ]);
+
+  console.log(webinar_data,"webinar_data")
 
   useEffect(() => {
     if (category_route == "case-studies") {
@@ -289,7 +293,7 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
     setActiveIndex(data);
     if (type == "click") {
       let el = document.getElementById(data);
-      el.scrollIntoView({
+      el?.scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "start",

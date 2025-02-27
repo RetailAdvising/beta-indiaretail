@@ -102,16 +102,16 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   }, []);
   // useEffect(()=>{
   //   if(typeof window != "undefined"){
-      
+
   //     screen.orientation.addEventListener("change", () => {
-       
+
 
   //       if(screen.orientation.type == "landscape-primary"){
   //         document.documentElement.requestFullscreen().then(()=>screen.orientation.lock("portrait-primary"))
   //       }
   //       // alert(`${screen.orientation} screen.orientation`)
   //       // console.log(`The orientation of the screen is: ${screen.orientation}`);
-        
+
   //       // lockOrientation()
   //     });
   //   }
@@ -168,7 +168,19 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
       if (savedPosition !== null) {
         // Restore the scroll position if it exists
-        window.scrollTo(0, parseInt(savedPosition, 10));
+        // window.scrollTo(0, parseInt(savedPosition, 10));
+        
+        // Get the viewport height
+        const viewportHeight = window.innerHeight;
+
+        // Calculate the position to scroll to (centering the saved position)
+        const centeredPosition = parseInt(savedPosition, 10) - viewportHeight / 2;
+
+        // Use window.scrollTo to scroll to the calculated position
+        window.scrollTo({
+          top: centeredPosition,
+          behavior: 'smooth', // Smooth scroll
+        });
       }
     };
 
@@ -212,14 +224,14 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 }
 const GPTScript = () => {
   useEffect(() => {
-      const script = document.createElement("script");
-      script.src = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
-      script.async = true;
-      document.head.appendChild(script);
+    const script = document.createElement("script");
+    script.src = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
+    script.async = true;
+    document.head.appendChild(script);
 
-      return () => {
-          document.head.removeChild(script);
-      };
+    return () => {
+      document.head.removeChild(script);
+    };
   }, []);
 
   return null;

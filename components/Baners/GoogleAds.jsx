@@ -204,12 +204,10 @@
 
 
 // New
-import { checkMobile } from '@/libs/api';
 import { memo, useEffect, useState } from 'react';
-
 const GoogleAds = (props) => {
     // const [isMobile, setIsMobile] = useState(false);
-
+    const [isAdLoaded, setIsAdLoaded] = useState(false);
     // useEffect(() => {
     //     checkIsMobile();
     //     window.addEventListener('resize', checkIsMobile);
@@ -268,6 +266,15 @@ const GoogleAds = (props) => {
                         .addService(googletag.pubads());
                     googletag.pubads().enableSingleRequest();
                     googletag.enableServices();
+
+                    // Listen for the ad rendering event
+                    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                        if (event.slot === adSlotElement && event.isEmpty) {
+                            setIsAdLoaded(false);  // Set to false if the ad did not load
+                        } else {
+                            setIsAdLoaded(true);  // Set to true if the ad loaded successfully
+                        }
+                    });
                 }
             });
         }
@@ -275,11 +282,15 @@ const GoogleAds = (props) => {
         // console.log(window.googletag,"window googletag")
     }, [props.adId, props.position, props.slotId, props.adSizes]);
 
+     // Conditionally remove or hide the ad based on its loading state
+     const adStyle = isAdLoaded ? {} : { height: '0', width: '0', display: 'none' };
+
     return (
         <div
             id={`div-gpt-ad-${props.adId}-${props.position}`}
             className={`${props.style} scripts`}
             dangerouslySetInnerHTML={{ __html: props.script }}
+            style={adStyle}
         />
     );
 };

@@ -32,7 +32,7 @@ export default function search({ searchTxt, data }) {
     { name: 'Search', route: '/search/searchText=' },
   ])
 
-  console.log(data,"data")
+  // console.log(data,"data")
   const router = useRouter();
   let cardref = useRef();
   let page_no = 1
@@ -58,7 +58,7 @@ export default function search({ searchTxt, data }) {
       allCategory = data
       setAllCategory(allCategory)
     }
-    console.log(data)
+    // console.log(data)
 
     const intersectionObserver = new IntersectionObserver(entries => {
       // console.log('12345')

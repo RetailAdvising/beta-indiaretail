@@ -1,14 +1,23 @@
+import { check_Image } from "@/libs/api";
 import ImageLoader from "../ImageLoader";
 import { domain } from "@/libs/config/siteConfig";
 
 const Banner = ({ data, click_data , isMobile }) => {
   
+  // const backgroundImage = isMobile
+  //   ? data.mobile_banner
+  //     ? `https://${domain}${data.mobile_banner.replace(/ /g, "%20")}`
+  //     : "/no-image.jpg"
+  //   : data.banner_image
+  //     ? `https://${domain}${data.banner_image.replace(/ /g, "%20")}`
+  //     : "/no-image.jpg";
+
   const backgroundImage = isMobile
     ? data.mobile_banner
-      ? `https://${domain}${data.mobile_banner.replace(/ /g, "%20")}`
+      ? `${check_Image(data.mobile_banner.replace(/ /g, "%20"))}`
       : "/no-image.jpg"
     : data.banner_image
-      ? `https://${domain}${data.banner_image.replace(/ /g, "%20")}`
+      ? `${check_Image(data.banner_image.replace(/ /g, "%20"))}`
       : "/no-image.jpg";
   
   return (

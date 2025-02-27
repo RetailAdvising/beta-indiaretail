@@ -227,7 +227,7 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
             {
                 data && Object.keys(data).length != 0 &&
                 <div onClick={() => click_report()} className={`${divClass ? divClass : ''} cursor-pointer md:h-full ${data.position == 'Header' || data.position == 'Footer' ? 'h-[90px] w-[728px]' : ''}`}>
-                    <ImageLoader style={`${imgClass ? imgClass : ''} md:object-contain h-full w-full`} src={isMobile ? data.mobile_image : data.web_image} title={data.title ? data.title : 's'} />
+                    <ImageLoader isQuick={adPos == 'header'} style={`${imgClass ? imgClass : ''} md:object-contain h-full w-full ${adPos == 'header' || adPos == 'footer' ? '!h-[90px] ' : ''}`} src={isMobile ? data.mobile_image : data.web_image} title={data.title ? data.title : 's'} />
                 </div>
             }
 

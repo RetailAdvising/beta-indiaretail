@@ -89,7 +89,7 @@ export default function Home({ data }) {
   }
 
   useEffect(() => {
-    if (home && home.length === 0 && data && data.page_content && data.page_content.length != 0) {
+    if (data && data.page_content && data.page_content.length != 0) {
       setTimeout(() => {
         // setValue(data.page_content)
         dispatch(setData(data.page_content))

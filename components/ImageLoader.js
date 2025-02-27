@@ -4,7 +4,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Image from 'next/image'
 import {domain} from '@/libs/config/siteConfig'
-export default function ImageLoader({ src, title, style, type,isDetail }) {
+export default function ImageLoader({ src, title, style, type,isDetail,isQuick }) {
     const [load, setLoad] = useState(false)
     const [lazy, setLazy] = useState(false)
     // useEffect(()=>{
@@ -26,6 +26,8 @@ export default function ImageLoader({ src, title, style, type,isDetail }) {
             return '/no-image.jpg'
         }
     }
+
+    // console.log(style,"style")
     return (
         <>
             {/* {!load  && (
@@ -51,7 +53,7 @@ export default function ImageLoader({ src, title, style, type,isDetail }) {
                 afterLoad={() =>
                     setTimeout(() => {
                         setLoad(true)
-                    }, 250)
+                    }, isQuick ? 0 : 250)
 
                 }
             />
