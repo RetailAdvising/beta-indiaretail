@@ -121,7 +121,7 @@ export default function Home({ data }) {
   );
 
   useEffect(() => {
-    if (page > 1 && !noProduct) {
+    if (page > 1 && !noProduct && (home && home.length > 0)) {
 
       setLoading(true);
       getPageData()

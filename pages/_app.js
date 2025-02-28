@@ -97,7 +97,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   useEffect(() => {
     setTimeout(() => {
       appendScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
-    }, 500);
+    }, 2000);
     // Call the function to append the script after the page has loaded
   }, []);
   // useEffect(()=>{
@@ -169,7 +169,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       if (savedPosition !== null) {
         // Restore the scroll position if it exists
         // window.scrollTo(0, parseInt(savedPosition, 10));
-        
+
         // Get the viewport height
         const viewportHeight = window.innerHeight;
 
@@ -224,10 +224,13 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 }
 const GPTScript = () => {
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
-    script.async = true;
-    document.head.appendChild(script);
+
+    setTimeout(() => {
+      const script = document.createElement("script");
+      script.src = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
+      script.async = true;
+      document.head.appendChild(script);
+    }, 2000);
 
     return () => {
       document.head.removeChild(script);

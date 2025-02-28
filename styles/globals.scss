@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @import './Variables.module.scss';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Poppins:wght@300&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Poppins:wght@300&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Faustina:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
@@ -153,9 +153,9 @@ th {
   font-style: normal;
 }
 
-.play-fair {
-  font-family: 'Playfair Display';
-}
+// .play-fair {
+//   font-family: 'Playfair Display';
+// }
 
 .josefin-sans {
   font-family: 'Josefin Sans';
@@ -1483,21 +1483,22 @@ button:focus {
 }
 
 .react-multiple-carousel__arrow--left::before {
-  color: $dark-color !important;
+  color: $white-color !important;
 }
 
 .react-multiple-carousel__arrow--right::before {
-  color: $dark-color !important;
+  color: $white-color !important;
 }
 
 .react-multiple-carousel__arrow {
   background: $white-color !important;
+  background: #0000004f !important; 
   min-width: 38px !important;
   min-height: 38px !important;
   z-index: 0 !important;
   bottom: 45% !important;
   // bottom: 60% !important;
-  border-radius: 0 !important;
+  border-radius: 50% !important;
 }
 
 .react-multiple-carousel__arrow::before {
