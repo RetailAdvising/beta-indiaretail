@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import RootLayout from '@/layouts/RootLayout'
-import { checkMobile, update_no_of_shares, get_subscription_plans, check_Image,seo_Image,getCurrentUrl } from '@/libs/api';
+import { checkMobile, update_no_of_shares, get_subscription_plans, check_Image, seo_Image, getCurrentUrl } from '@/libs/api';
 import { video_details, getAdvertisements } from '@/libs/api';
 import { useRouter } from 'next/router';
-// import { check_Image } from '@/libs/common'
 import Image from 'next/image';
 import List from '@/components/common/List'
 import Title from '@/components/common/Title'
@@ -12,19 +11,11 @@ import Dropdowns from '../../../../components/common/Dropdowns';
 import { useSelector } from 'react-redux';
 import SubscriptionAlert from '@/components/common/SubscriptionAlert';
 import Placeholders from '@/components/common/Placeholders'
-// import { Nunito } from 'next/font/google'
 import Head from 'next/head'
 import Advertisement from '@/components/Baners/Advertisement';
-// const nunito = Nunito({
-//     weight: ["300", "400", "500", "600", "700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-// })
+
 export default function Videos({ meta_info, ads_data }) {
-     console.log(meta_info, ads_data)
+    //  console.log(meta_info, ads_data)
     const router = useRouter();
     let [isMobile, setIsmobile] = useState();
     let [videoDetail, setVideoDetail] = useState();
@@ -32,19 +23,9 @@ export default function Videos({ meta_info, ads_data }) {
     const icons = [{ icon: "/bookstore/linkedin.svg", name: 'Linkedin' }, { icon: "/bookstore/FB.svg", name: 'Facebook' }, { icon: "/bookstore/twitter.svg", name: 'Twitter' }, { icon: "/bookstore/whatsapp.svg", name: 'Whatsapp' }]
     const role = useSelector(s => s.role);
 
-    // let bannerImg = { ad_image: '/ads_baner.png' };
-
     useEffect(() => {
         if (typeof window !== 'undefined') {
             checkRole()
-            // const data = JSON.parse(localStorage['roles']);
-            // if (data && data.length != 0) {
-            //     data.map(res => {
-            //         if (res.role == 'Member') {
-            //             setValidator(true);
-            //         }
-            //     })
-            // }
         }
         if (router.query) {
             get_video_details()
@@ -57,18 +38,14 @@ export default function Videos({ meta_info, ads_data }) {
     }, [router.query, role])
 
     const checkRole = () => {
-        // console.log(role,'role')
         if (role && role != '' && role.message && role.message.length != 0) {
-            // console.log(role)
-            // if(updateCmts == -1){
+
             for (let index = 0; index < role.message.length; index++) {
                 if (role.message[index] == 'Member' || role.message[index] == "Member User") {
                     setValidator(true);
                 }
             }
-            // }
         }
-
         getMembershipPlans()
     }
 
@@ -79,7 +56,6 @@ export default function Videos({ meta_info, ads_data }) {
 
     const get_video_details = async () => {
         let id = await router.query.vids + '/' + router.query.detail;
-        // "primary_text","secondary_text",
         let data = {
             "route": id, fields: ["name", "route", "title", "video_image", 'description']
         }
@@ -89,9 +65,7 @@ export default function Videos({ meta_info, ads_data }) {
         }
     }
 
-
     const updateShare = async (data) => {
-        // console.log(data, 'share');
         const param = {
             doc_id: data.name,
             doctype: 'Video'
@@ -111,9 +85,7 @@ export default function Videos({ meta_info, ads_data }) {
             let data = { "plan_type": "Month", "res_type": "member" }
             const resp = await get_subscription_plans(data);
             if (resp && resp.message && resp.message.status && resp.message.status == 'success') {
-                // console.log(resp)
                 if (resp.message.message && resp.message.message.length != 0 && resp.message.message[0]) {
-                    // plans.push(resp.message.message[0].features)
                     setPlans(resp.message.message[0].features)
                 }
             }
@@ -121,12 +93,11 @@ export default function Videos({ meta_info, ads_data }) {
     }
 
     const videoLink = (link) => {
-        // console.log(link,'link')
         return link.video_type.toLowerCase() == 'youtube' ? 'https://www.youtube.com/embed/' + link.video_id : 'https://player.vimeo.com/video/' + link.video_id
     }
 
     return (
-        <RootLayout ad_payload={{ page: 'Videos', page_type: 'Detail' }} homeAd={ads_data ? ads_data : null} adIdH={router.query.vids+'vidsdH'} adIdF={router.query.vids+'vidsdF'} isLanding={false} head={'Detail'}>
+        <RootLayout ad_payload={{ page: 'Videos', page_type: 'Detail' }} homeAd={ads_data ? ads_data : null} adIdH={router.query.vids + 'vidsdH'} adIdF={router.query.vids + 'vidsdF'} isLanding={false} head={'Detail'}>
             <Head>
                 <title key="title">{meta_info?.message.meta_title}</title>
                 <meta name="description" content={meta_info?.message.meta_description} />
@@ -189,7 +160,6 @@ export default function Videos({ meta_info, ads_data }) {
 
                 <link rel="shortcut icon" href="/ir_2023.png" />
             </Head>
-            {/* {(meta_info && meta_info.message) && <SEO title={meta_info.message.meta_title ? meta_info.message.meta_title : meta_info.message.title} ogImage={check_Image(meta_info.message.video_image)} siteName={'India Retailing'} ogType={meta_info.message.meta_keywords ? meta_info.message.meta_keywords : meta_info.message.title} description={meta_info.message.meta_description ? meta_info.message.meta_description : meta_info.message.title} />} */}
             {videoDetail ? <>
                 {videoDetail &&
                     // lg:py-[20px]
@@ -219,72 +189,37 @@ export default function Videos({ meta_info, ads_data }) {
                             <div className={`${validator ? 'lg:min-h-[80vh] md:min-h-[220px]' : ''} my-[10px]`}>
                                 {(!validator && videoDetail.message.ir_prime == 1) ?
                                     <>
-                                        {/* <div className='grid place-content-center max-w-[400px] p-[30px_20px_20px_20px] md:p-[20px] m-[0_auto]'>
-                                        <div className={`flex items-center gap-[10px] `}>
-                                        <Image src={'/irprime/premium.svg'} height={20} width={20} alt='premium' />
-                                        <p className='text-red font-semibold'>Prime Video</p>
-                                        </div>
-                                        <h6 className='text-[32px] font-[600] leading-[40px] md:text-[17px] md:leading-[22px] pt-[10px]'>Its a Premium Content,Simply buy Membership to Unlock</h6>
-                                        <p className='text-[14px] font-[400] text-gray pt-[10px] leading-[20px] md:leading-[16px] md:pt-[15px]'>50,000+ articles Prime Video is the only subscription you need</p>
 
-                                        <div className='w-full mt-[25px] md:mt-[15px] md:text-center'>
-                                        <button className='primary_button w-full text-[16px] h-[50px] p-[5px_10px] md:text-[14px] md:h-[35px] md:w-max' onClick={() => router.push('/membership')} style={{ borderRadius: '9999px', textTransform: 'unset' }}>Subscribe to Prime Video</button>
-                                        </div>
-
-                                    </div> */}
                                         <p className='gray_color  my-[10px] line-clamp-2 md:text-[14px] lg:text-[16px]' >{videoDetail.message.intro}</p>
                                         <div className='gray_color  my-[20px]' dangerouslySetInnerHTML={{ __html: videoDetail.message.description }} />
                                         <SubscriptionAlert data={(plans && plans.length != 0) ? plans : []} />
-                                        {/* <Image src={check_Image(videoDetail.message.video_image)} alt='img' height={200} width={200} className='h-full w-full' />
-                                    <div className='border-0 p-[20px] my-[20px] rounded-md bg-[#e21b22] mt-6 flex justify-between md:block'>
-                                        <div className='text-center text-[20px] md:text-[16px] font-semibold text-[white] flex md:pb-2'>
-                                            <Image src={'/ir-icon.svg'} height={38} width={38} alt={"image"} className='mr-3 object-contain' />
-                                            <div className='text-center'>
-                                                <h6 className='text-[20px] text-[white] md:text-[16px] font-semibold text-left'>Prime Video</h6>
-                                                <p className='text-[14px] text-[white] md:text-[13px] md:text-left font-normal'>This video is for Premium Members you  have to buy Membership to Unlock</p>
-                                            </div>
 
-                                        </div>
-                                        <div className='flex gap-[20px] justify-center pt-[0px]'>
-                                            <button className='m-auto primary_btn p-[6px_8px] text-[13px] bg-[#fff] text-[#e21b22] flex' onClick={() => router.push('/membership')}><Image src={'/subscribe.svg'} height={18} width={18} alt={"image"} className='mr-1' />Subscribe</button>
-                                        </div>
-                                    </div> */}
                                     </>
-                                    : 
+                                    :
                                     <>
-                                    <iframe
-                                        className={`lg:h-[75vh] md:h-[30vh] w-full`}
-                                        title={videoDetail.message.title ? videoDetail.message.title : ''}
-                                        // src={`https://www.youtube.com/embed/${videoDetail.message.video_id ? videoDetail.message.video_id : videoDetail.message.video_id}`}
-                                        src={videoLink(videoDetail.message)}
-                                        // width={res.width}
-                                        // height={res.height}
-                                        frameBorder="2"
-                                        loading="lazy"
-                                    // allowfullscreen="allowfullscreen"
-                                    ></iframe>
-                                    
+                                        <iframe
+                                            className={`lg:h-[75vh] md:h-[30vh] w-full`}
+                                            title={videoDetail.message.title ? videoDetail.message.title : ''}
+                                            // src={`https://www.youtube.com/embed/${videoDetail.message.video_id ? videoDetail.message.video_id : videoDetail.message.video_id}`}
+                                            src={videoLink(videoDetail.message)}
+                                            // width={res.width}
+                                            // height={res.height}
+                                            frameBorder="2"
+                                            loading="lazy"
+                                        // allowfullscreen="allowfullscreen"
+                                        ></iframe>
 
-                                    <p className='gray_color  my-[10px] line-clamp-2 md:text-[14px] lg:text-[16px]' >{videoDetail.message.intro}</p>
+
+                                        <p className='gray_color  my-[10px] line-clamp-2 md:text-[14px] lg:text-[16px]' >{videoDetail.message.intro}</p>
                                         <div className='gray_color  my-[20px]' dangerouslySetInnerHTML={{ __html: videoDetail.message.description }} />
                                     </>
-                                    }
+                                }
 
-                                {/* <Image className='h-[400px] ' src={check_Image(videoDetail.message.video_image)} height={430} width={430} layout="fixed" alt={''} /> */}
                             </div>
-
-                            {/* {(videoDetail.message.description) && <div className='gray_color josefin-sans my-[20px]' dangerouslySetInnerHTML={{ __html: videoDetail.message.description }} />} */}
-
-                            {/* {videoDetail.other_category && videoDetail.other_category.data && videoDetail.other_category.data.length != 0 && 
-                        <div className=''><Title data={videoDetail.other_category} seeMore={false} /><List fullWidth={true} check={true} isBB={true} isDesc={true} contentWidth={'w-[410px] md:w-[auto]'} imgFlex={'flex-[0_0_calc(20%_-_10px)] md:flex-[0_0_calc(40%_-_10px)]'} imgWidth={'w-full'} imgHeight={'h-[100px] md:h-[85px]'} data={videoDetail.other_category.data.slice(0,3)} borderRadius={'rounded-[5px]'} /></div>
-                     } */}
 
                         </div>
 
                         <div className={`${!validator && videoDetail.message.ir_prime == 1 ? 'hidden' : 'lg:flex-[0_0_calc(30%_-_0px)] lg:pt-[40px]'}`}>
-
-
-
 
                             {(videoDetail.place_holders_ads && videoDetail.place_holders_ads.length != 0) ? <>
                                 <Placeholders placeholder={videoDetail.place_holders_ads} />
@@ -297,19 +232,10 @@ export default function Videos({ meta_info, ads_data }) {
                                 </div>
                                 <Advertisement ad_payload={{ page: 'Videos', page_type: 'Detail' }} adId={'right_first'} data={(ads_data && ads_data.right_first) && ads_data.right_first} position={"small"} adPos={'300'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />
                                 {ads_data && ads_data.right_second && <Advertisement ad_payload={{ page: 'Videos', page_type: 'Detail' }} adId={'right_second'} data={(ads_data && ads_data.right_second) && ads_data.right_second} position={"small"} adPos={'300'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} />}
-                                {/* <Advertisement adId={'right_third'} data={(ads_data && ads_data.right_third) && ads_data.right_third} position={"small"} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px]`} /> */}
-                                {/* <AdsBaner data={bannerImg} height={'h-[250px]'} /> */}
+
                             </>
                             }
 
-
-                            {/* <div className='h-[260px] mt-[10px]'>
-                                <Image className='h-[250px] w-[300px]' src={'/ads_baner.png'} height={250} width={300} layout="fixed" alt={''} />
-                            </div> */}
-
-                            {/* <div className='h-[600px] mt-[30px] mb-[10px]'>
-                        <Image className='h-[600px] w-[300px]' src={'/ads_music.png'} height={600} width={300} layout="fixed" alt={''} />
-                      </div> */}
                         </div>
                     </div>
 
@@ -459,12 +385,12 @@ export async function getServerSideProps({ params }) {
     }
     let res = await video_details(data);
 
-    if(res.status === "Failed"){
+    if (res.status === "Failed") {
         return {
             notFound: true
         }
     }
-    
+
     let meta_info = res;
 
     let ads_params = { page: 'Videos', page_type: 'Detail' }

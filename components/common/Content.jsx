@@ -6,15 +6,7 @@ import format from 'date-fns/format'
 import ImageLoader from '../ImageLoader';
 import dynamic from 'next/dynamic'
 const Dropdowns = dynamic(() => import('./Dropdowns'))
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
 export default function Content({ res, i, updateShare, noScroll }) {
 
     const icons = [{ icon: "/bookstore/linkedin.svg", name: 'Linkedin' }, { icon: "/bookstore/FB.svg", name: 'Facebook' }, { icon: "/bookstore/twitter.svg", name: 'Twitter' }, { icon: "/bookstore/whatsapp.svg", name: 'Whatsapp' }]

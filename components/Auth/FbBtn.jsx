@@ -1,15 +1,11 @@
-// import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useLinkedIn } from 'react-linkedin-login-oauth2';
 
 import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
 const FbBtn = ({ socialLogin, setCredential, setShowMob }) => {
-  // const { data: session } = useSession();
-  // console.log(data,'data')
-  // console.log(session, 'session')
+
   const [doamin_url, setDomainUrl] = useState()
 
   useEffect(() => {
@@ -20,21 +16,17 @@ const FbBtn = ({ socialLogin, setCredential, setShowMob }) => {
 
   const { linkedInLogin } = useLinkedIn({
     clientId: "782oqow2dx0bgq",
-    // redirectUri: `https://indiaretail.vercel.app/auth/signin`,
     // redirectUri: `http://localhost:3000/auth/signin`,
     redirectUri: `${doamin_url}/auth/signin`,
     scope: "email profile w_member_social openid",
     state: "782oqow2dx0bgq",
     // email profile
     onSuccess: async (code) => {
-      // console.log(code);
       const accessToken = await handleLogin(code)
       if (accessToken) {
         let values = await getUserEmail(accessToken)
         userLogin(values)
       }
-      // console.log(await getAuthorization(),"getAuthorization")
-      // console.log(await getAccessToken(code), "code accesss")
     },
     onError: (error) => {
       console.log(error);
@@ -61,7 +53,6 @@ const FbBtn = ({ socialLogin, setCredential, setShowMob }) => {
   const handleLogin = async (code) => {
     // let url = `http://localhost:3000/api/auth/signin`;
     let url = `${doamin_url}/api/auth/signin`
-    // let url = "https://indiaretail.vercel.app/api/auth/signin"
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -101,7 +92,6 @@ const FbBtn = ({ socialLogin, setCredential, setShowMob }) => {
 
     // let url = `http://localhost:3000/api/auth/get_user`;
     let url = `${doamin_url}/api/auth/get_user`;
-    // let url = `https://indiaretail.vercel.app/api/auth/get_user`;
     try {
       const response = await fetch(url, {
         method: 'POST',

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import RootLayout from '@/layouts/RootLayout'
 import Image from 'next/image'
-import { getTagsList, check_Image, getList, getAds, getTagList, update_no_of_shares } from '@/libs/api'
+import { getTagsList, getList, getAds, update_no_of_shares } from '@/libs/api'
 import TrendingBox from '/components/Landing/TrendingBox'
 import Tabs from '@/components/Landing/Tabs'
 import { useRouter } from 'next/router'
@@ -9,18 +9,9 @@ import List from '@/components/common/List'
 import Title from '@/components/common/Title'
 import Dropdowns from '@/components/common/Dropdowns';
 import ImageLoader from '@/components/ImageLoader';
-// import { Nunito } from 'next/font/google'
 import Advertisement from '@/components/Baners/Advertisement'
-// const nunito = Nunito({
-//     weight: ["300", "400", "500", "600", "700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-// })
+
 export default function Trending({ data, res, ads }) {
-    const categories = [{ name: 'All', route: 'all' }, { name: 'News', route: 'news_list' }, { name: 'Articles', route: 'article_list' }, { name: 'Events', route: 'event_list' }]
     const [resp_data, setData] = useState([])
     const [nodata, setNodata] = useState(false);
     const [tabs, setTabs] = useState(undefined)

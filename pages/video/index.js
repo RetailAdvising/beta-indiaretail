@@ -1,4 +1,3 @@
-// import React, { useState, useEffect } from 'react'
 import RootLayout from '@/layouts/RootLayout'
 import { useState, useEffect } from 'react'
 import { video_list_with_categoies, getAdvertisements, checkMobile, sliders } from '@/libs/api'
@@ -6,7 +5,6 @@ import Video from '@/components/Video/Video'
 import Title from '@/components/common/Title'
 import SEO from '@/components/common/SEO'
 import Sliders from '@/components/Sliders/index'
-// import Advertisement from '@/components/Baners/Advertisement'
 import dynamic from 'next/dynamic'
 const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))
 export default function Videos({ data, ads, slider_data }) {
@@ -20,6 +18,7 @@ export default function Videos({ data, ads, slider_data }) {
         setValues(data)
       }, 200);
     }
+
     checkIsMobile();
     window.addEventListener('resize', checkIsMobile)
     return () => {
@@ -36,6 +35,7 @@ export default function Videos({ data, ads, slider_data }) {
       isMobile ? res.mobile_image ? res.image = res.mobile_image : res.image = '' : ''
     })
   }
+
   return (
     <>
       <RootLayout ad_payload={{ page: 'Videos', page_type: 'Landing' }} homeAd={ads ? ads : null} isLanding={true} head={'IR Prime Videos'} adIdH={'video-head'} adIdF={'video-foot'} >
@@ -43,6 +43,7 @@ export default function Videos({ data, ads, slider_data }) {
         <div className="container zero-gap ">
           {slider_data && slider_data.length != 0 && <Sliders common_slide={true} imgClass={'h-[400px] md:h-[220px] w-full'} event={true} data={slider_data} perView={1} className='gap-0' />}
         </div>
+
         {(values && values.length != 0) ? <div className='container lg:p-[30px_0px] md:p-[15px]'>
           {values.map((res, index) => {
             return (
@@ -61,7 +62,7 @@ export default function Videos({ data, ads, slider_data }) {
 
 
         </div> : <Skeleton />}
-        {/* <Tabs /> */}
+        
       </RootLayout>
     </>
   )

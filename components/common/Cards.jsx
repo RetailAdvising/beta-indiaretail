@@ -6,10 +6,6 @@ import ImageLoader from '../ImageLoader';
 export default function Cards({ searchNavigation, titleOnly, noPrimaryText, data, isHome = undefined, check, contentHeight, flex, border_none, isBorder, width, height, borderRadius, cardClass,route }) {
   const router = useRouter();
   const navigateDetail = (data) => {
-    // router.push('/login')
-    //   else if(data.type == 'News'){
-    //     route = '/news/' + data.route
-    // }
     let route = ''
     if (data.type == 'Articles') {
       // route = data.ir_prime == '1' ?'/IRPrime/' + data.route : '/categories/' + data.route

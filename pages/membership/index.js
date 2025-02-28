@@ -2,12 +2,7 @@ import { useEffect, useState } from 'react'
 import RootLayout from '@/layouts/RootLayout';
 import data from '@/libs/membership';
 import Image from 'next/image';
-// import Faq from '@/components/Membership/faq';
-// import Benefits from '@/components/Membership/benefits';
-// import ConfirmationScreen from '@/components/Membership/ConfirmationScreen';
 import { checkMobile, HomePage, get_subscription_plans, get_razorpay_settings, make_payment_entry } from '@/libs/api'
-// import AlertUi from '@/components/common/AlertUi';
-// import AuthModal from '@/components/Auth/AuthModal';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 const AuthModal = dynamic(()=> import('@/components/Auth/AuthModal'))
@@ -15,6 +10,7 @@ const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
 const ConfirmationScreen = dynamic(()=> import('@/components/Membership/ConfirmationScreen'))
 const Faq = dynamic(()=> import('@/components/Membership/faq'))
 const Benefits = dynamic(()=> import('@/components/Membership/benefits'))
+
 export default function Membership() {
 
   let [btnState, setbtnState] = useState(true);
@@ -31,7 +27,7 @@ export default function Membership() {
     getMembershipData()
     checkIsMobile();
     get_razor_pay_values()
-    // setTimeout(()=>{},700)
+    
     window.addEventListener('resize', checkIsMobile)
     return () => {
       window.removeEventListener('resize', checkIsMobile);
@@ -90,22 +86,6 @@ export default function Membership() {
         })
 
       }
-
-      // if (btnState && subscribed_plans.length != 0) {
-      //   let monthly_plans = resp.message.subscribed_plans.filter(res => { return res.billing_interval == 'Month' && res.status == 'Active' })
-      //   if (monthly_plans.length == 0) {
-      //     btnState = btnState = !btnState
-      //     setbtnState(btnState);
-      //     getMembershipData()
-      //   }
-      // }
-
-
-      // if(btnState && resp.message.subscribed_plans && resp.message.subscribed_plans[0] && resp.message.subscribed_plans[0].billing_interval && resp.message.subscribed_plans[0].billing_interval != 'Month'){
-      //   btnState = btnState =! btnState
-      //   setbtnState(btnState);
-      //   getMembershipData()
-      // }
 
       setMemberShipDetails(datas);
 
@@ -211,7 +191,6 @@ export default function Membership() {
     setVisible_(false);
   }
 
-
   function payment_error_callback(error) {
     setAlertMsg({ message: 'Payment failed' });
     setEnableModal(true);
@@ -230,13 +209,13 @@ export default function Membership() {
     }
     const resp = await make_payment_entry(params);
     if (resp && resp.message && resp.message.status && resp.message.status == 'success') {
-      //  setAlertMsg({message:'Subscription created successfully'});
 
       if (localStorage['roles']) {
         let get_values = JSON.parse(localStorage['roles']);
         get_values.push({ role: 'Member' })
         localStorage['roles'] = JSON.stringify(get_values)
       }
+
       setIsActive(isActive);
       setSubscribed_plans_length(1);
 
@@ -245,7 +224,6 @@ export default function Membership() {
   }
 
   const load_razorpay = async (amount, description, order_id) => {
-    // console.log(razorpay_settings.api_key)
     let r_pay_color = '#e21b22';
     const app_name = 'India Retail';
     var options = {
@@ -261,7 +239,6 @@ export default function Membership() {
       "handler": async (response, error) => {
         if (response) {
           payment_Success_callback(response, amount, order_id)
-          // response.razorpay_payment_id
         } else if (error) {
           payment_error_callback(error)
         }
@@ -277,9 +254,7 @@ export default function Membership() {
     return () => {
       document.body.removeChild(script);
     };
-
   }
-
 
   const router = useRouter()
 
@@ -308,7 +283,6 @@ export default function Membership() {
         <ConfirmationScreen membershipDetails={memberShipDetails} visible={visible} hide={(obj) => hide(obj)} startPlan={(membership, index) => startPlan(membership, index)} btnState={btnState} handleClick={handleClick} />
       }
 
-      {/* <Modal modal={modal} show={show} visible={visible_} hide={hide_1} member={"membership_login"} membership={"membership"}/> */}
       <div className='authModal'><AuthModal modal={modal} isModal={false} show={show} visible={visible_} hide={hide_1} /></div>
 
       <div className="pt-[30px] bg-[url('/membership/bg_membership.svg')] bg-no-repeat bg-contain">
@@ -336,18 +310,10 @@ export default function Membership() {
                     // ${subscribed_plans_length > 0 ? 'active_member_ship' : ''} 
                     <div onClick={() => selected_plan()} key={index} className={`${isActive == index ? 'cur_member_ship' : ''} ${subscribed_plans_length == 0 ? 'active_member_ship' : ''} md:mb-[20px] flex-[0_0_calc(33.333%_-_16px)] member-card lg:p-8 md:p-[15px] bg-white rounded-2xl relative`}>
                       <h3 className='text-2xl font-bold'>{membership.plan_name}</h3>
-
-                      {/* <div className='flex items-center gap-[3px] my-[2px] rounded-[35px] w-max p-[5px_8px] member-button'>
-                        <span className='h-[20px] flex items-center'><Image className='h-[18px]' src="/percentage.svg" height={18} width={18} alt={''} /></span> 
-                        <p className='text-[12px] member-button leading-[0px]'> Save {membership.offer} % </p>
-                      </div> */}
-
                       <h5 className='font-medium text-3xl'>{formatter.format(membership.total_amount)}</h5>
                       <p className='text-xs'>Per {btnState ? 'month' : 'year'} .</p>
 
                       <p className='py-[6px] text-black text-xs font-bold'>Starter plan for optimal business intelligence</p>
-
-                      {/* <p className='py-[6px] text-black text-xs font-bold'>{membership.descrption}</p> */}
 
                       <ul className='pb-[48px]'>
                         {membership.features.map((items, index) => {
@@ -374,12 +340,7 @@ export default function Membership() {
         {pageContent && pageContent.length != 0 && pageContent.map((res) => {
           return (
             <div key={res.section_name}>
-              {/* {res.section_name == 'IR Member Ship' && res.section_type == 'Static Section' &&
-                <div className='py-[20px] '>
-                  <Benefits data={res}></Benefits>
-                </div>
-              } */}
-
+              
               <Benefits data={res}></Benefits>
 
               {res.section_name == 'FAQ Style 4' && res.section_type == 'Custom Section' &&

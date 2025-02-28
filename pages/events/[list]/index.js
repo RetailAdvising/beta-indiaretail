@@ -5,37 +5,19 @@ import RootLayout from '@/layouts/RootLayout';
 import Title from '@/components/common/Title';
 import EventCards from '@/components/Events/EventCards';
 import SEO from '@/components/common/SEO'
-import EventSlide from '@/components/Events/EventSlide';
+import dynamic from 'next/dynamic';
+const EventSlide = dynamic(()=> import('@/components/Events/EventSlide'))
 
 export default function EventDetails({ values, Id }) {
     const router = useRouter();
     // const [list, setList] = useState(false);
-    const [isChecked, setIsChecked] = useState(false)
     const [data, setData] = useState([])
     let apiCall = false;
     let page_no = 1;
 
-
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked)
-    }
-    // console.log(router.query.list)
-
-
-    // async function  get_event_list(){
-    //     const payload = {
-    //         category:router.query.list
-    //     }
-    //     if (router.query.list) {
-    //         const event_list = await postMethod("india_retailing.india_retailing.api.event_list",payload )
-    //         console.log(event_list);
-    //     }
-    // }
-
     useEffect(() => {
         getAd()
         if (values) {
-            // console.log(values);
             setData(values.message)
             getExpiredEvents()
         }
@@ -46,14 +28,12 @@ export default function EventDetails({ values, Id }) {
             const clientHeight = document.documentElement.clientHeight
 
             if ((scrollTop + clientHeight) + 500 >= scrollHeight) {
-                // console.log(scrollTop);
-                // console.log(clientHeight);
-                // console.log(scrollHeight);
+                
                 if (!apiCall) {
                     apiCall = true;
                     page_no += 1;
                     loadMore()
-                    // sampleFunc();
+                    
                 }
             }
         };
@@ -82,19 +62,13 @@ export default function EventDetails({ values, Id }) {
             setExpiredEvents([])
         }
     }
-
-    // console.log('ee', expiredEvents);
-    
-
+   
     async function loadMore() {
         let Id = router.query?.list;
         let param = { route: Id, page_no: page_no, page_length: 12, fields: ["name", "title", "description", "category_name", "start_date", "thumbnail_path"] }
         let value = await eventList(param)
         if (value && value.message.length != 0) {
             setData(d => d = [...d, ...value.message]);
-            // setData(d => d={...d,...value});
-            // setData(d => console.log(d));
-            // data = [...data,...value.message]
             apiCall = false;
         } else {
             apiCall = true;
@@ -117,7 +91,6 @@ export default function EventDetails({ values, Id }) {
         <>
             <RootLayout ad_payload={{ page: 'Events', page_type: 'List' }} isLanding={false} head={values.title} homeAd={ads ? ads : null} adIdH={router.query.list + 'evcH'} adIdF={router.query.list + 'evcF'} >
                 {values && <SEO title={values.title} siteName={'India Retailing'} />}
-                {/* <SEO title={data.data.meta_title} ogImage={check_Image(data.data.image)} siteName={'India Retailing'} ogType={data.data.meta_keywords} description={data.data.meta_description}/> */}
                 <div className='md:p-[15px] container '>
                     <div className='flex md:hidden justify-between items-center'>
                         <div className='mt-[20px]'>
@@ -126,13 +99,9 @@ export default function EventDetails({ values, Id }) {
                         
 
                     </div>
-                    {/*  ${!isChecked ? 'grid-cols-2 md:grid-cols-1' : 'grid-cols-4 md:grid-cols-2'} */}
                     <div className={`grid grid-cols-4 md:grid-cols-2 md:gap-[10px] gap-[20px] mb-[20px]`}>
                         {/* {data && <EventList data={data.message} />} */}
                         {(data) && <>
-                            {/* {!isChecked ? <EventList data={data} height={'h-[200px]'} width={'w-full'} />
-                                : <EventCards data={data} flex={'flex-[0_0_calc(50%_-_10px)] md:flex-[0_0_calc(100%_-_10px)]'} height={'h-[210px]'} width={'w-full'} />
-                            } */}
                             <EventCards card={'h-[360px] md:h-[320px]'} data={data} height={'h-[210px] md:h-[150px]'} width={'w-full'} />
                         </>
                         }

@@ -1,11 +1,9 @@
 import RootLayout from '@/layouts/RootLayout'
 import { useRef, useEffect, useState } from 'react'
-// import data from '@/libs/bookstoreList';
 import Title from '@/components/common/Title';
 import Card from '@/components/Bookstore/Card';
 import { getCategoryProduct, getAdvertisements } from '@/libs/api';
 import { useRouter } from 'next/router';
-// import BreadCrumb from '@/components/common/BreadCrumb';
 
 export default function BookstoreList({ value, ads }) {
     const router = useRouter();
@@ -13,8 +11,6 @@ export default function BookstoreList({ value, ads }) {
     let cardref = useRef();
     let page_no = 1
     let no_product = false;
-    // console.log(value);
-    
 
     useEffect(() => {
 
@@ -53,7 +49,7 @@ export default function BookstoreList({ value, ads }) {
 
     return (
         <>
-            <RootLayout ad_payload={{ page: 'Books', page_type: 'List' }} adIdH={router.query.list+'booklH'} adIdF={router.query.list+'booklF'} homeAd={ads ? ads : null}>
+            <RootLayout ad_payload={{ page: 'Books', page_type: 'List' }} adIdH={router.query.list + 'booklH'} adIdF={router.query.list + 'booklF'} homeAd={ads ? ads : null}>
                 <div className='container'>
                     {(data && data.length != 0) &&
                         <div className='md:p-[15px]'>
@@ -76,12 +72,12 @@ export async function getServerSideProps({ params }) {
     let param = { route: Id, page_no: 1, page_size: 10 }
     let resp = await getCategoryProduct(param);
     let value = resp.message || null;
-    
-    if(value === null){
+
+    if (value === null) {
         return {
             notFound: true
         }
-    } 
+    }
 
     let para = { page: 'Books', page_type: 'List' }
     let res = await getAdvertisements(para)

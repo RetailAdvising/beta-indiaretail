@@ -76,22 +76,16 @@ export default function Address({ hide, edit_address, modal }) {
   async function address_insert(data) {
     const resp = await insert_address(data);
     if (resp && resp.message) {
-      // console.log(resp.message);
       reset();
       hide(resp.message);
-      // customerInfo.address.push(resp.message);
-      // setCustomerInfo(customerInfo);
     }
   }
 
   async function address_update(data) {
     const resp = await update_address(data);
     if (resp && resp.message) {
-      // console.log(resp.message);
       reset();
       hide(resp.message);
-      // customerInfo.address.push(resp.message);
-      // setCustomerInfo(customerInfo);
     }
   }
 

@@ -1,11 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { like, dislike, getList, addComment } from '@/libs/api';
-// import Modal from '../common/Modal';
-// import AlertUi from '../common/AlertUi';
 import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import CommentModal from './CommentModal'
 import format from 'date-fns/format'
 import dynamic from 'next/dynamic';
 const AlertUi = dynamic(()=> import('../common/AlertUi'))
@@ -226,11 +222,7 @@ export default function Comments({ data, isLast, load, comments, route, updatedC
                                 </div>
                                 {reportComment && <Modal modal={modal} show={show} visible={visible} hide={(resp_message) => hideReport(resp_message)} data={reportComment} cur={selecedComment.name} />}
                                 {isSuccessPopup && <AlertUi alertMsg={alertMessage && alertMessage} isOpen={isSuccessPopup} closeModal={closeModal} button_2={"ok"} />}
-                                {/* {(input.index == index && input.show) &&
-                                            <div>
-                                                <input type='text' />
-                                            </div>
-                                  } */}
+                                
                             </div>
                         </div>
                         // </div >

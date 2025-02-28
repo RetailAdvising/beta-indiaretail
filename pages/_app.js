@@ -100,23 +100,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     }, 2000);
     // Call the function to append the script after the page has loaded
   }, []);
-  // useEffect(()=>{
-  //   if(typeof window != "undefined"){
 
-  //     screen.orientation.addEventListener("change", () => {
-
-
-  //       if(screen.orientation.type == "landscape-primary"){
-  //         document.documentElement.requestFullscreen().then(()=>screen.orientation.lock("portrait-primary"))
-  //       }
-  //       // alert(`${screen.orientation} screen.orientation`)
-  //       // console.log(`The orientation of the screen is: ${screen.orientation}`);
-
-  //       // lockOrientation()
-  //     });
-  //   }
-
-  // },[])
 
   useEffect(() => {
     const lockOrientation = async () => {
@@ -198,9 +182,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   return (
     <>
 
-      {/* <Head>
-        <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
-      </Head> */}
       <GPTScript />
       <ErrorBoundary >
         <Provider store={store} >
@@ -222,6 +203,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     </>
   )
 }
+
 const GPTScript = () => {
   useEffect(() => {
 

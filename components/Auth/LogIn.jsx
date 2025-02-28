@@ -8,20 +8,13 @@ import { useRouter } from 'next/router';
 import OTP from './OTP';
 import SignUp from './SignUp';
 import Forget from './Forget'
-// import FacebookLogin from 'react-facebook-login';
 import { toast } from 'react-toastify';
 import CryptoJS from 'crypto-js';
-
-// import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import { useDispatch } from 'react-redux';
 import setUser from 'redux/actions/userAction';
 import FbBtn from './FbBtn';
 import { GoogleLogin } from '@react-oauth/google';
-
-// const REDIRECT_URI =
-//     'https://plenty-planets-beam-42-118-51-2.loca.lt/account/login';
-
 
 export default function LogIn({ isModal, hide, auth }) {
 
@@ -38,11 +31,7 @@ export default function LogIn({ isModal, hide, auth }) {
     const [isMobile, setIsMobile] = useState()
     useEffect(() => {
         checkIsMobile();
-        // const usr = getCookie('usr')
-        // const pwd = getCookie('pwd')
-        // setValue('email', usr)
-        // setValue('password', pwd)
-        // console.log(usr, pwd)
+       
         window.addEventListener('resize', checkIsMobile)
         return () => {
             window.removeEventListener('resize', checkIsMobile);
@@ -56,11 +45,7 @@ export default function LogIn({ isModal, hide, auth }) {
     }
 
     async function login(data) {
-        // console.log(data)
-        // cookieStore.set('usr', data.email, { secure: true, maxAge: 1 })
-        // cookieStore.set('pwd', data.password, { secure: true, maxAge: 1 });
 
-        // console.log(cookieStore.getAll())
         if (data) {
             let datas = {
                 usr: data.email,
@@ -82,25 +67,6 @@ export default function LogIn({ isModal, hide, auth }) {
                 checkMember(val.message.roles)
                 localStorage['roles'] = JSON.stringify(val.message.roles);
                 setWithExpiry('api', val.message.api_key, 90)
-
-                // const day = new Date();
-                // document.cookie = `apikey=${val.message.api_key};expires=${day.getTime() + 10};`;
-                // document.cookie = `secret=${val.message.api_secret};expires=${day.getTime() + 10};`;
-                // document.cookie = `userid=${val.message.user_id};expires=${day.getTime() + 10};`;
-                // document.cookie = `customer_id=${val.message.customer_id};expires=${day.getTime() + 10};`;
-                // document.cookie = `full_name=${val.full_name};expires=${day.getTime() + 10};`;
-                // // document.cookie = `roles=${val.roles};expires=${day.getTime() + 10};`;
-                // if (data.remember) {
-                //     const day = new Date();
-                //     document.cookie = `usr=${data.email};expires=${day.Day() + 90};`;
-                //     document.cookie = `pwd=${data.password};expires=${day.Day() + 90};`;
-                // }
-
-                // const cook = document.cookie;
-                // console.log(cook)
-                // console.log(day.getTime() + 10)
-                // cookieStore.set('usr', data.email, { secure: true, maxAge: 1 })
-                // cookieStore.set('pwd', data.password, { secure: true, maxAge: 1 });
                 dispatch(setUser(val));
                 (isModal || !isMobile) ? hide() : router.push('/')
             } else {
@@ -257,80 +223,6 @@ export default function LogIn({ isModal, hide, auth }) {
 
     }
 
-
-    const iframeRef = useRef(null)
-
-    useEffect(() => {
-        if (document.readyState === 'complete') {
-            onPageLoad();
-        } else {
-            window.addEventListener('load', onPageLoad);
-            // Remove the event listener when component unmounts
-            return () => window.removeEventListener('load', onPageLoad);
-        }
-
-        setTimeout(() => {
-            onPageLoad();
-        }, 10000);
-    }, [iframeRef])
-
-    function onPageLoad() {
-        let iframe = document.querySelector('iframe')
-        if (iframe && (iframe.contentDocument || iframe.contentWindow)) {
-            // if (iframe.contentDocument) {
-            //     // console.log(iframe.contentDocument, "iframe.contentDocument")
-            //     let val = iframe.contentDocument ? iframe.contentDocument : document
-
-            //     const divElement = val.querySelector('div[role=button]');
-            //     // const divElement = val?.querySelector('div[role=button]');
-
-            //     if (divElement) {
-            //         divElement.style.border = 'none';
-            //         divElement.querySelector('.nsm7Bb-HzV7m-LgbsSe-BPrWId').style.display = 'none';
-            //         divElement.querySelector('span').style.display = 'none';
-            //     }
-            // }
-            const doc = iframe.contentDocument || iframe.contentWindow;
-
-            // if (iframe.contentWindow && iframe.contentWindow.document) {
-            // console.log(iframe.contentWindow, "document")
-            // const divElement = iframe?.contentWindow?.document?.querySelector('div[role=button]');
-
-            // if (divElement) {
-            //     divElement.style.border = 'none';
-            //     const buttonClassElement = divElement.querySelector('.nsm7Bb-HzV7m-LgbsSe-BPrWId');
-            //     const spanElement = divElement.querySelector('span');
-
-            //     if (buttonClassElement) {
-            //         buttonClassElement.style.display = 'none';
-            //     }
-            //     if (spanElement) {
-            //         spanElement.style.display = 'none';
-            //     }
-            // }
-
-            // } else {
-            iframe.addEventListener('load', () => {
-                const divElement = doc.querySelector('div[role=button]');
-
-                if (divElement) {
-                    divElement.style.border = 'none';
-                    const buttonClassElement = divElement.querySelector('.nsm7Bb-HzV7m-LgbsSe-BPrWId');
-                    const spanElement = divElement.querySelector('span');
-
-                    if (buttonClassElement) {
-                        buttonClassElement.style.display = 'none';
-                    }
-                    if (spanElement) {
-                        spanElement.style.display = 'none';
-                    }
-                }
-            });
-            // }
-        }
-    }
-
-
     return (
         <>
             {(!otp && (modal != 'signup' && modal != 'forget')) ? <div className='lg:flex container h-full md:h-[calc(100vh_-_50px)] !m-0 overflow-auto md:p-[0_15px] lg:justify-center gap-[20px] '>
@@ -404,11 +296,8 @@ export default function LogIn({ isModal, hide, auth }) {
                                 <div className='absolute h-[90%] w-full flex items-center justify-center'>
                                     <Image height={20} className='h-[25px] w-[25px] object-contain' width={20} alt='google' src={'/google-login.svg'} />
                                 </div>
-                                {/* <p>Continue with Google</p> onClick={() => signIn('google')} */}
-                                {/* {<GoogleLogin buttonText="" clientId="189689673866-irqdceaurkp36epq803g6gdbcsj0rum7.apps.googleusercontent.com" onSuccess={responseGoogle} onFailure={responseGoogle} cookiePolicy={'single_host_origin'}/>} */}
-                                {/* <GoogleOAuthProvider clientId="189689673866-irqdceaurkp36epq803g6gdbcsj0rum7.apps.googleusercontent.com"></GoogleOAuthProvider>; */}
-                                {/* <GoogleSignInButton onSuccess={handleSuccess} onFailure={handleFailure} /> */}
-                                <GoogleLogin shape='square' ref={iframeRef}
+                                
+                                <GoogleLogin shape='square'
                                     text=' '
                                     size='large'
                                     width={'50px'}
@@ -418,16 +307,7 @@ export default function LogIn({ isModal, hide, auth }) {
                                 {/* <button onClick={() => signIn("google")}>Login with Google</button> */}
                             </div>
 
-                            {/* {false && <div id="apple" className='flex items-center h-[50px] w-[75px] rounded-[10px] cursor-pointer justify-center border'>
-                                <Image height={20} onClick={async () => {
-                                    await signIn('apple', {
-                                        callbackUrl: `${window.location.origin}`,
-                                        redirect: true,
-                                    })
-                                }} className='h-[25px] w-[25px] object-contain cursor-pointer' width={20} alt='apple' src={'/Apple-login.svg'} />
-                                
-                            </div>} */}
-
+                           
                             {false && <div className='flex  items-center h-[50px] w-[75px] rounded-[10px] cursor-pointer justify-center border'>
                                 {/* <Image height={20} className='h-[25px] w-[25px] object-contain' width={20} alt='apple' src={'/login/fb-01.svg'} /> */}
                                 <FbBtn />

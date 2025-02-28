@@ -9,29 +9,13 @@ import {
   getCurrentUrl,
   seo_Image,
 } from "@/libs/api";
-// import { Nunito } from 'next/font/google';
 import Image from "next/image";
 import styles from "@/styles/Cards.module.scss";
 import { domain } from "@/libs/config/siteConfig";
 import { useRouter } from "next/router";
 import format from "date-fns/format";
 import { useEffect, useState } from "react";
-// import SpeakerCard from "@/components/Webinar/SpeakerCard";
-// import Agenda from "@/components/Webinar/Agenda";
 import { Inter } from "next/font/google";
-// import Banner from "@/components/Webinar/Banner";
-// import Form from "@/components/Webinar/Form";
-// import Dropdowns from "@/components/common/Dropdowns";
-// import BrandDetails from "@/components/Webinar/BrandDetails";
-// import KeyDiscussion from "@/components/Webinar/KeyDiscussion";
-// import WhitePaper from "@/components/Webinar/WhitePaper";
-// import Reports from "@/components/Webinar/Reports";
-// import Video from "@/components/Webinar/Video";
-// import SocialMedia from "@/components/Webinar/SocialMedia";
-// import YouTubeVideo from "@/components/Webinar/YouTubeVideo";
-// import FeaturedContent from "@/components/WebSpecials/FeaturedContent";
-// import SideMenu from "@/components/WebSpecials/SideMenu";
-// import RegistrationForm from "@/components/WebSpecials/RegistrationForm";
 import {
   WhatsappShareButton,
   LinkedinShareButton,
@@ -67,10 +51,6 @@ const inter = Inter({
 });
 
 const index = ({ page_route, ads, webinar_data, category_route }) => {
-  // const index = ({ data, page_route, ads }) => {
-  // console.log(page_route, "page_route");
-  // console.log(category_route, "category_route");
-  // console.log(webinar_data, "webinar_data");
 
   const [webinarLimit, setWebinarLimit] = useState(false);
   const [leadLimit, setLeadLimit] = useState(false);
@@ -79,13 +59,6 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
   const [featuredContentLimit, setFeaturedContentLimit] = useState(false);
   const [bottomBackgroundImage, setBottomBackgroundImage] = useState("/no-image.jpg");
   let [isMobile, setIsMobile] = useState(false)
-
-  // useEffect(()=>{
-  //     if(!webinar_data){
-  //       router.push("/404")
-  //     }
-  // },[webinar_data])
-
 
   useEffect(() => {
 
@@ -129,15 +102,6 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
     setIsMobile(isMobile);
   }
 
-
-  // const bottomBackgroundImage = isMobile && webinar_data
-  //   ? webinar_data.bottom_mobile_banner
-  //     ? `https://${domain}${webinar_data.bottom_mobile_banner.replace(/ /g, "%20")}`
-  //     : "/no-image.jpg"
-  //   : webinar_data && webinar_data.bottom_banner_image
-  //     ? `https://${domain}${webinar_data.bottom_banner_image.replace(/ /g, "%20")}`
-  //     : "/no-image.jpg";
-
   const icons = [
     { icon: "/bookstore/linkedin.svg", name: "Linkedin" },
     { icon: "/bookstore/FB.svg", name: "Facebook" },
@@ -175,8 +139,6 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
     { title: "Featured Content", url: "Featured Content" },
   ]);
 
-  // console.log(webinar_data,"webinar_data")
-
   useEffect(() => {
     if (category_route == "case-studies") {
       let data = [...webinar_data.content_1, ...webinar_data.content_2];
@@ -198,58 +160,7 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
   }, [router]);
 
   const click_data = (data, type) => {
-    // console.log(data, "data");
-
-    // if (type == "register") {
-    //   showRegister();
-    // } else if (type === "white-paper") {
-    //   if (!webinar_data.is_registration_required) {
-    //     const newTab = window.open(
-    //       `https://${domain}${data.route}`,
-    //       "_blank"
-    //     );
-    //     newTab.focus();
-    //   } else {
-    //     showRegister();
-    //   }
-    // } else if (type === "video") {
-    //   if (!webinar_data.is_registration_required) {
-    //     const newTab = window.open(
-    //       `https://www.youtube.com/watch?v=${data}`,
-    //       "_blank"
-    //     );
-    //     newTab.focus();
-    //   } else {
-    //     showRegister();
-    //   }
-    // } else {
-    //   if (data.route) {
-    //     let route = type == "article" ? "/" + data.route : "/p/" + data.route;
-    //     if (
-    //       category_route == "featured-content" ||
-    //       category_route == "web-special-list"
-    //     ) {
-    //       router.push(route);
-    //     } else {
-    //       if (!webinar_data.is_registration_required) {
-    //         if(data.route.indexOf('https') == -1){
-    //           router.push(route);
-    //         }else{
-    //           // router.push(data.route);
-    //           const newTab = window.open(
-    //             data.route,
-    //             "_blank"
-    //           );
-    //           newTab.focus();
-    //         }
-    //       } else {
-    //         showRegister();
-    //       }
-    //     }
-    //   }
-    // }
-
-
+    
     if (type == "register") {
       if (data.is_link_required && data.registration_url) {
         router.push(data.registration_url);
@@ -336,8 +247,6 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
   }, []);
 
   const updateShare = (data) => { };
-
-  // console.log("wd", webinar_data.banner_image);
 
   return (
     <>

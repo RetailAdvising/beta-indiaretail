@@ -4,11 +4,7 @@ import { useForm } from 'react-hook-form';
 import styles from '@/styles/Components.module.scss'
 // include styles
 import 'rodal/lib/rodal.css';
-// import LogIn from '../Auth/LogIn';
-// import SignUp from '../Auth/SignUp';
-// import Comments from '../Category/Comments';
 import { commentList, report } from '@/libs/api'
-// import AlertUi from './AlertUi';
 import dynamic from 'next/dynamic';
 const AlertUi = dynamic(()=> import('./AlertUi'))
 const Comments = dynamic(()=> import('../Category/Comments'))
@@ -94,18 +90,7 @@ export default function Modal({ modal, hide, visible, data, cur, comments, route
                             <SignUp hide={hide} isModal={true} />
                         </Rodal>
                         : modal == 'comments' ? <Rodal visible={visible} animation='zoom' onClose={hide}>
-                            {/* <div className={`flex justify-between py-[20px] px-[15px]  bg-[#e21b22]`}>
-                                <h6 className='text-[18px] font-semibold text-[#fff]'>All Comments</h6>
-                            </div> */}
-                            {/* <div className='flex justify-between gap-[10px]'>
-                                <div className='flex w-full mt-[10px] items-center'>
-                                   
-                                    <textarea id='addCmt' type='text' row={1} placeholder='Add a comment...' className='comment_box flex-1 pt-[7px] border-none  w-full text-[14px] p-[5px]' />
-                                    <div className='flex-[0_0_30px] relative'>
-                                        <Image src={'/categories/send-arrow.svg'} className='cursor-pointer absolute top-0 m-auto bottom-0' onClick={() => sendMsg('addCmt')} height={22} width={22} alt='send' />
-                                    </div>
-                                </div>
-                            </div> */}
+                            
                             {(comments && !noData) ?
                                 // commentPopup
                                 <div className=' '>
@@ -147,12 +132,7 @@ export default function Modal({ modal, hide, visible, data, cur, comments, route
                                                                 />
                                                                 {rc.name}
                                                             </label>
-                                                        </div>
-
-                                                        //  <div className='flex items-center gap-[10px] m-[20px] cursor-pointer'>
-                                                        //       <input type="radio" className='cursor-pointer' id={rc.name} name={modal} value={ rc.name} {...register('report', { required: { value: true, message: 'Must be Select One Report' }} )}/>
-                                                        //       <label for={rc.name}  className='cursor-pointer text-[14px]'>{rc.name}</label>
-                                                        //  </div>       
+                                                        </div> 
 
                                                     )
                                                 }

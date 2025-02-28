@@ -1,11 +1,6 @@
 import Image from 'next/image'
 import { check_Image } from '@/libs/common'
-// import Title from '../common/Title'
-// import EventCards from './EventCards'
-// import Placeholders from '../common/Placeholders'
 import format from 'date-fns/format'
-// import Advertisement from '../Baners/Advertisement'
-// import Dropdowns from '../common/Dropdowns'
 import dynamic from 'next/dynamic'
 const Placeholders = dynamic(()=> import('../common/Placeholders'))
 const Advertisement = dynamic(()=> import('../Baners/Advertisement'))
@@ -32,11 +27,9 @@ export default function EventDetail({ data, ads_data }) {
     }
 
     const dateFormat = (data, type) => {
-        // console.log(data)
         if (data && data != null) {
             const formattedDate = type == 'start' ? format(new Date(data), "iii, LLL d") : format(new Date(data), "iii, d LLL yyyy");
             // setDate(formattedDate)
-            // console.log(formattedDate)
             return formattedDate
         } else {
             return data
@@ -94,13 +87,8 @@ export default function EventDetail({ data, ads_data }) {
                                 {typeof window !== "undefined" && icons && <Dropdowns copy_link={true} share={true} updateShare={(data) => updateShare(data)} link={data.message} width={'w-[170px]'} btnClass={'md:w-[32px]'} data={icons} type={'books'} />}
                             </div>
                         </div>
-                        {/* <div className={`flex items-center pt-[15px] justify-between`}> */}
                         <h6 className={`text-xl md:text-[17px] pt-[15px] md:pt-[10px] font-[700] nunito`}>{data.message.title}</h6>
-                        {/* <div className='flex gap-[5px]'>
-                                <Image height={13} width={13} className={`h-[18px] w-[18px]`} alt={'share'} src={'/shares.svg'}></Image>
-                                <Image height={13} width={13} objectFit='contain' className={`h-[23px] w-[20px] object-contain`} alt={'settings'} src={'/settings.svg'}></Image>
-                            </div> */}
-                        {/* </div> */}
+                        
                         <p className='sub_title pt-[15px] md:pt-[10px]  line-clamp-2'>{data.message.description}</p>
                         <div className={`title_div py-5`}>
                             <h6 className={`text-[16px] md:text-[15px] nunito capitalize font-[700]`}>When and where</h6>
@@ -149,19 +137,14 @@ export default function EventDetail({ data, ads_data }) {
 
                         }
 
-                        {/* {data && <AdsBaner data={{ ad_image: '/ads_baner.png' }} />} */}
                     </div>
                 </div>
 
                 {(data.upcoming_events && data.upcoming_events.length != 0) && <>
-                    {/* <div className={`title_div py-5`}>
-                        <h4 className={`title`}>Upcoming Events</h4>
-                        <div className='line'></div>
-                    </div> */}
+
                     <Title data={{ title: 'Upcoming Events' }} />
                     <div className='lg:grid lg:grid-cols-4 eventCards md:flex  md:gap-[15px] md:overflow-auto  gap-[20px]'>
                         <EventCards height={'h-[200px] md:h-[160px]'} flex={'md:flex-[0_0_calc(70%_-_10px)]'} card={'lg:h-[370px] md:h-[310px]'} width={'w-full'} data={data.upcoming_events.slice(0, 4)} />
-                        {/* <Cards data={data.upcoming_events} borderRadius={"10px 10px 0 0"} check={true} height={"h-[200px]"} width={'w-full'}  isBorder={true} /> */}
                     </div>
                 </>}
             </div>}

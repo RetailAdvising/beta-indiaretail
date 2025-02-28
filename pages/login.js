@@ -14,17 +14,7 @@ export default function login() {
   }, [shows])
   return (
     <>
-
       <LogIn show={shows} goPass={() => setShows(!shows)} />
-
-
-      {/* <button onClick={()=> setShow(!show)}>modal popup</button>
-
-      <div className={`${show ? 'modalActive' : 'modalContainer'}`}>
-        <Modal show={show} />
-      </div> */}
-
-
     </>
   )
 }

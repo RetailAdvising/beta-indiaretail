@@ -35,7 +35,7 @@ const Contact = ({ data }) => {
 
 
                     <div class="grid grid-cols-2 md:grid-cols-1 ">
-                        {/* <div class="col-lg-6 col-md-12"> */}
+
                         <div class="contactUsBox">
                             <h3 class="contactUsPosition">
                                 {data.inner_heading2}
@@ -54,19 +54,11 @@ const Contact = ({ data }) => {
                                 )
                             })}
 
-                            {/* <p class="contactUsEmail">
-                                    <a href="mailto:rohitpandey@imagesgroup.in" target="_blank" rel="noopener noreferrer">rohitpandey@imagesgroup.in</a> | <a href="tel:8409275306" target="_blank" rel="noopener noreferrer">+918409275306</a>
-                                </p>
-                                <h4 class="contactUsName">
-                                    Himanshu Rawal
-                                </h4>
-                                <p class="contactUsEmail">
-                                    <a href="mailto:himanshurawal@imagesgroup.in" target="_blank" rel="noopener noreferrer">himanshurawal@imagesgroup.in</a> , <a href="tel:9899095152" target="_blank" rel="noopener noreferrer">+919899095152</a>
-                                </p> */}
-                        </div>
-                        {/* </div> */}
 
-                        {/* <div class="col-lg-6 col-md-12"> */}
+                        </div>
+
+
+
                         <div class="contactUsBox">
                             <h3 class="contactUsPosition">
                                 {data.inner_heading3}
@@ -84,7 +76,7 @@ const Contact = ({ data }) => {
                                 )
                             })}
                         </div>
-                        {/* </div> */}
+
                     </div>
 
                 </div>

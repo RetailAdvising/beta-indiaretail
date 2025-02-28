@@ -4,7 +4,6 @@ import styles from '@/styles/Header.module.scss'
 import { useRouter } from 'next/router'
 import { check_Image } from '@/libs/common'
 import { search_product, checkMobile,user_roles } from '@/libs/api';
-// import AuthModal from '../Auth/AuthModal';
 import { useSelector, useDispatch } from 'react-redux';
 import setUser from 'redux/actions/userAction';
 import setRole from 'redux/actions/roleAction';
@@ -47,30 +46,6 @@ export default function Header({ checkout }) {
         getWithExpiry('api')
 
         setLoader(true);
-
-        // const handleClickOutside = (event) => {
-        //     let el = document.getElementById('dropdown1')?.classList;
-        //     let classs = (el && el != null) && Array.from(el);
-        //     let out = classs && classs.find(res => res == 'dropdown-menu-active');
-        //     if (ref.current && !ref.current.contains(event.target) && out) {
-        //         el.remove('dropdown-menu-active')
-        //     }
-        // };
-
-        // document.addEventListener('click', handleClickOutside, true);
-        // return () => {
-        //     document.removeEventListener('click', handleClickOutside, true);
-        // };
-
-        // const node = document.getElementById("search");
-        // node.addEventListener("keyup", function(event) {
-        //     if (event.key === "Enter") {
-
-        //         console.log(event)
-        //         // Do work
-        //     }
-        // });
-
 
     }, [user])
 
@@ -119,9 +94,6 @@ export default function Header({ checkout }) {
         }
 
     },[])
-
-
-
 
     async function searchText(eve) {
         let value = eve.target.value;

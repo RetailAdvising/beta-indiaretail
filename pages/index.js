@@ -1,6 +1,6 @@
 import RootLayout from '@/layouts/RootLayout'
 import { HomePage, newsLanding, checkMobile, getList, getPollsList, get_ip, HomePageAds, check_Image } from '../libs/api';
-import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import SEO from '@/components/common/SEO'
 import dynamic from 'next/dynamic'
 import TopStories from '@/components/Landing/TopStories'
@@ -47,8 +47,6 @@ export default function Home({ data }) {
   const home = useSelector(state => state.home);
   const page = useSelector(state => state.page_no);
   const dispatch = useDispatch()
-  // console.log(home, "home")
-  // console.log(page, "page")
 
   const getAd = async () => {
     const resp = await HomePageAds();
@@ -56,7 +54,6 @@ export default function Home({ data }) {
       setAds(resp.message)
     }
   }
-
 
 
   let [isMobile, setIsMobile] = useState(false)
@@ -122,7 +119,6 @@ export default function Home({ data }) {
 
   useEffect(() => {
     if (page > 1 && !noProduct && (home && home.length > 0)) {
-
       setLoading(true);
       getPageData()
 

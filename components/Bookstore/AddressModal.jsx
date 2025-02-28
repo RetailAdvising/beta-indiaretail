@@ -4,7 +4,6 @@ import 'rodal/lib/rodal.css';
 import Address from './Address';
 
 export default function AddressModal({ hide, visible, edit_address }) {
-  // console.log(edit_address,"edit_address")
   return (
     <div className='address-popup'>
       <Rodal visible={visible} animation='slideUp' onClose={() => { hide(undefined) }}>

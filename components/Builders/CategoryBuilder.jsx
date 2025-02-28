@@ -32,8 +32,6 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
   const [updateCmts, setupdateCmts] = useState(false)
   const role = useSelector(s => s.role);
 
-  // console.log(data,"data")
-
   const socials = [
     {
       "icon": "/fb.svg",
@@ -53,24 +51,6 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
     }
   ]
 
-  // const [searchTxt, setSearchTxt] = useState('');
-  // useEffect(() => {
-  // if (searchTxt && searchTxt != '') {
-  //   const timeOut = setTimeout(async () => {
-  //     console.log(searchTxt)
-  //     console.log('hit api call')
-  //     const data = await placeHolder();
-  //     console.log(data)
-  //     setValue(data)
-  //     setShowSection(true)
-
-  //   }, 500);
-  //   return () => clearTimeout(timeOut);
-  // }
-
-  // }, [])
-
-
   useEffect(() => {
 
     if (document.readyState === 'complete') {
@@ -83,10 +63,6 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
 
   }, [user, role])
 
-
-
-
-
   const checkRole = () => {
     if (role && role != '' && role.message && role.message.length != 0) {
       for (let index = 0; index < role.message.length; index++) {
@@ -97,8 +73,6 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
 
     }
   }
-
-
 
   const cardref = useRef(null)
 
@@ -130,7 +104,7 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
   async function getMembershipLanding() {
     let data = { "route": "membership", "page_no": 1, "page_size": 10 }
     const resp = await HomePage(data);
-    // console.log(resp);
+
     if (resp && resp.message && resp.message.page_content && resp.message.page_content != 0) {
       let datas = resp.message.page_content
       setpageContent(datas);
@@ -193,22 +167,6 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
   const [loginModal, setLoginModal] = useState(false)
   // FUNCTION TO HANDLE OPEN ACTION ON SIDEDRAWER/MODAL
   const showSidebar = () => {
-    // if (data.comments && data.comments.length != 0) {
-    //   setshowComment(!showComment);
-    //   // Disables Background Scrolling whilst the SideDrawer/Modal is open
-    //   if (typeof window != 'undefined' && window.document) {
-    //     document.body.style.overflow = 'hidden';
-    //   }
-    // } else if (data.comments && data.comments.length == 0) {
-    //   if (localStorage && !localStorage['apikey']) {
-    //     setIsLogin(true);
-    //     setLoginModal(true)
-    //   } else {
-    //     setshowComment(!showComment);
-    //   }
-    // }
-    // console.log(comments)
-    // console.log(comments,'called')
     if (comments && comments.length != 0) {
       setshowComment(false);
       // Disables Background Scrolling whilst the SideDrawer/Modal is open
@@ -402,8 +360,6 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
               </div>}
 
               {(data.comments && data.disable_comments != 1) && <>
-
-
                 {(comments && comments.length != 0) &&
                   comments.map((res, i) => {
                     return (
@@ -432,11 +388,7 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
                             </div>
 
                             <Comments cur={data} noScroll={noScroll} updatedCmt={(cmt, route, index) => { updatedCmt(cmt, route, index), reRender() }} route={res.route} data={[]} showSidebar={showSidebar} hide_comment={hide} />
-                            {/* {isMobile && (res.data && res.data.length != 0) ? <div className='mt-[10px] flex gap-[10px] justify-center'>
-                              <button onClick={showSidebar} className={`justify-center bg-red text-white h-[45px] rounded items-center  ${styles.cmt_btn} lg:w-[25%] md:text-[13px] md:px-[15px]  flex`}>{(res.data && res.data.length != 0) ? 'View Comments' : 'Add Comment'}</button>
-                            </div> : <div className={`mt-[10px] flex justify-center`}>
-                              {res.data && res.data.length != 0 && <button onClick={showSidebar} className={`justify-center bg-red text-white p-[10px_20px] md:mt-4 mt-3 rounded items-center  ${styles.cmt_btn} text-[13px] flex`}>{(res.data && res.data.length != 0) && 'View Comments'} </button>}
-                            </div>} */}
+
                           </>
                         }
                       </div>
@@ -447,16 +399,11 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
 
 
               {(!showComment && data) ? <>
-                {/* <div className='popright_1'>
-                  <Modal visible={true} cur={data} modal={'comments'} hide={sideDrawerClosedHandler} />
-                </div> */}
                 {comments && comments.length != 0 && comments.map((res, i) => {
                   return (
                     <div key={i}>
                       {(res.route == data.name && res.data && (res.data.length != 0 || res.data.length == 0)) && <div className={`${isMobile ? 'popright' : 'popright_1'}`}>
-                        {/* <Modal visible={true} modal={'comments'} cur={data} store_comments={(cur) => store_comments(cur)} hide={sideDrawerClosedHandler} /> */}
                         <Modal updatedCmt={(cmt, route, index) => { updatedCmt(cmt, route, index), reRender() }} cur={data} visible={true} modal={'comments'} route={res.route} noScroll={noScroll} comments={res.data} hide={sideDrawerClosedHandler} />
-                        {/* scrolling="no" */}
                       </div>}
                     </div>
                   )

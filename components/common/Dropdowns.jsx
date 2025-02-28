@@ -7,10 +7,8 @@ import { checkMobile } from '@/libs/api'
 import { toast } from 'react-toastify';
 import { website, websiteUrl } from '@/libs/config/siteConfig';
 
-// import { Menu } from '@headlessui/react'
 export default function Dropdowns({ data, showLeft, img, width, share, setting, element, type, link, updateShare, noScroll, btnClass, cur_data, copy_link, noBg, i }) {
     const router = useRouter();
-    // console.log(cur_data,"cur_data")
 
     const settings = async (e, data, close) => {
         e.stopPropagation();

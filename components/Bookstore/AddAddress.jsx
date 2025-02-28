@@ -3,13 +3,11 @@ import styles from '@/styles/checkout.module.scss';
 import { get_customer_info, delete_address } from '@/libs/api';
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
-// import customerInfoReducer from 'redux/reducers/customerInfoReducer'
 import customerInfoAction from 'redux/actions/customerInfoAction';
 import dynamic from 'next/dynamic';
 const AddressModal = dynamic(() => import('@/components/Bookstore/AddressModal'))
 const AlertUi = dynamic(() => import('@/components/common/AlertUi'))
-// import AddressModal from '@/components/Bookstore/AddressModal';
-// import AlertUi from '@/components/common/AlertUi';
+
 
 export default function AddAddress() {
 
@@ -90,9 +88,6 @@ export default function AddAddress() {
     setVisible(true);
   }
 
-  // function show() {
-  //   setVisible(true);
-  // }
 
   function hide(obj) {
     setVisible(false);
@@ -123,13 +118,10 @@ export default function AddAddress() {
     if (value == 'Yes') {
       deleteAddress(alertMsg.res, alertMsg.index);
     }
-
   }
 
   return (
-
     <>
-
       {addressDelete &&
         <AlertUi isOpen={addressDelete} closeModal={(value) => address_closeModal(value)} headerMsg={'Alert'} button_1={'No'} button_2={'Yes'} alertMsg={alertMsg} />
       }

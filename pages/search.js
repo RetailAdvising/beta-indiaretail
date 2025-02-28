@@ -2,21 +2,12 @@ import { useRouter } from 'next/router'
 import { useRef, useEffect, useState } from 'react'
 import { search_product, checkMobile, all_category_list } from '@/libs/api';
 import RootLayout from '@/layouts/RootLayout';
-// import Cards from '@/components/common/Cards';
 import Image from 'next/image'
 import { check_Image } from '@/libs/common'
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 const Cards = dynamic(()=> import('@/components/common/Cards'))
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//     weight: ["300","400","500","600","700"],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"],
-//     variable: '--font-inter',
-//   })
+
 export default function search({ searchTxt, data }) {
 
 
@@ -27,10 +18,7 @@ export default function search({ searchTxt, data }) {
   let [isMobile, setIsmobile] = useState();
   let [Skeleton, setSkeleton] = useState(false);
   let [allCategory, setAllCategory] = useState([])
-  let [breadCrumbs, setBreadCrumbs] = useState([
-    { name: 'Home', route: '/' },
-    { name: 'Search', route: '/search/searchText=' },
-  ])
+
 
   // console.log(data,"data")
   const router = useRouter();
@@ -47,7 +35,6 @@ export default function search({ searchTxt, data }) {
       searchText(searchTxt)
 
       //  let array_values = breadCrumbs.push({name:searchValue})
-      setBreadCrumbs((d) => d = [...d, { name: searchValue }]);
 
     } else {
       setSearchResult([]);

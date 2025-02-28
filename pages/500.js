@@ -17,9 +17,6 @@ export default function Errors() {
             </div>
             <button className='primary_btn text-[14px] h-[40px] w-[140px] lg:mt-[40px]' onClick={() => router.push('/')}>Back To Home</button>
           </div>
-          {/* <div className={`flex-[0_0_calc(60%_-_10px)] relative`}>
-            <Image src={'/errors/500error.svg'} height={200} width={200} className={` h-[400px] w-[50%] object-contain`} alt={''} />
-          </div> */}
         </div>
       </RootLayout>
     </>

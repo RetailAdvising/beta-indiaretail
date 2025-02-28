@@ -10,7 +10,7 @@ import Orders from '@/components/ProfileCom/Orders';
 import ChangePwd from '@/components/ProfileCom/ChangePwd';
 import SubscribtionsPlan from '@/components/ProfileCom/SubscribtionsPlan';
 import AlertUi from '@/components/common/AlertUi';
-import SubscribeNews from '@/components/Newsletter/SubscribeNews';
+// import SubscribeNews from '@/components/Newsletter/SubscribeNews';
 import AddAddress from '@/components/Bookstore/AddAddress';
 import NewsList from '@/components/Newsletter/NewsList';
 import setRole from 'redux/actions/roleAction';
@@ -92,25 +92,14 @@ export default function profile({ my_account }) {
 
 
   const roleMember = () => {
-    // if(localStorage['roles']){
-    //     const data = JSON.parse(localStorage['roles']);
-    //     if (data && data.length != 0) {
-    //         data.map(res => {
-    //             if (res.role == 'Member') {
-    //                 setMember(!member)
-    //             }
-    //         })
-    //     }
-    // }
     if (role && role != '' && role.message && role.message.length != 0) {
-      // console.log(role)
-      // if(updateCmts == -1){
+      
       for (let index = 0; index < role.message.length; index++) {
         if (role.message[index] == 'Member') {
           setMember(!member)
         }
       }
-      // }
+
     }
 
   }
@@ -190,9 +179,6 @@ export default function profile({ my_account }) {
   }
 
   const payNow = (obj) => {
-    // setIndex(index + 1);
-    // type == 'items' ? res.sub_plans[0].order_info.total_amount : res.sub_plans[0].plan_info.price
-    // tab == 'subscription' ? obj.sub_plans[0].order_info.total_amount
     load_razorpay(tab == 'subscription' ? obj.sub_plans[0].order_info.total_amount : obj.sub_plans[0].plan_info.price, obj.subscription_plan, obj.sub_plans[0].order_info.name, obj)
   }
 
@@ -244,7 +230,6 @@ export default function profile({ my_account }) {
   }
 
   const load_razorpay = async (amount, description, order_id, obj) => {
-    // console.log(razorpay_settings.api_key)
     let r_pay_color = '#e21b22';
     const app_name = 'India Retail';
     var options = {
@@ -260,7 +245,6 @@ export default function profile({ my_account }) {
       "handler": async (response, error) => {
         if (response) {
           payment_Success_callback(response, amount, order_id, obj)
-          // response.razorpay_payment_id
         } else if (error) {
           payment_error_callback(error)
         }
@@ -279,24 +263,24 @@ export default function profile({ my_account }) {
 
   }
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [visible, setVisible] = useState(false)
+  // const [showAlert, setShowAlert] = useState(false);
+  // const [visible, setVisible] = useState(false)
 
-  function show() {
-    setVisible(true);
-  }
+  // function show() {
+  //   setVisible(true);
+  // }
 
   async function closeModal(value) {
     setEnableModal(false);
   }
 
-  function hide(obj) {
-    setVisible(false);
-    if (obj.status == 'Success') {
-      setAlertMsg({ message: 'You have successfully subscribed to our newsletter' });
-      setEnableModal(true);
-    }
-  }
+  // function hide(obj) {
+  //   setVisible(false);
+  //   if (obj.status == 'Success') {
+  //     setAlertMsg({ message: 'You have successfully subscribed to our newsletter' });
+  //     setEnableModal(true);
+  //   }
+  // }
 
 
 

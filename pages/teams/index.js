@@ -1,32 +1,10 @@
 import RootLayout from '@/layouts/RootLayout';
 import Image from 'next/image';
-// import value from '@/libs/teams'
 import SEO from '@/components/common/SEO';
 import { check_Image, HomePage } from '@/libs/api';
 import Link from 'next/link';
 
 export default function Teams({ data }) {
-    console.log(data, "dataa")
-    const social = [
-        {
-            "id": 1,
-            "name": "Instagram",
-            "iconlink": "/teams/instagram.svg",
-            "url": "https://www.instagram.com/"
-        },
-        {
-            "id": 2,
-            "name": "x",
-            "iconlink": "/teams/x.svg",
-            "url": "https://twitter.com"
-        },
-        {
-            "id": 3,
-            "name": "linkedin",
-            "iconlink": "/teams/linkdin.svg",
-            "url": "https://in.linkedin.com/"
-        }
-    ]
 
     return (
         <RootLayout>
@@ -66,44 +44,6 @@ export default function Teams({ data }) {
                 })
             }
 
-
-            {/* <div className='bg-[#F8F8F8]'>
-                <div className='container py-24 md:p-[15px]'>
-                    <div className="grid-cols-2 md:grid-cols-1 gap-4 md:gap-2 grid">
-                        <div className="col-span-1">
-                            <h2 className='font-bold text-3xl md:text-2xl pt-6 text-left'>{value.title}</h2>
-                            <p className='sub_title text-left pt-3'>{value.subtitle}</p>
-                        </div>
-                        <div className="col-span-1 text-center m-auto">
-                            <Image src={value.teamimages} alt="Teams" width={300} height={300} />
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-
-            {/* {data && data.teammembers.map((teams, teamindex) => (
-                <div className={teamindex % 2 === 0 ? 'oddteam' : 'eventeam'}>
-                    <div className='container md:p-[15px]'>
-                        <div className="flex md:flex-col-reverse flex-row gap-4 md:gap-2 py-16  md:pt-4 md:pb-4" data-index={teamindex}>
-                            <div className="col-span-1 text-center m-auto basis-2/4 md:basis-full">
-                                <Image src={teams.image} alt="Teams" width={500} height={500} className='m-auto' />
-                                <div className='d__flex gap-4 pt-6 justify-center'>
-                                    {teams.social.map((item, itemIndex) => (
-                                        <a href={item.url} target="_blank" key={item.id}><Image src={item.iconlink} alt={item.name} width={24} height={24} /></a>
-                                    ))}
-
-                                    
-                                </div>
-                            </div>
-                            <div className="col-span-1 m-auto basis-2/4 md:basis-full">
-                                <h2 className='font-bold text-3xl md:text-2xl pt-6 text-left'>{teams.title}</h2>
-                                <h6 className='font-medium text-left pt-1 text-[16px] text-[gray-dark1]'>{teams.designation}</h6>
-                                <p className='sub_title  text-left pt-3'>{teams.content}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            ))} */}
         </RootLayout>
     )
 }

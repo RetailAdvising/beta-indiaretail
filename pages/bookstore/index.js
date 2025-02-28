@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import Sliders from '@/components/Sliders/index'
 import Title from '@/components/common/Title'
 import Card from '@/components/Bookstore/Card'
-import List from '@/components/Bookstore/List'
 import { booksLanding, sliders, getAdvertisements } from '@/libs/api'
 import { checkMobile } from '@/libs/api'
 import SEO from '@/components/common/SEO'
@@ -41,8 +40,6 @@ export default function Bookstore({ data, slider_data }) {
       setAdsData(ads_data)
     }
   }
-
-  // console.log(data,"data")
 
   return (
     <>
@@ -101,7 +98,6 @@ export default function Bookstore({ data, slider_data }) {
 }
 
 
-// export async function getServerSideProps() {
 export async function getStaticProps() {
   const resp = await booksLanding();
   const data = resp?.message;
@@ -120,13 +116,3 @@ export async function getStaticProps() {
   }
 
 }
-
-// export async function getServerSideProps() {
-//   const resp = await booksLanding();
-//   const data = resp.message;
-
-//   return {
-//     props: { data }
-//   }
-
-// }

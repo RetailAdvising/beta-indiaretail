@@ -3,7 +3,6 @@ import {
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    Button,
     ModalFooter,
     ModalBody,
     useDisclosure,
@@ -81,8 +80,6 @@ export default function CommentModal({ hides1, element, msgChange }) {
 
     return (
         <>
-            {/* <Button onClick={onOpen}>Open Modal</Button> */}
-
             <Modal isOpen={isOpen} onClose={() => closeModal('close')}>
                 <ModalOverlay />
                 <ModalContent>

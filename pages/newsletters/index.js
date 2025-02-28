@@ -1,19 +1,11 @@
-// import NewsLetterBuilder from '@/components/Builders/NewsLetterBuilder'
 import RootLayout from '@/layouts/RootLayout'
 import { useState, useEffect } from 'react'
-// import NewsList from '@/components/Newsletter/NewsList';
 import Title from '@/components/common/Title';
-// import Advertisement from '@/components/Baners/Advertisement';
-// import Subscribe from '@/components/Landing/Subscribe';
 import { checkMobile, getAdvertisements, newsLetterLanding, newsLanding, get_newsletter_by_id } from '@/libs/api';
-// import SubscribeNews from '@/components/Newsletter/SubscribeNews';
-// import AlertUi from '@/components/common/AlertUi';
 import SEO from '@/components/common/SEO'
 import { useSelector } from 'react-redux';
-// import CustomSlider from '@/components/Sliders/CustomSlider';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-// import NewsDetail from '@/components/Newsletter/NewsDetail';
 import dynamic from 'next/dynamic';
 const NewsList = dynamic(()=> import('@/components/Newsletter/NewsList'))
 const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))

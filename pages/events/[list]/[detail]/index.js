@@ -75,7 +75,6 @@ export default function EventDetails({ data, ads_data }) {
 
                     <link rel="shortcut icon" href="/ir_2023.png" />
                 </Head>
-                {/* {data && data.message && <SEO title={data.message.meta_title ? data.message.meta_title : data.message.title} ogImage={check_Image(data.message.meta_image ? data.message.meta_image : data.message.image_path)} siteName={'India Retailing'} ogType={data.message.meta_keywords ? data.message.meta_keywords : data.message.title} description={data.message.meta_description ? data.message.meta_description : data.message.title} />} */}
                 {data && <EventDetail data={data} ads_data={ads_data} />}
             </RootLayout>
         </>

@@ -46,9 +46,7 @@ const Forget = ({ auth,hide }) => {
                     <Image src={'/image.png'} height={200} width={400} alt={'image retail'} className={`p-[20px] w-full`} />
                 </div>
                 <div className='flex-[0_0_calc(40%_-_10px)] lg:p-[20px_20px_20px_0] md:flex-[0_0_calc(100%_-_10px)]'>
-                    {/* <div className=' cursor-pointer '>
-                        <Image src={'/login/indiaretail-logo.png'} height={100} width={200} alt='logo' />
-                    </div> */}
+                    
                     <div className='flex flex-col items-center justify-center h-full'>
                         <div>
                             <h6 className='text-center text-[20px] font-semibold '>Reset Password</h6>
@@ -58,7 +56,6 @@ const Forget = ({ auth,hide }) => {
                             <div className={`flex flex-col py-5 gap-[10px] relative`}>
                                 <label htmlFor='email' className='text-[#808D9E]'>Email</label>
                                 <input className='border rounded-[5px] h-[45px] p-[5px_10px]' placeholder='Enter your email' {...register('user', { required: { value: true, message: 'Email is required' }, pattern: { value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, message: "Please enter a valid email" } },)} />
-                                {/* <Image className={`absolute  right-[10px] h-[21px] w-[25px] ${errors.user?.message ? 'bottom-[60px]' : 'bottom-[25px]'}`} src={'/login/email.svg'} height={15} width={15} alt={"pass"} /> */}
                                 {errors?.user && <p className={`${styles.danger}`}>{errors.user.message}</p>}
                             </div>
                             <button className={`${styles.loginBtn} cursor-pointer`} type='submit'>Send</button>

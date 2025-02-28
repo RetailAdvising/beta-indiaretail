@@ -52,7 +52,6 @@ export default function cart() {
 
     let [isMobile, setIsmobile] = useState();
 
-
     const getCarts = async (type) => {
         type == 'loader' ? setSkeleton(!skeleton) : null
         cart_items = await getCartItem();
@@ -64,7 +63,6 @@ export default function cart() {
         isMobile = await checkMobile();
         setIsmobile(isMobile);
     }
-
 
     async function update_cart(dataValue, type) {
 

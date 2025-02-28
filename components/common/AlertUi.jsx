@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 export default function AlertUi({ isOpen, closeModal, headerMsg, alertMsg, button_1, button_2 }) {

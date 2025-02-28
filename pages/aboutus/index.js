@@ -7,9 +7,6 @@ import About from '@/components/Aboutus/about';
 import Books from '@/components/Aboutus/books';
 import SEO from '@/components/common/SEO';
 
-
-
-
 export default function Aboutus() {
     return (
       <RootLayout adIdH={'about-head'} adIdF={'about-foot'}>

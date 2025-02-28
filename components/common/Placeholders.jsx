@@ -1,7 +1,4 @@
-// import Title from './Title'
-// import Lists from '../Category/Lists'
-// import Advertisement from '../Baners/Advertisement'
-// import List from '../Bookstore/List'
+
 import dynamic from 'next/dynamic'
 const List = dynamic(()=> import('../Bookstore/List'))
 const Advertisement = dynamic(()=> import('../Baners/Advertisement'))
@@ -26,7 +23,6 @@ export default function Placeholders({ placeholder, tagbasedAd, productNavigatio
                                         :
                                         <Lists flex={'mb-[10px]'} productNavigation={productNavigation} titleClamp={'line-clamp-2'} borderRadius={'rounded-[5px]'} imgFlex={'flex-[0_0_calc(35%_-_10px)]'} tittleOnly={true} check={true} isBB={true} data={resp.data} imgHeight={'h-[85px]'} imgWidth={'w-full'} />}
                                 </div>
-                                // <List data={resp.data.slice(0,2)} tittleOnly={true} flex={'mb-[10px]'} titleClamp={'line-clamp-2'} check={true} borderRadius={'rounded-[5px]'} imgFlex={'flex-[0_0_calc(40%_-_10px)]'}  imgHeight={'h-[85px]'} imgWidth={'w-full'}  />
                             }
                         </div>
                     )

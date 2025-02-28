@@ -7,8 +7,6 @@ import SectionBox from '@/components/Category/SectionBox';
 import SEO from '@/components/common/SEO'
 import CustomSlider from '@/components/Sliders/CustomSlider';
 
-// import Loader from '@/components/Loader';
-// import { useRouter } from 'next/router';
 export default function Categories({ data }) {
     let [isMobile, setIsMobile] = useState(false)
     const [datas, setDatas] = useState([])
@@ -74,13 +72,7 @@ export default function Categories({ data }) {
       setLoading(true);
       getPageData()
 
-      // const loadData = async () => {
-      //   await loadMore(data);
-
-      //   setLoading(false);
-      // };
-
-      // loadData();
+      
     }
   }, [pageNo]);
 
@@ -95,16 +87,14 @@ export default function Categories({ data }) {
             "doctype": "Articles", "filter_name": "articles_category", "parent_fields": ["name", "title", 'image', "thumbnail_imagee as thumbnail_image", "articles_category", "route"], "category_doctype": "Articles Category", "category_fields": ["name", "title", "primary_text", "description", "route"], "page_no": pageNo, "records": 10, "category_count": 5
         }
         const resp = await getCategoryList(params);
-        // const data = res.message;
-        //   const resp = await HomePage(param);
+
         if (resp.message && resp.message && resp.message.length != 0) {
             setTimeout(() => {
                 setDatas(d => d = [...d, ...resp.message])
                 setLoading(false)
             }, 400);
         } else {
-            // no_product = true;
-            // setLoading(false)
+            
 
             noProduct = true;
             setNoProduct(noProduct)
@@ -114,8 +104,7 @@ export default function Categories({ data }) {
 
     return (
         <>
-            {/* <GoogleAds adId={'category1-head'} page={true} position={'high'} style={"display:inline-block;width:728px;height:90px;"} script={``} />
-            <GoogleAds adId={'category11-side'} page={true} position={'small'} style={"display:inline-block;width:300px;height:250px;"} script={``} /> */}
+            
             <RootLayout ad_payload={{ page: 'Categories', page_type: 'Landing' }} homeAd={ads ? ads : null} adIdH={'category-head'} adIdF={'category-foot'} head={'Categories'} isLanding={true}>
                 <SEO title={'Categories'} siteName={'India Retailing'} description={'Categories'} />
 
@@ -148,13 +137,6 @@ export default function Categories({ data }) {
     )
 }
 
-{/* <div key={index} className={`flex md:block md:mb-[10px] lg:mr-[15px] ${index == 0 ? 'lg:mb-[40px]' : 'lg:my-[35px]'} md:border md:rounded-[5px] justify-between gap-[15px] md:flex-col`}>
-    <div className={`lg:w-[calc(20%_-_10px)] md:w-[calc(100%_-_0px)]`} ><SectionBox data={res} /></div>
-    <div className='lg:w-[calc(80%_-_10px)]  md:p-[10px]'>
-        <CustomSlider data={res.events} cardClass={'lg:h-[280px]  md:h-[235px]  flex-[0_0_calc(25%_-_15px)] md:flex-[0_0_calc(65%_-_10px)]'} imgClass={'lg:h-[185px] md:h-[140px] w-full'}
-            slider_id={"slider_id" + index} slider_child_id={"slider_child_id" + index} subtitle_class={'hidden'} hashtags_class={'hidden'} primary_text_class={''} />
-    </div>
-</div> */}
 
 
 export async function getStaticProps() {
@@ -164,9 +146,9 @@ export async function getStaticProps() {
     const res = await getCategoryList(params);
     const data = res.message;
 
-    let param = { page: 'Categories', page_type: 'Landing' }
-    const resp = await getAdvertisements(param);
-    const ads = resp.message;
+    // let param = { page: 'Categories', page_type: 'Landing' }
+    // const resp = await getAdvertisements(param);
+    // const ads = resp.message;
     return {
         props: { data }, revalidate: 50,
     }
@@ -179,16 +161,6 @@ const Skeleton = () => {
                 {[0, 1, 2, 3, 4].map((res, i) => {
                     return (
                         <div key={i} className={`block md:mb-[10px] m-[auto] p-[15px] w-[97%] ${i == 0 ? 'lg:mb-[40px]' : 'lg:my-[35px]'} border rounded-[5px] `}>
-                            {/* <div className={`lg:w-[calc(20%_-_10px)] md:w-[calc(100%_-_0px)]`}>
-                                <div className={`border rounded-[10px] justify-center p-[10px] md:h-auto lg:h-[280px] flex flex-col md:gap-[5px] lg:gap-[15px]`} >
-                                    <p className='bg-[#E5E4E2] h-[6px] w-[50px] rounded-[5px]'></p>
-                                    <h6 className=' bg-[#E5E4E2] h-[10px] my-5 w-[100px] rounded-[5px]'></h6>
-                                    <p className={`bg-[#E5E4E2] h-[6px] w-[200px] rounded-[5px]`}></p>
-                                    <p className={`bg-[#E5E4E2] h-[6px] w-[200px] rounded-[5px]`}></p>
-                                    <p className={`bg-[#E5E4E2] h-[6px] w-[200px] rounded-[5px]`}></p>
-                                    <p className='bg-[#E5E4E2] h-[6px] mt-[10px] w-[80px] rounded-[5px]' ></p>
-                                </div>
-                            </div> */}
                             <div className='text-center my-[15px] grid place-content-center gap-[10px]'>
                                 <p className='bg-[#E5E4E2] h-[8px] w-[150px]'></p>
                                 <p className='bg-[#E5E4E2] h-[5px] w-[300px]'></p>
@@ -219,14 +191,3 @@ const Skeleton = () => {
         </>
     )
 }
-
-// export async function getServerSideProps() {
-//     let params = {
-//         "doctype": "Articles", "filter_name": "articles_category", "parent_fields": ["name", "title","thumbnail_image","articles_category","route"], "category_doctype": "Articles Category", "category_fields": ["name", "title","primary_text","description","route"], "page_no": 1, "records": 4, "category_count": 7
-//     }
-//     const res = await getCategoryList(params);
-//     const data = res.message;
-//     return {
-//         props: { data }
-//     }
-// }

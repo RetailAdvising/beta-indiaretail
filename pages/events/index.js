@@ -7,11 +7,9 @@ import { getCategoryList, sliders, checkMobile, getAdvertisements } from '@/libs
 import SEO from '@/components/common/SEO'
 import dynamic from 'next/dynamic'
 const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))
-// import Advertisement from '@/components/Baners/Advertisement'
+
 
 export default function Events({ data, slider_data, ads_data }) {
-    // console.log(ads_data,"ads_data")
-    // console.log(data,"data")
     const [pageData, setPageData] = useState([])
     const [isMobile, setIsMobile] = useState();
 
@@ -21,10 +19,7 @@ export default function Events({ data, slider_data, ads_data }) {
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         checkIsMobile();
-        // slider_data.map((res)=> {
-        //     !isMobile && res.web_image ? res.image = res.web_image : res.image = ''
-        //     isMobile && res.mobile_image ? res.image = res.mobile_image : res.image = ''
-        // })
+
         if (data) {
             setTimeout(() => {
                 setPageData(data)
@@ -174,14 +169,3 @@ export async function getStaticProps() {
         props: { data, slider_data, ads_data }, revalidate: 50,
     }
 }
-
-// export async function getServerSideProps() {
-//     let params = {
-//         "doctype": "Community Event", "filter_name": "category", "parent_fields": ["name", "title","thumbnail_path","start_date","description","category","route"], "category_doctype": "Event Category", "category_fields": ["name", "category_name","route"], "page_no": 1, "records": 4, "category_count": 4
-//     }
-//     const resp = await getCategoryList(params);
-//     const data = resp.message;
-//     return {
-//         props: { data }
-//     }
-// }

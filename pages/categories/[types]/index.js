@@ -19,9 +19,6 @@ export default function CategoryType({ values, ads, Id,metaInfo }) {
     let no_product = false;
     const [loading, setLoading] = useState(false);
 
- 
-
-
     useEffect(() => {
         // console.log(values);
         if (values) {
@@ -29,25 +26,6 @@ export default function CategoryType({ values, ads, Id,metaInfo }) {
                 setData(values)
             }, 200);
         }
-
-        // const handleScroll = () => {
-        //     const scrollTop = document.documentElement.scrollTop
-        //     const scrollHeight = document.documentElement.scrollHeight
-        //     const clientHeight = document.documentElement.clientHeight
-        //     if ((scrollTop + clientHeight) + 700 >= scrollHeight) {
-        //         if (!apiCall) {
-        //             apiCall = true;
-        //             page_no += 1;
-        //             loadMore()
-        //         }
-        //     }
-        // };
-
-        // window.addEventListener('scroll', handleScroll);
-
-        // return () => {
-        //     window.removeEventListener('scroll', handleScroll);
-        // };
 
         const intersectionObserver = new IntersectionObserver(entries => {
             if (entries[0].intersectionRatio <= 0) return;
@@ -203,10 +181,6 @@ const Skeleton = () => {
     )
 }
 
-
-// export async function getStaticPaths({params}){
-
-// }
 
 export async function getServerSideProps({ params }) {
     let Id = await params?.types;

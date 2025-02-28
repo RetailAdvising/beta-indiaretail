@@ -1,6 +1,6 @@
 import RootLayout from '@/layouts/RootLayout'
 import { useEffect, useRef, useState } from 'react'
-import { articlesList,getAdvertisements } from '@/libs/api'
+import { articlesList, getAdvertisements } from '@/libs/api'
 import Cards from '@/components/common/Cards'
 import { useRouter } from 'next/router';
 export default function Lists({ data, ads }) {
@@ -11,14 +11,10 @@ export default function Lists({ data, ads }) {
     const [pageData, setPageData] = useState([])
     const [loading, setLoading] = useState(false);
 
-    
+
     useEffect(() => {
-        // slider_data.map((res)=> {
-        //     !isMobile && res.web_image ? res.image = res.web_image : res.image = ''
-        //     isMobile && res.mobile_image ? res.image = res.mobile_image : res.image = ''
-        // })
+
         if (data) {
-            // console.log(data)
             setTimeout(() => {
                 setPageData(data)
             }, 200);
@@ -37,20 +33,19 @@ export default function Lists({ data, ads }) {
         return () => {
             cardref?.current && intersectionObserver?.unobserve(cardref?.current)
         }
+
     }, []);
 
     const getLists = async () => {
         setLoading(true)
         let Id = await router?.query.types;
         let param = {
-            // doctype: "Articles",
-            // fields: ["blog_intro", "name", "articles_category", "title", "publisher", "secondary_text", "route", "primary_text", "thumbnail_image"],
-            // filters: { articles_category: Id, ir_prime: 1, published: 1 },
             category_route: Id,
             page_no: page_no,
             page_size: 20,
             ir_prime: 1
-        }
+        };
+
         let resp = await articlesList(param);
         if (resp.message && resp.message.length != 0) {
             setTimeout(() => {
@@ -64,18 +59,14 @@ export default function Lists({ data, ads }) {
     }
     return (
         <>
-            <RootLayout ad_payload={{ page: 'IR Prime', page_type: 'List' }} isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.types+'irH'} adIdF={router.query.types+'irF'} head={'List'}>
+            <RootLayout ad_payload={{ page: 'IR Prime', page_type: 'List' }} isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.types + 'irH'} adIdF={router.query.types + 'irF'} head={'List'}>
                 <div className=' md:p-[15px] container'>
                     {(pageData && pageData.length != 0) ? <>
-                        {/* {!isChecked ? <List fullWidth={true} check={true} isBB={true} contentWidth={'w-[410px] md:w-[auto]'} imgFlex={'flex-[0_0_calc(35%_-_10px)]'} imgWidth={'w-full'} imgHeight={'h-[160px]'} data={data} borderRadius={'rounded-[5px]'} />
-                                : <Cards cardClass={"h-[360px]"} check={true} noPrimaryText={false} borderRadius={"rounded-[10px_10px_0_0]"} height={"h-[180px]"}  width={"w-full"} isBorder={true} data={data} />} */}
                         <div className={`grid grid-cols-4 md:grid-cols-2 md:gap-[15px] lg:gap-5`}>
-                            {/* <List fullWidth={true} check={true} isBB={true} contentWidth={'w-[410px] md:w-[auto]'} imgFlex={'flex-[0_0_calc(35%_-_10px)] md:flex-[0_0_calc(40%_-_10px)]'} imgWidth={'w-full'} imgHeight={'h-[160px] md:h-[130px]'} data={data} borderRadius={'rounded-[5px]'} /> */}
                             <Cards cardClass={"h-[335px]"} borderRadius={"rounded-[10px_10px_0_0]"} height={"h-[180px]"} width={"w-full"} isBorder={true} data={data} />
                         </div>
                     </> : <Skeleton />}
 
-                    {/* Loader & Pagination */}
                     <div className='more h-[30px]' ref={cardref}></div>
                     {loading && <div id="wave">
                         <span className="dot"></span>
@@ -130,11 +121,11 @@ export async function getServerSideProps({ params }) {
     let value = await articlesList(param);
     let data;
 
-    if(value.status === 'Failed'){
+    if (value.status === 'Failed') {
         return {
-            notFound : true
+            notFound: true
         }
-    }else{
+    } else {
         data = value.message
     }
 

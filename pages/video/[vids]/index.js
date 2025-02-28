@@ -4,7 +4,6 @@ import Video from '@/components/Video/Video'
 import { useRouter } from 'next/router'
 export default function Videos({data,ads}) {
     const router = useRouter()
-    // console.log(data)
     return (
         <>
             <RootLayout ad_payload={{ page: 'Videos', page_type: 'List'}} isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.vids+'vidslH'} adIdF={router.query.vids+'vidslF'} head={router.query.vids ? router.query.vids : 'List'}>
@@ -19,7 +18,6 @@ export default function Videos({data,ads}) {
 
 export async function getServerSideProps({ params }) {
     let Id = await params?.vids;
-    // let Id = 'beauty-wellness';
     let param = {
       route: Id,
       fields:["name", "route", "title", "video_image","duration"]

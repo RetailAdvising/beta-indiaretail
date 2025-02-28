@@ -9,13 +9,11 @@ import Image from 'next/image'
 export default function IRPrime({ data, ads }) {
     const [value, setValue] = useState()
     const [skeleton, setSkeleton] = useState(true)
-    // let [ads,setAds] = useState()
+
 
     useEffect(() => {
         if (data && data.message && data.message.length != 0) {
             setTimeout(() => {
-                // console.log(data,'data')
-                // console.log(ads,'ads')
                 setValue(data)
                 
             }, 200);
@@ -25,7 +23,6 @@ export default function IRPrime({ data, ads }) {
         }, 200);
     }, [])
 
-    // console.log('dadad', data, ads)
     return (
         <>
             <RootLayout ad_payload={{ page: 'IR Prime', page_type: 'Landing' }} homeAd={ads ? ads : null} isLanding={true} head={'IR Prime'} adIdH={'ir-prime-head'} adIdF={'ir-prime-foot'}>
@@ -178,9 +175,6 @@ const Skeleton = () => {
 
 
 export async function getStaticProps() {
-    // let params = {
-    //     "doctype": "Articles", "filter_name": "articles_category", "parent_fields": ["name", "title", "thumbnail_image", "articles_category", "blog_intro", "primary_text", "secondary_text", "avatar", "publisher","route"], "category_doctype": "Articles Category", "category_fields": ["name", "title", "primary_text", "description",'route'], "page_no": 1, "records": 6, "category_count": 6, "ir_prime": 1
-    // }
     let params = {
         fields: ["name", "route", "primary_text", "secondary_text", "title", "thumbnail_imagee as thumbnail_image", "image", "articles_category", "blog_intro", "avatar", "publisher"], page_length: 10, page_no: 1
     }
@@ -194,14 +188,3 @@ export async function getStaticProps() {
         props: { data, ads }, revalidate: 50,
     }
 }
-
-// export async function getServerSideProps() {
-//     let params = {
-//         "doctype": "Articles", "filter_name": "articles_category", "parent_fields": ["name", "title", "thumbnail_image", "articles_category", "blog_intro", "primary_text", "secondary_text", "avatar", "publisher","route"], "category_doctype": "Articles Category", "category_fields": ["name", "title", "primary_text", "description",'route'], "page_no": 1, "records": 6, "category_count": 6, "ir_prime": 1
-//     }
-//     const res = await getCategoryList(params);
-//     const data = await res?.message;
-//     return {
-//         props: { data }
-//     }
-// }

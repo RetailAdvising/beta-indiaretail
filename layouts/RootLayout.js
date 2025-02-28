@@ -18,7 +18,7 @@ import setRole from 'redux/actions/roleAction'
 import setUser from 'redux/actions/userAction'
 
 function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_data, is_detail, adIdH, adIdF, ad_payload }) {
-  // console.log(data.footer_content)
+
   const [breadCrumbs, setBreadCrumbs] = useState([]);
   let [footerData, setFooterData] = useState([]);
   const user = useSelector(s => s.user);

@@ -70,13 +70,11 @@ export default function ExclusiveBuilder({ data, ads }) {
                 <div className='w-[calc(75%_-_10px)] md:basis-full md:pt-[10px]'>
                     <Title data={{ title: data.leaders_ink.title }} route={'/IRPrime/leaders-ink'} seeMore={true} />
                     <div className='primeSlide'>
-                        {/* <MultiCarousel cardHeight={'h-[280px]'} type={'profile'} noPlay={true} height={'h-[150px]'} perView={4} width={'w-full'} data={val.section_2.col_1.data} /> */}
                         <CustomSlider cardClass={'lg:h-[305px] flex-[0_0_calc(25%_-_15px)] md:flex-[0_0_calc(70%_-_10px)]'} imgClass={'lg:h-[185px] md:h-[140px] w-full'}
                             slider_id={"slider_id" + 0} slider_child_id={"slider_child_id" + 0} data={data.leaders_ink.data} title_class={'line-clamp-1'} subtitle_class={'line-clamp-1'} />
                     </div>
                 </div>
 
-                {/* {(ads.right_first && Object.keys(ads.right_first).length != 0  && !isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement divClass={'h-[250px] w-[300px] m-auto'}   data={ads.right_first} /></div>} */}
                 {(!isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement ad_payload={{ page: 'IR Prime', page_type: 'Landing' }} divClass={'h-[250px] w-[300px] m-auto'} position={"small"} adPos={'300'} insStyle={"display:inline-block;width:300px;height:250px;"} adId={'right_first'} data={(ads.right_first && Object.keys(ads.right_first).length != 0) && ads.right_first} /></div>}
             </div>}
 
@@ -86,21 +84,8 @@ export default function ExclusiveBuilder({ data, ads }) {
                 <div className='bg-[#F8F8F8] md:mt-[20px] lg:mb-[30px]'>
                     <div className='lg:py-[1.5rem] md:p-[15px] container'>
                         <Title data={data.videos} isVid={true} route={'/video/ir-studio'} seeMore={true} />
-                        {/* <div className='flex  gap-[15px] justify-between'><YTVideo data={res.ir_video} flex={"flex-[0_0_calc(25%_-_10px)]"} /></div> */}
                         <div className='lg:grid lg:grid-cols-4 irVideos lg:gap-[15px] lg:justify-between'>
                             <Video isHome={'/video/'} data={data.videos.ir_video} flex={'md:flex-[0_0_calc(70%_-_10px)] md:h-[235px]'} imgClass={'h-[180px] w-full'} />
-                            {/* {data.videos.ir_video.map((res, index) => {
-                                return (
-                                    <div key={index} onClick={() => router.push(`/video/${res.route}`)} className='ir_div cursor-pointer'>
-                                        <div className='relative'>
-                                            <Image src={check_Image(res.video_image)} className='h-[175px] w-full' height={100} width={100} alt={res.title} />
-                                            <Image src={'/irprime/youtube.svg'} className='absolute bottom-[10px] left-[10px] object-contain h-[20px] w-[30px]' height={100} width={100} alt={res.title} />
-                                        </div>
-                                        <p className='pt-[10px]'>{res.title}</p>
-                                    </div>
-                                )
-                            })} */}
-
                         </div>
                     </div>
                 </div>}
@@ -112,11 +97,10 @@ export default function ExclusiveBuilder({ data, ads }) {
                     <List fullWidth={true} check={true} isBB={true} titleClamp={'line-clamp-2'} contentWidth={'gap-[5px] w-[520px] md:w-[auto]'} flex={'gap-[25px] items-center mb-[20px] pb-[20px]'}
                         imgFlex={'flex-[0_0_calc(28%_-_10px)] md:flex-[0_0_calc(40%_-_10px)]'} imgWidth={'w-full'} imgHeight={'h-[160px] md:h-[130px]'} data={data.sec2.data.slice(0, 3)} borderRadius={'rounded-[5px]'} />
                 </div>
-                {/* {(ads.right_second && Object.keys(ads.right_second).length != 0 && !isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement divClass={'h-[600px] w-[300px] m-auto'}  data={ads.right_second} /></div>} */}
                 {(!isMobile) && <div className='w-[calc(25%_-_10px)] md:basis-full'><Advertisement ad_payload={{ page: 'IR Prime', page_type: 'Landing' }} divClass={'h-[600px] w-[300px] m-auto'} insStyle={"display:inline-block;width:300px;height:600px;"} position={"small"} adPos={'300'} adId={'right_second'} data={(ads.right_second && Object.keys(ads.right_second).length != 0 ) && ads.right_second} /></div>}
 
             </div>}
-            {/* </div> */}
+            
         </>
     )
 }

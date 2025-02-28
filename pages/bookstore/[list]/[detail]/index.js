@@ -6,12 +6,8 @@ import Title from '@/components/common/Title';
 import { useRouter } from 'next/router';
 import { getProductDetail,insert_member_subscription, make_payment_entry, insert_cart_items, updateCartItems, getCartItem, deleteCartItems , get_razorpay_settings, get_subscription_plans,update_no_of_shares,getAdvertisements,getCurrentUrl,seo_Image } from '@/libs/api';
 import { check_Image } from '@/libs/common';
-// import AuthModal from '@/components/Auth/AuthModal';
-// import LoaderButton from '@/components/common/LoaderButton';
 import styles from '@/styles/checkout.module.scss';
-// import AlertUi from '@/components/common/AlertUi';
 import Sliders from '@/components/Sliders/index'
-// import Dropdowns from '@/components/common/Dropdowns'
 import Head from 'next/head'
 import dynamic from 'next/dynamic';
 const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
@@ -29,9 +25,7 @@ export default function Bookstoredetail({ value, res,ads }) {
   const [data, setData] = useState();
   const [razorpay_settings, setRazorpay_settings] = useState({}) ;
 
-  // console.log(value,'value')
   const [loader,setLoader] = useState(false)
-  // const [variants,setVariants] = useState([{'name':'PDF','selected':true},{'name':'PRINT','selected':false}])
   const [enableModal,setEnableModal] = useState(false)
   const [enableModal1,setEnableModal1] = useState(false)
   const [alertMsg,setAlertMsg] = useState({})
@@ -74,22 +68,6 @@ export default function Bookstoredetail({ value, res,ads }) {
         // console.log(res);
         check_main_image(value)
 
-        // if(value.vendor_price_list && value.vendor_price_list.length != 0){     
-        //   if(value.has_variants == 1){
-        //       value.price = value.vendor_price_list[0].default_variant.product_price;
-        //       value.old_price = value.vendor_price_list[0].default_variant.old_price;
-        //       value.attribute_ids = value.vendor_price_list[0].default_variant.attribute_id;
-        //       value.business = value.vendor_price_list[0].business;
-        //       value.attribute = value.vendor_price_list[0].default_variant.variant_text;
-        //   } else{
-        //     value.price = value.vendor_price_list[0].product_price;
-        //     value.old_price = value.vendor_price_list[0].old_price;
-        //     value.attribute_ids = value.vendor_price_list[0].attribute_id ? value.vendor_price_list[0].attribute_id : '';
-        //     value.business = value.vendor_price_list[0].business;
-        //     value.attribute =  value.vendor_price_list[0].variant_text ? value.vendor_price_list[0].variant_text : '';
-        //   }
-        // }
-
         if(value.product_variant_group && value.product_variant_group.length != 0){
           if(value.has_variants == 1){
             value.attribute_ids = value.product_variant_group[0].attribute_id;
@@ -102,11 +80,7 @@ export default function Bookstoredetail({ value, res,ads }) {
               value.product_variant_group[0].attribute && setOnetimeAsDefault(value.product_variant_group[0].value);
             // }, 200);
           }else{
-            // value.price = value.vendor_price_list[0].product_price;
-            //     value.old_price = value.vendor_price_list[0].old_price;
-            //     value.attribute_ids = value.vendor_price_list[0].attribute_id ? value.vendor_price_list[0].attribute_id : '';
-            //     value.business = value.vendor_price_list[0].business;
-            //     value.attribute =  value.vendor_price_list[0].variant_text ? value.vendor_price_list[0].variant_text : '';
+            
           }
         }
 
@@ -114,24 +88,6 @@ export default function Bookstoredetail({ value, res,ads }) {
         setData(value);
       }
   
-      // if (res && res.length != 0) {
-      //   setOnetimeAsDefault();
-      //   setPlans(content_type);
-      // }
-  
-  
-      // const handleClickOutside = (event) => {
-      //   let el = document.getElementById('dropdown').classList;
-      //   let classs = Array.from(el);
-      //   let out = classs.find(res => res == 'dropdown-menu-active');
-      //   if (ref.current && !ref.current.contains(event.target) && out) {
-      //     el.remove('dropdown-menu-active')
-      //   }
-      // };
-      // document.addEventListener('click', handleClickOutside, true);
-      // return () => {
-      //   document.removeEventListener('click', handleClickOutside, true);
-      // };
     }
 
   }, [router.query])
@@ -302,15 +258,6 @@ export default function Bookstoredetail({ value, res,ads }) {
 
   }
 
-  const [sort, setSort] = useState(false);
-
-  // async function share() {
-  //   await setSort(!sort);
-  //   let element = document.getElementById('dropdown');
-  //   sort ? element.classList.add('dropdown-menu-active') : element.classList.remove('dropdown-menu-active');
-  // }
-
-
   const updateCart = async (dataValue, type) => {
 
   setLoader(true);
@@ -415,27 +362,8 @@ const  getCarts = async (type) => {
     }
   }
 }
-  // async function getCustomerInfo(){
-  //   // let param = {
-  //   //   "doctype":"Customers",
-  //   // "name":"EVT-00001",
-  //   // }
-  // }
-
+  
   const [currentVariantIndex, setVariantsIndex] = useState(0);
-
-  // const selectMethod = (e,index) =>{
-  //   setVariantsIndex(index);
-  //   if(subs && subs.length != 0){
-  //       setIndex(-1);
-  //       subs.map((res)=>{
-  //         res['active'] = false
-  //       }) 
-  //       setSubs(subs);
-  //   }
-  //   content_type = e['name'];
-  //   setPlans(content_type)
-  // };
 
  const setOnetimeAsDefault = (val) =>{
   // res.map((e,i)=>{if(e.item__type == "Onetime Purchase"){ handleSubs(res,e,i) }})
@@ -472,16 +400,6 @@ const  getCarts = async (type) => {
     setData(data);
     getCarts('');
 
-    // if(subs && subs.length != 0){
-    //   // setIndex(-1);
-    //   // setOnetime(-1)
-    //   subs.map((res)=>{
-    //     res['active'] = false
-    //   }) 
-      
-    //   setSubs(subs);
-    // }
-
     if(e.value && e.value.length != 0){
       //  setIndex(-1);
        setOnetime(1)
@@ -496,24 +414,13 @@ const  getCarts = async (type) => {
     setOnetimeAsDefault(e.value);
     setVariantsIndex(index);
     
-    // if(e.variant_text){
-    //   let data_1 = e.variant_text.toUpperCase().includes("PDF");
-    //   let data_2 = e.variant_text.toUpperCase().includes("PRINT");
-    //   if(data_1 || data_2){
-    //     content_type = data_1 ? 'PDF' : 'PRINT';
-    //     setPlans(content_type)
-    //   }
-    // }
-
-
-
   };
 
-  function setPlans(val){
-    let data = res.filter((res)=>{ return (res.item__type && (res.item__type == val || res.item__type == 'Onetime Purchase')) })
-    // console.log(data)
-    setSubs(data)
-  }
+  // function setPlans(val){
+  //   let data = res.filter((res)=>{ return (res.item__type && (res.item__type == val || res.item__type == 'Onetime Purchase')) })
+  //   // console.log(data)
+  //   setSubs(data)
+  // }
 
     // Active Plans
   const handleSubs = (data, e, i) => {
@@ -523,12 +430,6 @@ const  getCarts = async (type) => {
           // res['active'] =! res['active'];
           res['active'] = true
           res['active'] ? setIndex(i) : setIndex(-1);
-
-          // if(res.item__type == "Onetime Purchase"){
-          //   res['active'] ? setOnetime(i) : setOnetime(-1);
-          // }else{
-          //   setOnetime(-1)
-          // }
 
           if(res.is_subscription != 1){
             res['active'] ? setOnetime(i) : setOnetime(-1);
@@ -569,13 +470,6 @@ const  getCarts = async (type) => {
     }
   }
 
-  // useEffect(() => {
-  //   $("#lightgallery").lightGallery();
-  //   $("#lightgallery").on('click', 'a', function() {
-  //     $(this).lightGallery();
-  //   });
-  // }, []);
-
   useEffect(() => {
 
     if(typeof window !== 'undefined'){
@@ -588,42 +482,10 @@ const  getCarts = async (type) => {
           $lightGallery.data('lightGallery').destroy(true);
         };
         
-        // $("#lightgallery").lightGallery();
-  
-        // $("#lightgallery").on('click', 'a, img', function () {
-        //   $(this).lightGallery();
-        // });
-
-        // $("#lightgallery1").lightGallery();
-  
-        // $("#lightgallery1").on('click', 'a, img', function () {
-        //   $(this).lightGallery();
-        // });
-
       },800)
     }
 
   }, []);
-
-  // useEffect(() => {
-  //   // Initialize LightGallery
-  //   const $lightGallery = $("#lightgallery");
-  //   $lightGallery.lightGallery();
-
-  //   // Clean up LightGallery when the component unmounts
-  //   return () => {
-  //     $lightGallery.data('lightGallery').destroy(true);
-  //   };
-  // }, []);
-
-  const openLightGallery = async (imageSrc) => {
-    imageSrc = check_Image(imageSrc);
-    // console.log(imageSrc)
-    $.fn.lightGallery.call($('<a href="' + imageSrc + '">'), {
-      dynamic: true,
-      dynamicEl: [{ src: imageSrc }]
-    });
-  };
 
   const updateShare = async (data) => {
     // console.log(data,'share');
@@ -635,11 +497,8 @@ const  getCarts = async (type) => {
     const resp = await update_no_of_shares(param);
     if(resp.message == 'Success'){
       // console.log(resp)
-
     }
   }
-
-  // console.log(value,"value")
 
   return (
     <>
@@ -709,10 +568,7 @@ const  getCarts = async (type) => {
 
           <link rel="shortcut icon" href="/ir_2023.png" />
         </Head>
-      {/* { value && <SEO title={value.meta_title ? value.meta_title : value.item_title} ogImage={check_Image(value.image)} siteName={'India Retailing'} ogType={value.meta_keywords ? value.meta_keywords : value.item_title} description={value.meta_description ? value.meta_description : value.item_title}/>} */}
-      {/* <div className='md:hidden'>
-      </div> */}
-    
+
     { enableModal && <AlertUi isOpen={enableModal} closeModal={(value)=>closeModal(value)} headerMsg={'Alert'} button_2={'Ok'} alertMsg={alertMsg} />}
     { enableModal1 && <AlertUi isOpen={enableModal1} closeModal={(value)=>closeModal1(value)} headerMsg={'Alert'} button_2={'Ok'} alertMsg={alertMsg} />}
         
@@ -772,48 +628,10 @@ const  getCarts = async (type) => {
                 {/* {route: router.asPath.split('/')[2]+'/'+data.route} */}
                 {icons && <Dropdowns share={true} copy_link={true} updateShare={(data) => updateShare(data)} link={data} width={'w-[170px]'} btnClass={'md:w-[32px]'} data={icons} type={'books'} />}
 
-                {/* <div className='dropdowns md:w-[calc(10%_-_0px)] lg:w-[130px] md:h-[15px] md:relative cursor-pointer lg:pr-[40px] md:justify-end md:flex'>
-                  <Image onClick={share} ref={ref} className={`dropdowns transition-all delay-500 lg:pt-[6px]`} src={'/share.svg'} height={10} width={15} alt={'share'} /> */}
-                  {/* {sort && */}
-                    {/* <div className={`md:absolute md:right-0 dropdown-menu p-[10px] grid justify-center`} style={{ borderRadius: '10px', width: '150px' }} id='dropdown'>
-                      {icons && icons.map((res, index) => {
-                        return (
-                          <div key={index} className='hover:bg-[#FDF5F5] p-[0_8px] rounded'>
-                            {res.name == 'Linkedin' && <LinkedinShareButton url={router.asPath} className='flex items-center gap-[10px]'>
-                              <span className='h-[18px] w-[18px]'><Image src={res.icon} className='h-[18px] w-[18px] object-contain' height={40} width={40} alt={'imgs'} /></span>
-                              <p>{res.name}</p>
-                            </LinkedinShareButton>}
-                            {res.name == 'Facebook' && <FacebookShareButton url={router.asPath} className='flex items-center gap-[10px]'>
-                              <span className='h-[18px] w-[18px]'><Image src={res.icon} className='h-[18px] w-[18px] object-contain' height={40} width={40} alt={'imgs'} /></span>
-                              <p>{res.name}</p>
-                            </FacebookShareButton>}
-                            {res.name == 'Twitter' && <TwitterShareButton url={router.asPath} className='flex items-center gap-[10px]'>
-                              <span className='h-[18px] w-[18px]'><Image src={res.icon} className='h-[18px] w-[18px] object-contain' height={40} width={40} alt={'imgs'} /></span>
-                              <p>{res.name}</p>
-                            </TwitterShareButton>}
-                            {res.name == 'Whatsapp' && <WhatsappShareButton url={router.asPath} className='flex items-center gap-[10px]'>
-                              <span className='h-[18px] w-[18px]'><Image src={res.icon} className='h-[18px] w-[18px] object-contain' height={40} width={40} alt={'imgs'} /></span>
-                              <p>{res.name}</p>
-                            </WhatsappShareButton>}
-                          </div>
-                        )
-                      })}
-
-
-                    </div> */}
-                  {/* } */}
-                {/* </div> */}
               </div>
 
               <div className={`lg:flex md:p-[5px_0px_15px_0px] lg:hidden flex-col`}>
-                {/* flex-[0_0_calc(100%_-_10px)] */}
-                {/* <div className={`md:h-[430px] md:p-[0px_10px_10x_10px]`}>
-                  {(data.images && data.images.length != 0) ? 
-                    <Image className={`w-full lg:h-[500px] md:h-[425px] object-contain`} src={check_Image((data.images[1] && data.images[1].detail_image) ? data.images[1].detail_image : data.images[0].detail_image)} height={200} width={300} alt={data.item_title} /> :
-                    <Image className={`w-full lg:h-[500px] md:h-[425px] object-contain`} src={check_Image(data.image)} height={200} width={300} alt={data.item_title} />
-                  }
-                </div> */}
-
+                
                <div className="zero-gap">
                  {data.images && data.images.length != 0 ? <Sliders imgClass={'h-[330px] object-contain w-full'} event={true} data={data.images} perView={1} className='gap-0' /> :  <Image
                    className={'w-full h-[465px]'}
@@ -833,21 +651,6 @@ const  getCarts = async (type) => {
                 {(data.old_price != 0)  && <p className={`md:text-[12px] lg:text-[16px] line-through gray_color`}>{formatter.format(data.old_price)}</p>}
               </div>
 
-              {/* {data.vendor_price_list && data.vendor_price_list[0] && data.vendor_price_list[0].variants && data.vendor_price_list[0].variants.length != 0 &&
-                 <div className='flex gap-[10px] lg:m-[12px_0px_0_0px] md:m-[0] md:pb-[12px] items-center'>
-                    {data.vendor_price_list[0].variants.map((vendor,index)=>{
-                      return(
-                        // && (indexs < 0)
-                        <div key={index} onClick={() => selectMethod(vendor,index)} className={`flex ${styles.payment_sec} ${(data.attribute_ids == vendor.attribute_id ) ? 'active_border' : null} lg:h-[45px] md:h-[40px] cursor-pointer gap-[5px] items-center border rounded-[5px] p-[4px_12px] `}>
-                          <input className={styles.input_radio} checked={data.attribute_ids == vendor.attribute_id} type="radio"/>
-                          <p className='text-[12px]'>{vendor.variant_label_}</p>
-                        </div>
-                      )
-                      }) 
-                    }
-                  </div> 
-              } */}
-
               {data.product_variant_group && data.product_variant_group.length != 0 && 
               
               <div className='flex gap-[10px] lg:m-[12px_0px_0_0px] md:m-[0] md:pb-[12px] items-center'>
@@ -861,41 +664,15 @@ const  getCarts = async (type) => {
                   </div>
                 )
               })}
-              </div>}
-              {/* <div className='flex gap-[10px] lg:m-[18px_0px_0_0px] md:m-[3px_10px_8px_10px] items-center'>
-                    {variants.map((vendor,index)=>{
-                      return(
-                        <div key={index} onClick={() => selectMethod(vendor,index)} className={`flex ${styles.payment_sec} ${(currentVariantIndex == index) ? 'active_border' : null} lg:h-[40px] md:h-[35px] cursor-pointer gap-[5px] items-center border rounded-[5px] p-[4px_15px_4px_8px] `}>
-                          <input className={styles.input_radio} checked={currentVariantIndex == index} type="radio"/>
-                          <p className='text-[12px]'>{vendor.name}</p>
-                        </div>
-                      )
-                      }) 
-                    }
-              </div>  */}
-              
-
+              </div>}           
 
               {/* p-[20px] lg:m-[0_auto]*/ }
               {(subs && subs.length != 0) && 
-              
               <>
               <h6 className={`md:text-[16px] line-clamp-2 lg:text-[18px] lg:p-[20px_0px_0px_0px] font-[700] nunito`}>Subscription Plans</h6>
 
               
               <div className={`md:hidden grid grid-cols-3 md:gap-[10px] md:p-[10px] lg:gap-[10px] lg:w-[570px]  lg:p-[20px_0px] justify-between`}>
-
-                    {/* {subs.map((item, index) => {
-                      return (
-                        <div className={`border cursor-pointer ${(index == indexs) ? 'activeBorder' : ''} flex flex-col justify-center text-center p-[10px_8px] rounded-[10px] lg:h-[130px] md:h-[85px]`} onClick={() => handleSubs(subs, item, index)} key={index}>
-                          <p className='lg:text-[12px] md:text-[10px] font-semibold'>{item.plan_name}</p>
-                          <h6 className='lg:py-[6px] md:p-[2px] text-[20px] md:text-[16px] font-semibold'>{formatter.format(item.total_amount)}</h6>
-                          {item.features && item.features.map((f, index) => {
-                            return (<p key={index} style={{ fontWeight: '400' }} className='lg:text-[10px] sub_title md:text-[10px]'>{f.features}</p>);
-                          })}
-                        </div>
-                      );
-                    })} */}
 
                     {subs.map((item, index) => {
                       return (
@@ -918,16 +695,6 @@ const  getCarts = async (type) => {
                   </div>
                   <div className={`lg:hidden p-[16px_0_8px_0]`}>
 
-                      {/* {subs.map((item, index) => {
-                        return (
-                        <div key={index} onClick={() => handleSubs(subs, item, index)} className={`flex cursor-pointer gap-[5px] pb-[7px] last:pb-[0px] items-center`}>
-                          <input className={styles.input_radio} checked={index == indexs} type="radio"/>
-                          <p className='text-[13px]'>{item.plan_name}</p>
-                          <p className='text-[13px] font-semibold'>({formatter.format(item.total_amount)})</p>
-                        </div>
-                        );
-                      })} */}
-
                     {subs.map((item, index) => {
                       return (
                         <div key={index} onClick={() => handleSubs(subs, item, index)} className={`flex cursor-pointer gap-[5px] pb-[7px] last:pb-[0px] items-center`}>
@@ -937,12 +704,6 @@ const  getCarts = async (type) => {
                           {/* <p className='lg:text-[12px] md:text-[10px] font-semibold'>{item.attribute}</p> */}
                           <p className='text-[13px] font-semibold'>({formatter.format(item.price)})</p>
                         </div>
-                        // <div className={`border cursor-pointer ${(index == indexs) ? 'activeBorder' : ''} flex flex-col justify-center text-center p-[10px_8px] rounded-[10px] lg:h-[130px] md:h-[85px]`} onClick={() => handleSubs(subs, item, index)} key={index}>
-                        //   <p className='lg:text-[12px] md:text-[10px] font-semibold'>{item.subscription_plan}</p>
-                        //   <p className='lg:text-[12px] md:text-[10px] font-semibold'>{item.attribute}</p>
-                        //   <h6 className='lg:py-[6px] md:p-[2px] text-[20px] md:text-[16px] font-semibold'>{formatter.format(item.price)}</h6>
-                         
-                        // </div>
                       );
                     })}
                   </div>
@@ -980,15 +741,6 @@ const  getCarts = async (type) => {
 
         </div>
 
-          {/* Section - 2 */}
-
-          {/* {(data.previous_edition && data.previous_edition && data.previous_edition.length != 0) && 
-            <div className={`p-[30px]`}>
-              <Title data={{ title: 'Previous Issues' }} route={'/bookstore/'+router.asPath.split('/')[2]} seeMore={true} />
-              <div className={`grid gap-[20px] grid-cols-5 md:grid-cols-2 `}><Card category={router.query.list} check={true} data={data.previous_edition.slice(0, 5)} boxShadow={true} /></div> 
-            </div>
-          } */}
-
           {data.previous_edition && data.previous_edition.length != 0 && <div className={`lg:p-[30px] md:p-[15px]`}>
             <Title data={{ title: 'Previous Issues' }} seeMore={true} route={'/bookstore/'+router.asPath.split('/')[2]} />
             <div className={`grid gap-[20px] grid-cols-5 md:grid-cols-2 `}><Card imgClass={'lg:h-[300px] md:h-[225px] mouse'} category={router.query.list} check={true} data={data.previous_edition.slice(0, 5)} boxShadow={true} /></div></div>
@@ -998,21 +750,6 @@ const  getCarts = async (type) => {
             <Title data={{ title: 'Related Products' }} seeMore={true} route={'/bookstore/'+data.related_products[0].category_route} />
             <div className={`grid gap-[20px] grid-cols-5 md:grid-cols-2 `}><Card imgClass={'lg:h-[300px] md:h-[225px] mouse'} category={data.related_products[0].category_route} check={true} data={data.related_products.slice(0, 5)} boxShadow={true} /></div></div>
           }
-
-          {/* Section - 3 */}
-
-          {/* {data.related_products && <div className={`p-[30px] flex-wrap flex gap-[20px] justify-between`}>
-            <div className='flex-[0_0_calc(70%_-_20px)] md:flex-[0_0_calc(100%_-_10px)]'>
-              <Title data={{ title: 'Other Magazines' }} seeMore={true} />
-              <div className={`flex gap-[20px] flex-wrap `}><Card imgClass={'lg:h-[300px] md:h-[225px] mouse'} category={router.query.list} flex={'flex-[0_0_calc(25%_-_20px)] md:flex-[0_0_calc(50%_-_10px)]'} data={data.related_products.slice(0, 4)} check={true} boxShadow={true} /></div>
-            </div>
-            <div className='flex-[0_0_calc(30%_-_10px)] md:flex-[0_0_calc(100%_-_10px)]'>
-              <AdsBaner data={val.section_3.col_2} />
-            </div>
-          </div>} */}
-
-          {/* Section - 4 */}
-
          
       </div>
     }
@@ -1101,18 +838,3 @@ const Skeleton = () => {
         </div>
     </>
   )}
-
-  // const Alert = (alertMsg) => {
-
-  //   const [enableModal,setEnableModal] = useState(true)
-
-  //   async function closeModal(value){
-  //     setEnableModal(false);
-  //   }
-
-  //   return (
-  //     <>
-  //       <AlertUi isOpen={enableModal} closeModal={(value)=>closeModal(value)} headerMsg={'Alert'} button_2={'Ok'} alertMsg={alertMsg} /> 
-  //     </>
-  //   )
-  // }

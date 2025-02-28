@@ -1,11 +1,11 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
 export default function Tabs({ data, type }) {
 
     const [isChecked, setIsChecked] = useState(false)
 
     const handleCheckboxChange = () => {
-      setIsChecked(!isChecked)
+        setIsChecked(!isChecked)
     }
     return (
         <>

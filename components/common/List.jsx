@@ -2,24 +2,6 @@ import exclusives from '@/styles/Exclusives.module.scss';
 import { useRouter } from 'next/router';
 import Tags from './Tags';
 import ImageLoader from '../ImageLoader';
-// import { Nunito } from 'next/font/google'
-// const nunito = Nunito({
-//   weight: ["300", "400", "500", "600", "700"],
-//   display: "block",
-//   preload: true,
-//   style: 'normal',
-//   subsets: ["latin"],
-//   variable: '--font-inter',
-// })
-// import {Roboto} from 'next/font/google'
-
-// const roboto = Roboto({
-//     weight: ["200","300","400","500","600",'700'],
-//     display: "block",
-//     preload: true,
-//     style: 'normal',
-//     subsets: ["latin"]
-//   })
 
 
 export default function List({ imgFlex, hash_bg, contentWidth, primary_pb, line, data, titleClamp, isTop, isReverse, borderRadius, imgHeight, imgWidth, isBB, flex, isMp, fullWidth, noWidth, tittleOnly, isHome = undefined, isDesc, descLine, mb,route }) {

@@ -5,9 +5,6 @@ import { get_customer_info, getCartItem, update_order_status, stored_customer_in
 import { check_Image } from '@/libs/common'
 import Image from 'next/image'
 import { checkMobile } from '@/libs/api';
-// import AddressModal from '@/components/Bookstore/AddressModal';
-// import Address from '@/components/Bookstore/Address';
-// import AlertUi from '@/components/common/AlertUi';
 import LoaderButton from '@/components/common/LoaderButton';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router'
@@ -22,7 +19,6 @@ const AddressModal = dynamic(()=> import('@/components/Bookstore/AddressModal'))
 export default function checkout() {
 
 
-  const [selectedOption, setSelectedOption] = useState('India');
   const [currentIndex, setIndex] = useState(0);
   const [payment_methods, setPaymentMethods] = useState([]);
   let [cart_items, setCartItems] = useState({});

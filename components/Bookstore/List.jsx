@@ -5,9 +5,7 @@ export default function List({ data, border_b, line_clamp, flex, height,isLandin
   const router = useRouter();
 
   function navigateToDetail(res) {
-    // router.push(`/${router.asPath.split('/')[1] +'/' + category + '/' + res.route}`)
     router.push({ pathname: `/${router.asPath.split('/')[1] + '/' + res.route}` }, undefined, { shallow: false, scroll: false });
-    // router.replace({ pathname: `/${router.asPath.split('/')[1] +  '/' + res.route}` }, undefined, { shallow: false, scroll: false });
   }
 
   return (

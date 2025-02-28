@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import styles from '@/styles/Components.module.scss'
 import Image from 'next/image';
-import { signUp, logIn, checkMobile, checkMember, getList, send_otp, verify_otp } from '@/libs/api';
+import { signUp, logIn, checkMobile, getList, send_otp, verify_otp } from '@/libs/api';
 import { useRouter } from 'next/router';
 import LogIn from './LogIn';
 import { useDispatch } from 'react-redux';
 import setUser from 'redux/actions/userAction';
-// import AlertUi from '../common/AlertUi';
 import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import CryptoJS from 'crypto-js';
 
 
@@ -37,10 +35,6 @@ export default function SignUp({ isModal, hide, auth }) {
     }
 
     const dispatch = useDispatch();
-
-    // const [alertMsg, setAlertMsg] = useState('')
-    // const [isOpen, setIsOpen] = useState(false)
-    // const notify = () => toast.error('Password and Confirm Password not matched');
 
     async function signup(data) {
         if (data) {
@@ -75,15 +69,9 @@ export default function SignUp({ isModal, hide, auth }) {
                 toast.success("Otp Sent Successfully");
                 showOtp = true
                 setShowOtp(showOtp)
-                // setAlertMessage({ message: "Otp Sent Successfully" })
-                // setIsSuccessPopup(true)
-                // OTP sent successfully.
 
             } else {
                 toast.error("Otp Sent Failed");
-                // setWrong(!wrong);
-                // setAlertMessage({ message: "Otp Sent Failed" })
-                // setIsSuccessPopup(true)
             }
 
         }
@@ -150,18 +138,6 @@ export default function SignUp({ isModal, hide, auth }) {
     }
 
 
-    function closeModal(value) {
-        // alert_dispatch(alertAction(false))
-
-        // if (alertMsg && alertMsg.navigate) {
-        //   setAlertMsg({});
-        //   router.push('/bookstore');
-        // } else if ('Yes') {
-
-        // }
-
-    }
-
     const hide_and_show = (data) => {
         if (data == 'new') {
             setShowPass(!show_pass);
@@ -180,9 +156,7 @@ export default function SignUp({ isModal, hide, auth }) {
 
     return (
         <>
-            {/* {isOpen && <AlertUi isOpen={isOpen} closeModal={(value) => closeModal(value)} headerMsg={'Alert'} button_2={'Ok'} alertMsg={alertMsg} />} */}
-            {/* <ToastContainer position={'bottom-right'} autoClose={2000} /> */}
-
+        
             {(auth && modal != 'login') || isMobile ? <div className='lg:flex container !m-0  gap-5 justify-between h-full '>
                 {!isModal && <div className='flex-[0_0_calc(60%_-_10px)] md:hidden cursor-pointer bg-[#E9ECF2] border rounded-[5px] '>
                     <Image src={'/image.png'} height={200} width={400} alt={'image retail'} className={` w-full h-full object-contain p-[20px]`} />
