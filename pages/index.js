@@ -191,7 +191,7 @@ export default function Home({ data }) {
                         <div key={c.component_title} className={`${c.component_title == "Infocus Ad" ? 'md:pb-[10px]' : ''} ${c.component_title == "Top 4 Stories" ? 'top3  lg:justify-center md:gap-5' : c.component_title == "Featured Content" ? 'md:mb-[20px] pt-[20px]' : ''}`}>
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Top 4 Stories") && <TopStories data={data.data[c.cid].data.slice(0, 4)} />}
                           {(c.component_title == "In Focus" && c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_data_type == 'Location') && <>
-                            <ImageContainer data={data.data[c.cid].data[0]} height={"h-[350px] md:h-[250px]"} contStyle={'mb-[15px]'} width={'w-full'} />
+                            <ImageContainer isMobile={isMobile} data={data.data[c.cid].data[0]} height={"h-[350px] md:h-[250px]"} contStyle={'mb-[15px]'} width={'w-full'} />
                             <SectionList data={data.data[c.cid].data.slice(1, 4)} />
                           </>}
                           {(c.component_title == "Latest News" && c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_data_type == 'Location') && <>

@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link';
 import ImageLoader from '../ImageLoader';
+import { check_Image } from '@/libs/api';
 
-export default function ImageContainer({ data, height, width, isWeb,contStyle }) {
+export default function ImageContainer({ data, height, width, isWeb, contStyle, isMobile }) {
     return (
         <>
             {data && <div className={`relative ${contStyle ? contStyle : ''}`}>
@@ -11,7 +12,12 @@ export default function ImageContainer({ data, height, width, isWeb,contStyle })
                     {/* onLoad={(e) => setLoad(true)} onLoadingComplete={(img) => changeImg(img)} */}
                     {/* loader={() => ImageLoader(data.thumbnail_imagee ? data.thumbnail_imagee : data.image)} */}
                     <div className='relative'>
-                        <ImageLoader type={data} style={`rounded-[5px] ${height} ${width}`} src={data.thumbnail_imagee ? data.thumbnail_imagee : data.video_image ? data.video_image : data.image} title={data.title} />
+                        {isMobile ?
+                            <Image width={530} className={`rounded-[5px] ${height} ${width}`} alt={data.title} src={check_Image(data.thumbnail_imagee ? data.thumbnail_imagee : data.video_image ? data.video_image : data.image)} height={329} />
+                            :
+                            <ImageLoader type={data} style={`rounded-[5px] ${height} ${width}`} src={data.thumbnail_imagee ? data.thumbnail_imagee : data.video_image ? data.video_image : data.image} title={data.title} />
+                        }
+
                     </div>
                     {/* <Image width={530}  loading="lazy" blurDataURL={'/empty_state.svg'} placeholder='blur'  className={`rounded-[5px] ${height} ${width}`} alt="image.." src={check_Image(data.thumbnail_imagee ? data.thumbnail_imagee : data.image)} height={329} />                 <div className={`${height ? height : 'h-[350px]'} absolute top-0 w-full bg-[#0000002e]]`}></div> */}
                     <Image className={`${height ? height : 'h-[350px]'} absolute top-0 w-full rounded-[5px]`} src={'/bg-png.png'} height={329} width={530} alt='background...' />
