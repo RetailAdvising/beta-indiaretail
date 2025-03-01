@@ -31,10 +31,3 @@ export default function ImageContainer({ data, height, width, isWeb, contStyle, 
         </>
     )
 }
-
-
-// const Loader = () => {
-//     return(
-//         <>Loading....</>
-//     )
-// }

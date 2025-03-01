@@ -64,8 +64,6 @@ export default function LatestNews({ data, height, width, isList,marginstyle }) 
             )
           })}
 
-
-
         </>}
     </>
   )

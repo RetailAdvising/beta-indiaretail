@@ -31,22 +31,9 @@ const BrandDetails = ({ webinar_data, updateShare, icons, dateShow }) => {
           </div>
         </div>
 
-        {/* {typeof window !== "undefined" && <div className='flex-[0_0_auto] md:mt-3 lg:mt-2'>
-            {icons && <Dropdowns copy_link={true} updateShare={(data) => updateShare(data)} share={true} link={data.data} width={'w-[170px]'} data={icons} />}
-          </div>}
-
-          {typeof window !== "undefined" && <div className='flex-[0_0_auto] md:mt-3 lg:mt-2'>
-            {icons && <Dropdowns copy_link={true} updateShare={(data) => updateShare(data)} share={true} width={'w-[170px]'} data={icons} />}
-          </div>} */}
-
         {typeof window !== "undefined" && (
           <div className="flex-[0_0_auto] md:mt-3 lg:mt-2">
-            {/* <Image
-                        src="/shares.svg"
-                        width={20}
-                        height={20}
-                        className="lg:w-[24px] lg:h-[24px]"
-                    /> */}
+
             {icons && (
               <Dropdowns
                 noBg={true}

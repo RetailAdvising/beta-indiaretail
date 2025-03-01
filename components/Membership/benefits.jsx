@@ -1,5 +1,4 @@
 import Image from 'next/image';
-// import data from '@/libs/benefits';
 import { check_Image } from '@/libs/common'
 
 export default function Benefits({ data }) {
@@ -54,25 +53,6 @@ export default function Benefits({ data }) {
         </div>
       }
 
-
-      {/* <div className='' >
-        {irprime.memberships.map((membership, index) =>  {
-        return(
-          <div className={`${index % 2 === 0 ? 'oddabout' : 'evenabout'} md:py-4 md:p-[15px]`} >
-                  <div className="flex md:flex-col-reverse container flex-row gap-4 md:gap-2 pt-9 pb-9  md:pt-4 md:pb-4">
-                      <div className="m-auto basis-2/4 md:basis-full">
-                        <h2 className='font-bold text-3xl md:text-2xl pt-6 md:pt-0 text-left md:text-left'>{membership.title}</h2>
-                        <p className='sub_title text-left pb-2 pt-3 md:text-left'>{membership.content}</p>
-                      </div>
-                      <div className="text-center m-auto basis-2/4 md:basis-full">
-                        <Image src={membership.image} alt="About" width={400} height={400} className='m-auto'/>
-                      </div>
-                </div>
-          </div>
-            )
-        }
-      )}
-     </div> */}
     </>
   )
 }

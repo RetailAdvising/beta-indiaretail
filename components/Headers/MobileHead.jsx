@@ -4,8 +4,6 @@ import nav from '@/libs/header'
 import dynamic from 'next/dynamic';
 const SideBar = dynamic(() => import('./SideBar'))
 const TopNavBar = dynamic(() => import('./SideBar'))
-// import SideBar from './SideBar';
-// import TopNavBar from './TopNavBar';
 import { useRouter } from 'next/router';
 import { checkMobile } from '@/libs/api';
 
@@ -101,6 +99,7 @@ export default function MobileHead({ isLanding = true, getActiveTab, activeTab }
                     {nav && <SideBar data={nav} navbar={navbar} close={() => close()} emit_item={emit_nav_item} />}
                 </div>
             </div>
+
             {navbar && <Backdrop />}
 
             <div id="header" className=' md:!h-fit'>
@@ -109,7 +108,7 @@ export default function MobileHead({ isLanding = true, getActiveTab, activeTab }
                         <div >
                             <Image onClick={() => isLanding ? showSidebar() : window.history.back()} className={`${isLanding ? 'w-[20px]' : 'w-[9px]'} mouse`} src={isLanding ? '/menu.svg' : '/back.svg'} height={14} width={15} layout="fixed" alt="Edit" />
                         </div>
-                        {/* {Heading == '' ? <Image style={{ objectFit: 'contain' }} onClick={() => router.push('/')} className='h-[50px] w-full' height={76.23} priority width={284.65} alt='' src={'/indiaretail.png'}></Image> : <h6 className='text-[16px] font-semibold tex-black capitalize'>{Heading}</h6>} */}
+                        
                         <Image style={{ objectFit: 'contain' }} onClick={() => router.push('/')} className='w-[132px] mt-[5px]' height={76.23} priority width={284.65} alt='' src={'/indiaretail.png'}></Image>
                     </div>
                     <Image className='lg:hidden md:h-[20px] cursor-pointer' onClick={() => router.push("/search?searchText=")} style={{ objectFit: 'contain' }} height={60} priority width={24} alt='search' src={'/search.svg'} ></Image>

@@ -7,7 +7,7 @@ import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import dynamic from 'next/dynamic';
 const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
-// import AlertUi from '@/components/common/AlertUi';
+
 
 export default function OrderDetail({ hide, visible, order_id, loadPage }) {
 

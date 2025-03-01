@@ -5,7 +5,6 @@ import styles from '@/styles/Components.module.scss'
 import { update_password } from '@/libs/api';
 import dynamic from 'next/dynamic';
 const AlertUi = dynamic(()=> import('@/components/common/AlertUi'))
-// import AlertUi from '@/components/common/AlertUi';
 import CryptoJS from 'crypto-js';
 
 export default function ChangePwd({ customerInfo }) {
@@ -19,7 +18,6 @@ export default function ChangePwd({ customerInfo }) {
 
   async function signup(data) {
     if (data) {
-      // console.log(data);
       get_check(data);
     } else {
       setWrong(!wrong);
@@ -106,7 +104,6 @@ export default function ChangePwd({ customerInfo }) {
             <Image onClick={() => updateShow(2)} className={`absolute  right-[10px] h-[23px] w-[20px] ${errors.new_password?.message ? 'bottom-[45px]' : 'bottom-[20px]'}`} src={show.show_2 ? '/login/showPass.svg' : '/login/hidePass.svg'} height={15} width={15} alt={"pass"} />
             {errors.new_password && <p className={`${styles.danger}`}>{errors.new_password.message}</p>}
           </div>
-
 
           <div className={`flex flex-col py-[10px] relative`}>
             <label className={`text-[14px] font-semibold`} htmlFor='confirm_password'>Confirm Password</label>

@@ -10,9 +10,7 @@ export default function NewsCard({ data, imgClass, imgFlex, cardClass }) {
         return (
           <div key={index} onClick={() => { window.open((window.location.origin + '/' + router.asPath + '/' + res.name), '_blank') }} className={`border cursor-pointer rounded-[10px] ${cardClass}`}>
             <div className={`${imgFlex}`}>
-              {/* <Image className={`${imgClass}`} src={check_Image(res.image)} height={100} width={200} alt={res.title} /> */}
               <ImageLoader style={`${imgClass}`} src={res.image} title={res.title || res.subject} />
-
             </div>
             <div className={`p-[10px]`}>
               {(res.title || res.subject) && <p className={`line-clamp-2 title nunito`}>{res.title ? res.title : res.subject ? res.subject : ''}</p>}

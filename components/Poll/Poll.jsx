@@ -92,10 +92,6 @@ function Poll({ data, ipAddress }) {
                                             <p className='flex-1 w-full min-w-[200px]'> {ans.option}</p>
                                         </Radio>
 
-                                        {/* <p className=' px-[4px] rounded'>
-                                            {ans.voting_percentage}%
-                                        </p> */}
-
                                     </div>
 
                                 ))}
@@ -118,14 +114,6 @@ function Poll({ data, ipAddress }) {
 
                         ))}
 
-
-
-                        {/* <div key={ans+opt_index} className='px-[10px] pt-[10px]'>
-                                <input type='radio' name={"poll_"+index} id={ans.option+index} value={ans.option} onChange={($event) => change_option($event, qsn)}
-                                    className='cursor-pointer' checked={qsn.answer == ans.option ? 'checked':''}></input>
-                                <label htmlFor={ans.option+index} className='pl-[10px] cursor-pointer'>{ans.option}</label>
-                            </div> */}
-
                     </div>
 
                     <div className='p-[10px] text-right'>
@@ -134,7 +122,6 @@ function Poll({ data, ipAddress }) {
                 </div>
             ))}
 
-            {/* <ToastContainer position={'bottom-right'} autoClose={2000} /> */}
         </>
     );
 }

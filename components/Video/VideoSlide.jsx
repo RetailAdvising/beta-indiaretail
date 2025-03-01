@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import { check_Image, getVideoDuration } from '../../libs/api';
+import { check_Image } from '../../libs/api';
 import { useRouter } from 'next/router';
 
 export default function VideoSlide({ data, cardClass, imgClass, slider_id, slider_child_id, title_class, hide_scroll_button }) {
@@ -36,27 +36,6 @@ export default function VideoSlide({ data, cardClass, imgClass, slider_id, slide
         slider.scrollLeft += direction === 'next' ? sliderWidth : -sliderWidth;
     };
 
-    // const get_durations = async (id) => {
-    //     let val =  await getVideoDuration(id)
-    //     return await (val && val.duration) ? val.duration : '00:00'
-    // }
-
-    // const [durations, setDurations] = useState({});
-
-//   useEffect(() => {
-//     const fetchDurations = async () => {
-//       const durationsObj = {};
-//       for (const item of data) {
-//         const val = await get_durations(item.video_id);
-//         durationsObj[item.video_id] = val;
-//       }
-//       setDurations(durationsObj);
-//     };
-
-//     if (data) {
-//       fetchDurations();
-//     }
-//   }, [data]);
 
     return (
         <>

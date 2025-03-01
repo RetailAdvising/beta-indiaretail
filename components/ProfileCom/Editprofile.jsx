@@ -12,7 +12,6 @@ export default function Editprofile({ customerInfo }) {
   async function signup(data) {
     if (data) {
       setLoader(true);
-      // console.log(data);
       updateProfile(data)
     }
   }
@@ -40,8 +39,6 @@ export default function Editprofile({ customerInfo }) {
 
   return (
     <>
-      {/* <ToastContainer position={'bottom-right'} autoClose={2000} /> */}
-      {/* <div className={`flex-col flex justify-center`}> */}
       <form onSubmit={handleSubmit((data) => signup(data))} autoComplete='off' >
         <div className={`flex items-center gap-[20px] flex-wrap justify-between`}>
           <div className={`flex flex-col py-[10px] relative flex-[0_0_calc(50%_-_20px)]`}>

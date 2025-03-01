@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import styles from '@/styles/category.module.scss'
 import Image from 'next/image'
 import { check_Image } from '@/libs/api'
 import format from 'date-fns/format'
@@ -59,7 +58,7 @@ export default function Content({ res, i, updateShare, noScroll }) {
 
             <h6 className={`text-gray text-[11px] gray-text pb-[10px] nunito`}><span className={`text-[12px] text-[#000] font-[700] nunito`}>Published On : </span>{dateFormat(res.published_on ? res.published_on : res.modified)}</h6>
 
-            <div className={`flex items-center justify-between ${styles.profile_div} md:hidden`}>
+            <div className={`flex items-center justify-between profile_div md:hidden`}>
                 <div className='lg:hidden flex gap-4 items-center'>
                     <div className='flex lg:gap-4 items-center md:gap-[10px] md:justify-between '>
                         {/* {res.primary_text && <p className={`${res.primary_text ? 'primary_text' : ''}`}>{res.primary_text ? res.primary_text : ''}</p>} */}
@@ -80,7 +79,6 @@ export default function Content({ res, i, updateShare, noScroll }) {
                                         <h6 className={`font-[700] nunito text-[12px]`}>{r.full_name}</h6>
                                         {/* <span className='text-gray text-[11px] gray-text'>{dateFormat(res.published_on)}</span> */}
                                     </div>
-
                                 </div>
                             )
                         })

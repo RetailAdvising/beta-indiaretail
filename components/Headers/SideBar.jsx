@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import header from '@/styles/Header.module.scss'
-import Link from 'next/link'
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function SideBar({ data, close, navbar, emit_item }) {
     const router = useRouter();
@@ -13,20 +12,15 @@ export default function SideBar({ data, close, navbar, emit_item }) {
 
     const user = useSelector(s => s.user);
     const role = useSelector(s => s.role);
-    const [validator, setValidator] = useState(false)
-
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
             localStorage['apikey'] ? setValid(true) : null;
-            // roleMember()
             checkRole()
-            // let val = roleMember();
         }
 
         if (user) {
             localStorage['apikey'] ? setValid(true) : null;
-            // roleMember()
             checkRole()
         }
 
@@ -49,14 +43,14 @@ export default function SideBar({ data, close, navbar, emit_item }) {
     const checkRole = () => {
         if (role && role != '' && role.message && role.message.length != 0) {
             // console.log(role)
-            // if(updateCmts == -1){
+            
             for (let index = 0; index < role.message.length; index++) {
                 if (role.message[index] == 'Member') {
-                    //   setValidator(!validator);
+                    
                     setMember(!member)
                 }
             }
-            // }
+            
         }
     }
 
@@ -83,18 +77,6 @@ export default function SideBar({ data, close, navbar, emit_item }) {
         close()
     }
 
-    const roleMember = () => {
-        if (localStorage['roles']) {
-            const data = JSON.parse(localStorage['roles']);
-            if (data && data.length != 0) {
-                data.map(res => {
-                    if (res.role == 'Member') {
-                        setMember(!member)
-                    }
-                })
-            }
-        }
-    }
 
     const logout = () => {
         localStorage.clear();
@@ -108,7 +90,7 @@ export default function SideBar({ data, close, navbar, emit_item }) {
     return (
         <>
             {(data && data.header && data.header.items.length != 0 && navbar) && <div id='side' ref={ref} className={`bg-[#fff] w-[75%] h-full relative `}>
-                {/* <div className=''> */}
+                
                 <div className='absolute right-[10px] top-[20px]'>
                     <Image src={'/categories/close.svg'} onClick={() => close()} className='cursor-pointer ' height={18} width={18} alt='close' />
 
@@ -128,10 +110,7 @@ export default function SideBar({ data, close, navbar, emit_item }) {
 
                         {/* {localStorage && <p className='text-[14px] font-semibold'>{localStorage['userid']}</p>} */}
                     </div>
-                    {/* <div className={`w-full flex justify-end`}>
-                        <Image height={30} width={30} alt='hide' onClick={close} src={'/hide.svg'} />
-                    </div> */}
-
+                    
                 </div> :
                     <div className='flex gap-[10px] border_bottom p-[15px] items-center' onClick={myAccount}>
                         <div style={{ flex: '0 0 29px' }}>
@@ -139,18 +118,12 @@ export default function SideBar({ data, close, navbar, emit_item }) {
                         </div>
                         <div className='w-full flex-[0_0_auto]'>
                             <p className='text-[16px] font-semibold' style={{ color: '#000' }} >Welcome! to IndiaRetailing</p>
-                            {/* <div className='w-[90%]'>
-                            <button style={{ height: '30px', width: '150px', textTransform: 'uppercase', fontSize: '13px', padding: '5px 15px' }} className='uppercase primary_button' onClick={() => router.push('/login')}>Sign in</button>
-                        </div> */}
+                            
                         </div>
-
-                        {/* <div className={`w-full flex justify-end`} style={{flex:'0 0 30px'}}>
-                        <Image height={25} width={25} alt='hide' onClick={close} src={'/hide.svg'} />
-                    </div> */}
 
                     </div>}
 
-                {/* </div> */}
+                
                 <div className=''>
                     {data.header.items.map(res => {
                         return (
@@ -182,10 +155,7 @@ export default function SideBar({ data, close, navbar, emit_item }) {
 
                 {valid ? <div className='absolute bottom-[10px] w-full left-[15px]'>
                     <div className='justify-between items-center'>
-                        {/* <div className='flex items-center gap-[10px] w-[50%] cursor-pointer' onClick={() => logout()}>
-                            <Image className='h-[22px] w-[20px]' src={'/Navbar/Logout.svg'} height={20} width={20} alt={'logout'}></Image>
-                            <button className=' text-[14px] cursor-pointer '>Logout</button>
-                        </div> */}
+                        
                         {!member && <div className='flex flex-col gap-[10px] items-center cursor-pointer justify-end'>
                             <div onClick={() => route('subscribe')} className='flex w-max bg-[#e21b22] rounded-[5px] p-[8px_15px] gap-[5px] items-center justify-end '>
                                 <Image className='h-[18px] w-[18px]' src={'/Navbar/premium.svg'} height={20} width={20} alt='premium' />
@@ -210,12 +180,7 @@ export default function SideBar({ data, close, navbar, emit_item }) {
                         Stay informed and log in to access the latest news and updates.
                     </div>
                 </div>}
-                {/* //  :
-                //     <div className='absolute w-[90%] bottom-[10px]'>
-                //         <div className='flex bg-[#e21b22] justify-center w-[35%] rounded-[5px] p-[8px_15px] gap-[5px] items-center '>
-                //             <Image className='h-[18px] w-[18px]' src={'/Navbar/premium.svg'} height={20} width={20} alt='premium' />
-                //             <p onClick={() => route('subscribe')} className='text-[#fff] text-[14px] cursor-pointer '>Subscribe</p>
-                //         </div>                </div>} */}
+                
             </div>}
         </>
     )

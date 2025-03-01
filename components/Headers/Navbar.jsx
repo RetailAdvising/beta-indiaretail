@@ -15,32 +15,10 @@ const nunito = Nunito({
     variable: '--font-inter',
 })
 
-// {
-//     "menu_label": "Newsletters",
-//     "redirect_url": "/newsletters",
-//     "icon": "/Navbar/newsletter.svg",
-//     "is_mega_menu": 0,
-//     "no_of_column": 0,
-//     "child_menu": []
-// },
-
 export default function Navbar({ heading, isLanding, checkout }) {
     const router = useRouter();
     const navbar = false;
-    // const [navbar, setNavbar] = useState(false);
-    // const [isMobile, setIsMobile] = useState(false)
-    // const [date, setDate] = useState(undefined)
-
-    // useEffect(() => {
-
-    //     dispatch(setRoutes(router.route));
-    //     const formattedDate = format(new Date(), "iiii, d MMMM yyyy");
-    //     setDate(formattedDate)
-    //     // console.log('router.asPath',router.asPath); 
-    //     // console.log('router.asPath',nav); 
-    // }, [])
-
-
+    
     return (
         <>
             {/* sticky_header */}

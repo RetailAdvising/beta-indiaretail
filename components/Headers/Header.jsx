@@ -3,12 +3,12 @@ import Image from 'next/image'
 import styles from '@/styles/Header.module.scss'
 import { useRouter } from 'next/router'
 import { check_Image } from '@/libs/common'
-import { search_product, checkMobile,user_roles } from '@/libs/api';
+import { search_product, checkMobile, user_roles } from '@/libs/api';
 import { useSelector, useDispatch } from 'react-redux';
 import setUser from 'redux/actions/userAction';
 import setRole from 'redux/actions/roleAction';
 import dynamic from 'next/dynamic'
-const AuthModal = dynamic(()=> import('../Auth/AuthModal'))
+const AuthModal = dynamic(() => import('../Auth/AuthModal'))
 export default function Header({ checkout }) {
     const router = useRouter();
     const head = {
@@ -37,7 +37,7 @@ export default function Header({ checkout }) {
             // dispatch(setUser(s => s['message']['user_id'] = data.user_id))
             localStorage['apikey'] ? setValid(false) : null;
             // roleMember();
-        }else{
+        } else {
             dispatch(setUser(null))
             dispatch(setRole(null))
             localStorage.clear();
@@ -52,23 +52,23 @@ export default function Header({ checkout }) {
     const roles = async () => {
         if (localStorage && localStorage['apikey']) {
             const resp = await user_roles();
-            if(resp.status == 'Success'){
+            if (resp.status == 'Success') {
                 dispatch(setRole(resp))
                 // console.log(resp)
             }
-            
+
         }
     }
 
     const [isMobile, setIsMobile] = useState()
     useEffect(() => {
-       
+
         checkIsMobile();
         window.addEventListener('resize', checkIsMobile)
         return () => {
             window.removeEventListener('resize', checkIsMobile);
         };
-    }, [valid,role])
+    }, [valid, role])
 
     const checkIsMobile = async () => {
         let isMobile = await checkMobile();
@@ -84,16 +84,6 @@ export default function Header({ checkout }) {
         //     router.push(isMobile ? data.mob_route : data.route)
         // }
     }
-
-    useEffect(()=>{
-        if(typeof window != "undefined"){
-            document.addEventListener("DOMContentLoaded",()=>{
-                let parentNode = document.querySelectorAll(".haAclf")
-                console.log(parentNode,"parentNode")
-            })
-        }
-
-    },[])
 
     async function searchText(eve) {
         let value = eve.target.value;
@@ -270,12 +260,12 @@ export default function Header({ checkout }) {
                         </div>
                         {loader &&
                             <>
-                            {/* !valid && (!user || user != '') */}
-                            {/* <p>user: {JSON.stringify(user)}</p>
+                                {/* !valid && (!user || user != '') */}
+                                {/* <p>user: {JSON.stringify(user)}</p>
                             <p>role: {JSON.stringify(role)}</p> */}
                                 {!role ?
                                     <div className={`flex items-center justify-end gap-3 `}>
-                                        
+
                                         <button type='button' onClick={() => router.push('/membership')} className={`${styles.btn_sub} nunito`}>{head.btn1}</button>
                                         <button type='button' id='sign-in' onClick={show} className={`${styles.btn_sig} nunito`}>{head.btn2}</button>
                                     </div>
