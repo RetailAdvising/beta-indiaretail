@@ -220,6 +220,11 @@ export default function Membership() {
       setSubscribed_plans_length(1);
 
       setEnableModal(true);
+
+
+      setTimeout(() => {
+        router.back()
+      }, 1000);
     }
   }
 
