@@ -40,7 +40,7 @@ const Dropdowns = dynamic(() => import('@/components/common/Dropdowns'))
 const Form = dynamic(() => import('@/components/Webinar/Form'))
 const Banner = dynamic(() => import('@/components/Webinar/Banner'))
 const Agenda = dynamic(() => import('@/components/Webinar/Agenda'))
-const SpeakerCard = dynamic(() => import('@/components/Webinar/SpeakerCard'))
+const SpeakerCard = dynamic(() => import('@/components/Webinar/SpeakerCard'));
 const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
   display: "block",
@@ -75,14 +75,6 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
 
 
   useEffect(() => {
-
-    if (typeof window !== "undefined") {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth", // Smooth scrolling
-      });
-    }
-
 
     if (isMobile && webinar_data?.bottom_mobile_banner) {
       setBottomBackgroundImage(check_Image(webinar_data.bottom_mobile_banner.replace(/ /g, "%20")));
@@ -140,6 +132,14 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
   ]);
 
   useEffect(() => {
+
+    if (typeof window !== "undefined") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Smooth scrolling
+      });
+    }
+
     if (category_route == "case-studies") {
       let data = [...webinar_data.content_1, ...webinar_data.content_2];
       let menus = [];
@@ -160,7 +160,7 @@ const index = ({ page_route, ads, webinar_data, category_route }) => {
   }, [router]);
 
   const click_data = (data, type) => {
-    
+
     if (type == "register") {
       if (data.is_link_required && data.registration_url) {
         router.push(data.registration_url);

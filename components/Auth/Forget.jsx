@@ -59,7 +59,7 @@ const Forget = ({ auth,hide }) => {
                                 {errors?.user && <p className={`${styles.danger}`}>{errors.user.message}</p>}
                             </div>
                             <button className={`${styles.loginBtn} cursor-pointer`} type='submit'>Send</button>
-                            {wrong && <p className={`${styles.danger} text-[14px]`}>Check your E-mail</p>}
+                            {wrong && <p className={` text-[14px] pt-[5px] font-semibold text-[#187400]`}>Check your E-mail</p>}
                         </form>
                     </div>
                 </div>

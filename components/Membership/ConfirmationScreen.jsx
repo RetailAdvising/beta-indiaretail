@@ -44,6 +44,7 @@ export default function ConfirmationScreen({ membershipDetails, visible, hide, s
     let params = {
       "party": localStorage['customer_id'],
       "subscription_plan": checked_plans.plan_name,
+      tax_template: checked_plans.tax_template
     }
     const resp = await insert_member_subscription(params);
     setLoader(false);

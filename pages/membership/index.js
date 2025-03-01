@@ -31,6 +31,7 @@ export default function Membership() {
     window.addEventListener('resize', checkIsMobile)
     return () => {
       window.removeEventListener('resize', checkIsMobile);
+      localStorage.removeItem('prev_route')
     };
   }, [])
 
@@ -223,7 +224,8 @@ export default function Membership() {
 
 
       setTimeout(() => {
-        router.back()
+        const prev = localStorage['prev_route']
+        prev ? router.push(prev) : router.back()
       }, 1000);
     }
   }
