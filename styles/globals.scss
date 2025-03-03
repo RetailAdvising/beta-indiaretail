@@ -1832,6 +1832,117 @@ button:focus {
 
 }
 
+.contents-jost {
+  /* Add your content styling here */
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // gap: 10px;
+  // padding:10px;
+  // border-radius: 5px;
+  // margin: 10px 0 0 0;
+  font-size: $font-18;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  text-align: justify;
+  line-height: 1.5 !important;
+  // font-family: PT Serif !important;
+  // font-family: 'Inter', sans-serif !important;
+  // font-family: 'Faustina', sans-serif !important;
+  font-family: "jost" !important;
+
+
+  iframe {
+    padding: 15px 0 !important;
+    margin: auto !important;
+  }
+
+  // position: relative;
+  p,
+  span> :not(h1, h2, h3, h4, h5, h6) {
+    font-size: $font-18 ;
+    // padding-top: 0.75rem;
+    // padding-bottom: 0.75rem;
+    // text-align: justify;
+    line-height: 1.5 !important;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 18px;
+    // font-family: PT Serif !important;
+    // font-family: 'Inter', sans-serif !important;
+    // font-family: 'Faustina', sans-serif !important;
+    font-family: "Tinos", serif !important;
+    // margin-bottom: 26px;
+  }
+
+
+  ol {
+    margin: auto !important;
+    padding: revert !important;
+
+    li {
+      list-style: auto !important;
+    }
+  }
+
+  a {
+    font-size: $font-18 !important;
+    line-height: 1.5 !important;
+    // margin: 0 !important;
+    padding: 0 !important;
+    // font-family: 'Inter', sans-serif !important;
+    // font-family: 'Faustina', sans-serif !important;
+    font-family: "Tinos", serif !important;
+    cursor: pointer;
+    color: $primary-color;
+  }
+
+  p>span {
+    // display: inline-block;
+    font-size: $font-18 ;
+    margin: 0px 0;
+    line-height: 1.5 !important;
+    // font-family: PT Serif !important;
+    // font-family: 'Inter', sans-serif !important;
+    // font-family: 'Faustina', sans-serif !important;
+    font-family: "Tinos", serif !important;
+  }
+
+  strong {
+    // font-family: PT Serif !important;
+    // font-family: 'Inter', sans-serif !important;
+    // font-family: 'Faustina', sans-serif !important;
+    font-family: "Tinos", serif !important;
+  }
+
+  .ql-editor {
+    width: 100% !important;
+
+    p {
+      font-size: $font-18;
+      text-align: justify;
+      line-height: 1.5 !important;
+      // margin-bottom: 20px;
+      // font-family: 'Inter', sans-serif !important;
+      // font-family: 'Faustina', sans-serif !important;
+      font-family: "Tinos", serif !important;
+      padding: 0 !important;
+    }
+
+    strong {
+      // font-family: 'Inter', sans-serif !important;
+      // font-family: 'Faustina', sans-serif !important;
+      font-family: "Tinos", serif !important;
+    }
+  }
+
+  img {
+    padding: 10px;
+  }
+
+}
+
 strong {
   $dark-color: #111111 !important;
 }

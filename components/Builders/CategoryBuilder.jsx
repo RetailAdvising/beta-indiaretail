@@ -279,7 +279,7 @@ export default function CategoryBuilder({ data, load, isLast, i, ads, user, prod
               <Content i={i} res={data} updateShare={(data) => updateShare(data)} noScroll={(val) => noScroll(val)} />
             </p>
             <div className='relative article_content overflow-hidden'>
-              {data.content && <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(data.content) }} id={`innerHtml${i}`} className={`contents ${'innerHtml' + i} ${(data.ir_prime == 1 && !data.is_member) && 'prime-article'}`} />}
+              {data.content && <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(data.content) }} id={`innerHtml${i}`} className={`contents-jost ${'innerHtml' + i} ${(data.ir_prime == 1 && !data.is_member) && 'prime-article'}`} />}
               {(!data.is_member && data.ir_prime == 1) && <div className='prime-article-after'></div>}
             </div>
 

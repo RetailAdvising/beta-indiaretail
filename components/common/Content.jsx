@@ -54,7 +54,7 @@ export default function Content({ res, i, updateShare, noScroll }) {
                 {res.primary_text && <p className={`${res.primary_text ? 'primary_text' : ''}`}>{res.primary_text ? res.primary_text : ''}</p>}
             </div>
 
-            <h1 className={`mega_title  lg:text-[40px] md:text-[18px] md:leading-[29.23px] leading-[1.3] m-[8px_0] md:my-1 md:mb-[5px]`}>{res.title}</h1>
+            <h1 className={`mega_title tinos lg:text-[40px] md:text-[18px] md:leading-[29.23px] leading-[1.3] m-[8px_0] md:my-1 md:mb-[5px]`}>{res.title}</h1>
 
             <h6 className={`text-gray text-[11px] gray-text pb-[10px] nunito`}><span className={`text-[12px] text-[#000] font-[700] nunito`}>Published On : </span>{dateFormat(res.published_on ? res.published_on : res.modified)}</h6>
 

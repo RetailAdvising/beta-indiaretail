@@ -46,7 +46,7 @@ export default function SubscriptionAlert({ data,isModal }) {
                        
                     </div>
                     {/* onClick={() => router.push('/membership')} */}
-                    <button className='primary_btn w-full lg:my-5 rounded-[10px] text-[16px] h-[60px] md:h-[40px] md:text-[15px] ' onClick={() => router.push('/membership')}>View all plans</button>
+                    <button className='primary_btn w-full lg:my-5 rounded-[10px] text-[16px] h-[60px] md:h-[40px] md:text-[15px] ' onClick={() => router.push(`${router && router.query && router.query.detail && router.query.detail.length > 0 ? `/membership/?redirect_to=${router.query.detail[0]}`:"/membership"}`)}>View all plans</button>
                 </div>
             </div>
             {visible && <div className='authModal'><AuthModal modal={modal} show={show} visible={visible} hide={hide} /></div>}

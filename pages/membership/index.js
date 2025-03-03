@@ -21,6 +21,7 @@ export default function Membership() {
   let [isMobile, setIsmobile] = useState();
   let [subscribed_plans_length, setSubscribed_plans_length] = useState(0);
   let [isActive, setIsActive] = useState(-1)
+  const router = useRouter()
 
   useEffect(() => {
     getMembershipLanding()
@@ -196,6 +197,8 @@ export default function Membership() {
     setAlertMsg({ message: 'Payment failed' });
     setEnableModal(true);
   }
+  const { redirect_to } = router.query;
+  let [isSuccess,setIsSuccess]=useState(true)
 
   async function payment_Success_callback(response, amount, order_id) {
     let params = {
@@ -221,12 +224,14 @@ export default function Membership() {
       setSubscribed_plans_length(1);
 
       setEnableModal(true);
+      setIsSuccess(true)
+      
 
 
-      setTimeout(() => {
-        const prev = localStorage['prev_route']
-        prev ? router.push(prev) : router.back()
-      }, 1000);
+      // setTimeout(() => {
+      //   const prev = localStorage['prev_route']
+      //   prev ? router.push(prev) : router.back()
+      // }, 1000);
     }
   }
 
@@ -263,10 +268,16 @@ export default function Membership() {
     };
   }
 
-  const router = useRouter()
+
 
   async function closeModal(value) {
     setEnableModal(false);
+    
+      if (redirect_to && isSuccess) {
+        router.push(redirect_to);
+      } 
+
+ 
     // console.log(alertMsg)
     if ((alertMsg && alertMsg.message) && alertMsg.message.includes('Payment is pending')) {
       router.push('/profile?my_account=membership')
@@ -276,6 +287,7 @@ export default function Membership() {
   async function selected_plan() {
     if (subscribed_plans_length > 0) {
       setAlertMsg({ message: "Already you have one membership plan.So, you can't pick an other plans" });
+
       setEnableModal(true);
     }
   }
