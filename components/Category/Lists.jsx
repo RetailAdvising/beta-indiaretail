@@ -29,9 +29,15 @@ export default function Lists({ productNavigation, imgFlex, hash_bg, contentWidt
         // }
 
     }
+
+    // console.log(data, "dataa")
+
+    const sortEventsByStartDate = (events) => {
+        return events.sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+    };
     return (
         <>
-            {data && data.map((res, index) => {
+            {(data && data.length > 0) && (data[0]['doc_type'] === "Community Event" ? sortEventsByStartDate(data) : data).map((res, index) => {
                 return (
                     // style={{flex:flex}}
                     <div key={index} onClick={() => checkRoute(res)} className={`${flex} flex cursor-pointer gap-[15px] ${(index != data.length - 1 && !isMp) ? 'pb-[10px]' : (isMp && index != data.length - 1) ?

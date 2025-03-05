@@ -329,7 +329,7 @@ export default function Membership() {
                     // ${subscribed_plans_length > 0 ? 'active_member_ship' : ''} 
                     <div onClick={() => selected_plan()} key={index} className={`${isActive == index ? 'cur_member_ship' : ''} ${subscribed_plans_length == 0 ? 'active_member_ship' : ''} md:mb-[20px] flex-[0_0_calc(33.333%_-_16px)] member-card lg:p-8 md:p-[15px] bg-white rounded-2xl relative`}>
                       <h3 className='text-2xl font-bold'>{membership.plan_name}</h3>
-                      <h5 className='font-medium text-3xl'>{formatter.format(membership.total_amount)}</h5>
+                      <h5 className='font-medium text-3xl'>{formatter.format(membership.total_amount)} <span>(Inc. of GST)</span></h5>
                       <p className='text-xs'>Per {btnState ? 'month' : 'year'} .</p>
 
                       <p className='py-[6px] text-black text-xs font-bold'>Starter plan for optimal business intelligence</p>
