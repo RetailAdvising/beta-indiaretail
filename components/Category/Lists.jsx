@@ -33,7 +33,7 @@ export default function Lists({ productNavigation, imgFlex, hash_bg, contentWidt
     // console.log(data, "dataa")
 
     const sortEventsByStartDate = (events) => {
-        return events.sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+        return events.sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
     };
     return (
         <>
