@@ -34,7 +34,7 @@ export const checkMobile = () => {
 
 export const get_ip = async () => {
     let ip_address = ''
-    await fetch('https://jsonip.com/')
+    await fetch('https://api.ipify.org/?format=json')
         .then((response) => response.json())
         .then((data) => {
             ip_address = data.ip
