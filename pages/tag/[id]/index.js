@@ -26,7 +26,7 @@ export default function Trending({ data, res, ads }) {
     const icons = [{ icon: "/bookstore/linkedin.svg", name: 'Linkedin' }, { icon: "/bookstore/FB.svg", name: 'Facebook' }, { icon: "/bookstore/twitter.svg", name: 'Twitter' }, { icon: "/bookstore/whatsapp.svg", name: 'Whatsapp' }]
 
     // console.log(ads)
-     console.log(data)
+    //  console.log(data)
 
     useEffect(() => {
         getLatestNews()

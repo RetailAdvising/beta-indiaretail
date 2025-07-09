@@ -2,6 +2,7 @@ import { trending } from "@/libs/api";
 import { useRouter } from "next/router";
 
 function Tags({ tags, count = 2,tagClass }) {
+    console.log(tags,"tags")
 
     const router = useRouter();
 
@@ -11,7 +12,7 @@ function Tags({ tags, count = 2,tagClass }) {
                 if (index_no < count) {
                     return (
                         // max-w-[100px] line-clamp-1
-                        <span onClick={($event) => trending($event, tag, router)} key={index_no} className={`text-[12px] leading-[15px] flex-[0_0_auto] !font-[500] nunito`}>#{tag.tag}</span>
+                        <span onClick={($event) => trending($event, tag, router)} key={index_no} className={`text-[12px] leading-[15px] flex-[0_0_auto] !font-[500] nunito`}>#{tag.tag ? tag.tag :tag.tags}</span>
                     )
                 }
             })

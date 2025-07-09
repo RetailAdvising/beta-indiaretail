@@ -438,6 +438,11 @@ export async function articlesList(data) {
     let api = domainUrl + (data.category_route == 'case-studies' ? 'get_case_study_list' : 'article_list');
     return await postMethod(api, data);
 }
+
+export async function get_author_based_article_list(data) {
+    let api = domainUrl + "get_author_based_article_list";
+    return await postMethod(api, data);
+}
 export async function getDetails(data) {
     let api = domainUrl + "doc_detail";
     return await postMethod(api, data)

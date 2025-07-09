@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic'
 const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))
 const HomePodcast = dynamic(()=> import('@/components/Podcast/HomePodcast'))
 export default function Podcast({ data, ads_data, slider_data }) {
+    // console.log(data,"data")
     const [isMobile, setIsMobile] = useState();
     const [values, setValues] = useState([])
 

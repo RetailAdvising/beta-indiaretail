@@ -278,7 +278,7 @@ export default function Bookstoredetail({ value, res, ads }) {
 
   async function insert_cart(dataValue, type, value) {
     // console.log('dataValue',dataValue)
-    console.log(value)
+    // console.log(value)
 
     let param = {
       "item_code": dataValue.name,

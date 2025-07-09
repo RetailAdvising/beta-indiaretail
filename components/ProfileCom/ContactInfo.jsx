@@ -43,7 +43,7 @@ const JoinOurTeam = ({ style, styles }) => {
   }, [])
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     insert_contact_forms(data);
   };
 

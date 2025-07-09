@@ -216,6 +216,11 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
     dispatch(setUser(null))
   }
 
+  const handleClick = (event) => {
+   
+      event.preventDefault();
+   
+  };
 
   return (
     <>
@@ -258,7 +263,7 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
                       </div>
                     }
                   </div> :
-                  <Link className={`flex gap-[5px] items-center capitalize`} href={url}>
+                  <Link className={`flex gap-[5px] items-center capitalize`} href={url} onClick={(e)=>{bc.replaceAll('-', ' ') == "author"? handleClick(e):null}}>
                     <p className={`text-[12px] ${breadCrumbs.length - 1 == index ? 'font-[700]' : 'font-[500]'} nunito`}> {bc.replaceAll('-', ' ')}</p>
                     {(index !== 0 && index != breadCrumbs.length - 1) &&
                       <div className='ml-[5px] pt-[4px]'>

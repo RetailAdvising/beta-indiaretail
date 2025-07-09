@@ -1842,15 +1842,16 @@ button:focus {
   // padding:10px;
   // border-radius: 5px;
   // margin: 10px 0 0 0;
-  font-size: $font-18;
+  font-size: $font-18 !important;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   // text-align: justify;
   line-height: 1.5 !important;
+  color: #222222;
   // font-family: PT Serif !important;
   // font-family: 'Inter', sans-serif !important;
   // font-family: 'Faustina', sans-serif !important;
-  font-family: "jost" !important;
+  font-family: "Tinos", serif !important;
 
 
   iframe {
@@ -1861,7 +1862,7 @@ button:focus {
   // position: relative;
   p,
   span> :not(h1, h2, h3, h4, h5, h6) {
-    font-size: $font-18 ;
+    font-size: $font-18 !important;
     // padding-top: 0.75rem;
     // padding-bottom: 0.75rem;
     // text-align: justify;
@@ -1900,7 +1901,7 @@ button:focus {
 
   p>span {
     // display: inline-block;
-    font-size: $font-18 ;
+    font-size: $font-18 !important ;
     margin: 0px 0;
     line-height: 1.5 !important;
     // font-family: PT Serif !important;
@@ -1920,7 +1921,7 @@ button:focus {
     width: 100% !important;
 
     p {
-      font-size: $font-18;
+      font-size: $font-18 !important;
       // text-align: justify;
       line-height: 1.5 !important;
       // margin-bottom: 20px;

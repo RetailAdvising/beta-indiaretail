@@ -4,6 +4,7 @@ import { check_Image } from '@/libs/api'
 import format from 'date-fns/format'
 import ImageLoader from '../ImageLoader';
 import dynamic from 'next/dynamic'
+import Link from 'next/link';
 const Dropdowns = dynamic(() => import('./Dropdowns'))
 
 export default function Content({ res, i, updateShare, noScroll }) {
@@ -73,13 +74,13 @@ export default function Content({ res, i, updateShare, noScroll }) {
                     {res.publisher && res.publisher.length != 0 &&
                         res.publisher.map((r, index) => {
                             return (
-                                <div key={index} className='flex gap-[8px] items-center inner_line'>
+                                <Link href={`/author/${r.full_name}`} key={index} className='flex gap-[8px] items-center inner_line'>
                                     <Image className='rounded-full object-contain w-[30px] h-[30px]' priority={true} src={(r.avatar && r.avatar != '' && r.avatar != '') ? check_Image(r.avatar) : '/profit.svg'} height={43.12} width={43.12} alt={"image"} />
                                     <div className='block'>
                                         <h6 className={`font-[700] nunito text-[12px]`}>{r.full_name}</h6>
                                         {/* <span className='text-gray text-[11px] gray-text'>{dateFormat(res.published_on)}</span> */}
                                     </div>
-                                </div>
+                                </Link>
                             )
                         })
                     }
