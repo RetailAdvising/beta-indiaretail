@@ -1,6 +1,6 @@
 'use client'
 import RootLayout from '@/layouts/RootLayout'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { articlesDetail, getList, commentList, update_no_of_shares, get_subscription_plans, getAdvertisements, seo_Image, getCurrentUrl } from '@/libs/api';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
@@ -154,54 +154,100 @@ const index = ({ data, page_route }) => {
     }
 
 
+    const isNavigatingRef = useRef(false);
+    const isPopStateRef = useRef(false);
+
+    // Listen for popstate (back/forward navigation)
+    useEffect(() => {
+        const handlePopState = () => {
+            isPopStateRef.current = true;
+        };
+        window.addEventListener('popstate', handlePopState);
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, []);
+
     useEffect(() => {
         // Event listener to track scroll events
         const handleScroll = () => {
-            if (scrollEle) {
+            if (scrollEle && !isNavigatingRef.current && !isPopStateRef.current) {
                 const windowHeight = window.innerHeight;
-
                 for (const divId of divs) {
-
                     const div = document.getElementById(divId);
-
                     if (!div) continue;
-
                     const divTop = div.getBoundingClientRect().top;
                     const divBottom = div.getBoundingClientRect().bottom;
-
                     if (divTop < windowHeight / 2 && divBottom > windowHeight / 2) {
                         let ind = divId.replace('div', '')
                         ind = Number(ind);
-
-                        setTimeout(() => {
-                            if (routeList && routeList.length > 0 && routeList[ind]) {
-                                // console.log(routeList)
-                                // router.push('/' + routeList[ind], undefined, { scroll: false });
-                                router.replace({ pathname: '/' + routeList[ind] }, undefined, { shallow: true, scroll: false });
-                                if (values && values.length > 0 && values[ind]) {
-                                    data['meta_title'] = values[ind]['meta_title']
-                                    data['meta_image'] = values[ind]['meta_image']
-                                    data['meta_description'] = values[ind]['meta_description']
-                                    setMetaInfo(values[ind]);
-                                    // console.log(ind)
-                                }
+                        // Only push if the route is not already correct
+                        if (routeList && routeList.length > 0 && routeList[ind] && router.asPath.replace(/^\//, '').replace(/\/$/, '') !== routeList[ind]) {
+                            isNavigatingRef.current = true;
+                            router.push({ pathname: '/' + routeList[ind] }, undefined, { shallow: true, scroll: false });
+                            if (values && values.length > 0 && values[ind]) {
+                                data['meta_title'] = values[ind]['meta_title']
+                                data['meta_image'] = values[ind]['meta_image']
+                                data['meta_description'] = values[ind]['meta_description']
+                                setMetaInfo(values[ind]);
                             }
-                        }, 300)
+                        }
                         break;
                     }
-
                 }
             }
         };
-
         if (router && router.query && router.query.preview != 'true') {
             window.addEventListener('scroll', handleScroll);
             return () => {
                 window.removeEventListener('scroll', handleScroll);
             };
         }
+    }, [scrollEle, divs, routeList, values, router, data]);
 
-    }, [scrollEle]);
+    // Listen for route changes and scroll to the correct article div
+    useEffect(() => {
+        if (!router.isReady) return;
+        // Find the index of the current route in routeList
+        const currentRoute = router.asPath.replace(/^\//, '').replace(/\/$/, '');
+        let idx = routeList.findIndex(r => r === currentRoute);
+        // If not found, try to load articles up to this route
+        const scrollToIdx = (idxToScroll) => {
+            setTimeout(() => {
+                isNavigatingRef.current = true;
+                const div = document.getElementById('div' + idxToScroll);
+                if (div) {
+                    div.scrollIntoView({ behavior: 'auto', block: 'start' });
+                }
+                setTimeout(() => { isNavigatingRef.current = false; isPopStateRef.current = false; }, 300);
+            }, 100);
+        };
+        if (isPopStateRef.current) {
+            // If popstate navigation, ensure all previous articles are loaded
+            const tryLoad = async () => {
+                let found = false;
+                let tries = 0;
+                while (!found && tries < 10) {
+                    if (routeList.includes(currentRoute)) {
+                        found = true;
+                        break;
+                    }
+                    await loadMore();
+                    tries++;
+                }
+                idx = routeList.findIndex(r => r === currentRoute);
+                if (idx !== -1) {
+                    scrollToIdx(idx);
+                } else {
+                    isPopStateRef.current = false;
+                }
+            };
+            tryLoad();
+        } else if (idx !== -1) {
+            scrollToIdx(idx);
+        }
+        // else do nothing: do not scroll on normal scroll-triggered URL changes
+    }, [router.asPath, routeList]);
 
     const noScroll = (val) => {
         setScrollEle(val);

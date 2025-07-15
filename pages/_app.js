@@ -158,20 +158,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       if (router.pathname != "/[...detail]") {
         sessionStorage.setItem("previousRoute", currentRoute);
       }
-    
-
-    // // Optional: maintain a stack of previous routes
-    // let arrayPrevious = [];
-    // if (localStorage.getItem("previousRoutes")) {
-    //   arrayPrevious = JSON.parse(localStorage.getItem("previousRoutes"));
-    //   if (!arrayPrevious.includes(currentRoute)) {
-    //     arrayPrevious.push(currentRoute);
-    //     localStorage.setItem("previousRoutes", JSON.stringify(arrayPrevious));
-    //   }
-    // } else {
-    //   arrayPrevious.push(currentRoute);
-    //   localStorage.setItem("previousRoutes", JSON.stringify(arrayPrevious));
-    // }
+  
 
        sessionStorage.setItem(`${currentRoute}_scrollPosition`, window.scrollY);
     };
