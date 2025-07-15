@@ -178,7 +178,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
         const viewportHeight = window.innerHeight;
 
         // Calculate the position to scroll to (centering the saved position)
-        const centeredPosition = parseInt(savedPosition, 10) - viewportHeight / 2;
+        
+        const centeredPosition = parseInt(savedPosition, 10) - viewportHeight / 5;
 
         // Use window.scrollTo to scroll to the calculated position
         window.scrollTo({

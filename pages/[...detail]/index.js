@@ -246,7 +246,6 @@ const index = ({ data, page_route }) => {
         } else if (idx !== -1) {
             scrollToIdx(idx);
         }
-        // else do nothing: do not scroll on normal scroll-triggered URL changes
     }, [router.asPath, routeList]);
 
     const noScroll = (val) => {

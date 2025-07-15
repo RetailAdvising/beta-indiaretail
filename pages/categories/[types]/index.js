@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import SEO from '@/components/common/SEO'
 import Tags from '@/components/common/Tags';
 import ImageLoader from '@/components/ImageLoader';
+import Link from 'next/link';
 
 export default function CategoryType({ values, ads, Id,metaInfo }) {
     const router = useRouter();
@@ -91,7 +92,8 @@ export default function CategoryType({ values, ads, Id,metaInfo }) {
                             {/* {!isMobile && <Title data={{ title: router.query.types }} />} */}
                             <div className={`${isMobile ? '' : 'border'} rounded-[10px] lg:h-[650px] lg:p-[15px] cursor-pointer`}>{data && data.slice(0, 1).map((res, index) => {
                                 return (
-                                    <div key={res.title ? res.title : index} onClick={() => router.push(`${Id == 'case-studies' ? '/p/' + res.route : '/' + res.route}`)} className={` pb-[10px]`}>
+                                    // <div key={res.title ? res.title : index} onClick={() => router.push(`${Id == 'case-studies' ? '/p/' + res.route : '/' + res.route}`)} className={` pb-[10px]`}>
+                                    <Link key={res.title ? res.title : index} href={`${Id == 'case-studies' ? '/p/' + res.route : '/' + res.route}`} className={` pb-[10px]`}>
                                         <h6 className={`lg:text-[18px] md:text-[16px] font-[700] nunito`}>{res.title}</h6>
                                         <ImageLoader style={`lg:h-[460px] md:h-[330px] w-full mt-[10px] rounded-[5px]`} src={res.image ? res.image : res.thumbnail_image ? res.thumbnail_image : res.meta_image ? res.meta_image : null} title={res.title ? res.title : 'indiaRetail'} />
                                         {/* <Image className={`h-[330px] w-full mt-[10px] rounded-[5px]`} src={check_Image(res.image ? res.image : res.thumbnail_image)} height={250} width={300} alt={res.title} /> */}
@@ -99,7 +101,7 @@ export default function CategoryType({ values, ads, Id,metaInfo }) {
                                         <p className={`sub_title line-clamp-2 pt-[10px]`}>{res.blog_intro ? res.blog_intro : res.meta_description ? res.meta_description : ''}</p>
                                         {/* <p className={`hashtags pt-[5px]`}>{res.publisher}</p> */}
                                         <Tags tags={res.tags} />
-                                    </div>
+                                    </Link>
                                 )
                             })}</div>
                         </div>
