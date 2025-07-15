@@ -1011,3 +1011,88 @@ export const checkAds = (path) => {
 
     return false
 }
+
+
+export const getRouteHref = (res,type,parent,newsletter,route) => {
+    if (type === 'widget') {
+        if (parent && parent.title) {
+            switch (parent.title) {
+                case 'Articles':
+                    return res.route;
+                case 'Community Event':
+                case 'Events':
+                    return '/events/' + res.route;
+                case 'Books':
+                    return '/bookstore/' + res.category_route + '/' + res.route;
+                case 'Videos':
+                    return '/video/' + res.route;
+                case 'Podcasts':
+                    return '/podcast/' + res.route;
+            }
+        }
+    } else if (route) {
+        return route + res.route;
+    } else {
+        if (newsletter) {
+            // This part includes navigation logic, not just URL creation.
+            // You must skip it or handle it in a click handler instead.
+            return null;
+        } else {
+            if (parent && parent.day) {
+                const parts = res.route.split('/');
+                return '/' + parts[0] + '/' + parent.day + '/' + parts[1];
+            } else {
+                return '/' + res.route;
+            }
+        }
+    }
+    return null;
+};
+
+export const getHref = (res,searchNavigation,isHome,route) => {
+  if (route) {
+    return '/p/' + res.route;
+  } else if (searchNavigation) {
+    if (res.type === 'Articles') {
+      return '/' + res.route;
+    } else if (res.type === 'Product') {
+      return '/bookstore/' + res.route;
+    } else if (res.type === 'Podcast') {
+      return '/podcast/' + res.route;
+    } else if (res.type === 'Video') {
+      return '/video/' + res.route;
+    } else if (res.type === 'Newsletter') {
+      return '/newsletters/' + res.route;
+    }
+  } else {
+    return `${isHome ? isHome + res.route : '/' + res.route}`;
+  }
+};
+
+export const getListHref = (res,isLanding,router,category) => {
+  if (isLanding) {
+    return `/bookstore/${category}/${res.route}`;
+  } else {
+    const base = router.asPath.split('/')[1]; // e.g., 'bookstore'
+    return `/${base}/${res.route}`;
+  }
+};
+
+export const getLinktwoHref = (res,productNavigation) => {
+  if (productNavigation && res.doc_type === 'Articles') {
+    return null; 
+  }
+  switch (res.doc_type) {
+    case 'Community Event':
+      return '/events/' + res.route;
+    case 'Product':
+      return '/bookstore/' + res.route;
+    case 'Video':
+      return '/video/' + res.route;
+    case 'Podcast':
+      return '/podcast/' + res.route;
+    default:
+      return null;
+  }
+};
+

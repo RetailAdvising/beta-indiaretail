@@ -47,12 +47,18 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
       // } else setBreadCrumbs(router.asPath.split('/'))
     }
 
-    get_website_settings()
+   
+    // ads.classList.remove('hidden')
+  }, [router])
+
+
+  useEffect(() => {
+     get_website_settings()
     if (typeof window !== "undefined" && localStorage['apikey']) {
       checkSession()
     }
-    // ads.classList.remove('hidden')
-  }, [])
+  },[])
+        
 
 
   const article_breadcrumb = async (route) => {

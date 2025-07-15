@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Tags from '../common/Tags'
 import { useRouter } from 'next/router'
 import ImageLoader from '../ImageLoader';
+import Link from 'next/link';
 
 export default function SectionList({ data, isHome }) {
   const router = useRouter();
@@ -19,7 +20,8 @@ export default function SectionList({ data, isHome }) {
       {data && data.map((res, index) => {
         return (
           // href={'/' + res.route}
-          <div key={index} onClick={($event) => navigate($event, res)} className='cursor-pointer'>
+          // <div key={index} onClick={($event) => navigate($event, res)} className='cursor-pointer'>
+          <Link key={index} href={`${res.video_id ? '/video/' + res.route : isHome ? isHome + res.route : '/' + res.route }`} className='cursor-pointer'>
             <div className={`flex justify-between gap-[10px] ${index == 0 ? 'lg:mt-[15px]' : ''} ${index != data.length - 1 ? 'mb-[15px] border_bottom' : ''}  items-center pb-[15px]`}>
               <div className={`flex flex-[0_0_calc(95%_-_10px)] w-full gap-[10px]`}>
                 <div className={`flex-[0_0_calc(30%_-_10px)] md:flex-[0_0_calc(40%_-_10px)]`}>
@@ -40,7 +42,7 @@ export default function SectionList({ data, isHome }) {
                 <Image src={'/rightArrow.svg'} height={15} width={20} alt={'arrow'} ></Image>
               </div>
             </div>
-          </div>
+          </Link>
         )
       })}
     </>

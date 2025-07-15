@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
-import { check_Image, checkMobile } from '../../libs/api'
+import { check_Image, checkMobile, getRouteHref } from '../../libs/api'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import ImageLoader from '../ImageLoader';
+import { get } from 'react-hook-form';
 
 export default function CustomSlider({ data, cardClass, imgClass, slider_id, slider_child_id, type, route, title_class, subtitle_class, primary_text_class, hashtags_class, hide_scroll_button, noPrimaryText, routers, parent, productNavigation, newsletter, navigate }) {
     // let router = routers ? routers : useRouter();
@@ -130,9 +131,7 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
 
     const checkRoute = (res) => {
         if (type == 'widget') {
-            // console.log(parent)
-            // console.log(res.route)
-            // if (productNavigation) {
+           
             if (parent && parent.title) {
                 if (parent.title == 'Articles') {
                     res.route = res.route
@@ -151,43 +150,28 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
                     routers.push(res.route)
                 }
             }
-            // productNavigation(res.route)
-            // } 
-            // else if (parent && parent.title) {
-            //     if (parent.title == 'Articles') {
-            //         res.route = '/' + res.route
-            //     } else if (parent.title == 'Community Event' || parent.title == 'Events') {
-            //         res.route = '/events/' + res.route
-            //     } else if (parent.title == 'Books') {
-            //         res.route = '/bookstore/' + res.category_route + '/' + res.route
-            //     } else if (parent.title == 'Videos') {
-            //         res.route = '/video/' + res.route
-            //     } else if (parent.title == 'Podcasts') {
-            //         res.route = '/podcast/' + res.route
-            //     }
-            // } else {
-            //     res.route = '/' + res.route
-            // }
-            // routers.push(res.route)
+            
+         
         } else if (route) {
 
             router.push(route + res.route)
         } else {
-            // let route = res.route.split('/')
+            
             if (newsletter) {
-                // const route1 = window.location.origin + ('/' + res.route.split('/')[0] + '/' + parent.day + '/' + res.route.split('/')[1]) // Replace with your route
-                // window.open(route1, '_blank');
+
                 navigate(res, parent.category)
             } else {
                 router.push((parent && parent.day) ? ('/' + res.route.split('/')[0] + '/' + parent.day + '/' + res.route.split('/')[1]) : ('/' + res.route))
             }
-            // console.log(route, "route")
-            // console.log(router.asPath, "route")
-
-            // router.push('/' + res.route)
+         
         }
-        // : route ? route + res.route : '/' + res.route
+       
     }
+
+
+
+  
+
     return (
         <>
             {(!type || type == 'widget') && <div className='relative' id={slider_id}>
@@ -199,9 +183,11 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
                     className='overflow-auto scroll-smooth lg:flex-[0_0_calc(25%_-_15px)] scrollbar-hide md:gap-[10px] gap-[20px] flex md:p-[0px] md:w-[calc(100vw_-_41px)]'
                 >
                     {data && data.map((res, index) => {
+                        const href = getRouteHref(res,type,parent,newsletter,route);
                         return (
                             // '/' + router.asPath.split('/')[1] +
-                            <div key={index} className={`${cardClass} item border cursor-pointer rounded-[10px] overfow-hidden`} onClick={() => checkRoute(res)}>
+                            // <div key={index} className={`${cardClass} item border cursor-pointer rounded-[10px] overfow-hidden`} onClick={() => checkRoute(res)}>
+                            <Link href={href} key={index} className={`${cardClass} item border cursor-pointer rounded-[10px] overfow-hidden`} onClick={() => checkRoute(res)}>
                                 <div className={``} >
                                     {/* <Image loading="lazy" blurDataURL={'/empty_state.svg'} placeholder='blur' className={`${imgClass} rounded-[10px_10px_0_0]`} src={check_Image(res.thumbnail_image ? res.thumbnail_image : res.thumbnail_imagee ? res.thumbnail_imagee : res.thumbnail_path ? res.thumbnail_path : res.image_path ? res.image_path : res.video_image ? res.video_image : res.product_image ? res.product_image : res.image)} height={200} width={300} alt={index + 'image'} /> */}
                                     <ImageLoader style={`${imgClass} rounded-[10px_10px_0_0]`} src={res.thumbnail_image ? res.thumbnail_image : res.thumbnail_imagee ? res.thumbnail_imagee : res.thumbnail_path ? res.thumbnail_path : res.image_path ? res.image_path : res.video_image ? res.video_image : res.product_image ? res.product_image : res.image} title={index + 'image'} />
@@ -226,7 +212,7 @@ export default function CustomSlider({ data, cardClass, imgClass, slider_id, sli
                                         </div>}
                                     </div>}
                                 </div>
-                            </div>
+                            </Link>
                         )
                     })}
                 </div>

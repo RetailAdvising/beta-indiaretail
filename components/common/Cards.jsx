@@ -2,6 +2,8 @@ import styles from '@/styles/Cards.module.scss'
 import { useRouter } from 'next/router'
 import Tags from './Tags'
 import ImageLoader from '../ImageLoader';
+import Link from 'next/link';
+import { getHref } from '@/libs/api';
 
 export default function Cards({ searchNavigation, titleOnly, noPrimaryText, data, isHome = undefined, check, contentHeight, flex, border_none, isBorder, width, height, borderRadius, cardClass,route }) {
   const router = useRouter();
@@ -32,7 +34,8 @@ export default function Cards({ searchNavigation, titleOnly, noPrimaryText, data
       {data && data.map((res, index) => {
         return (
           // '/' + router.asPath.split('/')[1] +
-          <div key={res.title ? res.title : index} onClick={() => route ? router.push('/p/'+ res.route) : searchNavigation ? navigateDetail(res) : (router.push(`${isHome ? isHome + res.route : '/' + res.route}`))} className={`${styles.cards} ${flex} cursor-pointer ${isBorder && 'border rounded-[10px]'} ${cardClass}`} >
+          // <div key={res.title ? res.title : index} onClick={() => route ? router.push('/p/'+ res.route) : searchNavigation ? navigateDetail(res) : (router.push(`${isHome ? isHome + res.route : '/' + res.route}`))} className={`${styles.cards} ${flex} cursor-pointer ${isBorder && 'border rounded-[10px]'} ${cardClass}`} >
+          <Link key={res.title ? res.title : index} href={getHref(res,searchNavigation,isHome,route)} className={`${styles.cards} ${flex} cursor-pointer ${isBorder && 'border rounded-[10px]'} ${cardClass}`} >
             <div className={`${styles.img_div}`}>
               {/* layout="fill" sizes="(min-width: 60em) 24vw, (min-width: 28em) 45vw, 100vw"  objectFit="cover" */}
               {/* <Image loading="lazy" blurDataURL={'/empty_state.svg'} placeholder='blur' height={100} width={200} className={` ${height} ${width} ${borderRadius} ${styles.card_img} ${border_none ? 'rounded-[5px]' : 'rounded-[10px]'} `} src={check ? check_Image(res.thumbnail_image ? res.thumbnail_image :res.image ? res.image : res.product_image) : check_Image(res.thumbnail_image ? res.thumbnail_image : res.image) } alt={"cards"} /> */}
@@ -47,7 +50,7 @@ export default function Cards({ searchNavigation, titleOnly, noPrimaryText, data
               {((res.hashtags) && !noPrimaryText) && <p className={`light_text pt-[10px]`}>{res.hashtags ? res.hashtags : ''}</p>}
               {!titleOnly && <Tags tags={res.tags} />}
             </div>
-          </div>
+          </Link>
         )
       })}
     </>

@@ -134,13 +134,46 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       window.removeEventListener("orientationchange", handleOrientationChange);
     };
   }, []);
+  // useEffect(() => {
+  //   console.log(window.history, "window.history.state");
+          
+  // }, [router]);
+
+  // useEffect(() => {
+  //   if(sessionStorage.getItem("previousRoute") && window.history.length == 0) {
+  //     debugger
+  //     const previousRoute = sessionStorage.getItem("previousRoute");
+  //        window.history.pushState({}, '', previousRoute);
+  //        sessionStorage.removeItem("previousRoute");
+  
+  //   }
+  // }, [router]);
 
 
   useEffect(() => {
     const handleRouteChangeStart = () => {
       // Save scroll position for the current route
       const currentRoute = router.asPath;
-      sessionStorage.setItem(`${currentRoute}_scrollPosition`, window.scrollY);
+      console.log("Current route:", currentRoute);
+      if (router.pathname != "/[...detail]") {
+        sessionStorage.setItem("previousRoute", currentRoute);
+      }
+    
+
+    // // Optional: maintain a stack of previous routes
+    // let arrayPrevious = [];
+    // if (localStorage.getItem("previousRoutes")) {
+    //   arrayPrevious = JSON.parse(localStorage.getItem("previousRoutes"));
+    //   if (!arrayPrevious.includes(currentRoute)) {
+    //     arrayPrevious.push(currentRoute);
+    //     localStorage.setItem("previousRoutes", JSON.stringify(arrayPrevious));
+    //   }
+    // } else {
+    //   arrayPrevious.push(currentRoute);
+    //   localStorage.setItem("previousRoutes", JSON.stringify(arrayPrevious));
+    // }
+
+       sessionStorage.setItem(`${currentRoute}_scrollPosition`, window.scrollY);
     };
 
     // Add event listener to detect route changes

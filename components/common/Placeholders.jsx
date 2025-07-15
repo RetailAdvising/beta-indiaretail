@@ -5,6 +5,7 @@ const Advertisement = dynamic(()=> import('../Baners/Advertisement'))
 const Lists = dynamic(()=> import('../Category/Lists'))
 const Title = dynamic(()=> import('./Title'))
 export default function Placeholders({ placeholder, tagbasedAd, productNavigation, ads_data,ad_payload }) {
+    console.log("placeholder", placeholder)
     return (
         <>
             {(placeholder && placeholder.length != 0) ?

@@ -62,7 +62,8 @@ export default function MainFooter({ footerData,isMobile }) {
                                                 <div className={` flex-[0_0_calc(25%_-_10px)] md:flex-[0_0_calc(100%_-_10px)]`}>
                                                     <Image src={check_Image(item.logo)} onClick={() => router.push("/")} height={66} width={200} alt={"image"} className='mb-[20px] cursor-pointer' />
                                                     <h6 className='font-medium pb-1  text-[13px]'>{item.title}</h6>
-                                                    <p className='address font-normal text-[13px]'>{item.address_content}</p>
+                                                    {/* <p className='address font-normal text-[13px]'>{item.address_content}</p> */}
+                                                    <div className='address font-normal text-[13px]' dangerouslySetInnerHTML={{ __html: item.address_content }} />
                                                     <span className='flex flex-row mt-2.5 gray-text'>
                                                         <Image src={check_Image(item.phone_icon)} height={18} width={18} alt={"image"} className='mr-2 m-0.5 object-contain' />
                                                         <a href={`tel:${item.phonenumber}`} className='hover:text-[red] text-[12px]'>{item.phone_no}</a>

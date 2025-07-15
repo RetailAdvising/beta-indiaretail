@@ -15,6 +15,7 @@ import ImageLoader from '@/components/ImageLoader';
 import { useDispatch, useSelector } from 'react-redux';
 import setData from 'redux/actions/homePageAction';
 import setCount from 'redux/actions/paginationCountAction';
+import Link from 'next/link';
 
 
 const List = dynamic(() => import('@/components/common/List'))
@@ -187,6 +188,7 @@ export default function Home({ data }) {
                         <div key={c.component_title} className={`${c.component_title == "Infocus Ad" ? 'md:pb-[10px]' : ''} ${c.component_title == "Top 4 Stories" ? 'top3  lg:justify-center md:gap-5' : c.component_title == "Featured Content" ? 'md:mb-[20px] pt-[20px]' : ''}`}>
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Top 4 Stories") && <TopStories data={data.data[c.cid].data.slice(0, 4)} />}
                           {(c.component_title == "In Focus" && c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_data_type == 'Location') && <>
+                          <Title data={{ title: "In Focus" }} seeMore={true} route={'/categories/in-focus'} />
                             <ImageContainer isMobile={isMobile} data={data.data[c.cid].data[0]} height={"h-[350px] md:h-[250px]"} contStyle={'mb-[15px]'} width={'w-full'} />
                             <SectionList data={data.data[c.cid].data.slice(1, 4)} />
                           </>}
@@ -224,9 +226,10 @@ export default function Home({ data }) {
                             <div className={`flex items-center gap-[20px] md:overflow-auto lg:flex-wrap ${isMobile ? 'scrollbar-hide' : ''} md:gap-[15px] lg:justify-center`}>
                               {data.data[c.cid]['banner-list'].map((resp, index) => {
                                 return (
-                                  <div className={`flex-[0_0_calc(25%_-_15px)] md:flex-[0_0_calc(65%_-_10px)] cursor-pointer`} onClick={() => router.push(resp.url)} key={resp.url}>
+                                  // <div className={`flex-[0_0_calc(25%_-_15px)] md:flex-[0_0_calc(65%_-_10px)] cursor-pointer`} onClick={() => router.push(resp.url)} key={resp.url}>
+                                    <Link className={`flex-[0_0_calc(25%_-_15px)] md:flex-[0_0_calc(65%_-_10px)] cursor-pointer`} href={resp.url}  key={resp.url}>
                                     <Image src={check_Image(resp['banner-image'])} className='h-[250px] md:h-[175px] w-full rounded-[10px]' height={100} width={100} alt={resp.url}></Image>
-                                  </div>
+                                  </Link>
                                 )
                               })}
                             </div>
@@ -238,7 +241,8 @@ export default function Home({ data }) {
                             <div className={`flex items-center gap-[20px] md:overflow-auto lg:flex-wrap scrollbar-hide md:gap-[15px]`}>
                               {data.data[c.cid].data.map((resp, index) => {
                                 return (
-                                  <div className={`flex-[0_0_calc(50%_-_15px)] md:flex-[0_0_calc(90%_-_10px)] gap-[15px] flex items-center bg-white rounded-[10px] p-[10px] relative cursor-pointer`} onClick={() => router.push('/p/featured-content/' + resp.route)} key={resp.route}>
+                                  // <div className={`flex-[0_0_calc(50%_-_15px)] md:flex-[0_0_calc(90%_-_10px)] gap-[15px] flex items-center bg-white rounded-[10px] p-[10px] relative cursor-pointer`} onClick={() => router.push('/p/featured-content/' + resp.route)} key={resp.route}>
+                                  <Link className={`flex-[0_0_calc(50%_-_15px)] md:flex-[0_0_calc(90%_-_10px)] gap-[15px] flex items-center bg-white rounded-[10px] p-[10px] relative cursor-pointer`} href={'/p/featured-content/' + resp.route}  key={resp.route}>
                                     <div className='lg:flex-[0_0_calc(25%_-_10px)] md:flex-[0_0_calc(40%_-_10px)]'>
                                       {/* <Image src={check_Image(resp['image'])} className='h-[250px] md:h-[150px] w-full rounded-[10px]' height={100} width={100} alt={resp.url}></Image> */}
                                       <ImageLoader style={`rounded-[5px] h-[106px] md:h-[80px] w-full`} src={resp.thumbnail_imagee} title={resp.title} />
@@ -256,7 +260,7 @@ export default function Home({ data }) {
                                         <p className={`text-[13px] md:text-[12px] md:line-clamp-1 font-[500] nunito`}>{resp['published_on']}</p>
                                       </div>
                                     </div>
-                                  </div>
+                                  </Link>
                                 )
                               })}
                             </div>
