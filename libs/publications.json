@@ -4,107 +4,88 @@
             "title":"About Us",
             "subtitle1":"Indiaretailing.com",
             "subtitle2":"Your window to the world of Retail",
-            "content":"Indiaretailing.com, offers a window to the world of Retail in India. It is an initiative of IMAGES Group, a retail intelligence organisation that is trusted globally as the catalyst for profitable growth of modern Indian retail through knowledge platform leadership. Headquartered in New Delhi, the IMAGES Group has offices across Indian metros and the Middle East.",
+            "content":"IndiaRetailing.com—the home page of the Indian retail industry—is an initiative of IMAGES Group, a retail intelligence organisation that is trusted globally as the catalyst for profitable growth of modern Indian retail through knowledge platform leadership. Headquartered in New Delhi, IMAGES Group is South Asia and the Middle East’s leading retail intelligence organisation which empowers businesses with actionable insights and fosters growth & innovation in the retail industry through its diverse portfolio of B2B magazines, conferences, exhibitions, research reports, and web portals. As IMAGES Group’s flagship website, IndiaRetailing.com is uniquely placed as a retail knowledge platform which provides suppliers, investors, and retailers with critical insights to create a competitive advantage. Founded in 2006, IndiaRetailing.com provides unrivalled news, insights, intelligence, analysis, and data covering retail operations across most Indian markets and is frequented by India’s leading brands, retailers, manufacturers, suppliers, consultants and retail management students for knowledge, insights, and news which help drive growth and diversify into new sectors and markets. Beside a wealth of information, IndiaRetailing.com boasts an exclusive database of retail brands and retailers, retail investors and consultants, retail real estate developers, retail technology and system firms, finance outfits, store design, and shop-fit professionals.",
             "image":"/about/about.jpg"
         },
         {
-            "title":"Our Vision",
+            "title":"Our Vision & Mission",
             "subtitle1":"",
             "subtitle2":"",
-            "content":"To be trusted as the catalyst for profitable growth of modern retail, through knowledge platform leadership.",
+            "content":"To be trusted as the catalyst for profitable growth of modern retail, through knowledge platform leadership and to profitably connect our consumers to businesses, people, knowledge and ideas associated with modern retail.",
             "image":"/about/vision.svg"
-        },
-        {
-            "title":"Our Mission",
-            "subtitle1":"",
-            "subtitle2":"",
-            "content":"Profitably connecting our Consumers & Customers to businesses, people, knowledge and ideas associated with modern retail.",
-            "image":"/about/mission.svg"
         }
+      
     ],
     "title":"Images Publications",
-    "subtitle":"A strong portfolio of B2B publications covering all retail verticals have served since 1992 to inform, advise, and inspire industry leaders and decision makers.",
+    "subtitle":"IMAGES Group’s strong portfolio of B2B publications have served since 1992 to inform, advise, and inspire industry leaders and decision makers.",
     "publication":[
         {
             "title":"Images Business of Fashion",
-            "image":"/about/business_of_fashion.jpg"
+            "image":"/about/business_of_fashion.jpg",
+            "href": "https://shop.indiaretailing.com/product/images-business-of-fashion-july-2025/"
         },
         {
             "title":"Images Retail",
-            "image":"/about/image-Retail.jpg"
+            "image":"/about/image-Retail.jpg",
+            "href": "https://shop.indiaretailing.com/product/images-retail-may-2025/"
         },
         {
             "title":"Images Retail ME",
-            "image":"/about/images_retail.jpg"
+            "image":"/about/images_retail.jpg",
+            "href": "https://www.imagesretailme.com/bookstore/"
 
         },
         {
-            "title":"Progressive Grocer",
-            "image":"/about/grocer.jpg"
+            "title":"Business of Food",
+            "image":"/about/grocer.jpg",
+            "href": "https://shop.indiaretailing.com/product/images-business-of-food-july-2025/"
         },
         {
             "title":"Shopping Centre News",
-            "image":"/about/shopping.jpg"
-        },
-        {
-            "title":"Phygital",
-            "image":"/about/phygital.jpg"
+            "image":"/about/shopping.jpg",
+            "href": "https://shop.indiaretailing.com/product-category/magazine/shopping-centre/"
         }
+        
     ],
     "title1":"Images Awards",
-    "subtitle1":"Images Awards are respected for their unbiased assessment & recognition of retail performance, while other initiatives in Business Intelligence, Real Estate & Market Research, Retail Training and On-line Community Building play important roles in further developing the world’s most attractive retail destination India. Some of the prestigious awards from IMAGES Group are as follows",
+    "subtitle1":"IMAGES Awards are respected for the unbiased assessment and recognition of retail performance, while other initiatives in Business Intelligence, Real Estate & Market Research, Retail Training and On-line Community Building play important roles in further developing the world’s most attractive retail destination – India.",
     "exhibitions":[
         {
             "title":"Images Retail Awards (IRA)",
-            "image":"/about/awards1.jpg"
+            "image":"/about/awards1.jpg",
+            "href": "https://www.indiafashionforum.in/about-images-fashion-awards/"
         },
         {
-            "title":"Images Fashion Awards (IFA)",
-            "image":"/about/awards2.jpg"
+            "title":"IMAGES Shoes & Accessories Awards (ISAA)",
+            "image":"/about/awards2.jpg",
+            "href": "https://www.indiafashionforum.in/about-images-fashion-awards/"
         },
         {
-            "title":"India Shopping Centre Awards (ISCA)",
-            "image":"/about/awards3.jpg"
+            "title":"Golden Spoon Awards – Food Service",
+            "image":"/about/awards3.jpg",
+            "href": "https://indiafoodforum.com/awards/"
         },
         {
-            "title":"Images Food Service Awards",
-            "image":"/about/awards4.jpg"
-        },
-        {
-            "title":"India E-commerce Awards",
-            "image":"/about/awards5.jpg"
-        },
-        {
-            "title":"India D2C Awards",
-            "image":"/about/awards6.jpg"
+            "title":"Golden Spoon Awards – Food & Grocery",
+            "image":"/about/awards4.jpg",
+            "href": "https://www.indiafoodforum.com/awards/"
         }
+       
     ],
     "title2":"Images Events & Exhibitions",
-    "subtitle2":"Images business exhibitions and knowledge forums & conferences connect businesses, people, knowledge, and ideas associated with modern retail across different verticals.",
+    "subtitle2":"IMAGES Business Exhibitions and Knowledge Forums & Conferences are unique platforms which serve to connect businesses, people, knowledge, and ideas associated with modern retail.",
     "events":[
         {
             "title":"India Fashion Forum",
-            "image":"/about/Fashion.png"
+            "image":"/about/Fashion.png",
+            "href": "https://www.indiafashionforum.in/"
         },
         {
-            "title":"India Food Forum",
-            "image":"/about/Food.png"
-        },
-        {
-            "title":"Shopping Centre Next",
-            "image":"/about/shopping.png"
-        },
-        {
-            "title":"Phygital Retail Convention",
-            "image":"/about/Retail.png"
-        },
-        {
-            "title":"India D2C Summit & Awards",
-            "image":"/about/summit.png"
-        },
-        {
-            "title":"Internet Commerce Summit",
-            "image":"/about/Commerce.png"
+            "title":"India Food Service Forum",
+            "image":"/about/Food.png",
+            "href": "https://indiafoodforum.com/"
         }
     ]
 }
+
+

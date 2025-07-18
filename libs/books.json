@@ -1,46 +1,28 @@
 {
     "title2":"Books",
-    "subtitle2":"Lorem ipsum dolor sit amet consectetur. Fusce vel donec risus pharetra adipiscing nascetur augue libero diam. Pulvinar elit tincidunt natoque semper.",
+    "subtitle2":"IMAGES Group’s books have taken on the task of analysing the industry of organised retail, since the time when the industry itself had little data to work on. The books have grown in tandem with the business of retail in India",
     "books":[
         {
-            "title":"Store Design & Interiors",
-            "image":"/about/book1.svg"
+            "title":"Year Book: INDIA Business of Fashion Repor",
+            "image":"/about/book1.svg",
+            "href": "https://shop.indiaretailing.com/product/malls-of-india-2017-20/"
         },
-        {
-            "title":"Malls in India",
-            "image":"/about/book1.svg"
-        },
-        {
-            "title":"Images Business of Fashion Report",
-            "image":"/about/book1.svg"
-        },
-        {
-            "title":"India D2C Yearbook",
-            "image":"/about/book1.svg"
-        },
-        {
-            "title":"Evolve",
-            "image":"/about/book1.svg"
-        },
-        {
-            "title":"Shopping Centre Next",
-            "image":"/about/book1.svg"
-        },
+
         {
             "title":"India Food Report",
-            "image":"/about/book1.svg"
+            "image":"/about/book1.svg",
+            "href": "https://shop.indiaretailing.com/product/the-india-food-report-2024-2025/"
         },
         {
-            "title":"India Retail Report",
-            "image":"/about/book1.svg"
+            "title":"Shirtopedia",
+            "image":"/about/book1.svg",
+            "href": "https://shop.indiaretailing.com/product/shirtopedia-2025/"
         },
-        {
-            "title":"India Phygital Index",
-            "image":"/about/book1.svg"
-        },
-        {
-            "title":"Retail Icons of India",
-            "image":"/about/book1.svg"
+         {
+            "title":"Malls in India",
+            "image":"/about/book1.svg",
+            "href": "https://shop.indiaretailing.com/product/malls-of-india-2017-20/"
         }
+        
     ]
 }

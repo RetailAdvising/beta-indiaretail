@@ -4,6 +4,7 @@ import data from '@/libs/books'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from 'next/link';
 
 export default function Books(){
     const settings = {
@@ -40,10 +41,10 @@ export default function Books(){
     <Slider {...settings}>
       {data.books.map((book,index) => {
       return(
-            <div className='p-0' key={index}>
+            <Link href={book.href} className='p-0' key={index}>
                 <Image src={book.image} alt="Books" width={200} height={200} className='m-2 m-auto p-3' />
                 <h3 className='text-1xl font-bold text-center'>{book.title}</h3> 
-            </div>
+            </Link>
       )
       }
       )}
