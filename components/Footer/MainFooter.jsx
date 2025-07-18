@@ -53,7 +53,7 @@ export default function MainFooter({ footerData,isMobile }) {
                     {footerData.items && footerData.items.map((footer_item, index) => {
                         return (
                             // flex-[0_0_calc(${100 / footerData.items.length}%_-_16px)]
-                            <div key={index} className={`${index == 0 ? 'flex-[0_0_calc(20%_-_15px)] md:gap-[10px]' : 'flex-[0_0_calc(16%_-_15px)]'} md:grid`}>
+                            <div key={index} className={`${index == 0 ? 'flex-[0_0_calc(20%_-_15px)] md:gap-[10px]' : 'flex-[0_0_calc(16%_-_15px)] lg:min-h-[520px]'} md:grid`}>
                                 {footer_item.items && footer_item.items.map((item, i) => {
                                     return (
                                         <div key={i} className={`${item.section_name == 'Footer 1' ? 'relative md:hidden' : ''}`}>
@@ -110,7 +110,7 @@ export default function MainFooter({ footerData,isMobile }) {
                                                 <Accordion isMobile={isMobile} item={item} i={i} />
                                             </>}
 
-                                            {item.section_name == 'Footer 1' && <div className={`absolute top-0 left-0 right-[-390px] h-[230px] border p-[10px] rounded-[5px] flex gap-[10px] items-center`}>
+                                            {item.section_name == 'Footer 1' && <div className={`absolute footer_add top-0 left-0 right-[-390px] h-[230px] border p-[10px] rounded-[5px] flex gap-[10px] items-center`}>
                                                 <div className={`flex-[0_0_40%]`}>
                                                     <Image src={check_Image(item.image)} className={`object-contain w-full`} height={100} width={100} alt={item.primary_text} />
                                                 </div>
