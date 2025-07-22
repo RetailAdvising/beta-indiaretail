@@ -5,15 +5,32 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from 'next/link';
+import { checkMobile } from '@/libs/api';
+import { useEffect, useState } from 'react';
 
 export default function Books(){
+
+    const [isMobile, setIsMobile] = useState();
+    
+      useEffect(() => {
+          checkIsMobile();
+          window.addEventListener('resize', checkIsMobile)
+          return () => {
+              window.removeEventListener('resize', checkIsMobile);
+          };
+      }, [])
+  
+      const checkIsMobile = async () => {
+          let isMobile = await checkMobile();
+          setIsMobile(isMobile);
+      }
     const settings = {
           dots: true,
           infinite: true,
           speed: 500,
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          autoplay: true,
+          slidesToShow: isMobile ? 1 : 4,
+          slidesToScroll: isMobile ? 1 : 4,
+          // autoplay: true,
           autoplaySpeed: 3000,
           pauseOnHover: true,
           responsive: [
@@ -42,7 +59,7 @@ export default function Books(){
       {data.books.map((book,index) => {
       return(
             <Link href={book.href} className='p-0' key={index}>
-                <Image src={book.image} alt="Books" width={200} height={200} className='m-2 m-auto p-3' />
+                <Image src={book.image} alt="Books" width={200} height={200} className='m-2 m-auto p-3 h-[300px]' />
                 <h3 className='text-1xl font-bold text-center'>{book.title}</h3> 
             </Link>
       )

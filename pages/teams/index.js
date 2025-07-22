@@ -28,9 +28,11 @@ export default function Teams({ data }) {
                                                     <Image src={check_Image(val.image)} alt={val.title} width={300} height={300} />
 
                                                     <div className='d__flex gap-4 pt-6 justify-center'>
-                                                        {val.instagram_url && <Link href={val.instagram_url} target="_blank"><Image src={"/teams/instagram.svg"} alt={"instagram"} width={24} height={24} /></Link>}
-                                                        {val.x_url && <Link href={val.x_url} target="_blank"><Image src={"/teams/x.svg"} alt={"x"} width={24} height={24} /></Link>}
+                                                        {/* {val.instagram_url && <Link href={val.instagram_url} target="_blank"><Image src={"/teams/instagram.svg"} alt={"instagram"} width={24} height={24} /></Link>} */}
+                                                        {/* {val.x_url && <Link href={val.x_url} target="_blank"><Image src={"/teams/x.svg"} alt={"x"} width={24} height={24} /></Link>} */}
                                                         {val.linkedin_url && <Link href={val.linkedin_url} target="_blank"><Image src={"/teams/linkdin.svg"} alt={"linkdin"} width={24} height={24} /></Link>}
+                                                       {/* {val.linkedin_url && <Link href={`/author/${val.title}`} ><Image src={"/teams/user.svg"} alt={"linkdin"} width={24} height={24} /></Link>} */}
+
                                                     </div>
                                                 </div>
                                             </div>

@@ -303,3 +303,14 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
 
 
 export default memo(RootLayout)
+
+
+
+  // {
+  //                       "menu_label": "Videos",
+  //                       "redirect_url": "/video",
+  //                       "icon": "/Navbar/video.svg",
+  //                       "is_mega_menu": 0,
+  //                       "no_of_column": 0,
+  //                       "child_menu": []
+  //                   },

@@ -4,23 +4,23 @@
     "books":[
         {
             "title":"Year Book: INDIA Business of Fashion Repor",
-            "image":"/about/book1.svg",
-            "href": "https://shop.indiaretailing.com/product/malls-of-india-2017-20/"
+            "image":"/about/Yearbook-2025-Cover.jpg",
+            "href": "https://shop.indiaretailing.com/product/india-business-of-fashion-report-2025"
         },
 
         {
             "title":"India Food Report",
-            "image":"/about/book1.svg",
+            "image":"/about/Food-Report-2023-Cover-1.jpg",
             "href": "https://shop.indiaretailing.com/product/the-india-food-report-2024-2025/"
         },
         {
             "title":"Shirtopedia",
-            "image":"/about/book1.svg",
+            "image":"/about/Shirtopedia.jpg",
             "href": "https://shop.indiaretailing.com/product/shirtopedia-2025/"
         },
          {
             "title":"Malls in India",
-            "image":"/about/book1.svg",
+            "image":"/about/MALLS-OF-INDIA.png",
             "href": "https://shop.indiaretailing.com/product/malls-of-india-2017-20/"
         }
         

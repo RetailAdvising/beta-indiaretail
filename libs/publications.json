@@ -4,7 +4,7 @@
             "title":"About Us",
             "subtitle1":"Indiaretailing.com",
             "subtitle2":"Your window to the world of Retail",
-            "content":"IndiaRetailing.com—the home page of the Indian retail industry—is an initiative of IMAGES Group, a retail intelligence organisation that is trusted globally as the catalyst for profitable growth of modern Indian retail through knowledge platform leadership. Headquartered in New Delhi, IMAGES Group is South Asia and the Middle East’s leading retail intelligence organisation which empowers businesses with actionable insights and fosters growth & innovation in the retail industry through its diverse portfolio of B2B magazines, conferences, exhibitions, research reports, and web portals. As IMAGES Group’s flagship website, IndiaRetailing.com is uniquely placed as a retail knowledge platform which provides suppliers, investors, and retailers with critical insights to create a competitive advantage. Founded in 2006, IndiaRetailing.com provides unrivalled news, insights, intelligence, analysis, and data covering retail operations across most Indian markets and is frequented by India’s leading brands, retailers, manufacturers, suppliers, consultants and retail management students for knowledge, insights, and news which help drive growth and diversify into new sectors and markets. Beside a wealth of information, IndiaRetailing.com boasts an exclusive database of retail brands and retailers, retail investors and consultants, retail real estate developers, retail technology and system firms, finance outfits, store design, and shop-fit professionals.",
+            "content":"IndiaRetailing.com—the home page of the Indian retail industry—is an initiative of IMAGES Group, a retail intelligence organisation that is trusted globally as the catalyst for profitable growth of modern Indian retail through knowledge platform leadership. Headquartered in New Delhi, IMAGES Group is South Asia and the Middle East’s leading retail intelligence organisation which empowers businesses with actionable insights and fosters growth & innovation in the retail industry through its diverse portfolio of B2B magazines, conferences, exhibitions, research reports, and web portals.<br><br> As IMAGES Group’s flagship website, IndiaRetailing.com is uniquely placed as a retail knowledge platform which provides suppliers, investors, and retailers with critical insights to create a competitive advantage.<br><br> Founded in 2006, IndiaRetailing.com provides unrivalled news, insights, intelligence, analysis, and data covering retail operations across most Indian markets and is frequented by India’s leading brands, retailers, manufacturers, suppliers, consultants and retail management students for knowledge, insights, and news which help drive growth and diversify into new sectors and markets.<br><br> Beside a wealth of information, IndiaRetailing.com boasts an exclusive database of retail brands and retailers, retail investors and consultants, retail real estate developers, retail technology and system firms, finance outfits, store design, and shop-fit professionals.",
             "image":"/about/about.jpg"
         },
         {
@@ -21,28 +21,28 @@
     "publication":[
         {
             "title":"Images Business of Fashion",
-            "image":"/about/business_of_fashion.jpg",
+            "image":"/about/Cover-BoF_July-25-scaled.jpg",
             "href": "https://shop.indiaretailing.com/product/images-business-of-fashion-july-2025/"
         },
         {
             "title":"Images Retail",
-            "image":"/about/image-Retail.jpg",
+            "image":"/about/Retail-May-2025-Cover-1-scaled.jpg",
             "href": "https://shop.indiaretailing.com/product/images-retail-may-2025/"
         },
         {
             "title":"Images Retail ME",
-            "image":"/about/images_retail.jpg",
+            "image":"/about/nov-dec-250x322.png",
             "href": "https://www.imagesretailme.com/bookstore/"
 
         },
         {
             "title":"Business of Food",
-            "image":"/about/grocer.jpg",
+            "image":"/about/Cover-BoFood-July25-scaled.jpg",
             "href": "https://shop.indiaretailing.com/product/images-business-of-food-july-2025/"
         },
         {
             "title":"Shopping Centre News",
-            "image":"/about/shopping.jpg",
+            "image":"/about/SCN-111-July-2023.jpg",
             "href": "https://shop.indiaretailing.com/product-category/magazine/shopping-centre/"
         }
         
@@ -52,22 +52,22 @@
     "exhibitions":[
         {
             "title":"Images Retail Awards (IRA)",
-            "image":"/about/awards1.jpg",
+            "image":"/about/IFA-website-new-logo.png",
             "href": "https://www.indiafashionforum.in/about-images-fashion-awards/"
         },
         {
             "title":"IMAGES Shoes & Accessories Awards (ISAA)",
-            "image":"/about/awards2.jpg",
+            "image":"/about/IFA-website-new-logo.png",
             "href": "https://www.indiafashionforum.in/about-images-fashion-awards/"
         },
         {
             "title":"Golden Spoon Awards – Food Service",
-            "image":"/about/awards3.jpg",
+            "image":"/about/awards-fs-png.webp",
             "href": "https://indiafoodforum.com/awards/"
         },
         {
             "title":"Golden Spoon Awards – Food & Grocery",
-            "image":"/about/awards4.jpg",
+            "image":"/about/coca-cola-1-png.webp",
             "href": "https://www.indiafoodforum.com/awards/"
         }
        

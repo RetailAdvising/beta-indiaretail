@@ -336,6 +336,8 @@ h6 {
 
 
 
+
+
 .books .slick-dots {
   bottom: -30px !important;
 }
@@ -1124,7 +1126,9 @@ input {
     font-size: 11px;
     // color: $secondary-color;
   }
-
+.books .slick-slide {
+  width: 100% !important;
+}
 
 
 }
