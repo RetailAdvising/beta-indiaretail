@@ -454,6 +454,11 @@ export async function getCategoryList(data) {
     return await postMethod(api, data)
 }
 
+export async function getIrstudioList() {
+    let api = domainUrl + 'load_ir_studio_list';
+    return await postMethod(api)
+}
+
 // Articles Detail
 export async function articlesDetail(data) {
     let api = domainUrl + 'article_details';
