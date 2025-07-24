@@ -1,14 +1,15 @@
 import Image from 'next/image';
-import data from '@/libs/values'
+// import data from '@/libs/values'
 
 
-export default function Values() {
+export default function Values({data}) {
+  // {console.log(data, "data values")  }
   return (
     <>
-    <h2 className='font-bold text-3xl md:text-2xl pt-6 md:pt-0 text-center'>{data.title}</h2>
+    {data.title && <h2 className='font-bold text-3xl md:text-2xl pt-6 md:pt-0 text-center'>{data.title}</h2>}
     {/* <p className='sub_title text-center pb-3 pt-3'>{data.subtitle}</p> */}
     <div className="pt-9 pb-9 md:pt-4 md:pb-9 grid-cols-5 md:grid-cols-2 gap-4 grid">
-      {data.values.map((values,index) => {
+      {data.values && data.values.map((values,index) => {
       return(
       <div className="basis-1/5 pastel-bg-parent rounded-2xl p-6 md:p-3 min-h-[220px]" key={index}>
           <Image src={values.image} alt="Article" width={100} height={100} className='m-2 m-auto' />

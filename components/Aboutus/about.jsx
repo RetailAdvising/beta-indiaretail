@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import data from '@/libs/publications'
+// import data from '@/libs/publications'
 
-export default function About() {
+export default function About({item}) {
+  // {console.log(item, "item")  }
   return (
     <>
-    {data.aboutus.map((item, index) => 
-    <div className={index % 2 === 0 ? 'oddabout' : 'evenabout'}>
+    {/* {data.aboutus.map((item, index) =>  */}
+    <div className={item.title == "About Us" ? 'oddabout' : 'evenabout'}>
       <div className='container md:p-[15px]' >
         <div className="flex md:flex-col-reverse flex-row gap-4 md:gap-2 pt-9 pb-9  md:pt-4 md:pb-4">
             <div className={`m-auto ${item.title == "Our Vision & Mission" ? "basis-2/4 ":"w-full"} md:basis-full`}>
@@ -20,7 +21,7 @@ export default function About() {
         </div>
       </div>
     </div>
-    )}
+    {/* // )} */}
     </>
   )
 }

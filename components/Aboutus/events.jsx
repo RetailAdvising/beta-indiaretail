@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import data from '@/libs/publications'
+
 import Link from 'next/link';
 
 
-export default function Events() {
+export default function Events({data}) {
   return (
     <>
     <h2 className='font-bold text-3xl md:text-2xl pt-6 md:pt-0 text-center'>{data.title2}</h2>

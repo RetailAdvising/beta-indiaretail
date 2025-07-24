@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import data from '@/libs/books'
+// import data from '@/libs/books'
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -8,7 +8,8 @@ import Link from 'next/link';
 import { checkMobile } from '@/libs/api';
 import { useEffect, useState } from 'react';
 
-export default function Books(){
+export default function Books({data}){
+  {console.log(data, "data books")  }
 
     const [isMobile, setIsMobile] = useState();
     
@@ -56,7 +57,7 @@ export default function Books(){
     <p className='sub_title josefin-sans text-center pb-3 pt-3'>{data.subtitle2}</p>
     <div className="pt-9 pb-9 md:pt-4 md:pb-4 gap-4 md:gap-2 books">
     <Slider {...settings}>
-      {data.books.map((book,index) => {
+      {data.books && data.books.map((book,index) => {
       return(
             <Link href={book.href} className='p-0' key={index}>
                 <Image src={book.image} alt="Books" width={200} height={200} className='m-2 m-auto p-3 h-[300px]' />
