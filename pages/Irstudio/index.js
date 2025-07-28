@@ -240,7 +240,7 @@ export default function IrStudioType({ values, ads, Id,metaInfo }) {
 
     async function loadMore() {
         setLoading(true)
-        let Id = router.query.types;
+        let Id = "ir-studio";
         let param = {
             // doctype: "Articles",
             category_route: "ir-studio",
@@ -277,12 +277,12 @@ export default function IrStudioType({ values, ads, Id,metaInfo }) {
     }
     return (
         <>
-            <RootLayout ad_payload={{ page: 'Categories', page_type: 'List' }} isLanding={false} homeAd={ads ? ads : null} adIdH={router.query.types + 'catH'} adIdF={router.query.types + 'catF'} head={router.query.types}>
-                <SEO title={metaInfo && metaInfo.meta_title ? metaInfo.meta_title :  router.query.types} siteName={'India Retailing'} ogType={router.query.types} description={metaInfo && metaInfo.meta_description ? metaInfo.meta_description :router.query.types} keywords={metaInfo && metaInfo.meta_keywords ? metaInfo.meta_keywords :router.query.types} />
+            <RootLayout ad_payload={{ page: 'Categories', page_type: 'List' }} isLanding={false} homeAd={ads ? ads : null} adIdH={"ir-studio" + 'catH'} adIdF={"ir-studio" + 'catF'} head={"ir-studio"}>
+                <SEO title={metaInfo && metaInfo.meta_title ? metaInfo.meta_title :  "ir-studio"} siteName={'India Retailing'} ogType={"ir-studio"} description={metaInfo && metaInfo.meta_description ? metaInfo.meta_description :"ir-studio"} keywords={metaInfo && metaInfo.meta_keywords ? metaInfo.meta_keywords :"ir-studio"} />
                 <div className={`${isMobile ? 'md:p-[15px]' : 'container'}`} id='root' >
                     {(data && data.length != 0) ? <div className={`lg:flex lg:flex-wrap  lg:gap-[20px]`}>
                         <div className={`flex-[0_0_calc(65%_-_10px)]  md:flex-[0_0_calc(100%_-_10px)]`}>
-                            {/* {!isMobile && <Title data={{ title: router.query.types }} />} */}
+                            {/* {!isMobile && <Title data={{ title: "ir-studio" }} />} */}
                             <div className={`${isMobile ? '' : 'border'} rounded-[10px] lg:min-h-[680px]  lg:p-[15px] cursor-pointer`}>{data && data.slice(0, 1).map((res, index) => {
                                 return (
                                     // <div key={res.title ? res.title : index} onClick={() => router.push(`${Id == 'case-studies' ? '/p/' + res.route : '/' + res.route}`)} className={` pb-[10px]`}>
