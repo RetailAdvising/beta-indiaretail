@@ -40,7 +40,7 @@ const VideoSlider = ({youtube}) => {
                         // autoPlay
                         // arrows={true}
                         autoPlaySpeed={2500}
-                        infinite
+                        // infinite
                         pauseOnHover
                         responsive={responsive}
                         slidesToSlide={1}
@@ -53,7 +53,7 @@ const VideoSlider = ({youtube}) => {
                         {youtube && youtube.length > 0 && youtube.map((item, index) => (
                             <div key={index} className="md:px-[10px] lg:pr-[10px] h-full">
                                <iframe
-                            width="100%" height="300"
+                            width="100%" height="250"
                             src={`https://www.youtube.com/embed/${item.youtube_video_id}`}
                             frameBorder="0"
                             allowFullScreen

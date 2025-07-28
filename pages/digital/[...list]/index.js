@@ -70,7 +70,7 @@ export default function Digital({ res }) {
                     </div>
 
                 </div>
-                <div className="container ">
+                <div className=" header_bottom_image ">
                     <Image src={data.header_bottom_image} width={1200} height={300} alt="digital_banner" className="w-full h-auto" />
 
                 </div>

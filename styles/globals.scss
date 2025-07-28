@@ -1454,7 +1454,7 @@ input {
   }
 
    .carousel-container-digital-video {
-    height: 380px;
+    height: 340px;
     .react-multi-carousel-track {
       gap: 0px !important;
       min-height: 350px !important;
@@ -1850,6 +1850,14 @@ button:focus {
 /* Media Query for Large screens */
 @media (min-width: 1281px) {
   .container {
+    // max-width: 1452px !important;
+    max-width: 1300px !important;
+    margin: auto;
+    width: 100%;
+
+  }
+
+  .header_bottom_image {
     // max-width: 1452px !important;
     max-width: 1300px !important;
     margin: auto;
@@ -2430,6 +2438,9 @@ strong {
 
 
 @media only screen and (min-width: 768px) and (max-width: 1280px) {
+  .header_bottom_image{
+    width: 100%;
+  }
   .container {
     padding: 10px 15px !important;
   }
