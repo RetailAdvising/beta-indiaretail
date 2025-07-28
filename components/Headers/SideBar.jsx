@@ -3,6 +3,8 @@ import header from '@/styles/Header.module.scss'
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
+import { GetDigitalIconList } from '@/libs/api';
+import Link from 'next/link';
 
 export default function SideBar({ data, close, navbar, emit_item }) {
     const router = useRouter();
@@ -40,17 +42,20 @@ export default function SideBar({ data, close, navbar, emit_item }) {
         };
     }, [user, role])
 
+    let [istechnology, setTechnology] = useState(false);
+    let [listtech, setListTech] = useState([])
+
     const checkRole = () => {
         if (role && role != '' && role.message && role.message.length != 0) {
             // console.log(role)
-            
+
             for (let index = 0; index < role.message.length; index++) {
                 if (role.message[index] == 'Member') {
-                    
+
                     setMember(!member)
                 }
             }
-            
+
         }
     }
 
@@ -65,10 +70,16 @@ export default function SideBar({ data, close, navbar, emit_item }) {
         }
     }
 
-    const change_nav = (item) => {
+    const change_nav = (item, type) => {
         // console.log(item);
+        setTechnology(false)
         emit_item(item)
-        router.push(item.redirect_url)
+        if (type == "technology") {
+            router.push(`/digital/${item.route}`)
+        } else {
+
+            router.push(item.redirect_url)
+        }
         close()
     }
 
@@ -87,10 +98,25 @@ export default function SideBar({ data, close, navbar, emit_item }) {
     }
 
 
+
+    const handleTechEnter = async (e) => {
+        e.stopPropagation()
+        if (!listtech || listtech.length === 0) {
+            let resp = await GetDigitalIconList()
+            if (resp && resp.message && resp.message.length > 0) {
+                listtech = resp.message
+                setListTech(listtech)
+            }
+        }
+        setTechnology(!istechnology)
+
+    }
+
+
     return (
         <>
             {(data && data.header && data.header.items.length != 0 && navbar) && <div id='side' ref={ref} className={`bg-[#fff] w-[75%] h-full relative `}>
-                
+
                 <div className='absolute right-[10px] top-[20px]'>
                     <Image src={'/categories/close.svg'} onClick={() => close()} className='cursor-pointer ' height={18} width={18} alt='close' />
 
@@ -110,7 +136,7 @@ export default function SideBar({ data, close, navbar, emit_item }) {
 
                         {/* {localStorage && <p className='text-[14px] font-semibold'>{localStorage['userid']}</p>} */}
                     </div>
-                    
+
                 </div> :
                     <div className='flex gap-[10px] border_bottom p-[15px] items-center' onClick={myAccount}>
                         <div style={{ flex: '0 0 29px' }}>
@@ -118,12 +144,12 @@ export default function SideBar({ data, close, navbar, emit_item }) {
                         </div>
                         <div className='w-full flex-[0_0_auto]'>
                             <p className='text-[16px] font-semibold' style={{ color: '#000' }} >Welcome! to IndiaRetailing</p>
-                            
+
                         </div>
 
                     </div>}
 
-                
+
                 <div className=''>
                     {data.header.items.map(res => {
                         return (
@@ -132,13 +158,26 @@ export default function SideBar({ data, close, navbar, emit_item }) {
                                     {res.menus.map(item => {
                                         return (
                                             // ${nav1 == item.redirect_url ? header.activeMenu : ''}
-                                            <div onClick={() => change_nav(item)} key={item.menu_label} className='flex gap-[13px] items-center p-[10px_10px_10px_20px]'>
-                                                <Image src={item.icon} className='h-[17px] w-[17px]' style={{ objectFit: 'contain' }} height={40} width={40} alt={item.menu_label} />
-                                                <h6 className={`${header.listKey} font-medium text-[14px] navigation_c `} >
-                                                    {item.menu_label}
-                                                </h6>
-                                                {/* <Image src='/rightArrow.svg' className='h-[20px] w-[20px] absolute right-2' style={{objectFit:'contain'}} height={40} width={40} alt='arrow' /> */}
-                                            </div>
+                                            <>
+                                                <div onClick={() => change_nav(item)} key={item.menu_label} className='flex gap-[13px] justify-between items-center p-[10px_10px_10px_20px]'>
+                                                    <div className='flex items-center gap-[10px] relative'>
+
+                                                        <Image src={item.icon} className='h-[17px] w-[17px]' style={{ objectFit: 'contain' }} height={40} width={40} alt={item.menu_label} />
+                                                        <h6 className={`${header.listKey} font-medium text-[14px] navigation_c `} >
+                                                            {item.menu_label}
+                                                        </h6>
+                                                    </div>
+                                                    {item.menu_label == "Technology" && <Image src='/rightArrow.svg' className='h-[20px] w-[20px] absolute right-2 rotate-90' style={{ objectFit: 'contain' }} height={40} width={40} alt='arrow' onClick={(e) => { handleTechEnter(e) }} />}
+                                                </div>
+                                                {item.menu_label == "Technology" && istechnology && listtech && listtech.length > 0 && (
+                                                    <div className=' flex flex-col px-[20px] ' >{
+                                                        listtech.map((item, index) => (
+                                                            <h1 key={index} onClick={() => change_nav(item,"technology")} className=' cursor-pointer text-[14px] p-[5px] font-[500] __className_e8004f tracking-[0]'>{item.name}</h1>
+                                                        ))
+                                                    }
+                                                    </div>
+                                                )}
+                                            </>
                                         )
                                     })}
                                     {valid && <div className='flex items-center gap-[13px] p-[10px_10px_10px_20px]' onClick={() => logout()}>
@@ -155,7 +194,7 @@ export default function SideBar({ data, close, navbar, emit_item }) {
 
                 {valid ? <div className='absolute bottom-[10px] w-full left-[15px]'>
                     <div className='justify-between items-center'>
-                        
+
                         {!member && <div className='flex flex-col gap-[10px] items-center cursor-pointer justify-end'>
                             <div onClick={() => route('subscribe')} className='flex w-max bg-[#e21b22] rounded-[5px] p-[8px_15px] gap-[5px] items-center justify-end '>
                                 <Image className='h-[18px] w-[18px]' src={'/Navbar/premium.svg'} height={20} width={20} alt='premium' />
@@ -180,7 +219,7 @@ export default function SideBar({ data, close, navbar, emit_item }) {
                         Stay informed and log in to access the latest news and updates.
                     </div>
                 </div>}
-                
+
             </div>}
         </>
     )

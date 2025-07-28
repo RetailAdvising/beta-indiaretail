@@ -148,11 +148,7 @@ export default function Details({ data, page_route }) {
     }
   }, [role])
 
-  useMemo(()=>{
-    if(comments && comments.length > 0){
-      console.log(comments,"comments")
-    }
-  },[comments])
+
 
   // const [isMobile, setIsMobile] = useState()
 

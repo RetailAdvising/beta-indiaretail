@@ -135,13 +135,18 @@
 
 table {
   width: 100% !important;
-  border-collapse: collapse; /* Ensures borders are merged properly */
+  border-collapse: collapse;
+  /* Ensures borders are merged properly */
 }
-th, td {
-  border: 1px solid black; /* Sets the border for table cells */
+
+th,
+td {
+  border: 1px solid black;
+  /* Sets the border for table cells */
   padding: 8px;
   text-align: left;
 }
+
 th {
   background-color: #f2f2f2;
 }
@@ -757,6 +762,7 @@ input {
   .w_100 {
     width: 100%;
   }
+
   #header {
     height: fit-content !important;
   }
@@ -798,6 +804,66 @@ input {
     .react-multi-carousel-item {
       // width: 163px !important;
       width: 354px !important;
+    }
+  }
+
+   .carousel-container-digital {
+    height: 500px;
+    .react-multi-carousel-track {
+      gap: 0px !important;
+      min-height: 350px !important;
+      .react-multi-carousel-item  {
+        // margin: 0px 10px !important;
+        .otherSpeakerBody{
+          background: linear-gradient(90.04deg, #BF963C 0.01%, #FAF39B 48.45%, #BF963C 100.93%);
+        }
+      }
+    }
+    .react-multi-carousel-dot-list {
+      bottom: 0px !important;
+    }
+    .react-multiple-carousel__arrow--left{
+      bottom: 20px !important;
+      left: calc(48% - 20px) !important;
+      background: transparent !important;
+    }
+    .react-multiple-carousel__arrow--right{
+      bottom: 20px !important;
+      right: calc(48% - 20px) !important;
+      background: transparent !important;
+    }
+    .react-multi-carousel-dot-list {
+      display: flex !important;
+    }
+  }
+
+    .carousel-container-digital-video {
+    height: 380px;
+    .react-multi-carousel-track {
+      gap: 0px !important;
+      min-height: 350px !important;
+      .react-multi-carousel-item  {
+        // margin: 0px 10px !important;
+        .otherSpeakerBody{
+          background: linear-gradient(90.04deg, #BF963C 0.01%, #FAF39B 48.45%, #BF963C 100.93%);
+        }
+      }
+    }
+    .react-multi-carousel-dot-list {
+      bottom: 0px !important;
+    }
+    .react-multiple-carousel__arrow--left{
+      bottom: 20px !important;
+      left: calc(48% - 20px) !important;
+      background: transparent !important;
+    }
+    .react-multiple-carousel__arrow--right{
+      bottom: 20px !important;
+      right: calc(48% - 20px) !important;
+      background: transparent !important;
+    }
+    .react-multi-carousel-dot-list {
+      display: flex !important;
     }
   }
 
@@ -1126,15 +1192,138 @@ input {
     font-size: 11px;
     // color: $secondary-color;
   }
-.books .slick-slide {
-  width: 100% !important;
-}
+
+  .books .slick-slide {
+    width: 100% !important;
+  }
 
 
 }
+.customBorder{
+  border: 1px solid transparent;
+    padding: 15px;
+    border-image-source: linear-gradient(263.99deg, #E0A52F 15.7%, #FFE09B 50.54%, #E0A52F 89.04%);
+    border-image-slice: 30;
+}
 
+.customHeading1{
+  font-size: 18px;
+    font-weight: 400;
+    line-height: 21.92px;
+    text-align: left;
+    background: linear-gradient(92.75deg, #E9D8BB -9.53%, #FAD99E 49.6%, #F6E9C8 118.08%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
+.customHeading2 {
+ 
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 41.99px;
+    text-align: center;
+    background: linear-gradient(90.04deg, #BF963C 0.01%, #FAF39B 48.45%, #BF963C 100.93%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 20px auto;
+}
 
+.customHeading3 {
+    
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32.75px;
+    text-align: left;
+    background: linear-gradient(92.75deg, #E9D8BB -9.53%, #FAD99E 49.6%, #F6E9C8 118.08%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.carcustomText{
+  font-size: 18px;
+    font-weight: 400;
+    line-height: 32.75px;
+    text-align: center;
+    color: #fff;
+}
+.keyLearningsList{
+  list-style: disc !important;
+  li{
+    margin-left: 20px;
+  }
+}
+.customHeading4 {
+    // font-family: Poppins;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 31.99px;
+    text-align: left;
+    background: linear-gradient(263.99deg, #E0A52F 15.7%, #FFE09B 50.54%, #E0A52F 89.04%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.customText {
+    
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27.4px;
+    text-align: left;
+    color: #fff;
+}
+
+.digital-icons {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 69.45px;
+  text-align: center;
+  background: linear-gradient(92.75deg, #E9D8BB -9.53%, #FAD99E 49.6%, #F6E9C8 118.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  // margin: 20px 0;
+}
+
+.speakerName {
+  // font-family: Poppins;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 54px;
+  text-align: left;
+  background: linear-gradient(92.75deg, #E9D8BB -9.53%, #FAD99E 49.6%, #F6E9C8 118.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.speakerTitle {
+  // font-family: Poppins;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: left;
+  color: #fff;
+}
+
+.speakerDesc {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: #fff;
+}
+
+.viewMoreButton {
+  background: linear-gradient(180deg, #FAF39B 22.73%, #BF963C 75.32%);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 26.66px;
+  text-align: left;
+  width: 232px;
+  height: 44px;
+  color: #000;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 @media screen and (min-width:768px) {
 
@@ -1234,6 +1423,60 @@ input {
 
     .dots {
       bottom: 5px !important;
+    }
+  }
+
+  .carousel-container-digital {
+    height: 500px;
+    .react-multi-carousel-track {
+      gap: 0px !important;
+      min-height: 350px !important;
+      .react-multi-carousel-item  {
+        // margin: 0px 10px !important;
+        .otherSpeakerBody{
+          background: linear-gradient(90.04deg, #BF963C 0.01%, #FAF39B 48.45%, #BF963C 100.93%);
+        }
+      }
+    }
+    .react-multi-carousel-dot-list {
+      bottom: 0px !important;
+    }
+    .react-multiple-carousel__arrow--left{
+      bottom: 20px !important;
+      left: calc(48% - 20px) !important;
+      background: transparent !important;
+    }
+    .react-multiple-carousel__arrow--right{
+      bottom: 20px !important;
+      right: calc(48% - 20px) !important;
+      background: transparent !important;
+    }
+  }
+
+   .carousel-container-digital-video {
+    height: 380px;
+    .react-multi-carousel-track {
+      gap: 0px !important;
+      min-height: 350px !important;
+      .react-multi-carousel-item  {
+        // margin: 0px 10px !important;
+        .otherSpeakerBody{
+          background: linear-gradient(90.04deg, #BF963C 0.01%, #FAF39B 48.45%, #BF963C 100.93%);
+        }
+      }
+    }
+    .react-multi-carousel-dot-list {
+      bottom: 0px !important;
+    }
+    .react-multiple-carousel__arrow--left{
+      bottom: 20px !important;
+      left: calc(48% - 20px) !important;
+      background: transparent !important;
+    }
+    .react-multiple-carousel__arrow--right{
+      bottom: 20px !important;
+      right: calc(48% - 20px) !important;
+      background: transparent !important;
     }
   }
 
@@ -1496,7 +1739,7 @@ button:focus {
 
 .react-multiple-carousel__arrow {
   background: $white-color !important;
-  background: #0000004f !important; 
+  background: #0000004f !important;
   min-width: 38px !important;
   min-height: 38px !important;
   z-index: 0 !important;
@@ -1659,7 +1902,7 @@ button:focus {
   // }
 }
 
-.sideBackdrop{
+.sideBackdrop {
   background: #00000038;
   height: 100%;
   z-index: 9999;
@@ -1905,7 +2148,7 @@ button:focus {
 
   p>span {
     // display: inline-block;
-    font-size: $font-18 !important ;
+    font-size: $font-18 !important;
     margin: 0px 0;
     line-height: 1.5 !important;
     // font-family: PT Serif !important;
@@ -2196,25 +2439,26 @@ strong {
   }
 }
 
-@media only screen and (min-width: 820px) and (max-width: 825px){
-  .navigation_c{
+@media only screen and (min-width: 820px) and (max-width: 825px) {
+  .navigation_c {
     flex: 0 0 auto;
     font-size: 13px !important;
   }
-  .today_date{
+
+  .today_date {
     margin-left: 10px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .profile_div{
-      border-bottom: 1px solid $border-color;
-      padding-bottom: 10px;
+  .profile_div {
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 10px;
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 770px){
-  .res-nav{
+@media only screen and (min-width: 768px) and (max-width: 770px) {
+  .res-nav {
     display: block !important;
   }
 }
@@ -2479,7 +2723,7 @@ $nav-height: 55px;
 
 .googleBtn {
 
-  .S9gUrf-YoZ4jf{
+  .S9gUrf-YoZ4jf {
     opacity: 0 !important;
   }
 
@@ -2896,9 +3140,10 @@ ins.adsbygoogle[data-ad-status="unfilled"] .default_ban_img {
   display: block !important;
 }
 
-.ad{
+.ad {
   overflow: hidden !important;
-  ins{
+
+  ins {
     overflow: hidden !important;
   }
 }
@@ -3576,7 +3821,25 @@ ins.adsbygoogle[data-ad-status="unfilled"] .default_ban_img {
     word-break: break-word;
   }
 }
+.aboutETP{
+  
+    font-size: 34.96px;
+    font-weight: 400;
+    line-height: 40.94px;
+    text-align: center;
+    background: linear-gradient(92.75deg, #E9D8BB -9.53%, #FAD99E 49.6%, #F6E9C8 118.08%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
+.aboutETPDesc{
+  
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24.28px;
+    text-align: center;
+    color: #fff;
+}
 .active_tab {
   background: $primary-color;
   height: 3px;
@@ -3613,13 +3876,13 @@ ins.adsbygoogle[data-ad-status="unfilled"] .default_ban_img {
 }
 
 
-.optionsBtn{
-  box-shadow: 0.8042353987693787px 9.650824546813965px 24.127059936523438px -8.042353630065918px #00000026;  
+.optionsBtn {
+  box-shadow: 0.8042353987693787px 9.650824546813965px 24.127059936523438px -8.042353630065918px #00000026;
 }
 
 @media (min-width: 1066px) and (max-width: 1279px) {
- 
-  .footer_add{
+
+  .footer_add {
     right: -300px !important;
   }
 }

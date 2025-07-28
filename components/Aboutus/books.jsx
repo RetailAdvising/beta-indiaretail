@@ -9,7 +9,7 @@ import { checkMobile } from '@/libs/api';
 import { useEffect, useState } from 'react';
 
 export default function Books({data}){
-  {console.log(data, "data books")  }
+
 
     const [isMobile, setIsMobile] = useState();
     

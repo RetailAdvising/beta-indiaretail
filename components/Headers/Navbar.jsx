@@ -6,6 +6,10 @@ import { useRouter } from 'next/router'
 import format from 'date-fns/format'
 
 import { Nunito } from 'next/font/google'
+import { set } from 'nprogress'
+import { useState } from 'react'
+import { GetDigitalIconList } from '@/libs/api'
+import { list } from 'postcss'
 const nunito = Nunito({
     weight: ["300", "400", "500", "600", "700"],
     display: "block",
@@ -18,6 +22,20 @@ const nunito = Nunito({
 export default function Navbar({ heading, isLanding, checkout }) {
     const router = useRouter();
     const navbar = false;
+    const [istechnology, setTechnology] = useState(false);
+    let [listtech,setListTech] = useState([])
+
+    const handleTechMouseEnter = async () => {
+        if(!listtech || listtech.length === 0) {
+            let resp = await GetDigitalIconList()
+           if(resp && resp.message && resp.message.length > 0) {
+            listtech = resp.message
+            setListTech(listtech)
+        }}
+         setTechnology(true)
+
+    }
+    const handleTechMouseLeave = () => setTechnology(false);
     
     return (
         <>
@@ -36,15 +54,38 @@ export default function Navbar({ heading, isLanding, checkout }) {
                                 {(res.section_name == 'Header Menu' && res.menus) && <>
                                     <div className={`flex items-center justify-center tab:overflow-auto tab:justify-start scrollbar-hide md:pb-0 md:hidden md:mt-0 ${navbar ? 'md:hidden' : 'md:hidden'
                                         } lg:gap-[20px] xl:gap-[25px]`}>
-                                        {res.menus.map(item => {
-                                            return (
-                                                // ${nav1 == item.redirect_url ? header.activeMenu : ''}
-                                                // tracking-wide
-                                                <Link href={item.redirect_url} className={`${header.listKey} tab:flex-[0_0_auto] font-[700] navigation_c lg:text-[16px]  ${"/" + router.asPath.split('/')[1] == item.redirect_url ? header.activeMenu : ''} ${nunito.className} tracking-[0]`} key={item.menu_label}>
+                                        {res.menus.map(item =>
+                                            item.menu_label === "Technology" ? (
+                                                <div
+                                                    key={item.menu_label}
+                                                    className={`${header.listKey} tab:flex-[0_0_auto] font-[700] navigation_c lg:text-[16px] relative ${"/" + router.asPath.split('/')[1] == item.redirect_url ? header.activeMenu : ''} ${nunito.className} tracking-[0]`}
+                                                    onMouseEnter={handleTechMouseEnter}
+                                                    onMouseLeave={handleTechMouseLeave}
+                                                >
+                                                    <Link href={item.redirect_url} >
+                                                        {item.menu_label} <Image className='inline-block rotate-[90deg] ml-[5px]' src={'/arrow.svg'} alt='podcast' width={5} height={5} />
+                                                    </Link>
+                                                    {istechnology && listtech && listtech.length > 0 && (
+                                                        <div className='absolute min-w-[150px] top-[20px] rounded-[5px] left-0 bg-white z-50 flex flex-col p-[5px] border-[1px]' >{
+                                                            listtech.map((item, index) => (
+                                                                <Link key={index} href={`/digital/${item.route}`} className=' text-[14px] p-[5px] font-[500] __className_e8004f tracking-[0]'>{item.name}</Link>
+                                                            ))
+                                                        }
+                                                            {/* <Link className=' text-[14px] p-[5px] font-[500] __className_e8004f tracking-[0]' href={"/digital"}>Digital Icon</Link>
+                                                            <Link className=' text-[14px] p-[5px] font-[500] __className_e8004f tracking-[0]' href={"/digital-icon-2025"}>Digital Icon 2025</Link> */}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ) : (
+                                                <Link
+                                                    key={item.menu_label}
+                                                    href={item.redirect_url}
+                                                    className={`${header.listKey} tab:flex-[0_0_auto] font-[700] navigation_c lg:text-[16px] relative ${"/" + router.asPath.split('/')[1] == item.redirect_url ? header.activeMenu : ''} ${nunito.className} tracking-[0]`}
+                                                >
                                                     {item.menu_label}
                                                 </Link>
                                             )
-                                        })}
+                                        )}
                                     </div>
 
                                     <div className='lg:hidden'>

@@ -11,7 +11,7 @@ import { useEditable } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 export default function Aboutus({data}) {
-    console.log(data, "data about us")
+    // console.log(data, "data about us")
 
     const [home,setHome] = useState();
 

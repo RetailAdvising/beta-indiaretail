@@ -394,6 +394,21 @@ export async function HomePageAds() {
     return await GET(api)
 }
 
+export async function GetDigitalIconList() {
+    let api = domainUrl + 'get_digital_icon_list';
+    return await GET(api)
+}
+
+export async function GetDigitalIcon(data) {
+    let api = domainUrl + 'get_digital_icon';
+    return await postMethod(api, data)
+}
+
+export async function GetDigitalIconCandidate(data) {
+    let api = domainUrl + 'get_digital_icon_candidate';
+    return await postMethod(api, data)
+}
+
 export async function getAdvertisements(data) {
     let api = domainUrl + 'advertisement';
     return await postMethod(api, data)

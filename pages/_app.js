@@ -154,7 +154,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     const handleRouteChangeStart = () => {
       // Save scroll position for the current route
       const currentRoute = router.asPath;
-      console.log("Current route:", currentRoute);
+      // console.log("Current route:", currentRoute);
       if (router.pathname != "/[...detail]") {
         sessionStorage.setItem("previousRoute", currentRoute);
       }

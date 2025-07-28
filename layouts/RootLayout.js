@@ -236,7 +236,7 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
         {/* {!checkout && <Navbar isLanding={isLanding} heading={head} /> } */}
         {router.pathname != "/p/[...route]" && <div className={``}><Navbar isLanding={isLanding} heading={head} checkout={checkout} /></div>}
         {/* {!checkout ? <Navbar isLanding={isLanding} heading={head} /> : <div className='lg:hidden'><MobileHead isLanding={isLanding} Heading={head} /></div> } */}
-        {(breadCrumbs && breadCrumbs.length > 1 && breadCrumbs[1] && breadCrumbs[1] != 'p' && breadCrumbs[1] != 'newsletters' && breadCrumbs[1] != 'advertise-with-us' && breadCrumbs[1].split('?')[0] != 'thankyou' && breadCrumbs[1].split('?')[0] != 'profile' && breadCrumbs[1].split('?')[0] != 'search' && breadCrumbs[1].split('?')[0] != 'tag') &&
+        {(breadCrumbs && breadCrumbs.length > 1 && breadCrumbs[1] && breadCrumbs[1] != 'p' && breadCrumbs[1] != 'newsletters' && breadCrumbs[1] != 'advertise-with-us' && breadCrumbs[1] != 'digital' && breadCrumbs[1].split('?')[0] != 'thankyou' && breadCrumbs[1].split('?')[0] != 'profile' && breadCrumbs[1].split('?')[0] != 'search' && breadCrumbs[1].split('?')[0] != 'tag') &&
           <div className='container flex  gap-[7px] md:hidden py-[20px]'>
             {breadCrumbs.map((bc, index) => {
               let url = index == 3 ? '/' + breadCrumbs[1] + '/' + breadCrumbs[2] + '/' + breadCrumbs[3] :
@@ -269,7 +269,7 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
                       </div>
                     }
                   </div> :
-                  <Link className={`flex gap-[5px] items-center capitalize`} href={url} onClick={(e)=>{bc.replaceAll('-', ' ') == "author"? handleClick(e):null}}>
+                  <Link className={`flex gap-[5px] items-center capitalize`} href={url} onClick={(e)=>{bc.replaceAll('-', ' ') == "author" || bc == "digital-icon" ? handleClick(e):null}}>
                     <p className={`text-[12px] ${breadCrumbs.length - 1 == index ? 'font-[700]' : 'font-[500]'} nunito`}> {bc.replaceAll('-', ' ')}</p>
                     {(index !== 0 && index != breadCrumbs.length - 1) &&
                       <div className='ml-[5px] pt-[4px]'>

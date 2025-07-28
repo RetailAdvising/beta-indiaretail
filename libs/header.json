@@ -93,8 +93,15 @@
                    
                     {
                         "menu_label": "IR Studio",
-                        "redirect_url": "/Irstudio",
+                        "redirect_url": "/IRStudio",
                         "icon": "/Navbar/video.svg",
+                        "is_mega_menu": 0,
+                        "no_of_column": 0,
+                        "child_menu": []
+                    },{
+                        "menu_label": "Technology",
+                        "redirect_url": "/categories/technology",
+                        "icon": "/Navbar/technology.svg",
                         "is_mega_menu": 0,
                         "no_of_column": 0,
                         "child_menu": []
