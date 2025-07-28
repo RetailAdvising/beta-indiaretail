@@ -10,12 +10,19 @@ import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 
 export default function Digital({ res }) {
-    let [data, setData] = useState(res);
-    // console.log(data, "data")
+    let [data, setData] = useState();
+    console.log(data, "data")
     let [isMobile, setIsmobile] = useState();
     const [ads_data, setAdsData] = useState()
     const [viewMore, setViewMore] = useState(false);
+   useEffect(() => {
+    if(typeof window !== 'undefined') {
+    if(res){
+     
+        setData(res);
+    }}
 
+   }, [res]);
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -60,20 +67,20 @@ export default function Digital({ res }) {
     return (
         <RootLayout ad_payload={{ page: 'Digital', page_type: 'Landing' }} homeAd={ads_data ? ads_data : null} adIdH={'digital-head'} adIdF={'digital-foot'} >
             <SEO title={'Digital'} siteName={'India Retailing'} description={'Digital'} />
-            {Object.keys(data).length > 0 && <div>
-                <div className="flex items-center justify-center gap-[20px]" style={{ backgroundImage: `url(${check_Image(data.background_image)})`, backgroundSize: 'cover' }}>
-                    <div className="flex justify-center items-center h-[300px]">
+            {data && Object.keys(data).length > 0 && <div>
+                {data.inline_image_1 ? <div className="flex items-center justify-center  gap-[20px]" style={{ backgroundImage: `url(${check_Image(data.background_image)})`, backgroundSize: 'cover' }}>
+                    {data.inline_image_1 && <div className="flex justify-center items-center h-[300px]">
                         <Image src={data.inline_image_1} width={250} height={100} alt="digital_icons" />
-                    </div>
-                    <div className="flex justify-center items-center h-[300px]">
+                    </div>}
+                    {data.inline_image_2 && <div className="flex justify-center items-center h-[300px]">
                         <Image src={data.inline_image_2} width={250} height={100} alt="digital_icons" />
-                    </div>
+                    </div> }
 
-                </div>
-                <div className=" header_bottom_image ">
+                </div>:<div className="w-[100%] "><Image src={check_Image(data.background_image)} width={100} height={100} className="w-[100%] min-h-[300px] max-h-[300px]"/></div>}
+                {data.header_bottom_image && <div className=" header_bottom_image ">
                     <Image src={data.header_bottom_image} width={1200} height={300} alt="digital_banner" className="w-full h-auto" />
 
-                </div>
+                </div>}
                 <div className="md:py-[20px] md:px-[10px] lg:py-[40px]" style={{ backgroundImage: 'url("/digital/pageBG.png")', backgroundSize: 'cover' }}>
                     <h1 className="digital-icons">{data.content_title}</h1>
                     <div className="container flex md:flex-col items-center">
@@ -215,6 +222,7 @@ export async function getServerSideProps({ params }) {
     let param = {
         route: Id,
     }
+    console.log(param, "param")
     let datas = await GetDigitalIcon(param);
     let res = datas?.message?.message ? datas.message.message : null;
     if (!res) {
