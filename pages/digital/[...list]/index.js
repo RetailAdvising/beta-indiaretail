@@ -155,7 +155,7 @@ export default function Digital({ res }) {
 
                         <p className="viewMoreButton cursor-pointer" onClick={() => { setViewMore(false) }}>Hide</p>
                     </div>}
-                    {data.digital_icons && data.digital_icons.length > 0 &&  <div className="container !my-[40px]">
+                    {data.digital_icons && data.digital_icons.length > 1 &&  <div className="container !my-[40px]">
 
                         <Carousel
                             // ssr
@@ -181,7 +181,7 @@ export default function Digital({ res }) {
                             containerClass="carousel-container-digital"
                         // showDots={true}
                         >
-                            {data.digital_icons && data.digital_icons.length > 0 &&  data.digital_icons.slice(0,data.digital_icons.length).map((item, index) => (
+                            {data.digital_icons && data.digital_icons.length > 1 &&  data.digital_icons.slice(1,data.digital_icons.length).map((item, index) => (
                                 <div key={index} className="md:px-[10px] lg:pr-[10px] h-full">
                                     <div className=" otherSpeakerBody flex flex-col items-center justify-center h-full bg-gray-200 ">
                                         <div className="h-[200px] overflow-hidden w-[100%] block object-contain object-top">
