@@ -93,7 +93,7 @@
                    
                     {
                         "menu_label": "IR Studio",
-                        "redirect_url": "/IRStudio",
+                        "redirect_url": "/categories/ir-studio",
                         "icon": "/Navbar/video.svg",
                         "is_mega_menu": 0,
                         "no_of_column": 0,

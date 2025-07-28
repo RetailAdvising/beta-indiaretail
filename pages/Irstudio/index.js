@@ -203,7 +203,7 @@ import Tags from '@/components/common/Tags';
 import ImageLoader from '@/components/ImageLoader';
 import Link from 'next/link';
 
-export default function IrStudioType({ values, ads, Id,metaInfo }) {
+export default function Irstudio({ values, ads, Id,metaInfo }) {
     const router = useRouter();
     const [data, setData] = useState([]);
 
@@ -278,7 +278,7 @@ export default function IrStudioType({ values, ads, Id,metaInfo }) {
     return (
         <>
             <RootLayout ad_payload={{ page: 'Categories', page_type: 'List' }} isLanding={false} homeAd={ads ? ads : null} adIdH={"ir-studio" + 'catH'} adIdF={"ir-studio" + 'catF'} head={"ir-studio"}>
-                {/* <SEO title={metaInfo && metaInfo.meta_title ? metaInfo.meta_title :  "ir-studio"} siteName={'India Retailing'} ogType={"ir-studio"} description={metaInfo && metaInfo.meta_description ? metaInfo.meta_description :"ir-studio"} keywords={metaInfo && metaInfo.meta_keywords ? metaInfo.meta_keywords :"ir-studio"} /> */}
+                <SEO title={metaInfo && metaInfo.meta_title ? metaInfo.meta_title :  "ir-studio"} siteName={'India Retailing'} ogType={"ir-studio"} description={metaInfo && metaInfo.meta_description ? metaInfo.meta_description :"ir-studio"} keywords={metaInfo && metaInfo.meta_keywords ? metaInfo.meta_keywords :"ir-studio"} />
                 <div className={`${isMobile ? 'md:p-[15px]' : 'container'}`} id='root' >
                     {(data && data.length != 0) ? <div className={`lg:flex lg:flex-wrap  lg:gap-[20px]`}>
                         <div className={`flex-[0_0_calc(65%_-_10px)]  md:flex-[0_0_calc(100%_-_10px)]`}>
@@ -401,8 +401,8 @@ export async function getServerSideProps({ params }) {
         fields: [ "meta_title", "meta_description", "meta_keywords", "meta_image"],
         filters: { "route": Id }
     }
-
     let metadata = await getList(metaparam);
+    console.log(metadata, "metaparam")
     let metaInfo = {};
     if (metadata && metadata.message && metadata.message.length != 0) {
         metaInfo = metadata.message[0];
