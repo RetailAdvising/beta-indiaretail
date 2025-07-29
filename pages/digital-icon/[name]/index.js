@@ -29,7 +29,7 @@ const Candidate = ({ res, param }) => {
             <div className='container bg-black'>
 
                 <div className='flex flex-col items-center justify-center py-[20px]'>
-                    <Image src={check_Image(data.image)} height={200} width={200} alt={data.full_name} />
+                    <Image src={check_Image(data.image)} height={200} width={200} alt={data.full_name} className='w-auto h-auto' />
                 </div>
                 {/* {console.log(data, "data")} */}
 

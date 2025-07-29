@@ -1,8 +1,7 @@
 import SEO from "@/components/common/SEO";
 import VideoSlider from "@/components/common/VideoSlider";
 import RootLayout from "@/layouts/RootLayout";
-import { check_Image, checkMobile, getAdvertisements, GetDigitalIcon } from "@/libs/api";
-import index from "@/pages/polls";
+import { check_Image, getAdvertisements, GetDigitalIcon } from "@/libs/api";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -11,8 +10,6 @@ import 'react-multi-carousel/lib/styles.css';
 
 export default function Digital({ res }) {
     let [data, setData] = useState();
-    console.log(data, "data")
-    let [isMobile, setIsmobile] = useState();
     const [ads_data, setAdsData] = useState()
     const [viewMore, setViewMore] = useState(false);
    useEffect(() => {
@@ -43,18 +40,9 @@ export default function Digital({ res }) {
     useEffect(() => {
 
         get_ads()
-        checkIsMobile();
-        window.addEventListener('resize', checkIsMobile)
-        return () => {
-            window.removeEventListener('resize', checkIsMobile);
-        };
     }, [])
 
-    const checkIsMobile = async () => {
-        isMobile = await checkMobile();
-        setIsmobile(isMobile);
-        // console.log('isMobile',isMobile)
-    }
+   
 
     const get_ads = async () => {
         let ads_params = { page: 'Digital', page_type: 'Landing' }
@@ -191,8 +179,8 @@ export default function Digital({ res }) {
                             {data.digital_icons && data.digital_icons.length > 1 &&  data.digital_icons.slice(1,data.digital_icons.length).map((item, index) => (
                                 <div key={index} className="md:px-[10px] lg:pr-[10px] h-full">
                                     <div className=" otherSpeakerBody flex flex-col items-center justify-center h-full bg-gray-200 ">
-                                        <div className="h-[200px] overflow-hidden w-[100%] block object-contain object-top">
-                                            <Image src={check_Image(item.image)} width={300} height={300} alt={`Digital Icon ${index + 1}`} className="w-full h-auto" />
+                                        <div className="h-[300px] overflow-hidden w-[100%] ">
+                                            <Image src={check_Image(item.image)} width={300} height={300} alt={`Digital Icon ${index + 1}`} className="w-full h-[100%]" />
                                         </div>
                                         <div className="h-[150px] w-[100%] flex flex-col items-center justify-center">
                                             <Link href={`/digital-icon/${item.full_name}`}>
@@ -222,7 +210,6 @@ export async function getServerSideProps({ params }) {
     let param = {
         route: Id,
     }
-    console.log(param, "param")
     let datas = await GetDigitalIcon(param);
     let res = datas?.message?.message ? datas.message.message : null;
     if (!res) {
