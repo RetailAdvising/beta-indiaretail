@@ -98,8 +98,9 @@ export async function getServerSideProps({ params }) {
     let param = {
         name: Id,
     }
-    let datas = await GetDigitalIconCandidate(param);
-    let res = datas?.message?.message ? datas.message.message : null;
+    // let datas = await GetDigitalIconCandidate(param);
+    // let res = datas?.message?.message ? datas.message.message : null;
+    let res = null;
     if (!res) {
         return {
             notFound: true,
