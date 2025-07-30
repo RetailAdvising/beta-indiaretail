@@ -210,9 +210,9 @@ export async function getServerSideProps({ params }) {
     let param = {
         route: Id,
     }
-    // let datas = await GetDigitalIcon(param);
-    // let res = datas?.message?.message ? datas.message.message : null;
-    let res = null
+    let datas = await GetDigitalIcon(param);
+    let res = datas?.message?.message ? datas.message.message : null;
+    // let res = null
     if (!res) {
         return {
             notFound: true,
@@ -222,11 +222,3 @@ export async function getServerSideProps({ params }) {
         props: { res, param },
     }
 }
-// ,{
-//                         "menu_label": "Technology",
-//                         "redirect_url": "/categories/technology",
-//                         "icon": "/Navbar/technology.svg",
-//                         "is_mega_menu": 0,
-//                         "no_of_column": 0,
-//                         "child_menu": []
-//                     },
