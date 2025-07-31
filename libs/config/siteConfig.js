@@ -1,7 +1,7 @@
 // export const domain = '192.168.0.156:8420';
 // export const domain = 'indiaretailing.go1cms.com';
 const stage = false
-export const domain = stage ? 'admin.stage.indiaretailing.com' : 'admin.indiaretailing.com'; //normal stage
+export const domain = stage ? 'admin.stage.indiaretailing.com' : 'admin.beta.indiaretailing.com'; //normal stage
 // export const domain = 'admin.beta.indiaretailing.com';   //live
 export const website = stage ? 'https://stage.indiaretailing.com' : 'https://beta-indiaretail.vercel.app';
 export const websiteUrl = stage ? 'https://stage.indiaretailing.com/' : 'https://beta-indiaretail.vercel.app/';
