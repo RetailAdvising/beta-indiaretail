@@ -105,17 +105,17 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   useEffect(() => {
     const lockOrientation = async () => {
       if (screen.orientation && screen.orientation.lock) {
-        // debugger
         try {
-          // alert(screen.orientation.type)
           await screen.orientation.lock("portrait-primary");
           console.log("Screen locked to portrait-primary");
         } catch (error) {
-          // alert(screen.orientation.type,error)
-          console.error("Failed to lock screen orientation:", error);
+          // Only log errors that are not NotSupportedError
+          if (!(error && error.name === "NotSupportedError")) {
+            console.error("Failed to lock screen orientation:", error);
+          }
         }
       } else {
-        console.warn("Screen orientation locking is not supported in this browser.");
+        // Do not log warning for unsupported browsers
       }
     };
 
@@ -227,16 +227,21 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
 const GPTScript = () => {
   useEffect(() => {
-
-    setTimeout(() => {
-      const script = document.createElement("script");
-      script.src = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
-      script.async = true;
-      document.head.appendChild(script);
-    }, 2000);
+    const scriptId = "gpt-script";
+    const appendScript = () => {
+      if (!document.getElementById(scriptId)) {
+        const script = document.createElement("script");
+        script.src = "https://securepubads.g.doubleclick.net/tag/js/gpt.js";
+        script.async = true;
+        script.id = scriptId;
+        document.head.appendChild(script);
+      }
+    };
+    const timeoutId = setTimeout(appendScript, 2000);
 
     return () => {
-      document.head.removeChild(script);
+      clearTimeout(timeoutId);
+      // Do not remove the script on unmount to avoid issues with GPT lifecycle
     };
   }, []);
 
