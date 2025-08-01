@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { domain } from '@/libs/config/siteConfig'
 export default function ImageLoader({ src, title, style, type, isDetail, isQuick }) {
     const [load, setLoad] = useState(false)
+    const [error, setError] = useState(false)
 
     const check_Images = (Image) => {
         let baseUrl = `https://${domain}`
@@ -24,24 +25,20 @@ export default function ImageLoader({ src, title, style, type, isDetail, isQuick
     return (
         <>
             <LazyLoadImage
-                effect="blur" // You can choose different effects here
-                src={isDetail && !load ? '/no-image.jpg' : !load ? '/empty_state.svg' : isDetail ? check_Images(src) : check_Image(src)}
+                effect="blur"
+                src={error ? '/no-image.jpg' : (isDetail && !load ? '/no-image.jpg' : !load ? '/empty_state.svg' : isDetail ? check_Images(src) : check_Image(src))}
                 alt={title}
                 className={style}
                 style={{
                     opacity: load ? 1 : 0.7,
-                    // transition: 'opacity 0.5s',
                     transition: 'all 0.2s',
-                    // width: '100%',
-                    // height: '100%',
-                    // objectFit: 'cover',
                 }}
                 afterLoad={() =>
                     setTimeout(() => {
                         setLoad(true)
                     }, isQuick ? 0 : 250)
-
                 }
+                onError={() => setError(true)}
             />
 
             {type && type.video_type && type.video_image && <div className='absolute bottom-[70px] z-10 right-[10px] md:bottom-[65px]'>
