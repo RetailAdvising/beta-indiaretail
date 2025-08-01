@@ -52,7 +52,7 @@ export default function CategoryType({ values, ads, Id,metaInfo }) {
             // doctype: "Articles",
             category_route: Id,
             page_no: page_no,
-            page_size: 13,
+            page_size: 16,
             // fields: ["blog_intro", "name", "articles_category", "title", "publisher", "secondary_text", "route", "primary_text", "thumbnail_image", "image", "sub_title", "_user_tags", "location"],
             // filters: { articles_category: Id, ir_prime: 0, published: 1 }
         }
@@ -190,7 +190,7 @@ export async function getServerSideProps({ params }) {
         //    s: ["blog_intro", "name", "articles_category", "title", "publisher", "secondary_text", "route", "primary_text", "thumbnail_image", "image", "sub_title", "_user_tags", "location"],
         category_route: Id,
         page_no: 1,
-        page_size: 13,
+        page_size: 15,
     }
     // let value = await getList(param);
     let value = await articlesList(param);
