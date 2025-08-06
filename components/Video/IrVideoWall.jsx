@@ -14,15 +14,21 @@ const inter = Inter({
 })
 
 export default function IrVideoWall({ data, c, isMobile }) {
+    
 
     const router = useRouter()
     const [activeTab, setActiveTab] = useState()
     const [categoryItems, setCategoryItems] = useState([])
-
+  
     useEffect(() => {
-        if (data && data[0]) {
-            setActiveTab(data[0].category)
-            setCategoryItems(data[0].data)
+        if (data ) {
+            for(let i=0;i<data.length;i++){
+                if(data[i].category == "IR Studio"){
+                    setActiveTab(data[i].category)
+
+                    setCategoryItems(data[i].data)
+                }
+            }
         }
     }, [data])
 
@@ -53,10 +59,12 @@ export default function IrVideoWall({ data, c, isMobile }) {
                 <div className='flex item-center md:justify-center gap-5 md:gap-[15px]'>
                     {data.map((res, i) => {
                         return (
-                            <div key={`sjcfnj${res.category} `} className='cursor-pointer' onClick={() => activateTab(res)}>
+                            <>
+                            { res.category == "IR Studio" && <div key={`sjcfnj${res.category} `} className='cursor-pointer' onClick={() => activateTab(res)}>
                                 <h6 className={`text-white text-[16px] md:text-[14px] font-medium ${inter.className} pb-[5px]`}>{res.category}</h6>
                                 {activeTab == res.category && <div className={`active_tab`}></div>}
-                            </div>
+                            </div>}
+                            </>
                         )
                     })}
                 </div>
