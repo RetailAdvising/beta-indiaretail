@@ -404,7 +404,7 @@ export default function Home({ data }) {
 
                           {(c.cid && books && books.length != 0 && c.component_title == "Book Store") && <>
                             <Title data={{ title: c.component_title }} route={'/bookstore'} seeMore={true} />
-                            <div className={`lg:grid lg:gap-5 lg:grid-cols-5 no_scroll`}><Card isHome={true} imgClass={'lg:h-[300px] md:h-[225px] mouse aspect-[2/2.5]'} check={true} flex={'md:flex-[0_0_calc(50%_-_10px)]'} data={books} boxShadow={true} /></div>
+                            <div className={`lg:grid gap-5 lg:grid-cols-5  flex`}><Card isHome={true} imgClass={'lg:h-[300px] md:h-[225px] mouse aspect-[2/2.5]'} check={true} flex={'md:flex-[0_0_calc(50%_-_10px)]'} data={books} boxShadow={true} /></div>
                           </>}
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Reconnect") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/reconnect'} seeMore={true} />

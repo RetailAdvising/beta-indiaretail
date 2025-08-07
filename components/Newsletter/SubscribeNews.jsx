@@ -42,7 +42,7 @@ const NewsLetterSub = ({ data, hide,email,cssClass }) => {
 
         {/* border-b-[1px] border-b-slate-100  h-[55px] px-[10px] */}
         <div className='header p-[35px_30px_15px_30px]'>
-          <h6 className='text-[18px] font-semibold'>Newsletters Subscription</h6>
+          <h6 className='text-[18px] font-semibold'>IR Newsletters Subscription</h6>
           <h5 className='text-[12px] gray_color pt-[5px] line-clamp-2'>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</h5>
         </div>
 

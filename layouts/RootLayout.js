@@ -27,6 +27,7 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
     display: 'flex',
     justifyContent: 'center'
   }
+  const[isDetail,setIsDetail]=useState(false)
 
   useEffect(() => {
     if (typeof window != 'undefined' && router) {
@@ -39,8 +40,12 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
         } else {
           page_route = page_route.join(" ")
         }
-        article_breadcrumb(page_route)
+        if(!isDetail){
+
+          article_breadcrumb(page_route)
+        }
       } else {
+        setIsDetail(false)
         // setBreadCrumbs(removeSpecialCharacters(router.asPath))
         setBreadCrumbs(router.asPath.split('/'))
       }
@@ -70,6 +75,7 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
         const resp = await get_article_breadcrumb({ article_route: route })
         if (resp && resp.message && resp.message.length != 0) {
           setBreadCrumbs(resp.message)
+          setIsDetail(true)
         }
       }
     }

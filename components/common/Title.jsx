@@ -15,6 +15,7 @@ export default function Title({ data, textClass, seeMore, font, noPadding, isVid
   const router = useRouter()
 
   async function goTo(data) {
+    
     if (isVid) {
       router.push(route)
     } else if (route) {

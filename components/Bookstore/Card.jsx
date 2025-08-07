@@ -22,7 +22,7 @@ export default function Card({ data, height, category, padding, isHome = false, 
 
         return (
           // <div key={index} onClick={() => router.push(`${isHome ? '/bookstore/' + res.category_route + '/' + res.route : isLanding ? '/' + router.asPath.split('/')[1] + '/' + category + '/' + res.route : '/' + router.asPath.split('/')[1] + '/' + router.asPath.split('/')[3] + '/' + res.route}`)} className={`${flex} cursor-pointer ${isBorder && 'border p-[10px] rounded-[5px]'}`}>
-          <Link href={href} key={index} >
+          <Link href={href} key={index} className={`${flex} cursor-pointer ${isBorder && 'border p-[10px] rounded-[5px]'}`} >
             <div className={`${padding ? padding : null}`}>
               {/* <Image className={` ${object_fit ? object_fit : 'object-cover'} ${imgClass ? imgClass : (height ? height : 'h-[150px]')} ${boxShadow && 'rounded-[5px]'}`} src={check_Image(res.product_image ? res.product_image : res.image ? res.image : null)} height={300} width={242} alt={res.title ? res.title : 's'}></Image> */}
               <ImageLoader style={`${object_fit ? object_fit : 'object-cover'} ${imgClass ? imgClass : (height ? height : 'h-[150px]')} ${boxShadow && 'rounded-[5px]'}`} src={res.product_image ? res.product_image : res.image ? res.image : null} title={res.title ? res.title : 's'} />
