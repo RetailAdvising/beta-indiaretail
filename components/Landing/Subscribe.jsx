@@ -95,7 +95,7 @@ export default function Subscribe({ data, height, width, isSubscribe }) {
         </div>
         <div className='flex-[0_0_calc(70%_-_10px)] pb-2'>
           <h5 className={`text-[17px] font-[700] text-center nunito`}>Subscribe</h5>
-          <p className={`text-[12px] font-[400] p-[5px_10px] text-center `}>Subscripe our newsletter and get notifications to stay update</p>
+          <p className={`text-[12px] font-[400] p-[5px_10px] text-center `}>Subscribe to IR Newsletter. Get notifications to stay updated</p>
           <div className='relative w-full text-center px-[10px]'>
             <input placeholder="Your email address" className='rounded-full w-[85%] pl-[10px] h-[30px] text-[13px] !border-none bg-[#EFF4F4]' onChange={(e) => changingValue(e)} />
             <div className='absolute top-0 right-[30px]  w-[15%] rounded-full h-full'>
