@@ -46,14 +46,14 @@ const NewsLetterSub = ({ data, hide,email,cssClass }) => {
           {/* <h5 className='text-[12px] gray_color pt-[5px] line-clamp-2'>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</h5> */}
           <h5 className='text-[12px] gray_color pt-[5px] line-clamp-2'>Subscribe to IR Newsletter. Get notifications to stay updated</h5>
         </div>
-
+{console.log(news,"nehdsuofho")}
         <div className='body_sec h-[100%] overflow-auto scrollbar-hide p-[10px] w-[95%] m-[0px_auto]'>
           {news && news.map((res, index) => {
             return (
               <div key={index} onClick={() => { selectNewLetter(news, index) }} className='flex items-center justify-between border-0 rounded-[10px] border-slate-100 hover:bg-[#f1f1f159] mb-[10px] cursor-pointer pr-[10px]'>
                 <div className={`flex w-[93%] items-center w-full p-[0px] gap-[5px]`} >
-                  <span className='h-[65px] w-[65px] flex items-center justify-center p-[5px] rounded-[50%]'><Image className={`h-[50px] w-[50px] rounded-[50%] object-cover`} src={check_Image(res.image)} height={150} width={150} alt={''} /></span>
-                  <div className='w-[85%'>
+                  <span className='h-[65px] w-[65px] flex items-center justify-center p-[5px] rounded-[50%] '><Image className={`h-[40px] w-[40px] rounded-[50%] object-contain `} src={"/ir_2023.png"} height={150} width={150} alt={''} /></span>
+                  <div className='w-[85%]'>
                     <h6 className='text-[14px] font-semibold capitalize'>{res.primary_text} <span className='text-[12px] gray_color'>({res.title})</span></h6>
                     {/* <h6 className='text-[12px] pt-[2px] gray_color'>{res.custom_title} </h6> */}
                   </div>

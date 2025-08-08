@@ -3,6 +3,7 @@ import ImageLoader from "../ImageLoader";
 import Image from "next/image";
 
 const BrandDetails = ({ webinar_data, updateShare, icons, dateShow }) => {
+  console.log(webinar_data,"wewegiuhgu")
   return (
     <>
       <div className="flex flex-row justify-between items-center md:gap-2 lg:gap-0">
