@@ -50,7 +50,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const index = ({ page_route, ads,  category_route }) => {
+const index = ({ page_route, ads,  category_route,webinar_data }) => {
 // const index = ({ }) => {
 
   const [webinarLimit, setWebinarLimit] = useState(false);
@@ -60,34 +60,34 @@ const index = ({ page_route, ads,  category_route }) => {
   const [featuredContentLimit, setFeaturedContentLimit] = useState(false);
   const [bottomBackgroundImage, setBottomBackgroundImage] = useState("/no-image.jpg");
   let [isMobile, setIsMobile] = useState(false)
-  let [webinar_data,setWebinar]=useState([])
+  // let [webinar_data,setWebinar]=useState([])
 
 let router = useRouter()
 
-  useEffect(()=>{
-    if(typeof window != "undefined"){
-      if(category_route && page_route){
-        getwebspecialcontent()
+  // useEffect(()=>{
+  //   if(typeof window != "undefined"){
+  //     if(category_route && page_route){
+  //       getwebspecialcontent()
         
-      }
-    }
+  //     }
+  //   }
 
-  },[category_route])
+  // },[category_route])
 
 
-  async function getwebspecialcontent(){
+  // async function getwebspecialcontent(){
 
-       const param = {
-      route: page_route,
-      category: category_route,
+  //      const param = {
+  //     route: page_route,
+  //     category: category_route,
      
-    };
+  //   };
 
-    const res = await get_web_special_detail(param);
-     webinar_data = res.message || null;
-     setWebinar(webinar_data)
+  //   const res = await get_web_special_detail(param);
+  //    webinar_data = res.message || null;
+  //    setWebinar(webinar_data)
 
-  }
+  // }
 
   useEffect(() => {
 
@@ -1777,7 +1777,7 @@ export async function getServerSideProps({ params }) {
   // }
 
  
-
+ let webinar_data =null;
   let category_route = page_route && page_route.length > 0 ? page_route[0] : null;
   if (page_route && Array.isArray(page_route) && page_route.length > 2) {
     page_route = page_route.join("/") + "/"
@@ -1788,26 +1788,26 @@ export async function getServerSideProps({ params }) {
   }
 
 
-  // if (page_route && page_route.length > 1) {
-  //   const param = {
-  //     route: page_route,
-  //     category: category_route,
+  if (page_route && page_route.length > 1) {
+    const param = {
+      route: page_route,
+      category: category_route,
      
-  //   };
+    };
 
-  //   const res = await get_web_special_detail(param);
-  //   webinar_data = res.message || null;
-  // } else {
-  //   webinar_data = null;
-  // }
+    const res = await get_web_special_detail(param);
+    webinar_data = res.message || null;
+  } else {
+    webinar_data = null;
+  }
 
-  // if (webinar_data === null) {
-  //   return {
-  //     notFound: true
-  //   }
-  // }
+  if (webinar_data === null) {
+    return {
+      notFound: true
+    }
+  }
 
   return {
-    props: { page_route, category_route },
+    props: { page_route, category_route ,webinar_data},
   };
 }
