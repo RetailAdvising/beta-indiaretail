@@ -63,7 +63,8 @@ const index = ({ data, page_route }) => {
                 });
 
                 setPrev(route ? route : page_route)
-                commentslist(data)
+                if(data.has_comments && data.has_comments == 1){
+                commentslist(data)}
                 if (!data.is_member && data.ir_prime == 1) {
                     // if (data.is_member == 0) {
                     getMembershipPlans();
@@ -125,7 +126,10 @@ const index = ({ data, page_route }) => {
                 setRouteList(routeList)
                 setPrev(data.route)
                 setPageNo(pageNo + 1)
-                commentslist(data)
+                if(data.has_comments && data.has_comments == 1){
+
+                    commentslist(data)
+                }
                 let val = data
 
                 if (val && val._user_tags && val._user_tags != '') {
