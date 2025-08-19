@@ -24,8 +24,11 @@ const index = ({ data, page_route }) => {
 
     let [divs, setDivs] = useState(['div0']);
     let [routeList, setRouteList] = useState([])
+    const [loading, setLoading] = useState(false);
 
     const articleDetail = async (route) => {
+        
+        // debugger
         if (router.query && router.query?.detail && typeof window !== 'undefined') {
             let Id = route ? route : page_route
             values.length = 0
@@ -61,6 +64,7 @@ const index = ({ data, page_route }) => {
                     }
                     return prevValues; // Return previous values if duplicate
                 });
+                setLoading(true)
 
                 setPrev(route ? route : page_route)
                 if(data.has_comments && data.has_comments == 1){
@@ -111,6 +115,7 @@ const index = ({ data, page_route }) => {
 
     async function loadMore() {
         // console.log(router);
+        setLoading(true)
         let param = {
             "route": prev,
             // "category": router.query?.types,
@@ -126,6 +131,7 @@ const index = ({ data, page_route }) => {
                 setRouteList(routeList)
                 setPrev(data.route)
                 setPageNo(pageNo + 1)
+                setLoading(false)
                 if(data.has_comments && data.has_comments == 1){
 
                     commentslist(data)
@@ -153,6 +159,8 @@ const index = ({ data, page_route }) => {
             } else {
                 setPagination(!pagination)
             }
+        }else{
+            setLoading(false)
         }
 
     }
@@ -412,6 +420,12 @@ const index = ({ data, page_route }) => {
                     })}
                 </> : <Skeleton />
                 }
+                 {/* <div className='more h-[20px]' ref={cardref}></div> */}
+                {loading  && <div id="wave">
+                    <span className="dot"></span>
+                    <span className="dot"></span>
+                    <span className="dot"></span>
+                </div>}
             </RootLayout >
         </>
     )
