@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 // import GoogleAds from './GoogleAds';
 const GoogleAds = dynamic(() => import('./GoogleAds'))
 function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_payload = {}, adPos }) {
-
+    console.log(data, imgClass, divClass, insStyle, position, adId, ad_payload , adPos)
     let [isMobile, setIsMobile] = useState(false)
     useEffect(() => {
         // console.log(adId, "adId")
@@ -88,12 +88,8 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                 </div>`,
 
         "middle": `
-                    <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
                     <script>
-                    var googletag = googletag || {};
-                    googletag.cmd = googletag.cmd || [];
-                    </script>
-                    <script>
+                    window.googletag = window.googletag || {cmd: []};
                     // GPT slots
                     var gptAdSlots = []; // Created the Array To Get BrowserSize,Ad Size
                     googletag.cmd.push(function()
@@ -120,17 +116,6 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                     });
                     </script>  
 
-
-                            
-                    <script>        
-                    window.googletag = window.googletag || {cmd: []};        
-                    googletag.cmd.push(function() {        
-                    googletag.defineSlot('/21631575671/IR-728x90-Leaderboard', [[970, 250], [728, 90], [320, 50]], 'div-gpt-ad-1617096742911-0').addService(googletag.pubads()); 
-                    googletag.pubads().enableSingleRequest(); 
-                    googletag.enableServices();        
-                    });        
-                    </script>
-
                     <!-- /21631575671/IR-728x90-Leaderboard -->
                     <div id='div-gpt-ad-1617096742911-0'>
                     <script>
@@ -155,10 +140,7 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                     </div>`,
         "footer": `
                     <script>
-                    var googletag = googletag || {};
-                    googletag.cmd = googletag.cmd || [];
-                    </script>
-                    <script>
+                    window.googletag = window.googletag || {cmd: []};
                     // GPT slots
                     var gptAdSlots = []; // Created the Array To Get BrowserSize,Ad Size
                     googletag.cmd.push(function()
@@ -185,16 +167,6 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                     });
                     </script>  
 
-
-                    <script>        
-                    window.googletag = window.googletag || {cmd: []};        
-                    googletag.cmd.push(function() {        
-                    googletag.defineSlot('/21631575671/IR-home-middle_3-728x90', [[970, 250], [728, 90], [320, 50]], 'div-gpt-ad-1707461460584-0').addService(googletag.pubads()); 
-                    googletag.pubads().enableSingleRequest(); 
-                    googletag.enableServices();        
-                    });        
-                    </script>
-
                     <!-- /21631575671/IR-home-middle_3-728x90 -->
                     <div id='div-gpt-ad-1707461460584-0'>
                     <script>
@@ -206,19 +178,19 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
 
     const slotIds = {
         "300": "/21631575671/Indiaretailing_mid_center_300x250",
-        "300_size": "[300, 250]",
+        "300_size": [300, 250],
         "300_id": "div-gpt-ad-1711950996868-0",
 
         "middle": "/21631575671/IR-728x90-Leaderboard",
-        "middle_size": "[[970, 250], [728, 90], [320, 50]]",
+        "middle_size": [[970, 250], [728, 90], [320, 50]],
         "middle_id": "div-gpt-ad-1617096742911-0",
 
         "header": "/21631575671/IR-NEW-TOP-728x90-Leaderboard",
-        "header_size": "[[320, 50], [728, 90]]",
+        "header_size": [[320, 50], [728, 90]],
         "header_id":"div-gpt-ad-1738918272133-0",
 
         "footer": "/21631575671/IR-home-middle_3-728x90",
-        "footer_size": "[[970, 250], [728, 90], [320, 50]]",
+        "footer_size": [[970, 250], [728, 90], [320, 50]],
         "footer_id": "div-gpt-ad-1707461460584-0"
     }
 
@@ -236,7 +208,7 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
             {/* style="display:inline-block;width:728px;height:90px;" */}
             {/* data-full-width-responsive="${isMobile}" */}
 
-            {adPos && ((data && Object.keys(data).length == 0) || !(data)) && <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSlotEle={slotIds[adPos+"_id"]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scripts[adPos]} />}
+            {adPos && <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSlotEle={slotIds[adPos+"_id"]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scripts[adPos]} />}
 
             {/* {adPos && ((data && Object.keys(data).length == 0) || !(data)) && <GoogleAds isMobile={isMobile} adId={adId} position={position} style={divClass} script={`
                 <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>

@@ -153,9 +153,9 @@
 //                         // Load ads individually
 //                         loadAd(${props.adId});
 
-                    
+//                     
 //                     </script>
-                    
+//                     
 //                     `
 //                 }} />
 //                     :
@@ -186,9 +186,9 @@
 //                         // Load ads individually
 //                         loadAd(${props.adId});
 
-                    
+//                     
 //                     </script>
-                    
+//                     
 //                     `
 //                     }} />}
 
@@ -208,82 +208,40 @@ import { memo, useEffect, useState } from 'react';
 const GoogleAds = (props) => {
     // const [isMobile, setIsMobile] = useState(false);
     const [isAdLoaded, setIsAdLoaded] = useState(false);
-    // useEffect(() => {
-    //     checkIsMobile();
-    //     window.addEventListener('resize', checkIsMobile);
-    //     return () => {
-    //         window.removeEventListener('resize', checkIsMobile);
-    //     };
-    // }, []);
-
-    // const checkIsMobile = async () => {
-    //     let is_mobile = await checkMobile();
-    //     setIsMobile(is_mobile);
-    // };
-
-    // useEffect(() => {
-    //     if (typeof window !== 'undefined' && props.adId && props.position) {
-    //         try {
-    //             // Initialize adsbygoogle
-    //             (window.adsbygoogle = window.adsbygoogle || []).push({});
-                
-    //             // Render GPT slot if ad position and id are set
-    //             if (props.adId && props.position) {
-    //                 setAdHeight(props.adId, props.position);
-    //             }
-    //         } catch (err) {
-    //             console.log(err, "error initializing ads");
-    //         }
-    //     }
-    // }, [props.adId, props.position]);
-
-    // const setAdHeight = (adElement, position) => {
-    //     let el = document.getElementById(adElement);
-    //     let dynamicHeight;
-    //     let dynamicWidth;
-        
-    //     if (position === 'high') {
-    //         dynamicHeight = '90px';
-    //         dynamicWidth = isMobile ? '100%' : '728px';
-    //     } else {
-    //         dynamicHeight = '250px';
-    //         dynamicWidth = isMobile ? '100%' : '300px';
-    //     }
-
-    //     el?.style?.setProperty('--adheight', dynamicHeight);
-    //     el?.style?.setProperty('--adwidth', dynamicWidth);
-    // };
 
     useEffect(() => {
-        // Ensure googletag is loaded and ready
-        if (window.googletag && window.googletag.cmd) {
-            window.googletag.cmd.push(function() {
-                const adSlotElement = document.getElementById(`${props.adSlotEle}`);
-                // const adSlotElement = document.getElementById(`div-gpt-ad-${props.adId}-${props.position}`);
-                // console.log(adSlotElement,"adSlotElement")
-                if (adSlotElement) {
-                    googletag.defineSlot(props.slotId, props.adSizes, adSlotElement)
-                        .addService(googletag.pubads());
-                    googletag.pubads().enableSingleRequest();
-                    googletag.enableServices();
+        // If an inline script is provided, it will handle GPT itself. Avoid double-initializing.
+        if (props.script) return;
 
-                    // Listen for the ad rendering event
-                    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-                        if (event.slot === adSlotElement && event.isEmpty) {
-                            setIsAdLoaded(false);  // Set to false if the ad did not load
-                        } else {
-                            setIsAdLoaded(true);  // Set to true if the ad loaded successfully
-                        }
-                    });
+        if (typeof window !== 'undefined' && window.googletag && window.googletag.cmd) {
+            window.googletag.cmd.push(function() {
+                const adSlotId = props.adSlotEle; // Expecting the element id string
+                if (adSlotId && props.slotId && props.adSizes) {
+                    const slot = googletag.defineSlot(props.slotId, props.adSizes, adSlotId);
+                    if (slot) {
+                        slot.addService(googletag.pubads());
+                        googletag.pubads().enableSingleRequest();
+                        googletag.enableServices();
+
+                        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                            if (event && event.slot && typeof event.slot.getSlotElementId === 'function') {
+                                const renderedId = event.slot.getSlotElementId();
+                                if (renderedId === adSlotId) {
+                                    setIsAdLoaded(!event.isEmpty);
+                                }
+                            }
+                        });
+
+                        // Display the slot if we're managing it here
+                        googletag.display(adSlotId);
+                    }
                 }
             });
         }
-        // console.log(window,"window")
-        // console.log(window.googletag,"window googletag")
-    }, [props.adId, props.position, props.slotId, props.adSizes]);
+    }, [props.script, props.adId, props.position, props.slotId, props.adSizes, props.adSlotEle]);
 
-     // Conditionally remove or hide the ad based on its loading state
-     const adStyle = isAdLoaded ? {} : { height: '0', width: '0', display: 'none' };
+    // Only hide when managing programmatically. When using inline script, don't hide.
+    const adStyle = props.script ? {} : (isAdLoaded ? {} : { height: '0', width: '0', display: 'none' });
 
     return (
         <div
