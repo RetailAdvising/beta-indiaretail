@@ -87,42 +87,7 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                 </script>
                 </div>`,
 
-        "middle": `
-                    <script>
-                    window.googletag = window.googletag || {cmd: []};
-                    // GPT slots
-                    var gptAdSlots = []; // Created the Array To Get BrowserSize,Ad Size
-                    googletag.cmd.push(function()
-                    {
-                    var mapping = googletag.sizeMapping().
-                    //addSize is the browser size and each subsequent dimension is an ad size addSize([Browser Width,Browser Height],[Ad Width,Ad Height]).
-
-                    addSize([1050, 200], [728, 90]). // Viewport size for desktop
-                    // Screens of any size smaller than infinite but bigger than 1024 x 768
-                    addSize([1024, 768], [728, 90]).
-                    // Screens of any size smaller than 1024x 768 but bigger than 980 x 690
-                    addSize([980, 690], [[728, 90],[728,90]]).
-                    // Screens of any size smaller than 980 x 690 but bigger than 320 x 480
-                    addSize([320, 480], [320, 50]).
-                    // Fits browsers of any size smaller than 320 x 480
-                    addSize([0, 0], [88, 31]).
-                    build();
-                    
-                    slot1=googletag.defineSlot('/21631575671/IR-728x90-Leaderboard', [[320, 50], [728, 90], [970, 250]], 'div-gpt-ad-1617096742911-0').setTargeting("test", "refresh").
-                    defineSizeMapping(mapping). 
-                    addService(googletag.pubads());
-                    googletag.pubads().enableSingleRequest();
-                    googletag.enableServices();
-                    });
-                    </script>  
-
-                    <!-- /21631575671/IR-728x90-Leaderboard -->
-                    <div id='div-gpt-ad-1617096742911-0'>
-                    <script>
-                        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1617096742911-0'); });
-                    setInterval(function(){googletag.pubads().refresh([slot1]);}, 5000); 
-                    </script>
-                    </div>`,
+        "middle": ``,
         "header": `
                     <script>
                     window.googletag = window.googletag || {cmd: []};
@@ -194,6 +159,8 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
         "footer_id": "div-gpt-ad-1707461460584-0"
     }
 
+    const scriptFor = (key) => key === 'middle' ? '' : scripts[key]
+
     return (
         <>
             {
@@ -203,31 +170,7 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                 </div>
             }
 
-            {/* data-ad-format="auto"
-                        data-full-width-responsive="true" */}
-            {/* style="display:inline-block;width:728px;height:90px;" */}
-            {/* data-full-width-responsive="${isMobile}" */}
-
-            {adPos && <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSlotEle={slotIds[adPos+"_id"]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scripts[adPos]} />}
-
-            {/* {adPos && ((data && Object.keys(data).length == 0) || !(data)) && <GoogleAds isMobile={isMobile} adId={adId} position={position} style={divClass} script={`
-                <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
-                <ins id="${adId}" class="adsbygoogle ${divClass} ${position}"
-                    style="${insStyle}"
-                    data-ad-client="ca-pub-9354161551837950"
-                    data-ad-slot="${adPos == '300' ? 'div-gpt-ad-1711950996868-0' : adPos == 'middle' ? 'div-gpt-ad-1617096742911-0' : adPos == "header" ? "div-gpt-ad-1738918272133-0" : adPos == "footer" ? "div-gpt-ad-1707461460584-0" : '6101971529'}"
-                >
-                    <img class="default_ban_img" src="/no-image.jpg" alt="Default Banner" style="${insStyle}" />
-    
-                </ins>
-    
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({ });
-                </script>               
-                
-                `} />} */}
-
-            {/* data-ad-slot="${position == 'high' ? '8257587929' : '6101971529'}" */}
+            {adPos && <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSlotEle={slotIds[adPos+"_id"]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scriptFor(adPos)} />}
         </>
     )
 }

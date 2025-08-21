@@ -213,9 +213,11 @@ const GoogleAds = (props) => {
         // If an inline script is provided, it will handle GPT itself. Avoid double-initializing.
         if (props.script) return;
 
-        if (typeof window !== 'undefined' && window.googletag && window.googletag.cmd) {
+        if (typeof window !== 'undefined') {
+            // Ensure googletag queue exists even if GPT has not loaded yet
+            window.googletag = window.googletag || { cmd: [] };
+            const adSlotId = props.adSlotEle || `div-gpt-ad-${props.adId}-${props.position}`;
             window.googletag.cmd.push(function() {
-                const adSlotId = props.adSlotEle; // Expecting the element id string
                 if (adSlotId && props.slotId && props.adSizes) {
                     const slot = googletag.defineSlot(props.slotId, props.adSizes, adSlotId);
                     if (slot) {
@@ -243,9 +245,12 @@ const GoogleAds = (props) => {
     // Only hide when managing programmatically. When using inline script, don't hide.
     const adStyle = props.script ? {} : (isAdLoaded ? {} : { height: '0', width: '0', display: 'none' });
 
+    // Use the programmatic slot id as the wrapper id when no script is provided; otherwise use the local id
+    const wrapperId = props.script ? `div-gpt-ad-${props.adId}-${props.position}` : (props.adSlotEle || `div-gpt-ad-${props.adId}-${props.position}`);
+
     return (
         <div
-            id={`div-gpt-ad-${props.adId}-${props.position}`}
+            id={wrapperId}
             className={`${props.style} scripts`}
             dangerouslySetInnerHTML={{ __html: props.script }}
             style={adStyle}
