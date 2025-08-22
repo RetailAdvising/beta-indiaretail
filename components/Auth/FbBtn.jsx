@@ -29,7 +29,7 @@ const FbBtn = ({ socialLogin, setCredential, setShowMob }) => {
       }
     },
     onError: (error) => {
-      console.log(error);
+      // console.log(error);
     },
   });
 

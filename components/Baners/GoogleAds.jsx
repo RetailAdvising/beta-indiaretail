@@ -204,55 +204,215 @@
 
 
 // New
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState, useRef } from 'react';
 const GoogleAds = (props) => {
-    // const [isMobile, setIsMobile] = useState(false);
-    const [isAdLoaded, setIsAdLoaded] = useState(false);
+    const { lazy = false, delayMs = 300, resetKey } = props;
 
-    useEffect(() => {
-        // If an inline script is provided, it will handle GPT itself. Avoid double-initializing.
-        if (props.script) return;
+    const [isAdLoaded, setIsAdLoaded] = useState(false);
+    const [retryCount, setRetryCount] = useState(0);
+    const [sectionLoaded, setSectionLoaded] = useState(false);
+    const maxRetries = 5;
+    const retryTimeoutRef = useRef(null);
+    const observerRef = useRef(null);
+    const ioRef = useRef(null);
+    const isVisibleRef = useRef(!lazy); // if not lazy, assume visible
+    const initializedRef = useRef(false);
+
+    // Safe identifiers to avoid 'undefined' ids
+    const safeAdId = props.adId || 'divsad';
+    const safePosition = props.position || 'pos';
+
+    // Generate an instance id only for lazy mode to avoid collisions on long pages
+    const instanceIdRef = useRef(null);
+    if (lazy && !instanceIdRef.current) {
+        const base = `${safeAdId}-${safePosition}`;
+        const globalCounter = (typeof window !== 'undefined') ? (window.__gptAdInstanceCounter = (window.__gptAdInstanceCounter || 0) + 1) : Math.floor(Math.random() * 1e6);
+        instanceIdRef.current = `${base}-${globalCounter}`;
+    }
+
+    // Wrapper id: in lazy mode use unique instance id; otherwise use stable adId-position so home stays unchanged
+    const wrapperId = lazy ? `div-gpt-ad-${instanceIdRef.current}` : `div-gpt-ad-${safeAdId}-${safePosition}`;
+
+    const getTargetId = () => wrapperId;
+
+    const getExistingSlotByElementId = (elementId) => {
+        try {
+            if (!window.googletag || !window.googletag.pubads) return null;
+            const slots = window.googletag.pubads().getSlots();
+            for (let i = 0; i < slots.length; i++) {
+                const s = slots[i];
+                if (typeof s.getSlotElementId === 'function' && s.getSlotElementId() === elementId) {
+                    return s;
+                }
+            }
+        } catch (_) { }
+        return null;
+    }
+
+    const destroySlotByElementId = (elementId) => {
+        try {
+            const slot = getExistingSlotByElementId(elementId);
+            if (slot && window.googletag && window.googletag.destroySlots) {
+                window.googletag.destroySlots([slot]);
+            }
+        } catch (_) { }
+    }
+
+    const initializeAd = () => {
+        if (initializedRef.current) return;
+        if (!isVisibleRef.current) return; // only init when visible (or non-lazy)
 
         if (typeof window !== 'undefined') {
-            // Ensure googletag queue exists even if GPT has not loaded yet
             window.googletag = window.googletag || { cmd: [] };
-            const adSlotId = props.adSlotEle || `div-gpt-ad-${props.adId}-${props.position}`;
+            const adSlotId = getTargetId();
+            const elementExists = document.getElementById(adSlotId);
+            if (!elementExists && retryCount < maxRetries) {
+                retryTimeoutRef.current = setTimeout(() => {
+                    setRetryCount(prev => prev + 1);
+                }, 300);
+                return;
+            }
+            if (!elementExists) {
+                return;
+            }
+
             window.googletag.cmd.push(function() {
                 if (adSlotId && props.slotId && props.adSizes) {
-                    const slot = googletag.defineSlot(props.slotId, props.adSizes, adSlotId);
-                    if (slot) {
-                        slot.addService(googletag.pubads());
-                        googletag.pubads().enableSingleRequest();
-                        googletag.enableServices();
+                    try {
+                        // Avoid duplicate defineSlot on same element id
+                        const existing = getExistingSlotByElementId(adSlotId);
+                        if (existing) {
+                            window.googletag.display(adSlotId);
+                            initializedRef.current = true;
+                            return;
+                        }
 
-                        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-                            if (event && event.slot && typeof event.slot.getSlotElementId === 'function') {
-                                const renderedId = event.slot.getSlotElementId();
-                                if (renderedId === adSlotId) {
-                                    setIsAdLoaded(!event.isEmpty);
+                        const slot = googletag.defineSlot(props.slotId, props.adSizes, adSlotId);
+                        if (slot) {
+                            slot.addService(googletag.pubads());
+                            googletag.pubads().enableSingleRequest();
+                            googletag.enableServices();
+
+                            googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                                if (event && event.slot && typeof event.slot.getSlotElementId === 'function') {
+                                    const renderedId = event.slot.getSlotElementId();
+                                    if (renderedId === adSlotId) {
+                                        setIsAdLoaded(!event.isEmpty);
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                        // Display the slot if we're managing it here
-                        googletag.display(adSlotId);
+                            googletag.display(adSlotId);
+                            initializedRef.current = true;
+                        }
+                    } catch (error) {
+                        // swallow errors
                     }
                 }
             });
         }
-    }, [props.script, props.adId, props.position, props.slotId, props.adSizes, props.adSlotEle]);
+    };
 
-    // Only hide when managing programmatically. When using inline script, don't hide.
+    const waitForSectionLoad = () => {
+        const sectionLoadDelay = delayMs; 
+        setTimeout(() => {
+            setSectionLoaded(true);
+            initializeAd();
+        }, sectionLoadDelay);
+    };
+
+    // Reset on route or key change
+    useEffect(() => {
+        if (resetKey === undefined) return;
+        const adSlotId = getTargetId();
+        destroySlotByElementId(adSlotId);
+        const el = document.getElementById(adSlotId);
+        if (el) el.innerHTML = '';
+        initializedRef.current = false;
+        setIsAdLoaded(false);
+        setRetryCount(0);
+        if (!lazy) {
+            isVisibleRef.current = true;
+            initializeAd();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [resetKey]);
+
+    // Observe visibility only in lazy mode
+    useEffect(() => {
+        if (!lazy) return;
+        const el = document.getElementById(getTargetId());
+        if ('IntersectionObserver' in window) {
+            ioRef.current = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        isVisibleRef.current = true;
+                        initializeAd();
+                    }
+                });
+            }, { root: null, rootMargin: '200px 0px', threshold: 0 });
+            if (el) ioRef.current.observe(el);
+        } else {
+            isVisibleRef.current = true;
+            initializeAd();
+        }
+        return () => {
+            if (ioRef.current && el) ioRef.current.unobserve(el);
+            if (ioRef.current) ioRef.current.disconnect();
+        };
+    }, [lazy]);
+
+    useEffect(() => {
+        // If an inline script is provided, use it, but still delay in lazy mode
+        if (props.script) {
+            if (lazy) {
+                waitForSectionLoad();
+            } else {
+                setSectionLoaded(true);
+                isVisibleRef.current = true;
+                initializeAd();
+            }
+            return;
+        }
+        if (lazy) {
+            waitForSectionLoad();
+        } else {
+            setSectionLoaded(true);
+            isVisibleRef.current = true;
+            initializeAd();
+        }
+
+        if (typeof window !== 'undefined' && window.MutationObserver) {
+            const adSlotId = getTargetId();
+            observerRef.current = new MutationObserver(() => {
+                if (!document.getElementById(adSlotId)) {
+                    initializedRef.current = false;
+                    setRetryCount(0);
+                    initializeAd();
+                }
+            });
+            observerRef.current.observe(document.body, { childList: true, subtree: true });
+        }
+
+        return () => {
+            if (retryTimeoutRef.current) clearTimeout(retryTimeoutRef.current);
+            if (observerRef.current) observerRef.current.disconnect();
+        };
+    }, [props.script, safeAdId, safePosition, props.slotId, props.adSizes, lazy, delayMs]);
+
     const adStyle = props.script ? {} : (isAdLoaded ? {} : { height: '0', width: '0', display: 'none' });
 
-    // Use the programmatic slot id as the wrapper id when no script is provided; otherwise use the local id
-    const wrapperId = props.script ? `div-gpt-ad-${props.adId}-${props.position}` : (props.adSlotEle || `div-gpt-ad-${props.adId}-${props.position}`);
+    // For inline scripts, replace placeholders. Use instance id in lazy mode; otherwise use adId-position
+    const idToken = lazy ? (instanceIdRef.current || `${safeAdId}-${safePosition}`) : `${safeAdId}-${safePosition}`;
+    const processedScript = props.script ? props.script
+        .replace(/\{\{AD_ID\}\}/g, idToken)
+        .replace(/\{\{POSITION\}\}/g, '') : '';
 
     return (
         <div
             id={wrapperId}
             className={`${props.style} scripts`}
-            dangerouslySetInnerHTML={{ __html: props.script }}
+            dangerouslySetInnerHTML={{ __html: processedScript }}
             style={adStyle}
         />
     );

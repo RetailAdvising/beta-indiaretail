@@ -52,7 +52,7 @@ export default function Home({ data }) {
   const getAd = async () => {
     const resp = await HomePageAds();
     if (resp.message) {
-      console.log(resp.message)
+      // console.log(resp.message)
       setAds(resp.message)
     }
   }

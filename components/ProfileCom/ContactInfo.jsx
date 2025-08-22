@@ -94,7 +94,7 @@ const JoinOurTeam = ({ style, styles }) => {
 
 
   function upload_file(img_data) {
-    console.log(img_data);
+    // console.log(img_data);
   }
 
 

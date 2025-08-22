@@ -46,7 +46,7 @@ const NewsLetterSub = ({ data, hide,email,cssClass }) => {
           {/* <h5 className='text-[12px] gray_color pt-[5px] line-clamp-2'>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</h5> */}
           <h5 className='text-[12px] gray_color pt-[5px] line-clamp-2'>Subscribe to IR Newsletter. Get notifications to stay updated</h5>
         </div>
-{console.log(news,"nehdsuofho")}
+{/* {console.log(news,"nehdsuofho")} */}
         <div className='body_sec h-[100%] overflow-auto scrollbar-hide p-[10px] w-[95%] m-[0px_auto]'>
           {news && news.map((res, index) => {
             return (

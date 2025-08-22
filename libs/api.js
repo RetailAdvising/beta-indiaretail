@@ -240,7 +240,7 @@ export async function createSubscription(order_id) {
         subscription_plan: order_id
     };
     const resp = await insertSubscription(param);
-    console.log(resp);
+    // console.log(resp);
 }
 
 export async function trending(event, tag, router) {

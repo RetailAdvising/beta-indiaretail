@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 // import GoogleAds from './GoogleAds';
 const GoogleAds = dynamic(() => import('./GoogleAds'))
 function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_payload = {}, adPos }) {
-    console.log(data, imgClass, divClass, insStyle, position, adId, ad_payload , adPos)
+    // console.log(data, imgClass, divClass, insStyle, position, adId, ad_payload , adPos)
     let [isMobile, setIsMobile] = useState(false)
     useEffect(() => {
         // console.log(adId, "adId")
@@ -87,7 +87,20 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                 </script>
                 </div>`,
 
-        "middle": ``,
+        "middle": `
+                    <script>
+                    window.googletag = window.googletag || {cmd: []};
+                    googletag.cmd.push(function() {
+                        googletag.defineSlot('/21631575671/IR-728x90-Leaderboard', [[320, 50], [728, 90], [970, 250]], 'div-gpt-ad-1617096742911-0').addService(googletag.pubads());
+                        googletag.pubads().enableSingleRequest();
+                        googletag.enableServices();
+                    });
+                    </script>
+                    <!-- /21631575671/IR-728x90-Leaderboard -->
+                    <script>
+                        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1617096742911-0'); });
+                        setInterval(function(){googletag.pubads().refresh([slot1]);}, 5000); 
+                    </script>`,
         "header": `
                     <script>
                     window.googletag = window.googletag || {cmd: []};
@@ -159,7 +172,7 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
         "footer_id": "div-gpt-ad-1707461460584-0"
     }
 
-    const scriptFor = (key) => key === 'middle' ? '' : scripts[key]
+    const scriptFor = (key) => scripts[key]
 
     return (
         <>
@@ -170,7 +183,7 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                 </div>
             }
 
-            {adPos && <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSlotEle={slotIds[adPos+"_id"]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scriptFor(adPos)} />}
+            {adPos && <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scriptFor(adPos)} />}
         </>
     )
 }
