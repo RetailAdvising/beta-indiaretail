@@ -173,7 +173,7 @@ export default function search({ searchTxt, data }) {
         
         <div className={'p-[10px] lg:w-[60%] lg:m-[16px_auto_0px_auto]'}>
           <div className={`flex border  rounded-[10px]`}>
-            <input id='search' className={'border-[0px] p-[10px] w-full rounded-[10px]'} onChange={searchText_1} onKeyDown={handleKeyDown} type="text" placeholder='Search here...' spellcheck="false" name="search"></input>
+            <input id='search' value={searchValue ? searchValue : searchText} className={'border-[0px] p-[10px] w-full rounded-[10px]'} onChange={searchText_1} onKeyDown={handleKeyDown} type="text" placeholder='Search here...' spellcheck="false" name="search"></input>
             {searchValue != '' && <div onClick={() => { clearSearch('search') }} className='cursor-pointer flex items-center justify-center px-[10px] h-[45px]'><Image height={20} priority width={20} alt='search' src={'/cart/close.svg'} className="h-[24]"></Image></div>}
             <div onClick={() => { navigateSearchScreen('search') }} className='border-l-[1px] p-[10px] cursor-pointer border-l-slate-100 flex items-center justify-center'><Image style={{ objectFit: 'contain' }} height={60} priority width={24} alt='search' src={'/search.svg'} className=""></Image></div>
           </div>
