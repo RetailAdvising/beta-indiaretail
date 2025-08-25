@@ -284,10 +284,17 @@ const AllCategory = ({ data }) => {
       {data && data.length != 0 && data.map((res, i) => {
         return (
           <div key={res.title} className=''>
-            <Link href={res.base_route} className={`text-[15px] font-[700] mb-[5px] nunito`}>{res.title}</Link>
+            {res.base_route ? (
+              <Link href={res.base_route} className={`text-[15px] font-[700] mb-[5px] nunito`}>{res.title}</Link>
+            ) : (
+              <span className={`text-[15px] font-[700] mb-[5px] nunito`}>{res.title}</span>
+            )}
             {res.data && res.data.length != 0 && res.data.map((resp, index) => {
-              return (
-                <Link className='block' href={res.base_route + resp.route} key={resp.title ? resp.title : resp.category_name}>{resp.title ? resp.title : resp.category_name}</Link>
+              const href = res.base_route && resp.route ? res.base_route + resp.route : undefined;
+              return href ? (
+                <Link className='block' href={href} key={resp.title ? resp.title : resp.category_name}>{resp.title ? resp.title : resp.category_name}</Link>
+              ) : (
+                <span className='block' key={resp.title ? resp.title : resp.category_name}>{resp.title ? resp.title : resp.category_name}</span>
               )
             })}
           </div>

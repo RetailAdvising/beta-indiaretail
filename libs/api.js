@@ -1084,9 +1084,10 @@ export const getHref = (res,searchNavigation,isHome,route) => {
     } else if (res.type === 'Newsletter') {
       return '/newsletters/' + res.route;
     }
-  } else {
+  } else if (res && res.route) {
     return `${isHome ? isHome + res.route : '/' + res.route}`;
   }
+  return "#";
 };
 
 export const getListHref = (res,isLanding,router,category) => {
