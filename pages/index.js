@@ -175,7 +175,7 @@ export default function Home({ data }) {
   return (
     <>
 
-      <RootLayout ad_payload={{ page: "Home", page_type: "Landing" }} data={data} isLanding={true} head={''} adIdH={'home-head'} adIdF={'home-foot'} homeAd={ads && ads.header ? ads : null}>
+      <RootLayout ad_payload={{ page: "Home", page_type: "Landing" }} data={data} isLanding={true} head={''} adIdH={'home-head'} adIdF={'home-foot'} homeAd={ads && ads.header ? ads : null} resetKey={router.asPath}>
         <SEO title={'Retail News | Latest Retail Industry News & Business Updates'} siteName={'India Retailing'} description={'Discover India Retail News, Trends, Reports, Case Studies, Business Analysis, Technology, Startup & Videos Trusted by Retail Business Leaders'} keywords={`Retail News, Online Retail News, Latest Retail News, Retail industry News, Retail Business News, Retail Technology News, Retail Updates, Retail Sector News, Best Retail Industry News`} />
 
         {(home && home.length != 0) ? home.map((data, i) => {
@@ -198,13 +198,13 @@ export default function Home({ data }) {
                             {isMobile ? <><div className='no_scroll md:mb-[15px]'><LatestNews height={'h-[190px] '} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} /></div><LatestNews height={'h-[190px]'} width={'w-full'} isList={true} data={data.data[c.cid].data.slice(4, 6)} /></> : <LatestNews marginstyle={'lg:mb-[10px]'} height={'md:h-[222px] lg:h-[235px]'} width={'w-full'} data={data.data[c.cid].data.slice(0, 4)} />}
                           </>}
                           {(ads && c.component_title == "Infocus Ad" && data.section == 'Infocus' && c.cid && data.data[c.cid]) &&
-                            <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.infocus ? ads.infocus : null} position={'small'} adPos={'300'} adId={'infocus'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] tab:w-full w-[300px] m-auto`} />
+                            <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.infocus ? ads.infocus : null} position={'small'} adPos={'300'} adId={'infocus'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] tab:w-full w-[300px] m-auto`} resetKey={router.asPath} />
                           }
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "IR Exclusive") && <IRPrime data={data.data[c.cid].data} />}
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "IR Exclusive" && !isMobile) && <Subscribe height={"h-[125px] "} data={news} width={"w-full"} />}
                           {(ads && c.component_title == "Top Stories Ad" && c.cid && data.data[c.cid]) &&
                             <div className="h-[90px]" style={{ height: '90px !important' }}>
-                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.top_stories ? ads.top_stories : null} adId={'top_stories_ad'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} adPos={'middle'} />
+                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.top_stories ? ads.top_stories : null} adId={'top_stories_ad'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} adPos={'middle'} resetKey={router.asPath} />
                             </div>}
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Web Special" && c.component_data_type == 'Location') && <>
                             <div className='lg:w-[calc(70%_-_10px)]'><Title data={{ title: c.component_title }} seeMore={true} route={'/categories/web-special'} /></div>
@@ -215,7 +215,7 @@ export default function Home({ data }) {
                               </div>
                               {/* {ads && ads.web_special && <div className='md:my-[15px] md:hidden'><AdsBaner data={ads && ads.web_special ? ads.web_special : null} height={'h-[250px]'} width={'w-[300px]'} /></div>} */}
                               <div className='md:my-[15px]'>
-                                <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads && ads.web_special ? ads.web_special : null} position={'small'} adPos={'300'} adId={'web_special'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} />
+                                <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads && ads.web_special ? ads.web_special : null} position={'small'} adPos={'300'} adId={'web_special'} insStyle={"display:inline-block;width:300px;height:250px;"} divClass={`h-[250px] w-[300px] m-auto`} resetKey={router.asPath} />
                               </div>
                             </div>
                             <div className={` flex border-t border-[#d4d8d8] pt-[10px] mt-[10px] md:hidden`}><BulletList isBorder={true} data={data.data[c.cid].data.slice(6, 10)} /></div>
@@ -312,7 +312,7 @@ export default function Home({ data }) {
 
                           {(ads && c.component_title == "Research Ad" && c.cid && data.data[c.cid]) &&
                             <>
-                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.research ? ads.research : null} adId={'research_ad'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} adPos={'middle'} />
+                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.research ? ads.research : null} adId={'research_ad'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} adPos={'middle'} resetKey={router.asPath} />
                             </>}
 
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "IR Video Wall") && <>
@@ -322,7 +322,7 @@ export default function Home({ data }) {
 
                           {(ads && c.component_title == "Video below Ad" && c.cid && data.data[c.cid]) &&
                             <>
-                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.video_below ? ads.video_below : null} position={'high'} adPos={'middle'} adId={'video_below'} insStyle={"display:inline-block;width:728px;height:90px;"} divClass={`h-[90px] lg:w-[728px] md:w-full object-cover m-auto`} />
+                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.video_below ? ads.video_below : null} position={'high'} adPos={'middle'} adId={'video_below'} insStyle={"display:inline-block;width:728px;height:90px;"} divClass={`h-[90px] lg:w-[728px] md:w-full object-cover m-auto`} resetKey={router.asPath} />
 
                             </>}
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Fashion & Lifestyle") && <>
@@ -358,7 +358,7 @@ export default function Home({ data }) {
                             <Video imgClass={'h-[210px] md:h-[190px] w-full'} isHome={'/video/'} vh={'h-[265px] md:h-[245px]'} data={data.data[c.cid].data} />
                           </>}
 
-                          {(ads && c.component_title == "Shopping centre below Ad" && c.cid && data.data[c.cid]) && <><Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} adPos={'middle'} position={'high'} adId={'shopping_centre_below'} data={ads.shopping_centre_below ? ads.shopping_centre_below : null} insStyle={"display:inline-block;width:728px;height:90px;"} divClass={`h-[90px] w-[728px] md:w-full m-auto`} />
+                          {(ads && c.component_title == "Shopping centre below Ad" && c.cid && data.data[c.cid]) && <><Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} adPos={'middle'} position={'high'} adId={'shopping_centre_below'} data={ads.shopping_centre_below ? ads.shopping_centre_below : null} insStyle={"display:inline-block;width:728px;height:90px;"} divClass={`h-[90px] w-[728px] md:w-full m-auto`} resetKey={router.asPath} />
                           </>}
 
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && (c.component_title == "Supply Chain" || c.component_title == "Marketing")) && <>
@@ -405,7 +405,7 @@ export default function Home({ data }) {
 
                           {(c.cid && books && books.length != 0 && c.component_title == "Book Store") && <>
                             <Title data={{ title: c.component_title }} route={'/bookstore'} seeMore={true} />
-                            <div className={`lg:grid gap-5 lg:grid-cols-5  flex`}><Card isHome={true} imgClass={'lg:h-[300px] md:h-[225px] mouse aspect-[2/2.5]'} check={true} flex={'md:flex-[0_0_calc(50%_-_10px)]'} data={books} boxShadow={true} /></div>
+                            <div className={`lg:grid gap-5 lg:grid-cols-5  flex overflow-scroll`}><Card isHome={true} imgClass={'lg:h-[300px] md:h-[225px] mouse aspect-[2/2.5]'} check={true} flex={'md:flex-[0_0_calc(50%_-_10px)]'} data={books} boxShadow={true} /></div>
                           </>}
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Reconnect") && <>
                             <Title data={{ title: c.component_title }} route={'/categories/reconnect'} seeMore={true} />
