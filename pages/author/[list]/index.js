@@ -102,6 +102,16 @@ export default function AuthorList({ values, Id }) {
 
 export async function getServerSideProps({ params }) {
     let Id = await params?.list
+    console.log(Id, "Id")
+
+    if (Id.toLowerCase() === "mannumathew") {
+    return {
+      redirect: {
+        destination: "/author/Mannu%20Mathew",
+        permanent: true,
+      },
+    };
+  }
 
     // let param = {
     //     author: id,
