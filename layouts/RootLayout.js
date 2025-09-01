@@ -27,7 +27,7 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
     display: 'flex',
     justifyContent: 'center'
   }
-  const[isDetail,setIsDetail]=useState(false)
+  const [isDetail, setIsDetail] = useState(false)
 
   useEffect(() => {
     if (typeof window != 'undefined' && router) {
@@ -40,7 +40,7 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
         } else {
           page_route = page_route.join(" ")
         }
-        if(!isDetail){
+        if (!isDetail) {
 
           article_breadcrumb(page_route)
         }
@@ -52,18 +52,18 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
       // } else setBreadCrumbs(router.asPath.split('/'))
     }
 
-   
+
     // ads.classList.remove('hidden')
   }, [router])
 
 
   useEffect(() => {
-     get_website_settings()
+    get_website_settings()
     if (typeof window !== "undefined" && localStorage['apikey']) {
       checkSession()
     }
-  },[])
-        
+  }, [])
+
 
 
   const article_breadcrumb = async (route) => {
@@ -229,14 +229,14 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
   }
 
   const handleClick = (event) => {
-   
-      event.preventDefault();
-   
+
+    event.preventDefault();
+
   };
 
   return (
     <>
-      {!checkAds(router.pathname) && (!checkout || is_detail) && <div className="lg:grid md:overflow-hidden lg:justify-center lg:pt-[15px] lg:mt-[10px] md:p-[10px_15px] "><Advertisement adId={adIdH} data={(homeAd && homeAd.header) && homeAd.header} ad_payload={ad_payload} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} adPos={'header'} position={"high"} /></div>}
+      {!checkAds(router.pathname) && (!checkout || is_detail) && <div className="lg:grid md:overflow-hidden lg:justify-center lg:pt-[15px] lg:mt-[10px] md:p-[10px_15px] "><Advertisement key={router.asPath + '-header'} adId={adIdH} data={(homeAd && homeAd.header) && homeAd.header} ad_payload={ad_payload} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} adPos={'header'} position={"high"} resetKey={router.asPath} /></div>}
       <>
         {router.pathname != "/p/[...route]" && <Header checkout={checkout} />}
         {/* {!checkout && <Navbar isLanding={isLanding} heading={head} /> } */}
@@ -275,7 +275,7 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
                       </div>
                     }
                   </div> :
-                  <Link className={`flex gap-[5px] items-center capitalize`} href={url} onClick={(e)=>{bc.replaceAll('-', ' ') == "author" || bc == "digital-icon" ? handleClick(e):null}}>
+                  <Link className={`flex gap-[5px] items-center capitalize`} href={url} onClick={(e) => { bc.replaceAll('-', ' ') == "author" || bc == "digital-icon" ? handleClick(e) : null }}>
                     <p className={`text-[12px] ${breadCrumbs.length - 1 == index ? 'font-[700]' : 'font-[500]'} nunito`}> {bc.replaceAll('-', ' ')}</p>
                     {(index !== 0 && index != breadCrumbs.length - 1) &&
                       <div className='ml-[5px] pt-[4px]'>
@@ -300,7 +300,7 @@ function RootLayout({ children, checkout, isLanding, head, homeAd, data, header_
           {children}
         </main>
 
-        {!checkAds(router.pathname) && (!checkout && !is_detail) && <div className="my-[10px] md:mb-[15px] lg:py-5 lg:grid lg:justify-center md:overflow-hidden md:px-[10px]"><Advertisement ad_payload={ad_payload} adId={adIdF} data={(homeAd && homeAd.footer) && homeAd.footer} position={"high"} adPos={'footer'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} style={styles} height={'h-full'} width={'500px'} /></div>}
+        {!checkAds(router.pathname) && (!checkout && !is_detail) && <div className="my-[10px] md:mb-[15px] lg:py-5 lg:grid lg:justify-center md:overflow-hidden md:px-[10px]"><Advertisement key={router.asPath + '-footer'} ad_payload={ad_payload} adId={adIdF} data={(homeAd && homeAd.footer) && homeAd.footer} position={"high"} adPos={'footer'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} style={styles} height={'h-full'} width={'500px'} resetKey={router.asPath} /></div>}
         {!checkout && footerData && footerData.length != 0 && <MainFooter isMobile={isMobile} footerData={footerData} />}
       </>
     </>
@@ -312,11 +312,11 @@ export default memo(RootLayout)
 
 
 
-  // {
-  //                       "menu_label": "Videos",
-  //                       "redirect_url": "/video",
-  //                       "icon": "/Navbar/video.svg",
-  //                       "is_mega_menu": 0,
-  //                       "no_of_column": 0,
-  //                       "child_menu": []
-  //                   },
+// {
+//                       "menu_label": "Videos",
+//                       "redirect_url": "/video",
+//                       "icon": "/Navbar/video.svg",
+//                       "is_mega_menu": 0,
+//                       "no_of_column": 0,
+//                       "child_menu": []
+//                   },

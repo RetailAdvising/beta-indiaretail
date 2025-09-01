@@ -1,9 +1,20 @@
-# *
 User-agent: *
 Allow: /
-
-# Host
-Host: https://www.indiaretailing.com
-
-# Sitemaps
+ 
+Disallow: /wp-admin/
+Disallow: /feed/
+Allow : /wp-admin/admin-ajax.php
+Disallow: /wp-content/uploads/backup/
+ 
 Sitemap: https://www.indiaretailing.com/sitemap.xml
+Sitemap: https://www.indiaretailing.com/news-sitemap.xml
+Sitemap: https://www.indiaretailing.com/post-sitemap.xml
+Sitemap: https://www.indiaretailing.com/page-sitemap.xml
+Sitemap: https://www.indiaretailing.com/category-sitemap.xml
+ 
+User-agent: Linguee
+Disallow: /
+ 
+# WP Import Export Rule
+User-agent: *
+Disallow: /wp-content/uploads/wp-import-export-lite/

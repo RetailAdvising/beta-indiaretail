@@ -4,7 +4,7 @@ import { checkMobile, get_ip, insert_banner_ad_log } from '@/libs/api'
 import dynamic from 'next/dynamic';
 // import GoogleAds from './GoogleAds';
 const GoogleAds = dynamic(() => import('./GoogleAds'))
-function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_payload = {}, adPos }) {
+function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_payload = {}, adPos, resetKey }) {
     // console.log(data, imgClass, divClass, insStyle, position, adId, ad_payload , adPos)
     let [isMobile, setIsMobile] = useState(false)
     useEffect(() => {
@@ -103,17 +103,21 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                     </script>`,
         "header": `
                     <script>
-                    window.googletag = window.googletag || {cmd: []};
-                    googletag.cmd.push(function() {
-                        googletag.defineSlot('/21631575671/IR-NEW-TOP-728x90-Leaderboard', [[320, 50], [728, 90]], 'div-gpt-ad-1738918272133-0').addService(googletag.pubads());
-                        googletag.pubads().enableSingleRequest();
-                        googletag.enableServices();
-                    });
+                    (window.requestIdleCallback || window.setTimeout)(function() {
+                        window.googletag = window.googletag || {cmd: []};
+                        googletag.cmd.push(function() {
+                            googletag.defineSlot('/21631575671/IR-NEW-TOP-728x90-Leaderboard', [[320, 50], [728, 90]], 'div-gpt-ad-1738918272133-0').addService(googletag.pubads());
+                            googletag.pubads().enableSingleRequest();
+                            googletag.enableServices();
+                        });
+                    }, 300);
                     </script>
                     <!-- /21631575671/IR-NEW-TOP-728x90-Leaderboard -->
                     <div id='div-gpt-ad-1738918272133-0' style='min-width: 320px; min-height: 50px;'>
                     <script>
-                        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1738918272133-0'); });
+                        (window.requestIdleCallback || window.setTimeout)(function() {
+                            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1738918272133-0'); });
+                        }, 350);
                     </script>
                     </div>`,
         "footer": `
@@ -174,16 +178,19 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
 
     const scriptFor = (key) => scripts[key]
 
+    // Defensive check for required ad data fields
+    const hasAdData = data && typeof data === 'object' && Object.keys(data).length !== 0 && (data.web_image || data.mobile_image);
+
     return (
         <>
-            {
-                data && Object.keys(data).length != 0 &&
+            {hasAdData &&
                 <div onClick={() => click_report()} className={`${divClass ? divClass : ''} cursor-pointer md:h-full ${data.position == 'Header' || data.position == 'Footer' ? 'h-[90px] w-[728px]' : ''}`}>
+                    
                     <ImageLoader isQuick={adPos == 'header'} style={`${imgClass ? imgClass : ''} md:object-contain h-full w-full ${adPos == 'header' || adPos == 'footer' ? '!h-[90px] ' : ''}`} src={isMobile ? data.mobile_image : data.web_image} title={data.title ? data.title : 's'} />
                 </div>
             }
 
-            {adPos && <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scriptFor(adPos)} />}
+            {adPos && <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scriptFor(adPos)} resetKey={resetKey} />}
         </>
     )
 }

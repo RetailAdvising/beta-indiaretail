@@ -18,15 +18,15 @@ const nextConfig = {
   // }
   swcMinify: false, // it should be false by default 
 
-  async redirects() {
-    return [
-      {
-        source: "/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug",
-        destination: "/:slug",
-        permanent: true, // 301 redirect
-      },
-    ];
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug",
+  //       destination: "/:slug",
+  //       permanent: true, // 301 redirect
+  //     },
+  //   ];
+  // },
 }
 
 module.exports = nextConfig

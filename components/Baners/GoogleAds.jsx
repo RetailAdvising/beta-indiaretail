@@ -407,6 +407,8 @@ const GoogleAds = (props) => {
     const processedScript = props.script ? props.script
         .replace(/\{\{AD_ID\}\}/g, idToken)
         .replace(/\{\{POSITION\}\}/g, '') : '';
+        // console.log(processedScript,"processedScript")
+        
 
     return (
         <div

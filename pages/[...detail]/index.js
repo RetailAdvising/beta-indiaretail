@@ -6,14 +6,15 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import Head from 'next/head'
 import dynamic from 'next/dynamic';
-const Advertisement = dynamic(()=> import('@/components/Baners/Advertisement'))
-const CategoryBuilder = dynamic(()=> import('@/components/Builders/CategoryBuilder'))
+const Advertisement = dynamic(() => import('@/components/Baners/Advertisement'))
+const CategoryBuilder = dynamic(() => import('@/components/Builders/CategoryBuilder'))
 
 const index = ({ data, page_route }) => {
     const router = useRouter();
     const user = useSelector(s => s.user);
 
     const [values, setValues] = useState([])
+    // console.log(values, 'values')
     const [prev, setPrev] = useState('')
     const [pagination, setPagination] = useState(true);
     const [advertisement, setAds] = useState();
@@ -24,19 +25,16 @@ const index = ({ data, page_route }) => {
 
     let [divs, setDivs] = useState(['div0']);
     let [routeList, setRouteList] = useState([])
+    // console.log(routeList, 'routeList')
     const [loading, setLoading] = useState(false);
 
     const articleDetail = async (route) => {
-        
-        // debugger
         if (router.query && router.query?.detail && typeof window !== 'undefined') {
             let Id = route ? route : page_route
             values.length = 0
             setValues(values)
-            // let Id = await router.query?.detail;
             let param = {
                 "route": Id,
-                // "category": category,
                 "next": 0
             }
             let value = await articlesDetail(param);
@@ -47,36 +45,39 @@ const index = ({ data, page_route }) => {
                     tags.splice(0, 1);
                     data._user_tags = tags
                 } else {
-                    // data._user_tags = [];
                     data ? data._user_tags = [] : null;
                 }
                 if (router.query.preview != 'true') {
-                    routeList.push(data.route)
-                    setRouteList(routeList)
+                    // Always store the full route (no leading slash)
+                    let fullRoute = data.route.startsWith('/') ? data.route.replace(/^\//, '') : data.route;
+                    if (fullRoute.endsWith("/")) {
+                        fullRoute = fullRoute.slice(0, -1);
+                    }
+                    routeList.push(fullRoute);
+                    setRouteList([...routeList]);
                 }
                 setMetaInfo(data)
                 setPageNo(pageNo + 1)
 
                 setValues((prevValues) => {
-                    // Check if the item already exists based on the name
                     if (!prevValues.some(art => art.name === data.name)) {
-                        return [...prevValues, data]; // Add the new item if it doesn't exist
+                        return [...prevValues, data];
                     }
-                    return prevValues; // Return previous values if duplicate
+                    return prevValues;
                 });
                 setLoading(true)
 
                 setPrev(route ? route : page_route)
-                if(data.has_comments && data.has_comments == 1){
-                commentslist(data)}
+                if (data.has_comments && data.has_comments == 1) {
+                    commentslist(data)
+                }
                 if (!data.is_member && data.ir_prime == 1) {
-                    // if (data.is_member == 0) {
                     getMembershipPlans();
                 }
             }
         }
-        // console.log('sad'+val)
     }
+
 
     const ads = async () => {
         let param = { page: 'Categories', page_type: 'Detail' }
@@ -95,45 +96,50 @@ const index = ({ data, page_route }) => {
     useEffect(() => {
         if (typeof window !== 'undefined' && localStorage['apikey']) {
             // if (role) {
-                setValues([])
-                setPageNo(1)
-                setComments(prevValues => {
-                    prevValues = [...[]]
-                    return prevValues
-                })
-                articleDetail(undefined);
+            setValues([])
+            setPageNo(1)
+            setComments(prevValues => {
+                prevValues = [...[]]
+                return prevValues
+            })
+            articleDetail(undefined);
 
-                if (typeof window !== 'undefined' && localStorage['roles'] && localStorage['roles'] != '') {
-                    values.map(res => {
-                        res.ir_prime = 1;
-                    })
-                    setValues(values);
-                }
+            if (typeof window !== 'undefined' && localStorage['roles'] && localStorage['roles'] != '') {
+                values.map(res => {
+                    res.ir_prime = 1;
+                })
+                setValues(values);
+            }
             // }
         }
     }, [user])
 
+
+
     async function loadMore() {
-        // console.log(router);
         setLoading(true)
         let param = {
             "route": prev,
-            // "category": router.query?.types,
             "next": 1,
         }
 
         if (pagination && pageNo <= 5 && router.query.preview != 'true') {
             let value = await articlesDetail(param);
             let data = value.message;
-            // console.log(data)
             if (data && data.status == "Success") {
-                routeList.push(data.route)
-                setRouteList(routeList)
+                // Always store the full route (no leading slash)
+                let fullRoute = data.route.startsWith('/') ? data.route.replace(/^\//, '') : data.route;
+
+
+                if (fullRoute.endsWith("/")) {
+                    fullRoute = fullRoute.slice(0, -1);
+                }
+                routeList.push(fullRoute);
+                setRouteList([...routeList]);
                 setPrev(data.route)
                 setPageNo(pageNo + 1)
                 setLoading(false)
-                if(data.has_comments && data.has_comments == 1){
-
+                if (data.has_comments && data.has_comments == 1) {
                     commentslist(data)
                 }
                 let val = data
@@ -145,13 +151,12 @@ const index = ({ data, page_route }) => {
                 } else {
                     val._user_tags = [];
                 }
-                
+
                 setValues((prevValues) => {
-                    // Check if the item already exists based on the name
                     if (!prevValues.some(art => art.name === val.name)) {
-                        return [...prevValues, val]; // Add the new item if it doesn't exist
+                        return [...prevValues, val];
                     }
-                    return prevValues; // Return previous values if duplicate
+                    return prevValues;
                 });
 
                 divs.push('div' + divs.length)
@@ -159,11 +164,11 @@ const index = ({ data, page_route }) => {
             } else {
                 setPagination(!pagination)
             }
-        }else{
+        } else {
             setLoading(false)
         }
-
     }
+
 
 
     const isNavigatingRef = useRef(false);
@@ -180,6 +185,8 @@ const index = ({ data, page_route }) => {
         };
     }, []);
 
+
+
     useEffect(() => {
         // Event listener to track scroll events
         const handleScroll = () => {
@@ -193,8 +200,9 @@ const index = ({ data, page_route }) => {
                     if (divTop < windowHeight / 2 && divBottom > windowHeight / 2) {
                         let ind = divId.replace('div', '')
                         ind = Number(ind);
-                        // Only push if the route is not already correct
-                        if (routeList && routeList.length > 0 && routeList[ind] && router.asPath.replace(/^\//, '').replace(/\/$/, '') !== routeList[ind]) {
+                        // Always compare the full route (no leading slash)
+                        const currentRoute = router.asPath.replace(/^\//, '').replace(/\/$/, '');
+                        if (routeList && routeList.length > 0 && routeList[ind] && currentRoute !== routeList[ind]) {
                             isNavigatingRef.current = true;
                             router.push({ pathname: '/' + routeList[ind] }, undefined, { shallow: true, scroll: false });
                             if (values && values.length > 0 && values[ind]) {
@@ -217,10 +225,12 @@ const index = ({ data, page_route }) => {
         }
     }, [scrollEle, divs, routeList, values, router, data]);
 
+
     // Listen for route changes and scroll to the correct article div
     useEffect(() => {
         if (!router.isReady) return;
         // Find the index of the current route in routeList
+        
         const currentRoute = router.asPath.replace(/^\//, '').replace(/\/$/, '');
         let idx = routeList.findIndex(r => r === currentRoute);
         // If not found, try to load articles up to this route
@@ -283,7 +293,7 @@ const index = ({ data, page_route }) => {
         let resp = await commentList(param);
         if (resp.message && resp.message.length != 0) {
             const val = { data: resp.message, route: data.name }
- 
+
             setComments((prevValues) => {
                 // Check if the item already exists based on the name
                 if (!prevValues.some(comment => comment.route === val.name)) {
@@ -293,7 +303,7 @@ const index = ({ data, page_route }) => {
             });
         } else {
             const val = { data: [], route: data.name }
-           
+
             setComments((prevValues) => {
                 // Check if the item already exists based on the name
                 if (!prevValues.some(comment => comment.route === val.name)) {
@@ -420,8 +430,8 @@ const index = ({ data, page_route }) => {
                     })}
                 </> : <Skeleton />
                 }
-                 {/* <div className='more h-[20px]' ref={cardref}></div> */}
-                {loading  && <div id="wave">
+                {/* <div className='more h-[20px]' ref={cardref}></div> */}
+                {loading && <div id="wave">
                     <span className="dot"></span>
                     <span className="dot"></span>
                     <span className="dot"></span>
@@ -434,6 +444,15 @@ const index = ({ data, page_route }) => {
 
 export async function getServerSideProps({ params }) {
     let page_route = await params?.detail;
+   
+    if (page_route && page_route.length > 1 && page_route[page_route.length - 1] === "ammarzo-sleepwear-global-expansion-funding-goals") {
+    return {
+      redirect: {
+        destination: "/ammarzo-sleepwear-global-expansion-funding-goals",
+        permanent: true,
+      },
+    };
+  }
 
     if (page_route && Array.isArray(page_route) && page_route.length > 1) {
         page_route = page_route.join("/") + "/"
