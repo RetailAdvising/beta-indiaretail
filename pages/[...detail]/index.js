@@ -14,7 +14,6 @@ const index = ({ data, page_route }) => {
     const user = useSelector(s => s.user);
 
     const [values, setValues] = useState([])
-    // console.log(values, 'values')
     const [prev, setPrev] = useState('')
     const [pagination, setPagination] = useState(true);
     const [advertisement, setAds] = useState();
@@ -25,7 +24,7 @@ const index = ({ data, page_route }) => {
 
     let [divs, setDivs] = useState(['div0']);
     let [routeList, setRouteList] = useState([])
-    // console.log(routeList, 'routeList')
+    
     const [loading, setLoading] = useState(false);
 
     const articleDetail = async (route) => {
@@ -275,7 +274,6 @@ const index = ({ data, page_route }) => {
     }
 
     const productNavigation = (obj) => {
-        // console.log(obj)
         router.replace({ pathname: '/' + obj }, undefined, { shallow: false, scroll: true });
         routeList.length = 0
         setRouteList(routeList)
@@ -445,14 +443,14 @@ const index = ({ data, page_route }) => {
 export async function getServerSideProps({ params }) {
     let page_route = await params?.detail;
    
-    if (page_route && page_route.length > 1 && page_route[page_route.length - 1] === "ammarzo-sleepwear-global-expansion-funding-goals") {
-    return {
-      redirect: {
-        destination: "/ammarzo-sleepwear-global-expansion-funding-goals",
-        permanent: true,
-      },
-    };
-  }
+//     if (page_route && page_route.length > 1 && page_route[page_route.length - 1] === "ammarzo-sleepwear-global-expansion-funding-goals") {
+//     return {
+//       redirect: {
+//         destination: "/ammarzo-sleepwear-global-expansion-funding-goals",
+//         permanent: true,
+//       },
+//     };
+//   }
 
     if (page_route && Array.isArray(page_route) && page_route.length > 1) {
         page_route = page_route.join("/") + "/"
@@ -465,9 +463,12 @@ export async function getServerSideProps({ params }) {
         fields: ["name", "route", "title", "meta_title", "meta_description", "meta_keywords", "meta_image", "image", "published_on", "modified", "_user_tags"],
         filters: { "route": page_route }
     }
+    
+
 
     let value = await getList(param);
     let data;
+    
     if (value && value.message && value.message.length != 0) {
         data = value.message[0];
     } else {

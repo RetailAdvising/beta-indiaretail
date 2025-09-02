@@ -7,17 +7,14 @@ import { useEffect, useRef, useState } from "react";
 export default function AuthorList({ values, Id }) {
     const router = useRouter();
     const [data, setData] = useState([]);
-    // console.log(values)
-
-    // let apiCall = false;
+    
     let page_no = 1;
     let cardref = useRef(null);
     let no_product = false;
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // console.log(values);
-        // debugger
+       
         if (values) {
             setTimeout(() => {
                 setData(values)
@@ -26,7 +23,6 @@ export default function AuthorList({ values, Id }) {
 
         const intersectionObserver = new IntersectionObserver(entries => {
             if (entries[0].intersectionRatio <= 0) return;
-            // console.log(entries[0].intersectionRatio,"entries[0].intersectionRatio")
             if (!no_product) {
                 page_no = page_no + 1
                 page_no > 1 ? loadMore() : null
@@ -104,14 +100,14 @@ export async function getServerSideProps({ params }) {
     let Id = await params?.list
    
 
-    if (Id.toLowerCase() === "mannumathew") {
-    return {
-      redirect: {
-        destination: "/author/Mannu%20Mathew",
-        permanent: true,
-      },
-    };
-  }
+//     if (Id.toLowerCase() === "mannumathew") {
+//     return {
+//       redirect: {
+//         destination: "/author/Mannu%20Mathew",
+//         permanent: true,
+//       },
+//     };
+//   }
 
     // let param = {
     //     author: id,
