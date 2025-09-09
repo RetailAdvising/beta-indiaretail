@@ -125,3 +125,13 @@ export default function Navbar({ heading, isLanding, checkout }) {
         </>
     )
 }
+
+
+// {
+//                         "menu_label": "Categories",
+//                         "redirect_url": "/categories",
+//                         "icon": "/Navbar/Categories.svg",
+//                         "is_mega_menu": 0,
+//                         "no_of_column": 0,
+//                         "child_menu": []
+//                     },
