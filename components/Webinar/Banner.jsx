@@ -66,14 +66,14 @@ const Banner = ({ data, click_data , isMobile }) => {
           )}
 
           {/* Button */}
-          <div className="mt-6 text-left">
+          {/* <div className="mt-6 text-left">
             <button
               onClick={() => click_data(data, "register")}
               className="w-fit text-[#CA4A56] bg-white font-bold uppercase px-4 py-2 rounded-3xl text-sm lg:text-base"
             >
               {data.button_name}
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
