@@ -26,7 +26,7 @@ const Advertisement = dynamic(()=> import('../Baners/Advertisement'))
 export default function CategoryBuilder({ data, load, isLast, i, ads, user, productNavigation, comments, updatedCmt, updateShare, noScroll, plans, ads_data, ad_payload }) {
   const styles = {}
   const [showComment, setshowComment] = useState(true);
-  console.log('data',data)
+  
 
   const [validator, setValidator] = useState(false)
   const router = useRouter();

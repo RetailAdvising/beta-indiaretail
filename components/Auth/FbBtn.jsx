@@ -15,11 +15,11 @@ const FbBtn = ({ socialLogin, setCredential, setShowMob }) => {
   }, [])
 
   const { linkedInLogin } = useLinkedIn({
-    clientId: "782oqow2dx0bgq",
+    clientId: "86b4qk3ibf9z8c",
     // redirectUri: `http://localhost:3000/auth/signin`,
     redirectUri: `${doamin_url}/auth/signin`,
     scope: "email profile w_member_social openid",
-    state: "782oqow2dx0bgq",
+    state: "86b4qk3ibf9z8c",
     // email profile
     onSuccess: async (code) => {
       const accessToken = await handleLogin(code)

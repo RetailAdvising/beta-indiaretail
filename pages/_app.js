@@ -107,7 +107,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       if (screen.orientation && screen.orientation.lock) {
         try {
           await screen.orientation.lock("portrait-primary");
-          console.log("Screen locked to portrait-primary");
         } catch (error) {
           // Only log errors that are not NotSupportedError
           if (!(error && error.name === "NotSupportedError")) {

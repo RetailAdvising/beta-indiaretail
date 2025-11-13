@@ -180,7 +180,7 @@ export default function Home({ data }) {
 
         {(home && home.length != 0) ? home.map((data, i) => {
           return (
-            <div key={i} ref={home.length === i + 3 ? lastPostElementRef : null} className={`py-[20px] ${data.section == 'PS-24-00630' ? 'lg:p-5 bg-[#F8F9FA]' : data.section == 'PS-23-00157' || data.section == 'Infocus' ? 'border-b border-[#d4d8d8] container' : data.section == 'PS-23-00166' ? 'bg-[#000] lg:my-5 lg:p-[20px_40px] md:py-[20px]  no_scroll md:mb-5' : data.section == 'PS-23-00130' ? 'lg:bg-[#f1f1f1] p-5 lg:my-5' : data.section == 'PS-24-00623' ? 'bg-[#F0F0F0]' : 'container'}  md:p-[15px]  md:py-[10px] lg:flex gap-5 ${data.section == 'Reconnect' ? 'lg:items-center' : ''}`}>
+            <div key={i} ref={home.length === i + 3 ? lastPostElementRef : null} className={`py-[20px]  ${(data.section_id == "316fbae13d" || data.section_id == "d7d77e72c0" || data.section_id == "32bbba4d47" || data.section_id == "316fbae13d") && "!py-0"} ${data.section == 'PS-24-00630' ? 'lg:p-5 bg-[#F8F9FA]' : data.section == 'PS-23-00157' || data.section == 'Infocus' ? 'border-b border-[#d4d8d8] container' : data.section == 'PS-23-00166' ? 'bg-[#000] lg:my-5 lg:p-[20px_40px] md:py-[20px]  no_scroll md:mb-5' : data.section == 'PS-23-00130' ? 'lg:bg-[#f1f1f1] p-5 lg:my-5' : data.section == 'PS-24-00623' ? 'bg-[#F0F0F0]' : 'container'}  md:p-[15px]  md:py-[10px] lg:flex gap-5 ${data.section == 'Reconnect' ? 'lg:items-center' : ''}`}>
               {(data.layout_json && JSON.parse(data.layout_json).length != 0) && JSON.parse(data.layout_json).map((res, index) => {
                 return (
                   <div key={index} className={`${res.class == 'flex-[0_0_calc(100%_-_0px)]' ? 'w-full' : res.class} ${(data.section != 'PS-24-00630') ? 'md:my-[10px]' : 'container'}  ${((data.section == 'PS-23-00130') && !isMobile) ? 'container' : ''} ${data.section == 'PS-23-00166' ? 'container md:!mb-0' : ''} ${data.section == 'PS-24-00623' && !isMobile ? 'container' : ''}`}>
@@ -204,7 +204,7 @@ export default function Home({ data }) {
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "IR Exclusive" && !isMobile) && <Subscribe height={"h-[125px] "} data={news} width={"w-full"} />}
                           {(ads && c.component_title == "Top Stories Ad" && c.cid && data.data[c.cid]) &&
                             <div className="h-[90px]" style={{ height: '90px !important' }}>
-                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.top_stories ? ads.top_stories : null} adId={'top_stories_ad'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} adPos={'middle'} resetKey={router.asPath} />
+                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.top_stories ? ads.top_stories : null} adId={'top_stories_ad'} divClass={' lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} adPos={'middle'} resetKey={router.asPath} />
                             </div>}
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Web Special" && c.component_data_type == 'Location') && <>
                             <div className='lg:w-[calc(70%_-_10px)]'><Title data={{ title: c.component_title }} seeMore={true} route={'/categories/web-special'} /></div>
@@ -312,7 +312,7 @@ export default function Home({ data }) {
 
                           {(ads && c.component_title == "Research Ad" && c.cid && data.data[c.cid]) &&
                             <>
-                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.research ? ads.research : null} adId={'research_ad'} divClass={'h-[90px] lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} adPos={'middle'} resetKey={router.asPath} />
+                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.research ? ads.research : null} adId={'research_ad'} divClass={' lg:w-[728px] md:w-full m-auto'} insStyle={isMobile ? "display:inline-block;width:360px;height:90px;" : "display:inline-block;width:728px;height:90px;"} position={"high"} adPos={'middle'} resetKey={router.asPath} />
                             </>}
 
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "IR Video Wall") && <>
@@ -322,7 +322,7 @@ export default function Home({ data }) {
 
                           {(ads && c.component_title == "Video below Ad" && c.cid && data.data[c.cid]) &&
                             <>
-                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.video_below ? ads.video_below : null} position={'high'} adPos={'middle'} adId={'video_below'} insStyle={"display:inline-block;width:728px;height:90px;"} divClass={`h-[90px] lg:w-[728px] md:w-full object-cover m-auto`} resetKey={router.asPath} />
+                              <Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} data={ads.video_below ? ads.video_below : null} position={'high'} adPos={'middle'} adId={'video_below'} insStyle={"display:inline-block;width:728px;height:90px;"} divClass={` lg:w-[728px] md:w-full object-cover m-auto`} resetKey={router.asPath} />
 
                             </>}
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && c.component_title == "Fashion & Lifestyle") && <>
@@ -358,7 +358,7 @@ export default function Home({ data }) {
                             <Video imgClass={'h-[210px] md:h-[190px] w-full'} isHome={'/video/'} vh={'h-[265px] md:h-[245px]'} data={data.data[c.cid].data} />
                           </>}
 
-                          {(ads && c.component_title == "Shopping centre below Ad" && c.cid && data.data[c.cid]) && <><Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} adPos={'middle'} position={'high'} adId={'shopping_centre_below'} data={ads.shopping_centre_below ? ads.shopping_centre_below : null} insStyle={"display:inline-block;width:728px;height:90px;"} divClass={`h-[90px] w-[728px] md:w-full m-auto`} resetKey={router.asPath} />
+                          {(ads && c.component_title == "Shopping centre below Ad" && c.cid && data.data[c.cid]) && <><Advertisement ad_payload={{ page: "Home", page_type: "Landing" }} adPos={'middle'} position={'high'} adId={'shopping_centre_below'} data={ads.shopping_centre_below ? ads.shopping_centre_below : null} insStyle={"display:inline-block;width:728px;height:90px;"} divClass={` w-[728px] md:w-full m-auto`} resetKey={router.asPath} />
                           </>}
 
                           {(c.cid && data.data[c.cid] && data.data[c.cid].data && (c.component_title == "Supply Chain" || c.component_title == "Marketing")) && <>

@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 const index = ({ data, detail }) => {
     const router = useRouter()
-    console.log(data, "data")
+   
     // let routes = detail.replaceAll("-", " ")
     useEffect(() => {
     }, [router.query, data])
