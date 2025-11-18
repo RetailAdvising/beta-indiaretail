@@ -190,12 +190,13 @@ function Advertisement({ data, imgClass, divClass, insStyle, position, adId, ad_
                 </div>
             }
 
-            {adPos && <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scriptFor(adPos)} resetKey={resetKey} />}
+            {adPos && <>
+                <GoogleAds isMobile={isMobile} slotId={slotIds[adPos]} adSizes={slotIds[adPos+"_size"]} adId={adId} position={position} style={divClass} script={scriptFor(adPos)} resetKey={resetKey} />
+            </>
+            }
         </>
     )
 }
-
-
 
 
 export default memo(Advertisement)

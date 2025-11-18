@@ -85,23 +85,27 @@ export default function Header({ checkout }) {
         // }
     }
 
+    let timer;
+
     async function searchText(eve) {
+        clearTimeout(timer);
+
         let value = eve.target.value;
-        if (value) {
-            let params = {
-                search_txt: value
+        setSearchValue(value);
+
+        timer = setTimeout(async () => {
+            if (value) {
+                const resp = await search_product({ search_txt: value });
+
+                if (resp?.status === "success") {
+                    setSearchResult(resp.data);
+                }
+            } else {
+                setSearchResult([]);
             }
-            const resp = await search_product(params);
-            // console.log(resp);
-            if (resp && resp.status == 'success') {
-                setSearchResult(resp.data)
-                setSearchValue(value)
-            }
-        } else {
-            setSearchResult([]);
-            setSearchValue(undefined)
-        }
+        }, 500); 
     }
+
 
     async function handleKeyDown(event) {
         // console.log(event)
@@ -249,7 +253,6 @@ export default function Header({ checkout }) {
                                                                 <h6 className='text-[15px] line-clamp-1 font-semibold'>{res.title}</h6>
                                                             </div>
                                                             <div className='flex items-center justify-center'><Image height={8} priority width={8} alt='search' src={'/forwardIcon.svg'} className="opacity-50"></Image></div>
-
                                                         </div>
                                                     )
                                                 })}
